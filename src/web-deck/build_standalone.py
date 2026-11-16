@@ -55,17 +55,27 @@ def build_standalone(web_url: str | None = None) -> tuple[Path, Path]:
         raise RuntimeError("Could not find <link rel=\"stylesheet\" href=\"styles.css\" /> in HTML")
     html = css_link_pattern.sub(lambda _: f"<style>\n{css}\n  </style>", html, count=1)
 
-    # 2. Inline local vendor/gsap.min.js
-    gsap_pattern = re.compile(r'<script\s+src="(?:vendor/gsap\.min\.js|https://[^"]*gsap\.min\.js)"\s+defer></script>')
+    # 2. Remove external GSAP & deck.js script tags from <head> and inject them right before </body>
+    #    (Inline <script defer> in <head> executes BEFORE <body> is parsed in browsers!)
+    gsap_pattern = re.compile(r'\s*<script\s+src="(?:vendor/gsap\.min\.js|https://[^"]*gsap\.min\.js)"\s+defer></script>')
     if not gsap_pattern.search(html):
         raise RuntimeError("Could not find GSAP <script> tag in HTML")
-    html = gsap_pattern.sub(lambda _: f"<script defer>\n{gsap_js}\n  </script>", html, count=1)
+    html = gsap_pattern.sub("", html, count=1)
 
-    # 3. Inline deck.js
-    deck_js_pattern = re.compile(r'<script\s+src="deck\.js"\s+defer></script>')
+    deck_js_pattern = re.compile(r'\s*<script\s+src="deck\.js"\s+defer></script>')
     if not deck_js_pattern.search(html):
         raise RuntimeError("Could not find <script src=\"deck.js\" defer></script> in HTML")
-    html = deck_js_pattern.sub(lambda _: f"<script defer>\n{js}\n  </script>", html, count=1)
+    html = deck_js_pattern.sub("", html, count=1)
+
+    safe_gsap = gsap_js.replace("</script", "<\\/script")
+    safe_deck = js.replace("</script", "<\\/script")
+    if "</body>" not in html:
+        raise RuntimeError("Could not find </body> in HTML")
+    html = html.replace(
+        "</body>",
+        f"  <script>\n{safe_gsap}\n  </script>\n  <script>\n{safe_deck}\n  </script>\n</body>",
+        1,
+    )
 
     # 4. Inline all local ../../assets/... images as base64 data URIs
     asset_pattern = re.compile(r'src="(\.\./\.\./assets/[^"]+)"')
