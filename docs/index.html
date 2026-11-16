@@ -166,11 +166,9 @@ body {
   animation: emeraldPulse 2.6s ease-in-out infinite;
 }
 
-.phase-node--iso.is-lit {
-  border-color: #2563EB;
-  background: #EFF6FF;
-  animation: isoPulse 2.4s ease-in-out infinite;
-  transition: all 0.5s ease;
+.phase-node--iso.is-lit rect {
+  filter: drop-shadow(0 0 5px rgba(21, 128, 61, 0.28));
+  transition: filter 0.5s ease;
 }
 
 /* Pointer-Reactive Interactive Card Sheen & Lift */
@@ -1408,7 +1406,7 @@ body {
 .prop-mini-card {
   background: var(--bg-plate);
   border: 1px solid var(--border-light);
-  border-left: 4px solid var(--accent-blue);
+  border-left: 4px solid var(--sodium-amber);
   padding: 9px 13px;
   font-size: 13.5px;
   line-height: 1.38;
@@ -1416,7 +1414,7 @@ body {
   box-shadow: var(--plate-shadow);
 }
 
-.prop-mini-card strong { color: var(--polito-blue); }
+.prop-mini-card strong { color: var(--sodium-alert); }
 
 /* Slide 5: 2 Side-by-Side Sub-Panels */
 .dual-panel-row {
@@ -4266,7 +4264,21 @@ html.export-pdf .deck-laser { display: none !important; }
       if (AMBIENT_FX.slide4PhaseWave && nodes.length) {
         ambientTween = gsap.timeline({ repeat: -1, repeatDelay: 5.5, delay: 2.0 });
         nodes.forEach((n, i) => {
-          ambientTween.to(n, { borderColor: "#E05A00", y: -2, duration: 0.35, yoyo: true, repeat: 1, ease: "sine.inOut" }, i * 0.24);
+          const rect = n.querySelector("rect");
+          if (!rect) return;
+          const isIso = n.classList.contains("phase-node--iso");
+          ambientTween.to(
+            rect,
+            {
+              stroke: isIso ? "#15803D" : "#E05A00",
+              strokeWidth: 2,
+              duration: 0.35,
+              yoyo: true,
+              repeat: 1,
+              ease: "sine.inOut",
+            },
+            i * 0.24
+          );
         });
       }
       return;

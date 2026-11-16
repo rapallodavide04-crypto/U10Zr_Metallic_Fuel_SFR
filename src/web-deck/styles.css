@@ -156,11 +156,9 @@ body {
   animation: emeraldPulse 2.6s ease-in-out infinite;
 }
 
-.phase-node--iso.is-lit {
-  border-color: #2563EB;
-  background: #EFF6FF;
-  animation: isoPulse 2.4s ease-in-out infinite;
-  transition: all 0.5s ease;
+.phase-node--iso.is-lit rect {
+  filter: drop-shadow(0 0 5px rgba(21, 128, 61, 0.28));
+  transition: filter 0.5s ease;
 }
 
 /* Pointer-Reactive Interactive Card Sheen & Lift */
@@ -1398,7 +1396,7 @@ body {
 .prop-mini-card {
   background: var(--bg-plate);
   border: 1px solid var(--border-light);
-  border-left: 4px solid var(--accent-blue);
+  border-left: 4px solid var(--sodium-amber);
   padding: 9px 13px;
   font-size: 13.5px;
   line-height: 1.38;
@@ -1406,7 +1404,7 @@ body {
   box-shadow: var(--plate-shadow);
 }
 
-.prop-mini-card strong { color: var(--polito-blue); }
+.prop-mini-card strong { color: var(--sodium-alert); }
 
 /* Slide 5: 2 Side-by-Side Sub-Panels */
 .dual-panel-row {

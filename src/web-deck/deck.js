@@ -397,7 +397,21 @@
       if (AMBIENT_FX.slide4PhaseWave && nodes.length) {
         ambientTween = gsap.timeline({ repeat: -1, repeatDelay: 5.5, delay: 2.0 });
         nodes.forEach((n, i) => {
-          ambientTween.to(n, { borderColor: "#E05A00", y: -2, duration: 0.35, yoyo: true, repeat: 1, ease: "sine.inOut" }, i * 0.24);
+          const rect = n.querySelector("rect");
+          if (!rect) return;
+          const isIso = n.classList.contains("phase-node--iso");
+          ambientTween.to(
+            rect,
+            {
+              stroke: isIso ? "#15803D" : "#E05A00",
+              strokeWidth: 2,
+              duration: 0.35,
+              yoyo: true,
+              repeat: 1,
+              ease: "sine.inOut",
+            },
+            i * 0.24
+          );
         });
       }
       return;
