@@ -93,8 +93,8 @@
       proxy,
       {
         p: 1,
-        duration: 2.15,
-        ease: "power2.out",
+        duration: 2.2,
+        ease: "power3.out",
         onUpdate: () => {
           els.forEach((el) => {
             const target = parseFloat(el.dataset.countTo);
@@ -102,10 +102,7 @@
             const suffix = el.dataset.countSuffix || "";
             const decimals = parseInt(el.dataset.countDecimals || "0", 10);
             const useComma = el.dataset.countComma === "true";
-            let val = proxy.p * target;
-            if (decimals === 0 && target >= 2 && proxy.p < 1) {
-              val = Math.min(target - 1, Math.floor(val));
-            }
+            const val = proxy.p * target;
             const raw = decimals > 0 ? val.toFixed(decimals) : Math.round(val).toString();
             const formatted = useComma ? Number(raw).toLocaleString("en-US") : raw;
             el.textContent = `${prefix}${formatted}${suffix}`;
