@@ -1040,7 +1040,7 @@ body {
   margin-top: -11px;
   width: 22px;
   height: 22px;
-  background: var(--polito-blue);
+  background: var(--accent-blue);
   color: #FFFFFF;
   font-family: var(--font-mono);
   font-size: 11px;
@@ -1048,12 +1048,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 6px rgba(3, 10, 24, 0.35);
 }
 
-.step-item--amber { border-color: #FCD34D; background: #FFFBEB; }
+.step-item--amber { border-color: #FCD34D; background: linear-gradient(135deg, #FFFFFF 0%, #FFFBEB 100%); }
 .step-item--amber .step-item__dot { background: var(--sodium-alert); }
-.step-item--green { border-color: #86EFAC; background: #F0FDF4; }
+.step-item--green { border-color: #86EFAC; background: linear-gradient(135deg, #FFFFFF 0%, #F0FDF4 100%); }
 .step-item--green .step-item__dot { background: var(--eng-green); }
+.step-item--slate { border-color: #94A3B8; background: linear-gradient(135deg, #FFFFFF 0%, #F1F5F9 100%); }
+.step-item--slate .step-item__dot { background: #475569; }
 
 /* Slide 7: Top Critical Alert Banner + Flipped Split */
 .alert-banner {
