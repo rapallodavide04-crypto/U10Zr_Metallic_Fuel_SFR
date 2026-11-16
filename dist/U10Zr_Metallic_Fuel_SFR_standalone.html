@@ -4513,7 +4513,7 @@ html.export-pdf .deck-laser { display: none !important; }
       return;
     }
 
-    // Slide 14: Closing Title + SVG Accent Rule Stroke-Draw + Subtle Symmetric Core Halo
+    // Slide 14: Closing Core-Lattice Assembly + Solemn Typographic Reveal + Ambient Containment Orbit
     if (slideNum === 14) {
       const title = slide.querySelector(".thankyou-title");
       const sub = slide.querySelector(".thankyou-sub");
@@ -4522,22 +4522,49 @@ html.export-pdf .deck-laser { display: none !important; }
       const ruleLine = slide.querySelector(".thankyou-rule line");
       const closingHex = slide.querySelector(".closing-hex-watermark");
       const closingGlow = slide.querySelector(".closing-glow-circle");
-      if (closingHex) tl.fromTo(closingHex, { opacity: 0, scale: 0.9 }, { opacity: 0.42, scale: 1, duration: 1.2, ease: "power2.out" }, 0.05);
-      if (title) tl.fromTo(title, { opacity: 0, scale: 0.94, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.78, ease: "power3.out" }, 0.1);
+      if (closingHex) {
+        const rings = closingHex.querySelectorAll(":scope > circle:not(.closing-glow-circle)");
+        const hexes = closingHex.querySelectorAll("polygon");
+        const coreDots = closingHex.querySelectorAll("g > circle");
+        tl.fromTo(closingHex, { opacity: 0 }, { opacity: 0.44, duration: 0.7, ease: "power2.out" }, 0.04);
+        if (rings.length) {
+          tl.fromTo(rings, { opacity: 0, scale: 0.84, transformOrigin: "180px 180px" }, { opacity: 1, scale: 1, duration: 1.25, stagger: 0.14, ease: "power3.out" }, 0.08);
+        }
+        if (hexes.length) {
+          tl.fromTo(
+            hexes,
+            { opacity: 0, scale: 0.72, transformOrigin: "center center" },
+            { opacity: 1, scale: 1, duration: 0.72, stagger: { each: 0.055, from: "end" }, ease: "power3.out" },
+            0.14
+          );
+        }
+        if (coreDots.length) {
+          tl.fromTo(coreDots, { opacity: 0, scale: 0.3, transformOrigin: "center center" }, { opacity: 1, scale: 1, duration: 0.7, stagger: 0.1, ease: "back.out(1.6)" }, 0.16);
+        }
+      }
+      if (title) tl.fromTo(title, { opacity: 0, scale: 0.96, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.95, ease: "power3.out" }, 0.18);
       if (ruleLine) {
         const len = ruleLine.getTotalLength ? ruleLine.getTotalLength() : 220;
         gsap.set(ruleLine, { strokeDasharray: len, strokeDashoffset: len });
-        tl.to(ruleLine, { strokeDashoffset: 0, duration: 0.95, ease: "expo.out" }, 0.34);
+        tl.to(ruleLine, { strokeDashoffset: 0, duration: 1.05, ease: "expo.out" }, 0.48);
       }
-      if (sub) tl.fromTo(sub, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.58, ease: "power2.out" }, 0.48);
-      if (contact) tl.fromTo(contact, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.55, ease: "power2.out" }, 0.62);
-      if (disclosure) tl.fromTo(disclosure, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.68, ease: "power2.out" }, 0.76);
-      if (AMBIENT_FX.slide14ClosingHalo && closingGlow) {
-        ambientTween = gsap.fromTo(
-          closingGlow,
-          { opacity: 0.45, scale: 0.92, transformOrigin: "center center" },
-          { opacity: 1, scale: 1.1, duration: 3.4, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 1.5 }
-        );
+      if (sub) tl.fromTo(sub, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.72, ease: "power3.out" }, 0.68);
+      if (contact) tl.fromTo(contact, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.65, ease: "power2.out" }, 0.88);
+      if (disclosure) tl.fromTo(disclosure, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.75, ease: "power2.out" }, 1.08);
+      if (AMBIENT_FX.slide14ClosingHalo && closingHex) {
+        ambientTween = gsap.timeline();
+        if (closingGlow) {
+          ambientTween.fromTo(
+            closingGlow,
+            { opacity: 0.45, scale: 0.92, transformOrigin: "180px 180px" },
+            { opacity: 1, scale: 1.12, duration: 3.4, repeat: -1, yoyo: true, ease: "sine.inOut" },
+            1.6
+          );
+        }
+        const outerDashedRing = closingHex.querySelector('circle[stroke-dasharray]');
+        if (outerDashedRing) {
+          ambientTween.to(outerDashedRing, { rotation: 360, duration: 68, repeat: -1, ease: "none", transformOrigin: "180px 180px" }, 1.4);
+        }
       }
       return;
     }
