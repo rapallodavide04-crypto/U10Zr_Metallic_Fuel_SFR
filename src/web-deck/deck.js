@@ -115,7 +115,14 @@
     return tl;
   }
 
-  window.addEventListener("beforeprint", finalizeAllCounters);
+  function finalizePrintState() {
+    finalizeAllCounters();
+    document.querySelectorAll(".prop-compare-svg .bar-fill").forEach((bar) => {
+      if (window.gsap) window.gsap.set(bar, { clearProps: "transform" });
+    });
+  }
+
+  window.addEventListener("beforeprint", finalizePrintState);
 
   // Helper: Geometric clip-path reveal for scientific figures & schematics
   function revealFigure(tl, el, fromInset, at) {
@@ -383,12 +390,7 @@
       tl.fromTo(nodes, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.58, stagger: 0.1, ease: "power3.out" }, 0.12)
         .fromTo(arrows, { opacity: 0, x: -6 }, { opacity: 1, x: 0, duration: 0.35, stagger: 0.1, ease: "power2.out" }, 0.18);
       bars.forEach((b, i) => {
-        const targetW = b.getAttribute("width");
-        if (targetW) {
-          tl.fromTo(b, { attr: { width: 0 } }, { attr: { width: Number(targetW) }, duration: 1.4, ease: "expo.out" }, 0.38 + i * 0.18);
-        } else {
-          tl.fromTo(b, { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 1.4, ease: "expo.out" }, 0.38 + i * 0.18);
-        }
+        tl.fromTo(b, { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 1.4, ease: "expo.out" }, 0.38 + i * 0.18);
       });
       if (isoNode) tl.call(() => isoNode.classList.add("is-lit"), null, 0.78);
       if (mini) tl.fromTo(mini, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.52);
