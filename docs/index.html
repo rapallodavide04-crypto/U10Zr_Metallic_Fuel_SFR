@@ -2247,6 +2247,13 @@ html.export-pdf * {
 html.export-pdf .cover-backdrop img { opacity: 0.14 !important; }
 html.export-pdf .slide { pointer-events: auto !important; }
 html.export-pdf .pdf-web-link { display: inline-block !important; pointer-events: auto !important; }
+html.export-pdf .prop-compare-svg .bar-fill {
+  transform: scaleX(1) !important;
+  width: revert !important;
+  opacity: 1 !important;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
 html.export-pdf .weld-crop-wrap img { clip-path: inset(6px 0 0 6px) !important; }
 html.export-pdf .cover-hex-grid { opacity: 0.36 !important; }
 html.export-pdf .cover-hex-grid .hex-cell { fill-opacity: 0 !important; }
@@ -2306,6 +2313,13 @@ html.export-pdf .deck-laser { display: none !important; }
   .cover-backdrop img { opacity: 0.14 !important; }
   .slide { pointer-events: auto !important; }
   .pdf-web-link { display: inline-block !important; pointer-events: auto !important; }
+  .prop-compare-svg .bar-fill {
+    transform: scaleX(1) !important;
+    width: revert !important;
+    opacity: 1 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
   .weld-crop-wrap img { clip-path: inset(6px 0 0 6px) !important; }
   .cover-hex-grid { opacity: 0.36 !important; }
   .cover-hex-grid .hex-cell { fill-opacity: 0 !important; }
@@ -2732,7 +2746,7 @@ html.export-pdf .deck-laser { display: none !important; }
                   <!-- Bar 2: MOX (~2-4 -> 10%) -->
                   <rect x="14" y="52" width="452" height="20" rx="2" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
                   <rect class="bar-fill" x="14" y="52" width="45" height="20" rx="2" fill="#94A3B8"/>
-                  <text x="67" y="66" font-size="10.5" font-weight="700" fill="#334155">MOX: ~2&#8211;4</text>
+                  <text x="67" y="66" font-size="10.5" font-weight="700" fill="#1E293B">MOX: ~2&#8211;4</text>
 
                   <!-- Divider -->
                   <line x1="14" y1="82" x2="466" y2="82" stroke="#E2E8F0" stroke-width="1"/>
@@ -2748,7 +2762,7 @@ html.export-pdf .deck-laser { display: none !important; }
 
                   <!-- Bar 4: MOX (~10.9 -> 68%) -->
                   <rect x="14" y="128" width="452" height="20" rx="2" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
-                  <rect class="bar-fill" x="14" y="128" width="307" height="20" rx="2" fill="#64748B"/>
+                  <rect class="bar-fill" x="14" y="128" width="307" height="20" rx="2" fill="#475569"/>
                   <text x="24" y="142" font-size="10.2" font-weight="700" fill="#FFFFFF">MOX (sintered): ~10.9 (~9.7 g-HM/cm&#179;)</text>
                 </svg>
 
@@ -3535,7 +3549,7 @@ html.export-pdf .deck-laser { display: none !important; }
             </div>
           </div>
 
-          <p class="table-footnote">Trade-off grounded in NUREG/CR-7305, PNNL-35642, IAEA-TECDOC-1689, and Xie et al. (2018).</p>
+          <p class="table-footnote">Trade-off grounded in NUREG/CR-7305, PNNL-35642 (2024), IAEA-TECDOC-1689, and Xie et al. (2018).</p>
           </div>
         </div>
 
@@ -3675,7 +3689,7 @@ html.export-pdf .deck-laser { display: none !important; }
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[2]</span>
-                  <div class="ref-text"><strong>Wray &amp; Geelhood (2024/2026)</strong> &mdash; <a class="ref-link" href="https://www.osti.gov/biblio/3030076" target="_blank" rel="noopener"><em>SFR Metallic Fuel Degradation</em>, <strong>PNNL-35642</strong> &nearr;</a>. <span class="ref-slide-tag">S05, S11</span></div>
+                  <div class="ref-text"><strong>Wray &amp; Geelhood (2024)</strong> &mdash; <a class="ref-link" href="https://www.osti.gov/biblio/3030076" target="_blank" rel="noopener"><em>SFR Metallic Fuel Degradation</em>, <strong>PNNL-35642</strong> &nearr;</a>. <span class="ref-slide-tag">S05, S11</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[3]</span>
