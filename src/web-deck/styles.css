@@ -2235,7 +2235,8 @@ html.export-pdf * {
   stroke-dashoffset: 0 !important;
 }
 html.export-pdf .cover-backdrop img { opacity: 0.14 !important; }
-html.export-pdf .pdf-web-link { display: inline-block !important; }
+html.export-pdf .slide { pointer-events: auto !important; }
+html.export-pdf .pdf-web-link { display: inline-block !important; pointer-events: auto !important; }
 html.export-pdf .weld-crop-wrap img { clip-path: inset(6px 0 0 6px) !important; }
 html.export-pdf .cover-hex-grid { opacity: 0.36 !important; }
 html.export-pdf .cover-hex-grid .hex-cell { fill-opacity: 0 !important; }
@@ -2293,7 +2294,8 @@ html.export-pdf .deck-laser { display: none !important; }
     stroke-dashoffset: 0 !important;
   }
   .cover-backdrop img { opacity: 0.14 !important; }
-  .pdf-web-link { display: inline-block !important; }
+  .slide { pointer-events: auto !important; }
+  .pdf-web-link { display: inline-block !important; pointer-events: auto !important; }
   .weld-crop-wrap img { clip-path: inset(6px 0 0 6px) !important; }
   .cover-hex-grid { opacity: 0.36 !important; }
   .cover-hex-grid .hex-cell { fill-opacity: 0 !important; }
