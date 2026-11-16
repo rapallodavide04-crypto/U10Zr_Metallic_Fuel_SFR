@@ -159,6 +159,7 @@
       ambientTween.kill();
       ambientTween = null;
     }
+    window.gsap.killTweensOf(".cover-core-pulse");
 
     const gsap = window.gsap;
     const tl = gsap.timeline();
@@ -231,100 +232,45 @@
         tl.fromTo(coreNode, { scale: 0.3, transformOrigin: "center center", opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: "back.out(2.2)" }, 1.05);
       }
       if (AMBIENT_FX.slide1HexChargeCycle && allHexCells.length) {
-        ambientTween = gsap.timeline({ repeat: -1, repeatDelay: 0.35, delay: 1.95 });
+        // Ciclo morbido di respirazione termica (yoyo: true evita lo scatto brusco a fine ciclo)
+        ambientTween = gsap.timeline({ repeat: -1, yoyo: true, repeatDelay: 0.25, delay: 1.2 });
+
         if (coreGlow) {
           ambientTween.fromTo(
             coreGlow,
-            { opacity: 0.28, scale: 0.84, transformOrigin: "center center" },
-            { opacity: 1, scale: 1.28, duration: 3.05, ease: "power1.in" },
+            { opacity: 0.38, scale: 0.92, svgOrigin: "200 196" },
+            { opacity: 0.95, scale: 1.14, duration: 2.8, ease: "sine.inOut" },
             0
           );
         }
         if (coreNode) {
           ambientTween.fromTo(
             coreNode,
-            { scale: 1, transformOrigin: "center center" },
-            { scale: 1.24, duration: 3.05, ease: "power1.in" },
+            { scale: 0.95, svgOrigin: "200 172" },
+            { scale: 1.18, fill: "#FDE68A", duration: 2.8, ease: "sine.inOut" },
             0
           );
         }
         if (centerCircle) {
-          ambientTween.to(
-            centerCircle,
-            { stroke: "#FEF3C7", strokeWidth: 2.6, duration: 2.8, ease: "sine.in" },
-            0.15
-          );
+          ambientTween.to(centerCircle, { stroke: "#FEF3C7", strokeWidth: 2.8, duration: 2.8, ease: "sine.inOut" }, 0);
         }
         if (ring0) {
-          ambientTween.to(
-            ring0,
-            { fillOpacity: 0.56, stroke: "#FDE68A", strokeWidth: 3.2, duration: 0.9, ease: "power2.inOut" },
-            0
-          );
+          ambientTween.to(ring0, { fillOpacity: 0.48, stroke: "#FDE68A", strokeWidth: 3.2, duration: 1.4, ease: "sine.inOut" }, 0);
         }
         if (ring1.length) {
-          ambientTween.to(
-            ring1,
-            { fillOpacity: 0.36, stroke: "#FBBF24", strokeOpacity: 0.92, strokeWidth: 2.0, duration: 1.15, stagger: 0.16, ease: "sine.inOut" },
-            0.45
-          );
+          ambientTween.to(ring1, { fillOpacity: 0.30, stroke: "#FBBF24", strokeOpacity: 0.9, strokeWidth: 2.0, duration: 1.6, stagger: 0.12, ease: "sine.inOut" }, 0.35);
         }
         if (ring2.length) {
-          ambientTween.to(
-            ring2,
-            { fillOpacity: 0.24, stroke: "#F59E0B", strokeOpacity: 0.82, strokeWidth: 1.8, duration: 1.05, stagger: 0.18, ease: "sine.inOut" },
-            1.45
-          );
+          ambientTween.to(ring2, { fillOpacity: 0.16, stroke: "#F59E0B", strokeOpacity: 0.72, strokeWidth: 1.6, duration: 1.6, stagger: 0.12, ease: "sine.inOut" }, 0.95);
         }
-        // Hold peak saturation briefly (~0.33s), then crisp radial shockwave + rapid discharge
+
+        // Onda neutronica radiale continua (dal centro verso il vessel esterno)
         if (corePulse) {
-          ambientTween.fromTo(
+          gsap.killTweensOf(corePulse);
+          gsap.fromTo(
             corePulse,
-            { scale: 1, opacity: 0.95, transformOrigin: "center center" },
-            { scale: 4.2, opacity: 0, duration: 0.82, ease: "power2.out" },
-            3.38
-          );
-        }
-        if (coreGlow) {
-          ambientTween.to(
-            coreGlow,
-            { opacity: 0.28, scale: 0.84, duration: 0.48, ease: "power3.out" },
-            3.40
-          );
-        }
-        if (coreNode) {
-          ambientTween.to(
-            coreNode,
-            { scale: 1, duration: 0.4, ease: "power3.out" },
-            3.40
-          );
-        }
-        if (centerCircle) {
-          ambientTween.to(
-            centerCircle,
-            { stroke: "#FBBF24", strokeWidth: 2, duration: 0.38, ease: "power3.out" },
-            3.40
-          );
-        }
-        if (ring0) {
-          ambientTween.to(
-            ring0,
-            { fillOpacity: 0, stroke: "#E05A00", strokeWidth: 2.6, duration: 0.34, ease: "power3.out" },
-            3.40
-          );
-        }
-        if (ring1.length) {
-          ambientTween.to(
-            ring1,
-            { fillOpacity: 0, stroke: "#93C5FD", strokeOpacity: 0.52, strokeWidth: 1.4, duration: 0.38, stagger: 0.03, ease: "power3.out" },
-            3.43
-          );
-        }
-        if (ring2.length) {
-          ambientTween.to(
-            ring2,
-            { fillOpacity: 0, stroke: "#93C5FD", strokeOpacity: 0.52, strokeWidth: 1.4, duration: 0.36, stagger: 0.03, ease: "power3.out" },
-            3.52
+            { attr: { r: 16 }, opacity: 0.85, strokeWidth: 2.4 },
+            { attr: { r: 162 }, opacity: 0, strokeWidth: 0.6, duration: 3.2, repeat: -1, ease: "power1.out", delay: 1.2 }
           );
         }
       } else if (AMBIENT_FX.slide1CorePulse) {

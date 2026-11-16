@@ -407,8 +407,8 @@ body {
 
 .cover-hex-grid {
   position: absolute;
-  right: -20px;
-  top: -10px;
+  right: 10px;
+  top: 24px;
   width: 590px;
   height: 590px;
   opacity: 0.84;
