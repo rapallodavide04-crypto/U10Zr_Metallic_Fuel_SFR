@@ -1,0 +1,26 @@
+# Bibliography — U-10Zr Metallic Fuel for Sodium Fast Reactors
+
+1. **Williams, W. et al. (2023).** *Metal Fuel Qualification: Fuel Assessment Using NRC NUREG-2246, "Fuel Qualification for Advanced Reactors".* U.S. Nuclear Regulatory Commission, `NUREG/CR-7305` (`ML23214A065`). https://www.nrc.gov/docs/ML2321/ML23214A065.pdf
+2. **Wray, D., & Geelhood, K. (2024/2026).** *Degradation and Failure Phenomena of Advanced Reactor Fuel Concepts: Sodium-Cooled Fast Reactor Metallic Fuel.* Pacific Northwest National Laboratory, `PNNL-35642` (`OSTI ID: 3030076`).
+3. **Crawford, D. C., & Porter, D. L. (2024).** *Applying U.S. metal fuel experience to new fuel designs for fast reactors.* *Progress in Nuclear Energy*, 171 (`INL/JOU-23-75646`). https://www.osti.gov/servlets/purl/2328501
+4. **Oklo Inc. / USNRC / DOE-INL (2025).** *NRC Meeting Summary on Oklo Aurora Fuel Qualification Report* (17 Sep 2025); *DOE-INL PDSA Approval for Aurora Fuel Fabrication Facility (A3F)* (Nov–Dec 2025).
+5. **Janney, D. E. (2018).** *Metallic Fuels Handbook, Part 1 and Part 2.* Idaho National Laboratory, `INL/EXT-15-36520-Rev003` (`OSTI ID: 1469797`). https://doi.org/10.2172/1469797
+6. **Hofman, G. L. et al. (2019).** *Metallic Fuels Handbook.* Argonne National Laboratory, `ANL-NSE-3`. https://doi.org/10.2172/1506477
+7. **Janney, D. E., & Hayes, S. L. (2018).** *Experimentally Known Properties of U-10Zr Alloys: A Critical Review.* *Nuclear Technology*, 203(2), 109–128 (`OSTI ID: 1478233`). https://doi.org/10.1080/00295450.2018.1435137
+8. **Crawford, D. C., Porter, D. L., & Hayes, S. L. (2007).** *Fuels for sodium-cooled fast reactors: US perspective.* *Journal of Nuclear Materials*, 371, 202–231. https://doi.org/10.1016/j.jnucmat.2007.05.010
+9. **Carmack, W. J. et al. (2009).** *Metallic fuels for advanced reactors.* *Journal of Nuclear Materials*, 392, 139–150.
+10. **Matthews, C. et al. (2023).** *Development and formulation of physics based metallic fuel models and comparison to integral irradiation data.* *Journal of Nuclear Materials*, 578, 154343. https://doi.org/10.1016/j.jnucmat.2023.154343
+11. **Yao, T. et al. (2023).** *The advanced characterization, post-irradiation examination, and materials informatics for the development of ultra high-burnup annular U-10Zr metallic fuel.* *Frontiers in Nuclear Engineering*, 1. https://doi.org/10.3389/fnuen.2022.1050262
+12. **Xu, B. et al. (2023).** *Advanced characterization-informed machine learning framework and quantitative insight to irradiated annular U-10Zr metallic fuels.* *Scientific Reports*, 13 (`OSTI ID: 1987899`). https://doi.org/10.1038/s41598-023-35619-1
+13. **Carmack, W. J. et al. (2012).** *Temperature and Burnup Correlated FCCI in U-10Zr Metallic Fuel.* Idaho National Laboratory, `INL/EXT-12-25550` (`OSTI ID: 1055966`).
+14. **Carmack, W. J. et al. (2016).** *FCCI in FFTF MFF-3 / MFF-5 U-10Zr/HT9.* *Journal of Nuclear Materials*, 473, 167–177. https://doi.org/10.1016/j.jnucmat.2016.02.019
+15. **Wang, X. et al. (2022).** *Small-scale mechanical testing and characterization of fuel-cladding chemical interaction between HT9 cladding and advanced U-based metallic fuel alloy.* *Journal of Nuclear Materials* (`INL/JOU-22-65574`, `OSTI ID: 1903734`). https://doi.org/10.1016/j.jnucmat.2022.153754
+16. **Salvato, D. et al. (2022).** *Transmission electron microscopy study of a high burnup U-10Zr metallic fuel.* *Journal of Nuclear Materials*, 570. https://doi.org/10.1016/j.jnucmat.2022.153963 (OSTI PDF: https://www.osti.gov/servlets/purl/1957620)
+17. **Liu, X. et al. (2021).** *Fuel-cladding chemical interaction of a prototype annular U-10Zr fuel with Fe-12Cr ferritic/martensitic HT-9 cladding.* *Journal of Nuclear Materials*, 544. https://doi.org/10.1016/j.jnucmat.2020.152588
+18. **Miao, Y. et al. (2021).** *FY2021 Progress Report on BISON Metallic Fuel Model Development and V&V Using EBR-II Legacy Data.* Argonne National Laboratory, `ANL/CFCT-21/19` (`OSTI ID: 1828881`). https://doi.org/10.2172/1828881
+19. **Xie, Y., Zhang, J., Benson, M. T. et al. (2018).** *Lanthanide migration and immobilization in metallic fuels.* *Progress in Nuclear Energy*, 109 (`INL/JOU-18-51305`). https://doi.org/10.1016/j.pnucene.2018.08.019 (Report: https://doi.org/10.2172/1432451)
+20. **Benson, M. T., Harp, J. M., & Xie, Y. (2021).** *Out-of-pile and postirradiated examination of lanthanide and lanthanide-palladium interactions for metallic fuel.* *Journal of Nuclear Materials*, 544. https://doi.org/10.1016/j.jnucmat.2020.152727
+21. **Was, G. S., Petti, D., Ukai, S., & Zinkle, S. J. (2019).** *Materials for future nuclear energy systems.* *Journal of Nuclear Materials*, 527, 151837. https://doi.org/10.1016/j.jnucmat.2019.151837
+22. **IAEA (2013).** *Design, Manufacturing and Irradiation Behaviour of Fast Reactor Fuel.* `IAEA-TECDOC-CD-1689`.
+23. **LLNL / USDOE (2006).** *LFR Demonstrator Materials Viability.* `UCRL-TR-223397`.
+24. **Seki, M. et al. (2004).** *Pressurized Resistance Welding Technology Development in 9Cr-ODS Martensitic Steels.* *Journal of Nuclear Materials*, 329–333, 1534–1538. https://doi.org/10.1016/j.jnucmat.2004.04.172 (Related PRW reports: `OSTI ID: 1016182`, https://doi.org/10.2172/1491999)

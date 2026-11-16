@@ -1,0 +1,112 @@
+{
+  "metadata": {
+    "title": "U-10Zr Metallic Fuel for Sodium Fast Reactors",
+    "subtitle": "Materials Selection, Degradation Mechanisms & Cladding Trade-Off",
+    "author": "Davide Rapallo",
+    "email": "s324486@studenti.polito.it",
+    "course": "01TVMXY / 01TVMND - Advanced Materials for Nuclear Applications (A.Y. 2026/27)",
+    "institution": "Politecnico di Torino",
+    "case_study_role": "Oklo Inc. (Simulated Case Study)",
+    "total_slides": 14
+  },
+  "operating_envelope": {
+    "reactor": "Oklo Aurora SFR (pool-type)",
+    "electric_power_MWe": "15-75",
+    "cladding_temperature_C": "400-650",
+    "pict_limit_C": 650,
+    "pict_stage1_target_C": 620,
+    "fast_neutron_dose_dpa": "100-200"
+  },
+  "reference_pin_nureg_cr_7305": {
+    "fuel_alloy": "U-10wt%Zr",
+    "bond": "Liquid Na",
+    "cladding": "HT9",
+    "fuel_od_mm": 5.0,
+    "cladding_od_mm": 6.9,
+    "cladding_wall_mm": 0.6,
+    "smeared_density_pct_max": 75,
+    "plenum_to_fuel_volume_ratio": 1.4,
+    "bol_peak_lhgr_kW_m": "40-55",
+    "burnup_envelope_at_pct": 10
+  },
+  "u10zr_vs_mox": {
+    "u10zr": {
+      "as_cast_density_g_cm3": "16.0-16.2 (20 C); 15.5 (650 C)",
+      "heavy_metal_density_g_cm3": "~14.4 (~50% higher than UO2/MOX ~9.7)",
+      "thermal_conductivity_W_mK": "~32",
+      "solidus_C": "~1248 (1521 K; lowest U-Zr solidus >1100 vs 1135 pure U)",
+      "liquidus_C": "~1355-1360",
+      "sub_solidus_transitions_C": {
+        "alpha_plus_delta_to_alpha_plus_gamma2": 617,
+        "alpha_plus_gamma2_to_beta_plus_gamma2": 662,
+        "beta_plus_gamma2_to_beta_plus_gamma1": 693,
+        "beta_plus_gamma1_to_gamma_bcc": "693-715"
+      }
+    },
+    "mox": {
+      "density_g_cm3": "~10.9",
+      "thermal_conductivity_W_mK": "~2-4"
+    }
+  },
+  "in_pile_and_fcci": {
+    "volumetric_swelling_gap_closure_pct": "30-33",
+    "fission_gas_release_pct": "70-80",
+    "u_fe_eutectic_C": 725,
+    "ebr2_x447_breach_T_C": 660
+  },
+  "cladding_ht9": {
+    "composition_wt_pct": "Fe-12Cr-1Mo-0.5W-0.5Ni-0.3V-0.2C",
+    "normalizing_C": 1050,
+    "tempering_C": 750,
+    "void_swelling_at_200dpa_pct": "<2 (400-420 C)",
+    "dbtt_shift_threshold_C": "<400 (T < 0.4 Tm: delta_DBTT ~+155 C, saturates 5-10 dpa)",
+    "creep_ceiling_C": "600-650 (~60 MPa at 1e5 h / 600 C)"
+  },
+  "irradiation_database": {
+    "total_us_metallic_pins": ">130000",
+    "qualified_u10zr_ht9_rods": 1262,
+    "ebr2_rods": 404,
+    "fftf_rods": 858,
+    "proven_burnup_fftf_at_pct": "~14 (143 GWd/MTHM)",
+    "proven_burnup_ebr2_at_pct": ">17-20",
+    "zero_breach_envelope": "<=75% smear density, <17 at% BU, 370-615 C"
+  },
+  "advanced_mitigation": {
+    "annular_he_bonded_smear_pct": 55,
+    "ods_9cr_composition": "Fe-9Cr-2W-0.2Ti-0.35Y2O3",
+    "ods_nano_oxide_size_nm": "1-3",
+    "ods_creep_limit_C": "~700"
+  },
+  "trade_off_table": [
+    {
+      "concept": "U-10Zr (Na) / 316SS-D9",
+      "advantages": "High early creep strength; no low-T DBTT; historical EBR-II data",
+      "disadvantages": "Severe FCC void swelling after incubation; Ni leaching/FCCI",
+      "limiting_factors": "Void swelling (~10 at% BU cap)"
+    },
+    {
+      "concept": "U-10Zr (Na) / HT9 (Baseline)",
+      "advantages": "<2% swelling at 200 dpa; 1,262-pin NRC database; high k",
+      "disadvantages": "High-burnup FCCI wastage; reactive Na-bond waste",
+      "limiting_factors": "Creep >650 C; U-Fe eutectic (725 C)"
+    },
+    {
+      "concept": "U-10Zr (Na + Liner/Pd) / HT9",
+      "advantages": "Cuts FCCI wastage & extends burnup using qualified HT9 tube",
+      "disadvantages": "Extra fabrication/coating cost; unaddressed HT9 creep ceiling",
+      "limiting_factors": "HT9 thermal creep >650 C; liner bonding QA"
+    },
+    {
+      "concept": "Annular U-10Zr (He) / 9Cr-ODS",
+      "advantages": "No reactive Na waste; creep to ~700 C; low alpha' risk",
+      "disadvantages": "Lower gap k_He; expensive PM/MA tubing; low TRL",
+      "limiting_factors": "PRW end-cap weld qual.; tight gap tolerances"
+    },
+    {
+      "concept": "MOX / 15-15Ti (Benchmark)",
+      "advantages": "Mature oxide/LWR fabrication & European LFR/SFR heritage",
+      "disadvantages": "8-10x lower k; lower fissile density; no Na-bond synergy",
+      "limiting_factors": "Centerline T margin; 15-15Ti swelling >120 dpa"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 410" width="560" height="410" font-family="Inter, Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="stageArrow" markerWidth="10" markerHeight="10" refX="7" refY="5" orient="auto">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#003B73"/>
+    </marker>
+  </defs>
+
+  <rect width="560" height="410" rx="8" fill="#FFFFFF"/>
+
+  <!-- STAGE 1 CARD -->
+  <rect x="20" y="16" width="520" height="145" rx="2" fill="#F8FAFC" stroke="#003B73" stroke-width="2"/>
+  <rect x="20" y="16" width="520" height="36" rx="2" fill="#003B73"/>
+  <rect x="20" y="40" width="520" height="12" fill="#003B73"/>
+  <text x="36" y="40" font-size="14" font-weight="700" fill="#FFFFFF">STAGE 1 — Near-Term Commercial (2027–2030)</text>
+  <rect x="396" y="23" width="130" height="22" rx="2" fill="#15803D"/>
+  <text x="461" y="38" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">OKLO AURORA LAUNCH</text>
+
+  <text x="36" y="76" font-size="13.5" font-weight="700" fill="#0B2545">U-10Zr (Na-bonded) / HT9 + Thin Zr/Cr Barrier</text>
+
+  <!-- Stage 1 Metrics Pills -->
+  <rect x="36" y="92" width="128" height="26" rx="2" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="100" y="109" font-size="11.5" font-weight="700" fill="#003B73" text-anchor="middle">PICT ≤ 620 °C</text>
+
+  <rect x="176" y="92" width="150" height="26" rx="2" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="251" y="109" font-size="11.5" font-weight="700" fill="#003B73" text-anchor="middle">~10–14 at% Burnup</text>
+
+  <rect x="338" y="92" width="186" height="26" rx="2" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+  <text x="431" y="109" font-size="11.5" font-weight="700" fill="#15803D" text-anchor="middle">NUREG/CR-7305 Bankable</text>
+
+  <text x="36" y="142" font-size="11" font-weight="500" fill="#475569">Leverages 1,262-pin EBR-II/FFTF heritage while cutting FCCI wastage.</text>
+
+  <!-- TRANSITION BRIDGE -->
+  <line x1="280" y1="163" x2="280" y2="231" stroke="#003B73" stroke-width="3" marker-end="url(#stageArrow)"/>
+  <rect x="115" y="178" width="330" height="32" rx="2" fill="#FFF7ED" stroke="#D97706" stroke-width="1.5"/>
+  <text x="280" y="198" font-size="11" font-weight="700" fill="#C2410C" text-anchor="middle">R&amp;D Bridge: PRW Welds • He-Gap QA • TREAT Tests</text>
+
+  <!-- STAGE 2 CARD -->
+  <rect x="20" y="242" width="520" height="150" rx="2" fill="#F8FAFC" stroke="#D97706" stroke-width="2"/>
+  <rect x="20" y="242" width="520" height="36" rx="2" fill="#0B2545"/>
+  <rect x="20" y="266" width="520" height="12" fill="#0B2545"/>
+  <text x="36" y="266" font-size="14" font-weight="700" fill="#FFFFFF">STAGE 2 — Next-Gen Core Optimization</text>
+  <rect x="396" y="249" width="130" height="22" rx="2" fill="#D97706"/>
+  <text x="461" y="264" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">HIGH-T / Na-FREE</text>
+
+  <text x="36" y="302" font-size="13.5" font-weight="700" fill="#0B2545">Annular U-10Zr (He-bonded) + Pd/Sn / 9Cr-ODS</text>
+
+  <!-- Stage 2 Metrics Pills -->
+  <rect x="36" y="318" width="136" height="26" rx="2" fill="#FFFBEB" stroke="#FCD34D" stroke-width="1"/>
+  <text x="104" y="335" font-size="11.5" font-weight="700" fill="#C2410C" text-anchor="middle">Cladding ~700 °C</text>
+
+  <rect x="184" y="318" width="144" height="26" rx="2" fill="#FFFBEB" stroke="#FCD34D" stroke-width="1"/>
+  <text x="256" y="335" font-size="11.5" font-weight="700" fill="#C2410C" text-anchor="middle">&gt;15 at% Burnup</text>
+
+  <rect x="340" y="318" width="184" height="26" rx="2" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+  <text x="432" y="335" font-size="11.5" font-weight="700" fill="#15803D" text-anchor="middle">Zero Pyrophoric Na Waste</text>
+
+  <text x="36" y="368" font-size="11" font-weight="500" fill="#475569">Overcomes 650 °C HT9 creep ceiling &amp; simplifies closed-cycle back-end.</text>
+</svg>

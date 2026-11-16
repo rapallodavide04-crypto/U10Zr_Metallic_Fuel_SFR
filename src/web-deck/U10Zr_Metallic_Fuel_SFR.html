@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>U-10Zr Metallic Fuel for Sodium Fast Reactors — Davide Rapallo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="vendor/gsap.min.js" defer></script>
+  <script src="deck.js" defer></script>
+</head>
+<body>
+  <div class="deck-viewport">
+    <main id="deck-stage" class="deck-stage">
+      <div class="stage-ambient-glow" aria-hidden="true"></div>
+      <div class="deck-progress" aria-hidden="true"><div class="deck-progress__fill" id="deck-progress-fill"></div></div>
+
+      <!-- ==================== SLIDE 1: COVER ==================== -->
+      <section class="slide slide--cover" data-slide="1">
+        <div class="cover-grid-overlay"></div>
+        <div class="cover-backdrop">
+          <img src="../../assets/branding/oklo-aurora.avif" alt="Oklo Aurora Powerhouse" data-fallback />
+        </div>
+
+        <svg class="cover-hex-grid" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#FEF3C7" stop-opacity="0.72" />
+              <stop offset="22%" stop-color="#FBBF24" stop-opacity="0.62" />
+              <stop offset="56%" stop-color="#E05A00" stop-opacity="0.34" />
+              <stop offset="100%" stop-color="#E05A00" stop-opacity="0" />
+            </radialGradient>
+            <radialGradient id="hexChargeFill" gradientUnits="userSpaceOnUse" cx="200" cy="172" r="220">
+              <stop offset="0%" stop-color="#FDE68A" stop-opacity="1" />
+              <stop offset="32%" stop-color="#F59E0B" stop-opacity="0.92" />
+              <stop offset="72%" stop-color="#EA580C" stop-opacity="0.82" />
+              <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.45" />
+            </radialGradient>
+          </defs>
+          <circle cx="200" cy="172" r="165" fill="url(#coreGlow)" />
+          <circle class="cover-core-pulse" cx="200" cy="172" r="22" fill="none" stroke="#FBBF24" stroke-width="2" opacity="0" />
+          <g fill="none" stroke="#93C5FD" stroke-width="1.4" stroke-opacity="0.52">
+            <!-- Center Ring 0 -->
+            <polygon class="hex-cell hex-ring-0" points="200,124 242,148 242,196 200,220 158,196 158,148" fill="url(#hexChargeFill)" fill-opacity="0" stroke="#E05A00" stroke-width="2.6" stroke-opacity="1" />
+            <!-- Inner Ring 1 (clockwise from top) -->
+            <polygon class="hex-cell hex-ring-1" points="200,28 242,52 242,100 200,124 158,100 158,52" fill="url(#hexChargeFill)" fill-opacity="0" />
+            <polygon class="hex-cell hex-ring-1" points="284,76 326,100 326,148 284,172 242,148 242,100" fill="url(#hexChargeFill)" fill-opacity="0" />
+            <polygon class="hex-cell hex-ring-1" points="284,172 326,196 326,244 284,268 242,244 242,196" fill="url(#hexChargeFill)" fill-opacity="0" />
+            <polygon class="hex-cell hex-ring-1" points="200,220 242,244 242,292 200,316 158,292 158,244" fill="url(#hexChargeFill)" fill-opacity="0" />
+            <polygon class="hex-cell hex-ring-1" points="116,172 158,196 158,244 116,268 74,244 74,196" fill="url(#hexChargeFill)" fill-opacity="0" />
+            <polygon class="hex-cell hex-ring-1" points="116,76 158,100 158,148 116,172 74,148 74,100" fill="url(#hexChargeFill)" fill-opacity="0" />
+            <!-- Outer Tail Ring 2 -->
+            <polygon class="hex-cell hex-ring-2" points="284,268 326,292 326,340 284,364 242,340 242,292" fill="url(#hexChargeFill)" fill-opacity="0" />
+            <polygon class="hex-cell hex-ring-2" points="116,268 158,292 158,340 116,364 74,340 74,292" fill="url(#hexChargeFill)" fill-opacity="0" />
+            <circle cx="200" cy="172" r="20" stroke="#FBBF24" stroke-width="2" stroke-opacity="1" />
+            <circle cx="200" cy="172" r="10" fill="#E05A00" fill-opacity="0.9" stroke="none" />
+          </g>
+        </svg>
+
+        <div class="cover-content">
+          <div class="cover-topbar">
+            <div class="cover-badge">01TVMXY / 01TVMND &ndash; Advanced Materials for Nuclear Applications (A.Y. 2026/27)</div>
+            <div class="cover-logo">
+              <img src="../../assets/branding/polito_logo_white.svg" alt="Politecnico di Torino" data-fallback />
+            </div>
+          </div>
+          <div class="cover-center">
+            <h1 class="cover-title">U-10Zr Metallic Fuel for Sodium Fast Reactors</h1>
+            <div class="cover-accent-rule"></div>
+            <p class="cover-subtitle">Materials Selection, Degradation Mechanisms &amp; Cladding Trade-Off</p>
+            <div class="cover-tags">
+              <span class="cover-tag">U-10wt%Zr</span>
+              <span class="cover-tag">Liquid Na Bond</span>
+              <span class="cover-tag">HT9 vs 9Cr-ODS</span>
+              <span class="cover-tag">NUREG/CR-7305</span>
+            </div>
+            <a class="pdf-web-link" href="https://rapallodavide04-crypto.github.io/U10Zr_Metallic_Fuel_SFR/" target="_blank" rel="noopener">Interactive Web Version (HTML) &nearr;</a>
+          </div>
+          <div class="cover-footer">
+            <div>
+              <strong>Davide Rapallo</strong> &bull; Matricola <strong>s324486</strong> &bull; <span class="code-chip" style="background:rgba(255,255,255,0.14);color:#fff;">s324486@studenti.polito.it</span><br />
+              Politecnico di Torino
+            </div>
+            <div style="text-align:right;">
+              <strong>Role-Play: Fuel Materials R&amp;D Engineer</strong><br />
+              Oklo Inc. (Simulated Case Study) &bull; Slide 1 / 14
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SLIDE 2: TOP 3-COL MANDATE + DUAL VISUAL ==================== -->
+      <section class="slide slide--content" data-slide="2">
+        <header class="slide-header">
+          <div class="slide-header__top">
+            <span class="slide-header__fixed">U-10Zr Metallic Fuel for Sodium Fast Reactors</span>
+            <span class="slide-header__section">Industrial Mandate &amp; Operating Envelope</span>
+          </div>
+          <p class="slide-header__takeaway">Oklo&rsquo;s Aurora SFR targets high burnup at 400&ndash;650 &deg;C and 100&ndash;200 dpa, leveraging metallic fuel&rsquo;s high fissile density.</p>
+        </header>
+
+        <div class="slide-body">
+          <div class="top-bottom-stack">
+            <div class="banner-3col">
+              <div class="mandate-tile">
+                <div class="mandate-tile__eyebrow">Company Mandate</div>
+                <div class="mandate-tile__kpi"><span data-count-to="75" data-count-prefix="15&ndash;" data-count-suffix=" MWe">15&ndash;75 MWe</span></div>
+                <div class="mandate-tile__desc">Select fuel&ndash;cladding system for Oklo&rsquo;s pool-type Aurora SFR under <span class="code-chip">NUREG-2246</span> &amp; <span class="code-chip">NUREG/CR-7305</span>.</div>
+              </div>
+              <div class="mandate-tile mandate-tile--green">
+                <div class="mandate-tile__eyebrow">Why Metallic Fuel</div>
+                <div class="mandate-tile__kpi">~14.4 g<sub>HM</sub>/cm&sup3;</div>
+                <div class="mandate-tile__desc">16.0&ndash;16.2 g/cm&sup3; alloy (20 &deg;C; 15.5 at 650 &deg;C) &rarr; ~50% higher HM density than UO<sub>2</sub>/MOX (~9.7 g<sub>HM</sub>/cm&sup3;), plus passive feedback.</div>
+              </div>
+              <div class="mandate-tile mandate-tile--amber">
+                <div class="mandate-tile__eyebrow">Core Operating Envelope</div>
+                <div class="mandate-tile__kpi"><span data-count-to="650" data-count-prefix="&le; " data-count-suffix=" &deg;C">&le; 650 &deg;C</span> &bull; <span data-count-to="200" data-count-prefix="100&ndash;" data-count-suffix=" dpa">100&ndash;200 dpa</span></div>
+                <div class="mandate-tile__desc">Peak cladding temperature &le; 650 &deg;C, fast neutron dose 100&ndash;200 dpa, legacy EBR-II/FFTF basis.</div>
+              </div>
+            </div>
+
+            <div class="dual-visual">
+              <figure class="figure-card">
+                <div class="figure-card__stage">
+                  <span class="figure-card__badge">3D Materials Map</span>
+                  <img src="../../assets/figures/s02-zinkle-was-3d.jpg" alt="Zinkle Was Petti Ukai 3D materials map" data-fallback />
+                  <div class="figure-placeholder">
+                    <span class="figure-placeholder__tag">Figure Placeholder</span>
+                    <span class="figure-placeholder__path">assets/figures/s02-zinkle-was-3d.jpg</span>
+                    <span class="figure-placeholder__hint">3D Temperature vs dpa vs Corrosion map (Was et al., 2019) with SFR window highlighted.</span>
+                  </div>
+                </div>
+                <figcaption class="figure-card__caption">Adapted from Was et al., J. Nucl. Mater. 527 (2019) 151837.</figcaption>
+              </figure>
+
+              <div class="aurora-col">
+                <figure class="figure-card">
+                  <div class="figure-card__stage figure-card__stage--cover16x9">
+                    <span class="figure-card__badge">OKLO AURORA POWERHOUSE</span>
+                    <div class="aurora-media-16x9">
+                      <img src="../../assets/branding/oklo-aurora.avif" alt="Oklo Aurora powerhouse rendering" data-fallback />
+                    </div>
+                  </div>
+                  <figcaption class="figure-card__caption">Official rendering of Oklo&rsquo;s Aurora powerhouse (Oklo Inc., 2025).</figcaption>
+                </figure>
+                <div class="aurora-mini-card">
+                  <p><strong>A3F at INL:</strong> PDSA approved Nov 2025; EBR-II recycled fuel pathway for initial Aurora core loading.</p>
+                  <p><strong>Licensing Basis:</strong> NRC Aurora Fuel Qualification Report aligned with NUREG-2246 &amp; NUREG/CR-7305.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="slide-footer__left-group">
+            <span class="slide-footer__logo">
+              <img src="../../assets/branding/polito_logo_white.svg" alt="Politecnico di Torino" data-fallback />
+              <span class="slide-footer__logo-fallback">PoliTo</span>
+            </span>
+            <span class="slide-footer__left">Davide Rapallo &ndash; s324486@studenti.polito.it</span>
+          </div>
+          <div class="slide-footer__right-group">
+            <span class="slide-footer__company">Oklo Inc. (Simulated Case Study)</span>
+            <span class="slide-footer__right">Slide 2 / 14</span>
+          </div>
+        </footer>
+      </section>
+
+      <!-- ==================== SLIDE 3: SCHEMATIC LEFT + SPEC SHEET RIGHT ==================== -->
+      <section class="slide slide--content" data-slide="3">
+        <header class="slide-header">
+          <div class="slide-header__top">
+            <span class="slide-header__fixed">U-10Zr Metallic Fuel for Sodium Fast Reactors</span>
+            <span class="slide-header__section">Reference Fuel Pin Architecture</span>
+          </div>
+          <p class="slide-header__takeaway">A 75% smeared-density U-10Zr slug with liquid Na bond and HT9 cladding decouples swelling from early mechanical stress.</p>
+        </header>
+
+        <div class="slide-body">
+          <div class="split-grid grid--56-44">
+            <figure class="figure-card">
+              <div class="figure-card__stage">
+                <span class="figure-card__badge">Vector Schematic</span>
+                <svg class="s03-inline-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" font-family="Inter, Segoe UI, Arial, sans-serif" role="img" aria-label="NUREG/CR-7305 Fuel Pin Cross Section Schematic">
+                  <defs>
+                    <marker id="s03-arrowDark" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+                      <path d="M0,1 L6,3.5 L0,6 Z" fill="#334155"/>
+                    </marker>
+                    <pattern id="s03-slugHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                      <line x1="0" y1="0" x2="0" y2="8" stroke="#1E3A5F" stroke-width="1" stroke-opacity="0.18"/>
+                    </pattern>
+                  </defs>
+                  <rect width="640" height="480" fill="#FFFFFF"/>
+                  <text x="28" y="28" font-size="13" font-weight="700" fill="#003B73" letter-spacing="0.3">LONGITUDINAL SECTION (SCHEMATIC — NOT TO SCALE)</text>
+                  <g class="s03-layer s03-wire" data-pin-layer="wire">
+                    <path d="M48,92 Q93.3,78 138.6,92 T229.3,92 T320,92 T410.6,92 T501.3,92 T592,92" fill="none" stroke="#64748B" stroke-width="2.5" stroke-dasharray="4 3"/>
+                  </g>
+                  <g class="s03-layer s03-clad" data-pin-layer="clad">
+                    <rect x="36" y="92" width="568" height="60" rx="4" fill="#CBD5E1" stroke="#334155" stroke-width="2"/>
+                    <rect x="36" y="92" width="24" height="60" rx="3" fill="#475569" stroke="#1E293B" stroke-width="1.5"/>
+                    <rect x="580" y="92" width="24" height="60" rx="3" fill="#475569" stroke="#1E293B" stroke-width="1.5"/>
+                    <rect x="60" y="99" width="520" height="46" fill="#F1F5F9"/>
+                  </g>
+                  <g class="s03-layer s03-na" data-pin-layer="na">
+                    <rect x="60" y="99" width="222" height="46" fill="#FDE68A" stroke="#D97706" stroke-width="1"/>
+                  </g>
+                  <g class="s03-layer s03-slug" data-pin-layer="slug">
+                    <rect x="64" y="105" width="204" height="34" rx="2" fill="#1E3A8A" fill-opacity="0.82" stroke="#0B2545" stroke-width="1.2"/>
+                    <rect x="64" y="105" width="204" height="34" rx="2" fill="url(#s03-slugHatch)"/>
+                    <text x="166" y="126" font-size="11.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">U-10wt%Zr Fuel Slug</text>
+                  </g>
+                  <g class="s03-layer s03-plenum" data-pin-layer="plenum">
+                    <rect x="282" y="99" width="298" height="46" fill="#E2E8F0" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3 2"/>
+                    <text x="431" y="119" font-size="11.5" font-weight="700" fill="#1E293B" text-anchor="middle">Fission Gas Plenum</text>
+                    <text x="431" y="134" font-size="10.5" font-weight="600" fill="#003B73" text-anchor="middle">1.4× fuel volume</text>
+                  </g>
+                  <g class="s03-callout">
+                    <line class="s03-leader" x1="274.6" y1="65" x2="274.6" y2="83" stroke="#475569" stroke-width="1.2" marker-end="url(#s03-arrowDark)"/>
+                    <text x="274.6" y="60" font-size="10.5" font-weight="600" fill="#475569" text-anchor="middle">Helical Wire-Wrap</text>
+                    <text x="48" y="172" font-size="10.5" font-weight="600" fill="#475569" text-anchor="middle">HT9 End-Plug</text>
+                    <text x="592" y="172" font-size="10.5" font-weight="600" fill="#475569" text-anchor="middle">HT9 End-Plug</text>
+                    <line class="s03-leader" x1="166" y1="181" x2="166" y2="154" stroke="#334155" stroke-width="1.2" marker-end="url(#s03-arrowDark)"/>
+                    <text x="166" y="196" font-size="10.5" font-weight="600" fill="#1E293B" text-anchor="middle">HT9 Cladding Tube</text>
+                    <path class="s03-leader" d="M390,181 L390,169 L275,169 L275,132" fill="none" stroke="#D97706" stroke-width="1.4" marker-end="url(#s03-arrowDark)"/>
+                    <text x="390" y="196" font-size="11" font-weight="700" fill="#C2410C" text-anchor="middle">Liquid Na Bond (75% smear density)</text>
+                  </g>
+                  <line x1="28" y1="226" x2="612" y2="226" stroke="#E2E8F0" stroke-width="1.5"/>
+                  <text x="28" y="256" font-size="13" font-weight="700" fill="#003B73" letter-spacing="0.3">RADIAL CROSS-SECTION (NUREG/CR-7305 REFERENCE)</text>
+                  <g class="s03-layer s03-ring s03-clad" data-pin-layer="clad">
+                    <circle cx="216" cy="366" r="82" fill="#CBD5E1" stroke="#334155" stroke-width="2.2"/>
+                  </g>
+                  <g class="s03-layer s03-ring s03-na" data-pin-layer="na">
+                    <circle cx="216" cy="366" r="67" fill="#FDE68A" stroke="#D97706" stroke-width="1.5"/>
+                  </g>
+                  <g class="s03-layer s03-ring s03-slug" data-pin-layer="slug">
+                    <circle cx="216" cy="366" r="52" fill="#1E3A8A" fill-opacity="0.85" stroke="#0B2545" stroke-width="1.5"/>
+                    <circle cx="216" cy="366" r="52" fill="url(#s03-slugHatch)"/>
+                    <text x="216" y="363" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">U-10Zr</text>
+                    <text x="216" y="378" font-size="10.5" font-weight="600" fill="#E2E8F0" text-anchor="middle">Slug</text>
+                  </g>
+                  <g class="s03-layer s03-ring s03-wire" data-pin-layer="wire">
+                    <circle cx="285" cy="305" r="10.5" fill="#94A3B8" stroke="#334155" stroke-width="1.6"/>
+                  </g>
+                  <g class="s03-callout">
+                    <line class="s03-leader" x1="292" y1="301" x2="336" y2="279" stroke="#475569" stroke-width="1.2"/>
+                    <text x="340" y="282" font-size="10.5" font-weight="600" fill="#475569">Helical Wire-Wrap Spacer</text>
+                    <line class="s03-leader" x1="248" y1="340" x2="340" y2="318" stroke="#003B73" stroke-width="1.4"/>
+                    <circle cx="248" cy="340" r="2.5" fill="#FFFFFF" stroke="#003B73" stroke-width="1.4"/>
+                    <rect x="340" y="300" width="272" height="36" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1"/>
+                    <text x="352" y="322" font-size="11.5" font-weight="700" fill="#003B73">U-10Zr Fuel Slug: OD = 5.0 mm</text>
+                    <line class="s03-leader" x1="275" y1="366" x2="340" y2="368" stroke="#D97706" stroke-width="1.4"/>
+                    <circle cx="275" cy="366" r="2.5" fill="#D97706"/>
+                    <rect x="340" y="350" width="272" height="36" rx="4" fill="#FFFBEB" stroke="#F59E0B" stroke-width="1"/>
+                    <text x="352" y="372" font-size="11.5" font-weight="700" fill="#C2410C">Liquid Na Bond: 75% smear density</text>
+                    <line class="s03-leader" x1="284" y1="396" x2="340" y2="424" stroke="#334155" stroke-width="1.4"/>
+                    <circle cx="284" cy="396" r="2.5" fill="#334155"/>
+                    <rect x="340" y="402" width="272" height="46" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1"/>
+                    <text x="352" y="422" font-size="11.5" font-weight="700" fill="#1E293B">HT9 Cladding: OD = 6.9 mm</text>
+                    <text x="352" y="438" font-size="11" font-weight="600" fill="#475569">Wall thickness = 0.6 mm (PICT &lt; 650 °C)</text>
+                    <line x1="112" y1="284" x2="112" y2="448" stroke="#334155" stroke-width="1.2"/>
+                    <line x1="106" y1="284" x2="132" y2="284" stroke="#334155" stroke-width="1" stroke-dasharray="2 2"/>
+                    <line x1="106" y1="448" x2="132" y2="448" stroke="#334155" stroke-width="1" stroke-dasharray="2 2"/>
+                    <rect x="28" y="353" width="74" height="26" rx="3" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1"/>
+                    <text x="65" y="370" font-size="11" font-weight="700" fill="#1E293B" text-anchor="middle">Ø 6.9 mm</text>
+                  </g>
+                </svg>
+              </div>
+              <figcaption class="figure-card__caption">Author&rsquo;s schematic based on reference parameters in USNRC NUREG/CR-7305 (2023).</figcaption>
+            </figure>
+
+            <div class="text-col">
+              <table class="spec-sheet">
+                <thead>
+                  <tr><th colspan="2">NUREG/CR-7305 Reference Pin</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-pin-target="slug,na,clad"><td>Fuel / Bond / Cladding</td><td>U-10wt%Zr / Liquid Na / HT9</td></tr>
+                  <tr data-pin-target="slug,clad"><td>Fuel OD / Cladding OD</td><td>5.0 mm / 6.9 mm (0.6 mm wall)</td></tr>
+                  <tr data-pin-target="na"><td>Smeared Density</td><td>75% max</td></tr>
+                  <tr data-pin-target="plenum"><td>Plenum-to-Fuel Ratio</td><td>1.4&times; fuel volume</td></tr>
+                  <tr data-pin-target="slug"><td>BOL Peak LHGR / Burnup</td><td>40&ndash;55 kW/m / 10 at% envelope</td></tr>
+                </tbody>
+              </table>
+
+              <ul class="bullet-list">
+                <li><strong>Thermal Design Role:</strong> Liquid Na bond minimizes BOL fuel &Delta;T; 75% smear density leaves space for early swelling.</li>
+                <li class="callout-alert"><strong>Interface Limit:</strong> Steady-state PICT capped at <span class="hl-amber">650 &deg;C</span> to limit creep, FCCI, and liquefaction.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="slide-footer__left-group">
+            <span class="slide-footer__logo">
+              <img src="../../assets/branding/polito_logo_white.svg" alt="Politecnico di Torino" data-fallback />
+              <span class="slide-footer__logo-fallback">PoliTo</span>
+            </span>
+            <span class="slide-footer__left">Davide Rapallo &ndash; s324486@studenti.polito.it</span>
+          </div>
+          <div class="slide-footer__right-group">
+            <span class="slide-footer__company">Oklo Inc. (Simulated Case Study)</span>
+            <span class="slide-footer__right">Slide 3 / 14</span>
+          </div>
+        </footer>
+      </section>
+
+      <!-- ==================== SLIDE 4: TOP PHASE RIBBON + INVERTED SPLIT ==================== -->
+      <section class="slide slide--content" data-slide="4">
+        <header class="slide-header">
+          <div class="slide-header__top">
+            <span class="slide-header__fixed">U-10Zr Metallic Fuel for Sodium Fast Reactors</span>
+            <span class="slide-header__section">U-10Zr Metallurgy &amp; Phase Behavior</span>
+          </div>
+          <p class="slide-header__takeaway">Adding 10 wt% Zr raises the solidus well above 1200 &deg;C and stabilizes BCC &gamma;-phase, despite complex solid-state transitions.</p>
+        </header>
+
+        <div class="slide-body">
+          <div class="top-bottom-stack">
+            <svg class="phase-ribbon-svg" viewBox="0 0 1200 62" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Segoe UI, Arial, sans-serif" role="img" aria-label="U-10Zr Solid-State Phase Transitions">
+              <defs>
+                <marker id="s04-phaseArr" markerWidth="6" markerHeight="6" refX="4.5" refY="3" orient="auto">
+                  <path d="M0,0.8 L5.5,3 L0,5.2 Z" fill="#64748B"/>
+                </marker>
+              </defs>
+
+              <rect width="1200" height="62" rx="2" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+
+              <!-- Node 1 -->
+              <g class="phase-node">
+                <rect x="8" y="7" width="212" height="48" rx="2" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+                <text x="114" y="25" font-size="11" font-weight="700" fill="#C2410C" text-anchor="middle" font-family="IBM Plex Mono, monospace">&lt;617 &#176;C</text>
+                <text x="114" y="44" font-size="13.5" font-weight="700" fill="#0B2545" text-anchor="middle">&#945;-U + &#948;-UZr<tspan dy="3" font-size="10">2</tspan></text>
+              </g>
+              <line class="phase-arrow" x1="224" y1="31" x2="242" y2="31" stroke="#64748B" stroke-width="1.6" marker-end="url(#s04-phaseArr)"/>
+
+              <!-- Node 2 -->
+              <g class="phase-node">
+                <rect x="248" y="7" width="212" height="48" rx="2" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+                <text x="354" y="25" font-size="11" font-weight="700" fill="#C2410C" text-anchor="middle" font-family="IBM Plex Mono, monospace">617&#8211;662 &#176;C</text>
+                <text x="354" y="44" font-size="13.5" font-weight="700" fill="#0B2545" text-anchor="middle">&#945;-U + &#947;<tspan dy="3" font-size="10">2</tspan></text>
+              </g>
+              <line class="phase-arrow" x1="464" y1="31" x2="482" y2="31" stroke="#64748B" stroke-width="1.6" marker-end="url(#s04-phaseArr)"/>
+
+              <!-- Node 3 -->
+              <g class="phase-node">
+                <rect x="488" y="7" width="212" height="48" rx="2" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+                <text x="594" y="25" font-size="11" font-weight="700" fill="#C2410C" text-anchor="middle" font-family="IBM Plex Mono, monospace">662&#8211;693 &#176;C</text>
+                <text x="594" y="44" font-size="13.5" font-weight="700" fill="#0B2545" text-anchor="middle">&#946;-U + &#947;<tspan dy="3" font-size="10">2</tspan></text>
+              </g>
+              <line class="phase-arrow" x1="704" y1="31" x2="722" y2="31" stroke="#64748B" stroke-width="1.6" marker-end="url(#s04-phaseArr)"/>
+
+              <!-- Node 4 -->
+              <g class="phase-node">
+                <rect x="728" y="7" width="212" height="48" rx="2" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+                <text x="834" y="25" font-size="11" font-weight="700" fill="#C2410C" text-anchor="middle" font-family="IBM Plex Mono, monospace">693&#8211;700 &#176;C</text>
+                <text x="834" y="44" font-size="13.5" font-weight="700" fill="#0B2545" text-anchor="middle">&#946;-U + &#947;<tspan dy="3" font-size="10">1</tspan></text>
+              </g>
+              <line class="phase-arrow" x1="944" y1="31" x2="962" y2="31" stroke="#64748B" stroke-width="1.6" marker-end="url(#s04-phaseArr)"/>
+
+              <!-- Node 5 (Isotropic — Green to match Isotropy Advantage card) -->
+              <g class="phase-node phase-node--iso">
+                <rect x="968" y="7" width="224" height="48" rx="2" fill="#F0FDF4" stroke="#15803D" stroke-width="1.6"/>
+                <text x="1080" y="25" font-size="11" font-weight="700" fill="#15803D" text-anchor="middle" font-family="IBM Plex Mono, monospace">&gt;700 &#176;C (Single Phase)</text>
+                <text x="1080" y="44" font-size="13.5" font-weight="700" fill="#14532D" text-anchor="middle">&#947;-BCC (Isotropic)</text>
+              </g>
+            </svg>
+
+            <div class="split-grid grid--45-55 bottom-fill">
+              <div class="text-col">
+                <svg class="prop-compare-svg" viewBox="0 0 480 156" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Segoe UI, Arial, sans-serif" role="img" aria-label="U-10Zr vs MOX Thermal Conductivity and Bulk &amp; Heavy-Metal Density">
+                  <rect width="480" height="156" rx="2" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+
+                  <!-- Group 1: Thermal Conductivity at 650 °C -->
+                  <text x="14" y="21" font-size="11.5" font-weight="700" fill="#0B2545">Thermal Conductivity (W/(m&#183;K)) at 650 &#176;C</text>
+                  <text x="466" y="21" font-size="11" font-weight="700" fill="#1D4ED8" text-anchor="end">U-10Zr ~32 vs MOX ~2&#8211;4</text>
+
+                  <!-- Bar 1: U-10Zr (~32 -> 100%) -->
+                  <rect x="14" y="28" width="452" height="20" rx="2" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
+                  <rect class="bar-fill" x="14" y="28" width="452" height="20" rx="2" fill="#003B73"/>
+                  <text x="24" y="42" font-size="10.5" font-weight="700" fill="#FFFFFF">U-10Zr: ~32 W/(m&#183;K)</text>
+
+                  <!-- Bar 2: MOX (~2-4 -> 10%) -->
+                  <rect x="14" y="52" width="452" height="20" rx="2" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
+                  <rect class="bar-fill" x="14" y="52" width="45" height="20" rx="2" fill="#94A3B8"/>
+                  <text x="67" y="66" font-size="10.5" font-weight="700" fill="#334155">MOX: ~2&#8211;4</text>
+
+                  <!-- Divider -->
+                  <line x1="14" y1="82" x2="466" y2="82" stroke="#E2E8F0" stroke-width="1"/>
+
+                  <!-- Group 2: Theoretical & Heavy-Metal Density (g/cm³) -->
+                  <text x="14" y="98" font-size="11.5" font-weight="700" fill="#0B2545">Bulk &amp; Heavy-Metal Density (g/cm&#179;)</text>
+                  <text x="466" y="98" font-size="11" font-weight="700" fill="#1D4ED8" text-anchor="end">16.0 vs 10.9 (+48% HM)</text>
+
+                  <!-- Bar 3: U-10Zr (15.5-16.2 -> 100%) -->
+                  <rect x="14" y="105" width="452" height="20" rx="2" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
+                  <rect class="bar-fill" x="14" y="105" width="452" height="20" rx="2" fill="#003B73"/>
+                  <text x="24" y="119" font-size="10.2" font-weight="700" fill="#FFFFFF">U-10Zr (as-cast): 15.5&#8211;16.2 (~14.4 g-U/cm&#179;)</text>
+
+                  <!-- Bar 4: MOX (~10.9 -> 68%) -->
+                  <rect x="14" y="128" width="452" height="20" rx="2" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
+                  <rect class="bar-fill" x="14" y="128" width="307" height="20" rx="2" fill="#94A3B8"/>
+                  <text x="24" y="142" font-size="10.2" font-weight="700" fill="#FFFFFF">MOX (sintered): ~10.9 (~9.7 g-HM/cm&#179;)</text>
+                </svg>
+
+                <div class="prop-mini-card">
+                  <strong>Solidus &amp; Liquidus:</strong> ~1248 &deg;C solidus (1521 K) / ~1355&ndash;1360 &deg;C liquidus (vs 1135 &deg;C pure U) &bull; c<sub>p</sub> = 248 J/(kg&middot;K)
+                </div>
+
+                <ul class="bullet-list">
+                  <li><strong>Role of 10 wt% Zr:</strong> Raises solidus to ~1248 &deg;C (lowest U&ndash;Zr solidus &gt;1100 &deg;C in Zr-depleted zone) and slows U&ndash;Fe interdiffusion.</li>
+                  <li class="callout-green"><strong>Isotropy Advantage:</strong> High-temperature <strong>&gamma;-BCC</strong> phase resists anisotropic irradiation growth seen in orthorhombic &alpha;-U.</li>
+                </ul>
+              </div>
+
+              <figure class="figure-card">
+                <div class="figure-card__stage">
+                  <span class="figure-card__badge">Phase Diagram</span>
+                  <img src="../../assets/figures/s04-u-zr-phase-diagram.webp" alt="U-Zr Binary Phase Diagram" data-fallback />
+                  <div class="figure-placeholder">
+                    <span class="figure-placeholder__tag">Figure Placeholder</span>
+                    <span class="figure-placeholder__path">assets/figures/s04-u-zr-phase-diagram.webp</span>
+                    <span class="figure-placeholder__hint">U&ndash;Zr binary phase diagram with U-10wt%Zr (~22 at% Zr) vertical line (Yao et al., 2023, Fig. 1).</span>
+                  </div>
+                </div>
+                <figcaption class="figure-card__caption">U&ndash;Zr binary phase diagram, Yao et al., Front. Nucl. Eng. 1 (2023) 1050262.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="slide-footer__left-group">
+            <span class="slide-footer__logo">
+              <img src="../../assets/branding/polito_logo_white.svg" alt="Politecnico di Torino" data-fallback />
+              <span class="slide-footer__logo-fallback">PoliTo</span>
+            </span>
+            <span class="slide-footer__left">Davide Rapallo &ndash; s324486@studenti.polito.it</span>
+          </div>
+          <div class="slide-footer__right-group">
+            <span class="slide-footer__company">Oklo Inc. (Simulated Case Study)</span>
+            <span class="slide-footer__right">Slide 4 / 14</span>
+          </div>
+        </footer>
+      </section>
+
+      <!-- ==================== SLIDE 5: TOP 3-STAGE PIPELINE + WIDE VISUAL ==================== -->
+      <section class="slide slide--content" data-slide="5">
+        <header class="slide-header">
+          <div class="slide-header__top">
+            <span class="slide-header__fixed">U-10Zr Metallic Fuel for Sodium Fast Reactors</span>
+            <span class="slide-header__section">Fabrication, Na-Bonding &amp; Joining</span>
+          </div>
+          <p class="slide-header__takeaway">Injection casting, Na-bond inspection, and HT9 end-cap welding with PWHT govern as-built pin integrity.</p>
+        </header>
+
+        <div class="slide-body">
+          <div class="top-bottom-stack">
+            <div class="chevron-pipeline">
+              <div class="pipe-step">
+                <div class="pipe-step__num">STEP 01 &bull; SLUG CASTING</div>
+                <div class="pipe-step__body">Vacuum <em>injection casting</em> in quartz molds (EBR-II heritage) vs hot extrusion to avoid mold waste.</div>
+              </div>
+              <div class="pipe-step">
+                <div class="pipe-step__num">STEP 02 &bull; HT9 &amp; Na-BONDING</div>
+                <div class="pipe-step__body">VIM &rarr; extrusion &rarr; cold drawing (norm. ~1050 &deg;C + temp. ~750 &deg;C); molten Na centrifuged &amp; UT-inspected against voids.</div>
+              </div>
+              <div class="pipe-step pipe-step--amber">
+                <div class="pipe-step__num">STEP 03 &bull; END-CAP JOINING</div>
+                <div class="pipe-step__body">GTAW/TIG or RPW welding; <span class="hl-amber">PWHT required</span> in HT9 to temper hard, brittle martensite in HAZ.</div>
+              </div>
+            </div>
+
+            <div class="dual-panel-row bottom-fill">
+              <figure class="figure-card">
+                <div class="figure-card__stage">
+                  <span class="figure-card__badge">Pin Fabrication Flow</span>
+                  <img src="../../assets/schematics/s05-fabrication-flow.svg" alt="U-10Zr pin fabrication flow" data-fallback />
+                  <div class="figure-placeholder">
+                    <span class="figure-placeholder__tag">Figure Placeholder</span>
+                    <span class="figure-placeholder__path">assets/schematics/s05-fabrication-flow.svg</span>
+                    <span class="figure-placeholder__hint">Pin fabrication flow: injection casting, Na-bonding &amp; UT inspection (PNNL-35642 / Carmack 2009).</span>
+                  </div>
+                </div>
+                <figcaption class="figure-card__caption">Metallic fuel pin fabrication flow, adapted from PNNL-35642 (2024).</figcaption>
+              </figure>
+
+              <figure class="figure-card">
+                <div class="figure-card__stage">
+                  <span class="figure-card__badge figure-card__badge--amber">TIG / PRW End-Plug Weld</span>
+                  <div class="fig-stack-body">
+                    <div class="weld-crop-wrap">
+                      <img src="../../assets/figures/s05-fabrication-tig-weld.png" alt="TIG and PRW end-plug weld schematic" data-fallback />
+                    </div>
+                    <div class="fig-mini-grid-2x2">
+                      <div class="fig-mini-box">
+                        <strong>Joint Geometry</strong>
+                        Typical 6.60 mm OD (0.45 mm wall) &bull; 2&deg; tapered plug fit.
+                      </div>
+                      <div class="fig-mini-box">
+                        <strong>HT9 Fusion Weld</strong>
+                        GTAW / TIG closure in He chamber before 500 &deg;C thermal bonding.
+                      </div>
+                      <div class="fig-mini-box fig-mini-box--amber">
+                        <strong>Mandatory PWHT</strong>
+                        ~750 &deg;C tempering eliminates brittle untempered HAZ martensite.
+                      </div>
+                      <div class="fig-mini-box fig-mini-box--green">
+                        <strong>ODS Upgrade Path</strong>
+                        Solid-state PRW/RPW prevents <span style="white-space:nowrap;">Y<sub>2</sub>O<sub>3</sub></span> nano-oxide coarsening.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <figcaption class="figure-card__caption">End-plug weld joint schematic, IAEA-TECDOC-1689 (2013) Fig. 3.4.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="slide-footer__left-group">
+            <span class="slide-footer__logo">
+              <img src="../../assets/branding/polito_logo_white.svg" alt="Politecnico di Torino" data-fallback />
+              <span class="slide-footer__logo-fallback">PoliTo</span>
+            </span>
+            <span class="slide-footer__left">Davide Rapallo &ndash; s324486@studenti.polito.it</span>
+          </div>
+          <div class="slide-footer__right-group">
+            <span class="slide-footer__company">Oklo Inc. (Simulated Case Study)</span>
+            <span class="slide-footer__right">Slide 5 / 14</span>
+          </div>
+        </footer>
+      </section>
+
+      <!-- ==================== SLIDE 6: SEM/EDS LEFT + VERTICAL TIMELINE RIGHT ==================== -->
+      <section class="slide slide--content theme--amber" data-slide="6">
+        <header class="slide-header">
+          <div class="slide-header__top">
+            <span class="slide-header__fixed">U-10Zr Metallic Fuel for Sodium Fast Reactors</span>
+            <span class="slide-header__section">In-Pile Fuel Evolution: Swelling, FGR &amp; Zr Migration</span>
+          </div>
+          <p class="slide-header__takeaway">Interconnected gas porosity vents ~70&ndash;80% of fission gas at ~30% swelling, while thermal gradients drive radial Zr redistribution.</p>
+        </header>
+
+        <div class="slide-body">
+          <div class="split-grid grid--55-45">
+            <figure class="figure-card">
+              <div class="figure-card__stage">
+                <span class="figure-card__badge figure-card__badge--amber">SEM-EDS PIE</span>
+                <div class="fig-stack-body">
+                  <div class="fig-top-img fig-top-img--s06">
+                    <img src="../../assets/figures/s06-swelling-zr-redistribution.webp" alt="SEM/EDS of irradiated U-10Zr fuel" data-fallback />
+                  </div>
+                  <div class="fig-legend-list">
+                    <div class="fig-legend-row">
+                      <strong>A&ndash;B &bull; Irradiated SEM (3.3% FIMA):</strong> Concentric porosity zones (1 mm) &amp; interconnected fission-gas pores (200 &mu;m).
+                    </div>
+                    <div class="fig-legend-row fig-legend-row--blue">
+                      <strong>C&ndash;D &bull; EDS U (Red) &amp; Zr (Green):</strong> Radial Zr redistribution &amp; mid-radius Zr-depleted zone.
+                    </div>
+                    <div class="fig-legend-row fig-legend-row--amber">
+                      <strong>E&ndash;F &bull; EDS Si (Blue) &amp; Nd (Magenta):</strong> Quartz-mold Si trace &amp; lanthanide (Nd) migration toward outer rim.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption class="figure-card__caption">Irradiated U-10Zr (3.3% FIMA) cross-section &amp; SEM-EDS maps, Yao et al., Front. Nucl. Eng. 1 (2023) 1050262.</figcaption>
+            </figure>
+
+            <div class="text-col">
+              <div class="step-flow">
+                <div class="step-item">
+                  <span class="step-item__dot">A</span>
+                  <strong>Early Gas Swelling:</strong> Rapid expansion (~30&ndash;33% vol.) closes the initial gap without excessive FCMI.
+                </div>
+                <div class="step-item step-item--green">
+                  <span class="step-item__dot">B</span>
+                  <strong>Fission Gas Release (FGR):</strong> Interconnected porosity forms and vents <span class="hl-green">~70&ndash;80% of fission gas</span> into the plenum.
+                </div>
+                <div class="step-item step-item--amber">
+                  <span class="step-item__dot">C</span>
+                  <strong>Na Infiltration:</strong> Liquid Na enters open pores&mdash;preserving thermal conductivity, but creating fast transport paths for lanthanides.
+                </div>
+                <div class="step-item">
+                  <span class="step-item__dot">D</span>
+                  <strong>Radial Zr Redistribution:</strong> Thermal gradient pushes Zr to hot center (&gamma;-phase) and outer rim, leaving a Zr-depleted mid-radius zone.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="slide-footer__left-group">
+            <span class="slide-footer__logo">
+              <img src="../../assets/branding/polito_logo_white.svg" alt="Politecnico di Torino" data-fallback />
+              <span class="slide-footer__logo-fallback">PoliTo</span>
+            </span>
+            <span class="slide-footer__left">Davide Rapallo &ndash; s324486@studenti.polito.it</span>
+          </div>
+          <div class="slide-footer__right-group">
+            <span class="slide-footer__company">Oklo Inc. (Simulated Case Study)</span>
+            <span class="slide-footer__right">Slide 6 / 14</span>
+          </div>
+        </footer>
+      </section>
+
+      <!-- ==================== SLIDE 7: TOP ALERT + FLIPPED SPLIT (TEXT LEFT / EDS RIGHT) ==================== -->
+      <section class="slide slide--content theme--amber" data-slide="7">
+        <header class="slide-header">
+          <div class="slide-header__top">
+            <span class="slide-header__fixed">U-10Zr Metallic Fuel for Sodium Fast Reactors</span>
+            <span class="slide-header__section">Fuel-Cladding Chemical Interaction (FCCI) &amp; Eutectic</span>
+          </div>
+          <p class="slide-header__takeaway">Lanthanides migrate via Na-filled pores to thin HT9 cladding and risk U&ndash;Fe eutectic liquefaction above ~725 &deg;C.</p>
+        </header>
+
+        <div class="slide-body">
+          <div class="top-bottom-stack">
+            <div class="alert-banner">
+              <span class="alert-banner__title">CRITICAL INTERFACE DEGRADATION: Lanthanide FCCI Wastage + U&ndash;Fe Eutectic Liquefaction</span>
+              <span class="alert-banner__metric">EUTECTIC THRESHOLD ~725 &deg;C</span>
+            </div>
+
+            <div class="split-grid grid--42-58 bottom-fill">
+              <div class="text-col">
+                <div class="chain-card">
+                  <div class="chain-card__tag">01 &bull; Transport Driver</div>
+                  <div class="chain-card__body"><strong>Lanthanide Attack:</strong> Fission-product lanthanides (Nd, Ce, La, Pr) migrate to the cladding ID and form brittle Ln&ndash;Fe intermetallics.</div>
+                </div>
+                <div class="chain-card">
+                  <div class="chain-card__tag">02 &bull; Structural Degradation</div>
+                  <div class="chain-card__body"><strong>Cladding Wastage:</strong> Cr/Fe outward interdiffusion leaves a weak, thinned load-bearing wall (limiting lifetime at T &gt; 600 &deg;C).</div>
+                </div>
+                <div class="chain-card chain-card--critical">
+                  <div class="chain-card__tag">03 &bull; Transient Breach</div>
+                  <div class="chain-card__body"><strong>Eutectic Liquefaction:</strong> U<sub>6</sub>Fe and UFe<sub>2</sub> form a low-melting <span class="hl-amber">U&ndash;Fe eutectic at ~725 &deg;C</span>, causing rapid cladding breach during transients.</div>
+                </div>
+              </div>
+
+              <figure class="figure-card">
+                <div class="figure-card__stage">
+                  <span class="figure-card__badge figure-card__badge--amber">EBR-II X447/A Metallography</span>
+                  <div class="fig-stack-body">
+                    <div class="fig-top-img fig-top-img--s07">
+                      <img src="../../assets/figures/s07-fcci-ebr2-eds.png" alt="Optical metallograph of FCCI and CCCI wastage layers in EBR-II X447/A pin DP04" data-fallback />
+                    </div>
+                    <div class="fig-mini-grid-2x2">
+                      <div class="fig-mini-box">
+                        <strong>CCCI CD</strong>
+                        Coolant-side decarburization and Na oxidation layer (~15&ndash;20 &mu;m).
+                      </div>
+                      <div class="fig-mini-box fig-mini-box--green">
+                        <strong>Unaffected HT9</strong>
+                        Intact tempered martensite wall carrying primary hoop stress.
+                      </div>
+                      <div class="fig-mini-box fig-mini-box--amber">
+                        <strong>FCCI CD</strong>
+                        Fe/Cr-depleted cladding interaction zone with reduced strength.
+                      </div>
+                      <div class="fig-mini-box fig-mini-box--amber">
+                        <strong>FCCI FP</strong>
+                        Brittle lanthanide (Nd, Ce, La, Pr)&ndash;Fe layer at fuel interface.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <figcaption class="figure-card__caption">Optical metallograph of FCCI and CCCI wastage layers in EBR-II X447/A pin DP04, Miao et al., ANL/CFCT-21/19 (2021).</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="slide-footer__left-group">
+            <span class="slide-footer__logo">
+              <img src="../../assets/branding/polito_logo_white.svg" alt="Politecnico di Torino" data-fallback />
+              <span class="slide-footer__logo-fallback">PoliTo</span>
+            </span>
+            <span class="slide-footer__left">Davide Rapallo &ndash; s324486@studenti.polito.it</span>
+          </div>
+          <div class="slide-footer__right-group">
+            <span class="slide-footer__company">Oklo Inc. (Simulated Case Study)</span>
+            <span class="slide-footer__right">Slide 7 / 14</span>
+          </div>
+        </footer>
+      </section>
+
+      <!-- ==================== SLIDE 8: 3-COLUMN ARCHITECTURE (FCC | BCC HT9 | PLOT) ==================== -->
+      <section class="slide slide--content" data-slide="8">
+        <header class="slide-header">
+          <div class="slide-header__top">
+            <span class="slide-header__fixed">U-10Zr Metallic Fuel for Sodium Fast Reactors</span>
+            <span class="slide-header__section">Cladding Metallurgy: FCC Austenitics vs BCC F/M (HT9)</span>
+          </div>
+          <p class="slide-header__takeaway">BCC HT9 suppresses void swelling (&lt;2% at 200 dpa) via low dislocation bias, trading off low-T DBTT shift and &gt;650 &deg;C creep limits.</p>
+        </header>
+
+        <div class="slide-body">
+          <div class="split-grid grid--57-43">
+            <div class="compare-matrix-col">
+              <div class="compare-matrix-wrap">
+                <table class="compare-matrix">
+                  <thead>
+                    <tr>
+                      <th style="width:22%;">Criterion</th>
+                      <th class="col-fcc" style="width:38%;">FCC Austenitics (316SS / D9)</th>
+                      <th class="col-ht9" style="width:40%;">BCC F/M HT9 (Baseline)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Microstructure &amp; Chemistry</td>
+                      <td>Face-centered cubic (<span class="code-chip">316SS / D9</span>) austenitic matrix.</td>
+                      <td class="cell-ht9"><span class="code-chip code-chip--compact">Fe-12Cr-1Mo-0.5W-0.5Ni-0.3V-0.2C</span> tempered martensite.</td>
+                    </tr>
+                    <tr>
+                      <td>Void Swelling (@ 200 dpa)</td>
+                      <td>High dislocation bias drives steep swelling (<strong>~1%/dpa</strong>) after incubation.</td>
+                      <td class="cell-ht9"><span class="hl-green">&lt;2% at 200 dpa (400&ndash;420 &deg;C)</span> via high lath sink density.</td>
+                    </tr>
+                    <tr>
+                      <td>Low-T Embrittlement</td>
+                      <td>No low-temperature DBTT shift.</td>
+                      <td class="cell-ht9">Below ~400 &deg;C (T &lt; 0.4 T<sub>m</sub>), hardening + &alpha;&prime; (&gt;9 wt% Cr) drive <strong>&Delta;DBTT &approx; +155 &deg;C</strong>, saturating by 5&ndash;10 dpa.</td>
+                    </tr>
+                    <tr>
+                      <td>High-T Creep &amp; FCCI</td>
+                      <td>High early thermal creep strength, but <strong>Ni leaching worsens FCCI</strong>.</td>
+                      <td class="cell-ht9">Creep ceiling above <span class="hl-amber">600&ndash;650 &deg;C</span> (~60 MPa at 10<sup>5</sup> h / 600 &deg;C).</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="compare-summary-2">
+                <div class="compare-cap-card">FCC CAP: ~10 at% BU (Void Swelling)</div>
+                <div class="compare-cap-card compare-cap-card--ht9">HT9 WINDOW: 400&ndash;650 &deg;C (&lt;2% Swelling)</div>
+              </div>
+            </div>
+
+            <div class="stacked-figs-2">
+              <figure class="figure-card">
+                <div class="figure-card__stage">
+                  <span class="figure-card__badge">Charpy &Delta;DBTT Shift</span>
+                  <img src="../../assets/figures/s08-ht9-dbtt-swelling.png" alt="Charpy DBTT shift HT9 vs T91" data-fallback />
+                  <div class="figure-placeholder">
+                    <span class="figure-placeholder__tag">Figure Placeholder</span>
+                    <span class="figure-placeholder__path">assets/figures/s08-ht9-dbtt-swelling.png</span>
+                    <span class="figure-placeholder__hint">Charpy &Delta;DBTT curves of FFTF-irradiated HT9 vs T91 (ORNL/TM-2004/176, Fig. 4).</span>
+                  </div>
+                </div>
+                <figcaption class="figure-card__caption">Charpy impact transition shift of FFTF-irradiated HT9 (12Cr-1MoVW), Klueh, ORNL/TM-2004/176 (2004).</figcaption>
+              </figure>
+
+              <figure class="figure-card">
+                <div class="figure-card__stage">
+                  <span class="figure-card__badge figure-card__badge--green">Void Swelling vs Dose</span>
+                  <img src="../../assets/schematics/s08-void-swelling-dose.svg" alt="Void swelling 316SS vs HT9" data-fallback />
+                  <div class="figure-placeholder">
+                    <span class="figure-placeholder__tag">Figure Placeholder</span>
+                    <span class="figure-placeholder__path">assets/schematics/s08-void-swelling-dose.svg</span>
+                    <span class="figure-placeholder__hint">316SS (~1%/dpa) vs HT9 (&lt;2% at 200 dpa) swelling vs dpa comparison.</span>
+                  </div>
+                </div>
+                <figcaption class="figure-card__caption">Volumetric void swelling vs. dose (400&ndash;450 &deg;C), compiled from Klueh (2018), Garner (2009) &amp; NUREG/CR-7305 (2023).</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="slide-footer__left-group">
+            <span class="slide-footer__logo">
+              <img src="../../assets/branding/polito_logo_white.svg" alt="Politecnico di Torino" data-fallback />
+              <span class="slide-footer__logo-fallback">PoliTo</span>
+            </span>
+            <span class="slide-footer__left">Davide Rapallo &ndash; s324486@studenti.polito.it</span>
+          </div>
+          <div class="slide-footer__right-group">
+            <span class="slide-footer__company">Oklo Inc. (Simulated Case Study)</span>
+            <span class="slide-footer__right">Slide 8 / 14</span>
+          </div>
+        </footer>
+      </section>
+
+      <!-- ==================== SLIDE 9: TOP 4-KPI ROW + BOTTOM SPLIT ==================== -->
+      <section class="slide slide--content" data-slide="9">
+        <header class="slide-header">
+          <div class="slide-header__top">
+            <span class="slide-header__fixed">U-10Zr Metallic Fuel for Sodium Fast Reactors</span>
+            <span class="slide-header__section">Legacy Irradiation Database (EBR-II &amp; FFTF)</span>
+          </div>
+          <p class="slide-header__takeaway">Over 1,260 U-10Zr/HT9 pins tested to 14&ndash;20 at% burnup prove steady-state reliability and bound failure thresholds.</p>
+        </header>
+
+        <div class="slide-body">
+          <div class="top-bottom-stack">
+            <div class="kpi-row-4">
+              <div class="kpi-card">
+                <div class="kpi-card__val"><span data-count-to="130000" data-count-prefix="&gt;" data-count-comma="true">&gt;130,000</span></div>
+                <div class="kpi-card__lbl">Total US Metallic Pins Irradiated</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-card__val"><span data-count-to="1262" data-count-comma="true" data-count-suffix=" Rods">1,262 Rods</span></div>
+                <div class="kpi-card__lbl">Qualified U-10Zr/HT9 (404 EBR-II + 858 FFTF)</div>
+              </div>
+              <div class="kpi-card kpi-card--green">
+                <div class="kpi-card__val"><span data-count-to="20" data-count-prefix="Up to ~" data-count-suffix=" at%">Up to ~20 at%</span></div>
+                <div class="kpi-card__lbl">EBR-II up to ~20 at% (~14 at% in FFTF)</div>
+              </div>
+              <div class="kpi-card kpi-card--alert">
+                <div class="kpi-card__val"><span data-count-to="660" data-count-suffix=" &deg;C">660 &deg;C</span></div>
+                <div class="kpi-card__lbl">EBR-II X447 Breach Boundary</div>
+              </div>
+            </div>
+
+            <div class="split-grid grid--58-42 bottom-fill">
+              <figure class="figure-card">
+                <div class="figure-card__stage">
+                  <span class="figure-card__badge">EBR-II X447/A</span>
+                  <img src="../../assets/figures/s09-ebr2-x447-strain.png" alt="EBR-II X447/A HT9 cladding profilometry" data-fallback />
+                  <div class="figure-placeholder">
+                    <span class="figure-placeholder__tag">Figure Placeholder</span>
+                    <span class="figure-placeholder__path">assets/figures/s09-ebr2-x447-strain.png</span>
+                    <span class="figure-placeholder__hint">HT9 cladding diametral profilometry on EBR-II X447/A pins (ANL/CFCT-21/19, Fig. 2-16 / 2-17).</span>
+                  </div>
+                </div>
+                <figcaption class="figure-card__caption">HT9 cladding profilometry vs model (EBR-II X447/A), Miao et al., ANL/CFCT-21/19 (2021).</figcaption>
+              </figure>
+
+              <div class="text-col">
+                <ul class="bullet-list">
+                  <li><strong>Massive US Heritage:</strong> <strong>NUREG/CR-7305</strong> qualifies 1,262 <strong style="white-space:nowrap;">U-10Zr/HT9</strong> rods across 404 EBR-II and 858 FFTF tests.</li>
+                  <li class="callout-green"><strong>Strain Reliability:</strong> Zero strain-induced breaches for &le; 75% smear density below 17 at% burnup (370&ndash;615 &deg;C).</li>
+                  <li class="callout-alert"><strong>Failure Boundary:</strong> Breaches in EBR-II <strong>X447</strong> occurred at <span class="hl-amber">660 &deg;C</span> at top of fuel column (z/L &approx; 1.0) due to combined FCCI thinning and thermal creep.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="slide-footer__left-group">
+            <span class="slide-footer__logo">
+              <img src="../../assets/branding/polito_logo_white.svg" alt="Politecnico di Torino" data-fallback />
+              <span class="slide-footer__logo-fallback">PoliTo</span>
+            </span>
+            <span class="slide-footer__left">Davide Rapallo &ndash; s324486@studenti.polito.it</span>
+          </div>
+          <div class="slide-footer__right-group">
+            <span class="slide-footer__company">Oklo Inc. (Simulated Case Study)</span>
+            <span class="slide-footer__right">Slide 9 / 14</span>
+          </div>
+        </footer>
+      </section>
+
+      <!-- ==================== SLIDE 10: ASYMMETRIC BENTO ==================== -->
+      <section class="slide slide--content theme--green" data-slide="10">
+        <header class="slide-header">
+          <div class="slide-header__top">
+            <span class="slide-header__fixed">U-10Zr Metallic Fuel for Sodium Fast Reactors</span>
+            <span class="slide-header__section">Advanced Mitigation Levers</span>
+          </div>
+          <p class="slide-header__takeaway">Four material engineering strategies target FCCI elimination, sodium-bond waste, and the 650 &deg;C HT9 creep limit.</p>
+        </header>
+
+        <div class="slide-body">
+          <div class="bento-grid-2x2">
+            <article class="bento-card">
+              <div>
+                <div class="lever-meta">
+                  <span class="lever-num">LEVER 01</span>
+                  <span class="badge badge--blue">Interface Barrier</span>
+                </div>
+                <h3 class="lever-title">Internal Anti-FCCI Barriers</h3>
+                <p class="lever-text">Co-extruded <strong>Zr liner</strong> or thin V/Cr/TiN inner coating physically blocks Ln&ndash;Fe and U&ndash;Fe interdiffusion.</p>
+              </div>
+              <div class="lever-svg-box">
+                <svg class="lever-svg lever-svg--barrier" viewBox="0 0 420 92" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <!-- Contiguous Bonded Layers: Fuel (8..154) | Barrier (154..220) | HT9 Cladding (220..412) -->
+                  <rect x="8" y="8" width="146" height="76" rx="2" fill="#DBEAFE" stroke="#1E3A8A" stroke-width="1.4"/>
+                  <rect class="svg-barrier-wall" x="154" y="8" width="66" height="76" fill="#0B2545" stroke="#0B2545" stroke-width="1.4"/>
+                  <rect x="220" y="8" width="192" height="76" rx="2" fill="#E2E8F0" stroke="#334155" stroke-width="1.4"/>
+
+                  <!-- Dual Barrier Interfaces -->
+                  <line class="svg-barrier-shield" x1="154" y1="10" x2="154" y2="82" stroke="#F59E0B" stroke-width="2.4" stroke-dasharray="3 2"/>
+                  <line x1="220" y1="10" x2="220" y2="82" stroke="#10B981" stroke-width="2.2" stroke-dasharray="3 2"/>
+
+                  <!-- Left: U-10Zr Fuel + Blocked Ln/U Flux -->
+                  <text x="81" y="27" font-size="11" font-weight="700" fill="#0B2545" text-anchor="middle">U&#8211;10Zr Fuel</text>
+                  <text x="42" y="53" font-size="9.5" font-weight="700" fill="#C2410C" text-anchor="middle">Ln, U</text>
+                  <g class="svg-flux-left">
+                    <line x1="66" y1="50" x2="144" y2="50" stroke="#C2410C" stroke-width="2"/>
+                    <polygon points="139,45.5 148,50 139,54.5" fill="#C2410C"/>
+                  </g>
+                  <text x="81" y="73" font-size="8.5" font-weight="600" fill="#9A3412" text-anchor="middle">No Ln&#8211;Fe Wastage</text>
+
+                  <!-- Center: Bonded Liner / Coating -->
+                  <text x="187" y="32" font-size="9.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">Zr / Cr / TiN</text>
+                  <text x="187" y="46" font-size="8.8" font-weight="600" fill="#93C5FD" text-anchor="middle">ID Barrier</text>
+                  <text x="187" y="60" font-size="8.2" font-weight="600" fill="#FDE68A" text-anchor="middle">20&#8211;50 &#956;m</text>
+                  <text x="187" y="72" font-size="7.5" fill="#CBD5E1" text-anchor="middle">PVD / Liner</text>
+
+                  <!-- Right: HT9 Cladding + Blocked Fe/Cr Outward Diffusion -->
+                  <text x="316" y="27" font-size="11" font-weight="700" fill="#1E293B" text-anchor="middle">HT9 Cladding Wall (600 &#956;m)</text>
+                  <text x="336" y="54" font-size="9.8" font-weight="700" fill="#475569" text-anchor="middle">Fe, Cr</text>
+                  <g class="svg-flux-right">
+                    <line x1="312" y1="50" x2="230" y2="50" stroke="#475569" stroke-width="2"/>
+                    <polygon points="235,45.5 226,50 235,54.5" fill="#475569"/>
+                  </g>
+                  <text class="svg-blocked-lbl" x="316" y="73" font-size="8.8" font-weight="700" fill="#15803D" text-anchor="middle">No 725 &#176;C U&#8326;Fe Eutectic</text>
+                </svg>
+              </div>
+            </article>
+
+            <article class="bento-card">
+              <div>
+                <div class="lever-meta">
+                  <span class="lever-num">LEVER 02</span>
+                  <span class="badge badge--blue">Matrix Chemistry</span>
+                </div>
+                <h3 class="lever-title">Fuel Dopants (Pd, Sn, Sb)</h3>
+                <p class="lever-text">Small additions bind lanthanides inside the U&ndash;Zr slug as stable intermetallics (Pd&ndash;Ln, Sn&ndash;Ln).</p>
+              </div>
+              <div class="lever-svg-box">
+                <svg class="lever-svg lever-svg--dopants" viewBox="0 0 420 92" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <!-- Contiguous Fuel Matrix + Cladding Interface -->
+                  <rect x="8" y="8" width="302" height="76" rx="2" fill="#EFF6FF" stroke="#1E3A8A" stroke-width="1.4"/>
+                  <rect x="310" y="8" width="102" height="76" rx="2" fill="#E2E8F0" stroke="#334155" stroke-width="1.4"/>
+                  <line x1="310" y1="8" x2="310" y2="84" stroke="#15803D" stroke-width="2.2" stroke-dasharray="3 2"/>
+
+                  <text x="18" y="23" font-size="10.2" font-weight="700" fill="#0B2545">U&#8211;10Zr Matrix: Stable Intermetallic Lanthanide Traps</text>
+
+                  <!-- Trap 1: PdLn / Pd2Ln -->
+                  <g class="svg-trap">
+                    <rect x="48" y="42" width="68" height="24" rx="12" fill="#0B2545"/>
+                    <text x="82" y="57" font-size="9.2" font-weight="700" fill="#FFFFFF" text-anchor="middle">PdLn / Pd&#8322;Ln</text>
+                  </g>
+                  <g class="svg-ln-bond">
+                    <circle cx="24" cy="48" r="5.5" fill="#E05A00"/>
+                    <text x="24" y="51" font-size="7.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">Nd</text>
+                    <line x1="30" y1="49" x2="47" y2="52" stroke="#E05A00" stroke-width="1.5"/>
+                  </g>
+
+                  <!-- Trap 2: Sn-Ln -->
+                  <g class="svg-trap">
+                    <rect x="148" y="42" width="58" height="24" rx="12" fill="#1E3A8A"/>
+                    <text x="177" y="57" font-size="9.2" font-weight="700" fill="#FFFFFF" text-anchor="middle">Sn&#8211;Ln</text>
+                  </g>
+                  <g class="svg-ln-bond">
+                    <circle cx="126" cy="62" r="5.5" fill="#E05A00"/>
+                    <text x="126" y="65" font-size="7.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">Ce</text>
+                    <line x1="132" y1="60" x2="147" y2="56" stroke="#E05A00" stroke-width="1.5"/>
+                  </g>
+
+                  <!-- Trap 3: Ln4Sb3 -->
+                  <g class="svg-trap">
+                    <rect x="244" y="42" width="56" height="24" rx="12" fill="#15803D"/>
+                    <text x="272" y="57" font-size="9.2" font-weight="700" fill="#FFFFFF" text-anchor="middle">Ln&#8324;Sb&#8323;</text>
+                  </g>
+                  <g class="svg-ln-bond">
+                    <circle cx="218" cy="40" r="5.5" fill="#E05A00"/>
+                    <text x="218" y="43" font-size="7.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">Ln</text>
+                    <line x1="224" y1="43" x2="243" y2="49" stroke="#E05A00" stroke-width="1.5"/>
+                  </g>
+
+                  <!-- Protected Cladding on Right -->
+                  <text x="361" y="36" font-size="10.2" font-weight="700" fill="#1E293B" text-anchor="middle">HT9 Cladding</text>
+                  <text x="361" y="52" font-size="9.2" font-weight="700" fill="#15803D" text-anchor="middle">Zero Ln Flux</text>
+                  <text x="361" y="66" font-size="8.2" font-weight="600" fill="#475569" text-anchor="middle">(FCCI Prevented)</text>
+                </svg>
+              </div>
+            </article>
+
+            <article class="bento-card bento-card--green">
+              <div>
+                <div class="lever-meta">
+                  <span class="lever-num lever-num--green">LEVER 03</span>
+                  <span class="badge badge--green">Pin Geometry</span>
+                </div>
+                <h3 class="lever-title">Annular He-Bonded (55% Smear)</h3>
+                <p class="lever-text">Eliminates liquid Na bond (removes fast Ln paths &amp; pyrophoric Na disposal issues; tighter gap tolerance).</p>
+              </div>
+              <div class="lever-svg-box">
+                <svg class="lever-svg lever-svg--annular" viewBox="0 0 420 92" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <!-- Concentric geometry at (84, 46): ~55% smear density (Yao et al., 2023) -->
+                  <circle class="svg-ann-ring" cx="84" cy="46" r="37" fill="#CBD5E1" stroke="#334155" stroke-width="1.8"/>
+                  <circle class="svg-ann-ring" cx="84" cy="46" r="30.5" fill="#86EFAC" stroke="#15803D" stroke-width="1.1"/>
+                  <circle class="svg-ann-ring" cx="84" cy="46" r="27" fill="#1D4ED8" stroke="#0B2545" stroke-width="1.2"/>
+                  <circle class="svg-ann-ring" cx="84" cy="46" r="14.5" fill="#FFFFFF" stroke="#0B2545" stroke-width="1.2"/>
+
+                  <!-- 1. Cladding (y = 18) -->
+                  <line class="svg-ann-line" x1="102" y1="18" x2="156" y2="18" stroke="#334155" stroke-width="1.3"/>
+                  <circle cx="102" cy="18" r="2.3" fill="#334155"/>
+                  <text class="svg-ann-lbl" x="164" y="21.5" font-size="10.2" font-weight="700" fill="#1E293B">HT9 / ODS Cladding (No Liquid Na)</text>
+
+                  <!-- 2. He Gas Gap (y = 37) -->
+                  <line class="svg-ann-line" x1="111" y1="37" x2="156" y2="37" stroke="#15803D" stroke-width="1.3"/>
+                  <circle cx="111" cy="37" r="2.3" fill="#15803D"/>
+                  <text class="svg-ann-lbl" x="164" y="40.5" font-size="10.2" font-weight="700" fill="#15803D">Thin He Gap (Inert Thermal Bond)</text>
+
+                  <!-- 3. Annular U-10Zr (y = 56) -->
+                  <line class="svg-ann-line" x1="103" y1="56" x2="156" y2="56" stroke="#0B2545" stroke-width="1.3"/>
+                  <circle cx="103" cy="56" r="2.4" fill="#FFFFFF" stroke="#0B2545" stroke-width="1.3"/>
+                  <text class="svg-ann-lbl" x="164" y="59.5" font-size="10.2" font-weight="700" fill="#0B2545">Annular U-10Zr Ring (55% Smear)</text>
+
+                  <!-- 4. Central Void (y = 75) -->
+                  <polyline class="svg-ann-line" points="84,46 116,75 156,75" fill="none" stroke="#64748B" stroke-width="1.3"/>
+                  <circle cx="84" cy="46" r="2.3" fill="#64748B"/>
+                  <text class="svg-ann-lbl" x="164" y="78.5" font-size="10.2" font-weight="600" fill="#475569">Central Void (Inward Swelling Relief)</text>
+                </svg>
+              </div>
+            </article>
+
+            <article class="bento-card bento-card--amber">
+              <div>
+                <div class="lever-meta">
+                  <span class="lever-num lever-num--amber">LEVER 04</span>
+                  <span class="badge badge--amber">Advanced Cladding</span>
+                </div>
+                <h3 class="lever-title">9Cr-ODS Cladding <span class="code-chip" style="font-size:12px;vertical-align:middle;">Fe-9Cr-2W-0.2Ti-0.35Y<sub>2</sub>O<sub>3</sub></span></h3>
+                <p class="lever-text"><strong>1&ndash;3 nm Y&ndash;Ti&ndash;O nano-oxides</strong> suppress &alpha;&prime; brittleness, trap He, and raise creep limit to <strong>~700 &deg;C</strong> (requires solid-state <strong>PRW</strong> weld).</p>
+              </div>
+              <div class="lever-svg-box">
+                <svg class="lever-svg lever-svg--ods" viewBox="0 0 420 92" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="8" y="8" width="404" height="76" rx="3" fill="#FFFBEB" stroke="#D97706" stroke-width="1.4"/>
+
+                  <!-- Prior Austenite / Martensite Lath Boundaries (protected from He) -->
+                  <polyline class="svg-grain" points="104,8 122,46 98,84" fill="none" stroke="#CBD5E1" stroke-width="1.4"/>
+                  <polyline class="svg-grain" points="306,8 290,46 318,84" fill="none" stroke="#CBD5E1" stroke-width="1.4"/>
+                  <!-- Title -->
+                  <text x="18" y="23" font-size="10" font-weight="700" fill="#0B2545">BCC Matrix: Orowan Dislocation Bowing + Interfacial He Trapping</text>
+
+                  <!-- Gliding Dislocation Pinned at Y-Ti-O Nano-Oxides (Orowan Loops/Arcs) -->
+                  <path class="svg-dislocation" d="M22,55 Q48,34 74,52 Q114,31 154,52 Q194,31 234,52 Q274,31 314,52 Q352,34 388,55" fill="none" stroke="#0B2545" stroke-width="2" stroke-dasharray="4 2.5"/>
+
+                  <!-- Coherent/Semi-coherent Y2O3 / Y2Ti2O7 Nano-Oxides (1-3 nm pinning sites) -->
+                  <circle class="svg-oxide" cx="74" cy="52" r="5.5" fill="#C2410C" stroke="#7C2D12" stroke-width="1"/>
+                  <circle class="svg-oxide" cx="154" cy="52" r="5.5" fill="#C2410C" stroke="#7C2D12" stroke-width="1"/>
+                  <circle class="svg-oxide" cx="234" cy="52" r="5.5" fill="#C2410C" stroke="#7C2D12" stroke-width="1"/>
+                  <circle class="svg-oxide" cx="314" cy="52" r="5.5" fill="#C2410C" stroke="#7C2D12" stroke-width="1"/>
+                  <!-- Additional matrix nano-oxides -->
+                  <circle class="svg-oxide" cx="114" cy="60" r="4" fill="#C2410C" fill-opacity="0.85"/>
+                  <circle class="svg-oxide" cx="274" cy="60" r="4" fill="#C2410C" fill-opacity="0.85"/>
+
+                  <!-- He Bubbles Trapped Directly at Nano-Oxide / Matrix Interfaces -->
+                  <circle class="svg-he" cx="68" cy="48" r="2.6" fill="#15803D" stroke="#FFFFFF" stroke-width="0.6"/>
+                  <circle class="svg-he" cx="148" cy="48" r="2.6" fill="#15803D" stroke="#FFFFFF" stroke-width="0.6"/>
+                  <circle class="svg-he" cx="160" cy="55" r="2.6" fill="#15803D" stroke="#FFFFFF" stroke-width="0.6"/>
+                  <circle class="svg-he" cx="240" cy="48" r="2.6" fill="#15803D" stroke="#FFFFFF" stroke-width="0.6"/>
+                  <circle class="svg-he" cx="308" cy="55" r="2.6" fill="#15803D" stroke="#FFFFFF" stroke-width="0.6"/>
+                  <circle class="svg-he" cx="119" cy="58" r="2.4" fill="#15803D" stroke="#FFFFFF" stroke-width="0.6"/>
+
+                  <!-- Legend -->
+                  <text x="16" y="77" font-size="9" font-weight="700" fill="#C2410C">&#9679; Y&#8211;Ti&#8211;O (1&#8211;3 nm)</text>
+                  <text x="134" y="77" font-size="9" font-weight="700" fill="#15803D">&#9679; Interface-Trapped He</text>
+                  <text x="264" y="77" font-size="9" font-weight="700" fill="#0B2545">--- Orowan Bowing (~700 &#176;C)</text>
+                </svg>
+              </div>
+            </article>
+          </div>
+          <p class="source-footnote">Synthesized from Xie et al. (2018), Yao et al. (2023), Seki et al. (2004), and IAEA (2013).</p>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="slide-footer__left-group">
+            <span class="slide-footer__logo">
+              <img src="../../assets/branding/polito_logo_white.svg" alt="Politecnico di Torino" data-fallback />
+              <span class="slide-footer__logo-fallback">PoliTo</span>
+            </span>
+            <span class="slide-footer__left">Davide Rapallo &ndash; s324486@studenti.polito.it</span>
+          </div>
+          <div class="slide-footer__right-group">
+            <span class="slide-footer__company">Oklo Inc. (Simulated Case Study)</span>
+            <span class="slide-footer__right">Slide 10 / 14</span>
+          </div>
+        </footer>
+      </section>
+
+      <!-- ==================== SLIDE 11: TRADE-OFF TABLE ==================== -->
+      <section class="slide slide--content" data-slide="11">
+        <header class="slide-header">
+          <div class="slide-header__top">
+            <span class="slide-header__fixed">U-10Zr Metallic Fuel for Sodium Fast Reactors</span>
+            <span class="slide-header__section">Comparative Trade-Off Table</span>
+          </div>
+          <p class="slide-header__takeaway">Selecting a metallic fuel architecture requires balancing licensing maturity against temperature margin and back-end waste.</p>
+        </header>
+
+        <div class="slide-body">
+          <div class="top-bottom-stack" style="gap:12px; justify-content:center;">
+            <table class="tradeoff-table">
+            <thead>
+              <tr>
+                <th style="width:23%;">Fuel&ndash;Cladding Concept</th>
+                <th style="width:27%;">Advantages</th>
+                <th style="width:26%;">Disadvantages</th>
+                <th style="width:24%;">Limiting Factor(s)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="code-chip">U-10Zr (Na) / 316SS-D9</span></td>
+                <td>High early creep strength; no low-T DBTT; historical EBR-II data</td>
+                <td>Severe FCC void swelling after incubation; Ni leaching/FCCI</td>
+                <td><span class="hl-amber">Void swelling</span> (~10 at% BU cap)</td>
+              </tr>
+              <tr class="row-baseline">
+                <td>
+                  <span class="code-chip">U-10Zr (Na) / HT9</span><br />
+                  <span class="badge badge--blue">Commercial Baseline</span>
+                </td>
+                <td>&lt;2% swelling at 200 dpa; <strong>1,262-pin NRC database</strong>; high k</td>
+                <td>High-burnup FCCI wastage; reactive Na-bond waste</td>
+                <td><span class="hl-amber">Creep &gt;650 &deg;C</span>; <span class="hl-amber">U&ndash;Fe eutectic (725 &deg;C)</span></td>
+              </tr>
+              <tr class="row-stage1">
+                <td>
+                  <span class="code-chip">U-10Zr (Na+Liner/Pd) / HT9</span><br />
+                  <span class="badge badge--blue">Stage 1 Target</span>
+                </td>
+                <td>Cuts FCCI wastage &amp; extends burnup using qualified HT9 tube</td>
+                <td>Extra fabrication/coating cost; unaddressed HT9 creep ceiling</td>
+                <td><span class="hl-amber">HT9 thermal creep &gt;650 &deg;C</span>; liner bonding QA</td>
+              </tr>
+              <tr class="row-target">
+                <td>
+                  <span class="code-chip">Annular U-10Zr (He) / 9Cr-ODS</span><br />
+                  <span class="badge badge--green">Stage 2 Target</span>
+                </td>
+                <td>No reactive Na waste; creep to ~700 &deg;C; low &alpha;&prime; risk</td>
+                <td>Lower gap <span style="white-space:nowrap;">k<sub>He</sub>;</span> expensive PM/MA tubing; low TRL</td>
+                <td><strong>PRW end-cap weld</strong> qual.; tight gap tolerances</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="code-chip">MOX / 15-15Ti</span><br />
+                  <span class="badge badge--slate">External Benchmark</span>
+                </td>
+                <td>Mature oxide/LWR fabrication &amp; European LFR/SFR heritage</td>
+                <td>8&ndash;10&times; lower k; lower fissile density; no Na-bond synergy</td>
+                <td>Centerline T margin; 15-15Ti swelling &gt;120 dpa</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="tradeoff-summary-grid">
+            <div class="tradeoff-summary-card tradeoff-summary-card--baseline">
+              <span class="tradeoff-summary-card__tag">Commercial Baseline</span>
+              <h4>U-10Zr (Na) / HT9</h4>
+              <p><strong>1,262-pin</strong> NUREG/CR-7305 licensing database; capped by HT9 thermal creep &gt;650 &deg;C &amp; U&ndash;Fe eutectic (725 &deg;C).</p>
+            </div>
+            <div class="tradeoff-summary-card tradeoff-summary-card--stage1">
+              <span class="tradeoff-summary-card__tag">Stage 1 Target</span>
+              <h4>Na + Liner / Pd in HT9</h4>
+              <p>Cuts Ln&ndash;Fe FCCI wastage inside qualified HT9 tubes (<strong>~10&ndash;14 at% BU</strong>, PICT &le;620 &deg;C) for near-term launch.</p>
+            </div>
+            <div class="tradeoff-summary-card tradeoff-summary-card--stage2">
+              <span class="tradeoff-summary-card__tag">Stage 2 Target</span>
+              <h4>Annular He / 9Cr-ODS</h4>
+              <p>Eliminates pyrophoric Na-bond waste and extends creep ceiling to <strong>~700 &deg;C</strong> (&gt;15 at% BU; requires PRW).</p>
+            </div>
+          </div>
+
+          <p class="table-footnote">Trade-off grounded in NUREG/CR-7305, PNNL-35642, IAEA-TECDOC-1689, and Xie et al. (2018).</p>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="slide-footer__left-group">
+            <span class="slide-footer__logo">
+              <img src="../../assets/branding/polito_logo_white.svg" alt="Politecnico di Torino" data-fallback />
+              <span class="slide-footer__logo-fallback">PoliTo</span>
+            </span>
+            <span class="slide-footer__left">Davide Rapallo &ndash; s324486@studenti.polito.it</span>
+          </div>
+          <div class="slide-footer__right-group">
+            <span class="slide-footer__company">Oklo Inc. (Simulated Case Study)</span>
+            <span class="slide-footer__right">Slide 11 / 14</span>
+          </div>
+        </footer>
+      </section>
+
+      <!-- ==================== SLIDE 12: TOP ROADMAP + 3-COL BOTTOM DECISION ==================== -->
+      <section class="slide slide--content theme--green" data-slide="12">
+        <header class="slide-header">
+          <div class="slide-header__top">
+            <span class="slide-header__fixed">U-10Zr Metallic Fuel for Sodium Fast Reactors</span>
+            <span class="slide-header__section">Selection, Engineering Opinion &amp; Limitations</span>
+          </div>
+          <p class="slide-header__takeaway">A two-stage deployment strategy pairs immediate NRC licensability with next-generation high-temperature performance.</p>
+        </header>
+
+        <div class="slide-body">
+          <div class="split-grid grid--58-42">
+            <figure class="figure-card">
+              <div class="figure-card__stage">
+                <span class="figure-card__badge">Two-Stage Roadmap</span>
+                <svg class="s12-inline-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 410" font-family="Inter, Segoe UI, Arial, sans-serif" role="img" aria-label="Two-Stage Deployment Roadmap">
+                  <defs>
+                    <marker id="s12-stageArrow" markerWidth="10" markerHeight="10" refX="7" refY="5" orient="auto">
+                      <path d="M0,1 L9,5 L0,9 Z" fill="#003B73"/>
+                    </marker>
+                  </defs>
+                  <rect width="560" height="410" rx="8" fill="#FFFFFF"/>
+                  <g class="s12-block s12-stage1" data-stage="1" style="cursor:pointer;">
+                    <rect x="20" y="16" width="520" height="145" rx="2" fill="#F8FAFC" stroke="#003B73" stroke-width="2"/>
+                    <rect x="20" y="16" width="520" height="36" rx="2" fill="#003B73"/>
+                    <rect x="20" y="40" width="520" height="12" fill="#003B73"/>
+                    <text x="36" y="39" font-size="13.5" font-weight="700" fill="#FFFFFF">STAGE 1 — Near-Term Commercial (2027–2030)</text>
+                    <rect x="396" y="23" width="130" height="22" rx="2" fill="#15803D"/>
+                    <text x="461" y="38" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">OKLO AURORA LAUNCH</text>
+                    <text x="36" y="76" font-size="13.5" font-weight="700" fill="#0B2545">U-10Zr (Na-bonded) / HT9 + Thin Zr/Cr Barrier</text>
+                    <rect x="36" y="92" width="128" height="26" rx="2" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+                    <text x="100" y="109" font-size="11.5" font-weight="700" fill="#003B73" text-anchor="middle">PICT ≤ 620 °C</text>
+                    <rect x="176" y="92" width="150" height="26" rx="2" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+                    <text x="251" y="109" font-size="11.5" font-weight="700" fill="#003B73" text-anchor="middle">~10–14 at% Burnup</text>
+                    <rect x="338" y="92" width="186" height="26" rx="2" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+                    <text x="431" y="109" font-size="11.5" font-weight="700" fill="#15803D" text-anchor="middle">NUREG/CR-7305 Bankable</text>
+                    <text x="36" y="142" font-size="10.8" font-weight="600" fill="#475569">1,262-pin EBR-II/FFTF basis &bull; 75% smear vents ~75% FGR &bull; &lt;2% HT9 swelling (200 dpa)</text>
+                  </g>
+                  <g class="s12-block s12-bridge">
+                    <line class="s12-bridge-line" x1="180" y1="161" x2="180" y2="235" stroke="#003B73" stroke-width="2.4" marker-end="url(#s12-stageArrow)"/>
+                    <line class="s12-bridge-line" x1="380" y1="161" x2="380" y2="235" stroke="#003B73" stroke-width="2.4" marker-end="url(#s12-stageArrow)"/>
+                    <rect class="s12-bridge-pill" x="70" y="184" width="420" height="32" rx="4" fill="#FFF7ED" stroke="#D97706" stroke-width="1.6"/>
+                    <text x="280" y="204" font-size="11" font-weight="700" fill="#C2410C" text-anchor="middle">R&amp;D Bridge: Solid-State PRW Welds &bull; He-Gap QA &bull; TREAT Transients</text>
+                  </g>
+                  <g class="s12-block s12-stage2" data-stage="2" style="cursor:pointer;">
+                    <rect x="20" y="242" width="520" height="150" rx="2" fill="#F8FAFC" stroke="#D97706" stroke-width="2"/>
+                    <rect x="20" y="242" width="520" height="36" rx="2" fill="#0B2545"/>
+                    <rect x="20" y="266" width="520" height="12" fill="#0B2545"/>
+                    <text x="36" y="265" font-size="13.5" font-weight="700" fill="#FFFFFF">STAGE 2 — Next-Gen Core Optimization</text>
+                    <rect x="396" y="249" width="130" height="22" rx="2" fill="#D97706"/>
+                    <text x="461" y="264" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">HIGH-T / Na-FREE</text>
+                    <text x="36" y="302" font-size="13.5" font-weight="700" fill="#0B2545">Annular U-10Zr (He-bonded) + Pd/Sn / 9Cr-ODS</text>
+                    <rect x="36" y="318" width="136" height="26" rx="2" fill="#FFFBEB" stroke="#FCD34D" stroke-width="1"/>
+                    <text x="104" y="335" font-size="11.5" font-weight="700" fill="#C2410C" text-anchor="middle">Cladding ~700 °C</text>
+                    <rect x="184" y="318" width="144" height="26" rx="2" fill="#FFFBEB" stroke="#FCD34D" stroke-width="1"/>
+                    <text x="256" y="335" font-size="11.5" font-weight="700" fill="#C2410C" text-anchor="middle">&gt;15 at% Burnup</text>
+                    <rect x="340" y="318" width="184" height="26" rx="2" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+                    <text x="432" y="335" font-size="11.5" font-weight="700" fill="#15803D" text-anchor="middle">Zero Pyrophoric Na Waste</text>
+                    <text x="36" y="368" font-size="10.8" font-weight="600" fill="#475569">55% smear inward relief &bull; 1–3 nm Y–Ti–O Orowan pinning &bull; PdLn/Sn–Ln FCCI traps</text>
+                  </g>
+                </svg>
+              </div>
+              <figcaption class="figure-card__caption">Author&rsquo;s two-stage deployment roadmap grounded in NUREG/CR-7305 &amp; INL/AFC R&amp;D.</figcaption>
+            </figure>
+
+            <div class="decision-stack-3">
+              <div class="decision-box decision-box--green" data-stage="1">
+                <h4>MY PROPOSAL 01 &bull; Duplex PVD/ALD Inner Barrier</h4>
+                <p>Replace thick co-extruded Zr-rind with an ultra-thin PVD/ALD duplex coating (Cr/V + Y<sub>2</sub>O<sub>3</sub> or TiN ceramic diffusion barrier, analogous to ATF anti-eutectic barriers): suppresses both Ln wastage and 725 &deg;C U&ndash;Fe liquefaction inside standard HT9 tubes.</p>
+              </div>
+              <div class="decision-box" data-stage="2">
+                <h4>MY PROPOSAL 02 &bull; Recycled-Pd Doping in Annular Fuel</h4>
+                <p>Valorize noble fission-product Pd recovered during EBR-II electrorefining (~1&ndash;2 wt% Pd addition) inside an annular He-bonded slug: traps lanthanides as stable PdLn / Pd<sub>2</sub>Ln intermetallics while eliminating pyrophoric Na-bond disposal.</p>
+              </div>
+              <div class="decision-box decision-box--amber">
+                <h4>HONEST BOTTLENECKS &bull; Joining &amp; Industrial Scale-Up</h4>
+                <p>Fusion welding destroys 9Cr-ODS nano-oxides (Y<sub>2</sub>O<sub>3</sub> coarsening): Stage 2 requires industrial qualification of solid-state <strong>PRW</strong> end-cap joining, lower PM/MA tubing cost, tight He-gap tolerances, and prototypic TREAT transient tests.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="slide-footer__left-group">
+            <span class="slide-footer__logo">
+              <img src="../../assets/branding/polito_logo_white.svg" alt="Politecnico di Torino" data-fallback />
+              <span class="slide-footer__logo-fallback">PoliTo</span>
+            </span>
+            <span class="slide-footer__left">Davide Rapallo &ndash; s324486@studenti.polito.it</span>
+          </div>
+          <div class="slide-footer__right-group">
+            <span class="slide-footer__company">Oklo Inc. (Simulated Case Study)</span>
+            <span class="slide-footer__right">Slide 12 / 14</span>
+          </div>
+        </footer>
+      </section>
+
+      <!-- ==================== SLIDE 13: REFERENCES ==================== -->
+      <section class="slide slide--content" data-slide="13">
+        <header class="slide-header">
+          <div class="slide-header__top">
+            <span class="slide-header__fixed">U-10Zr Metallic Fuel for Sodium Fast Reactors</span>
+            <span class="slide-header__section">Verified Primary References</span>
+          </div>
+          <p class="slide-header__takeaway">Primary peer-reviewed literature and regulatory technical reports supporting this evaluation.</p>
+        </header>
+
+        <div class="slide-body">
+          <div class="ref-grid-2">
+            <div class="ref-card ref-card--reg">
+              <div class="ref-card__head">
+                <span class="ref-card__eyebrow">NORM &amp; LAB BASIS</span>
+                <h3>Regulatory Reports, Handbooks &amp; Industrial Basis</h3>
+              </div>
+              <ol class="ref-list">
+                <li class="ref-item">
+                  <span class="ref-num">[1]</span>
+                  <div class="ref-text"><strong>USNRC (2023)</strong> &mdash; <em>Metal Fuel Qualification</em>, <strong>NUREG/CR-7305</strong> (ML23214A065). <span class="ref-slide-tag">S02&ndash;03, S08&ndash;09, S11&ndash;12</span></div>
+                </li>
+                <li class="ref-item">
+                  <span class="ref-num">[2]</span>
+                  <div class="ref-text"><strong>Wray &amp; Geelhood (2024/2026)</strong> &mdash; <em>SFR Metallic Fuel Degradation</em>, <strong>PNNL-35642</strong>. <span class="ref-slide-tag">S05, S11</span></div>
+                </li>
+                <li class="ref-item">
+                  <span class="ref-num">[3]</span>
+                  <div class="ref-text"><strong>Janney (2018)</strong> &mdash; <em>Metallic Fuels Handbook, Parts 1 &amp; 2</em>, <strong>INL/EXT-15-36520-Rev003</strong>. <span class="ref-slide-tag">S04, S11</span></div>
+                </li>
+                <li class="ref-item">
+                  <span class="ref-num">[4]</span>
+                  <div class="ref-text"><strong>Miao et al. (2021)</strong> &mdash; <em>BISON Metallic Fuel V&amp;V Using EBR-II Data</em>, <strong>ANL/CFCT-21/19</strong>. <span class="ref-slide-tag">S07, S09</span></div>
+                </li>
+                <li class="ref-item">
+                  <span class="ref-num">[5]</span>
+                  <div class="ref-text"><strong>Klueh (2004; 2018)</strong> &mdash; <em>Irradiated HT9 vs T91 Charpy &Delta;DBTT</em>, <strong>ORNL/TM-2004/176</strong> &amp; <em>Phil. Mag.</em> 98. <span class="ref-slide-tag">S08</span></div>
+                </li>
+                <li class="ref-item">
+                  <span class="ref-num">[6]</span>
+                  <div class="ref-text"><strong>IAEA (2013)</strong> &mdash; <em>Design, Manufacturing &amp; Irradiation of Fast Reactor Fuel</em>, <strong>IAEA-TECDOC-1689</strong>. <span class="ref-slide-tag">S05, S10&ndash;11</span></div>
+                </li>
+                <li class="ref-item">
+                  <span class="ref-num">[7]</span>
+                  <div class="ref-text"><strong>Oklo Inc. / DOE-INL (2025)</strong> &mdash; <em>Aurora Fuel Qualification Summary &amp; A3F PDSA Approval</em>. <span class="ref-slide-tag">S02</span></div>
+                </li>
+              </ol>
+            </div>
+
+            <div class="ref-card ref-card--lit">
+              <div class="ref-card__head">
+                <span class="ref-card__eyebrow">SCIENTIFIC LITERATURE</span>
+                <h3>Peer-Reviewed Journal Literature</h3>
+              </div>
+              <ol class="ref-list">
+                <li class="ref-item">
+                  <span class="ref-num">[8]</span>
+                  <div class="ref-text"><strong>Was, Petti, Ukai &amp; Zinkle (2019)</strong> &mdash; <em>Materials for future nuclear energy systems</em>, <em>J. Nucl. Mater.</em> 527, 151837. <span class="ref-slide-tag">S02</span></div>
+                </li>
+                <li class="ref-item">
+                  <span class="ref-num">[9]</span>
+                  <div class="ref-text"><strong>Yao et al. (2023)</strong> &mdash; <em>PIE &amp; materials informatics for annular U-10Zr</em>, <em>Front. Nucl. Eng.</em> 1, 1050262. <span class="ref-slide-tag">S04, S06, S10</span></div>
+                </li>
+                <li class="ref-item">
+                  <span class="ref-num">[10]</span>
+                  <div class="ref-text"><strong>Crawford, Porter &amp; Hayes (2007)</strong> &mdash; <em>Fuels for SFRs: US perspective</em>, <em>J. Nucl. Mater.</em> 371, 202&ndash;231. <span class="ref-slide-tag">S03&ndash;04, S09</span></div>
+                </li>
+                <li class="ref-item">
+                  <span class="ref-num">[11]</span>
+                  <div class="ref-text"><strong>Carmack et al. (2016)</strong> &mdash; <em>FCCI in FFTF MFF-3 / MFF-5 U-10Zr/HT9</em>, <em>J. Nucl. Mater.</em> 473, 167&ndash;177. <span class="ref-slide-tag">S07</span></div>
+                </li>
+                <li class="ref-item">
+                  <span class="ref-num">[12]</span>
+                  <div class="ref-text"><strong>Wang et al. (2022)</strong> &mdash; <em>Small-scale mechanical testing &amp; EDS of HT9 FCCI</em>, <em>J. Nucl. Mater.</em> 566, 153754. <span class="ref-slide-tag">S07</span></div>
+                </li>
+                <li class="ref-item">
+                  <span class="ref-num">[13]</span>
+                  <div class="ref-text"><strong>Xie, Zhang, Benson et al. (2018)</strong> &mdash; <em>Lanthanide migration &amp; immobilization</em>, <em>Prog. Nucl. Energy</em> 109. <span class="ref-slide-tag">S10&ndash;11</span></div>
+                </li>
+                <li class="ref-item">
+                  <span class="ref-num">[14]</span>
+                  <div class="ref-text"><strong>Seki et al. (2004)</strong> &mdash; <em>Pressurized Resistance Welding in 9Cr-ODS steels</em>, <em>J. Nucl. Mater.</em> 329&ndash;333, 1534&ndash;1538. <span class="ref-slide-tag">S10</span></div>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="slide-footer__left-group">
+            <span class="slide-footer__logo">
+              <img src="../../assets/branding/polito_logo_white.svg" alt="Politecnico di Torino" data-fallback />
+              <span class="slide-footer__logo-fallback">PoliTo</span>
+            </span>
+            <span class="slide-footer__left">Davide Rapallo &ndash; s324486@studenti.polito.it</span>
+          </div>
+          <div class="slide-footer__right-group">
+            <span class="slide-footer__company">Oklo Inc. (Simulated Case Study)</span>
+            <span class="slide-footer__right">Slide 13 / 14</span>
+          </div>
+        </footer>
+      </section>
+
+      <!-- ==================== SLIDE 14: THANK YOU & AI DISCLOSURE ==================== -->
+      <section class="slide slide--content" data-slide="14">
+        <header class="slide-header">
+          <div class="slide-header__top">
+            <span class="slide-header__fixed">U-10Zr Metallic Fuel for Sodium Fast Reactors</span>
+            <span class="slide-header__section">Closing &amp; Transparency</span>
+          </div>
+          <p class="slide-header__takeaway">Staged metallic fuel deployment enables safe, licensable fast reactors today and higher-temperature cores tomorrow.</p>
+        </header>
+
+        <div class="slide-body">
+          <div class="thankyou-wrap" style="position:relative;">
+            <svg class="closing-hex-watermark" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <radialGradient id="closingGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#E05A00" stop-opacity="0.48" />
+                  <stop offset="100%" stop-color="#E05A00" stop-opacity="0" />
+                </radialGradient>
+              </defs>
+              <circle class="closing-glow-circle" cx="180" cy="180" r="145" fill="url(#closingGlow)" />
+              <g fill="none" stroke="#93C5FD" stroke-width="1.2" stroke-opacity="0.32">
+                <polygon points="180,30 222,54 222,102 180,126 138,102 138,54" />
+                <polygon points="264,78 306,102 306,150 264,174 222,150 222,102" />
+                <polygon points="96,78 138,102 138,150 96,174 54,150 54,102" />
+                <polygon points="180,126 222,150 222,198 180,222 138,198 138,150" stroke="#E05A00" stroke-width="1.8" stroke-opacity="0.55" />
+                <polygon points="264,174 306,198 306,246 264,270 222,246 222,198" />
+                <polygon points="96,174 138,198 138,246 96,270 54,246 54,198" />
+                <polygon points="180,222 222,246 222,294 180,318 138,294 138,246" />
+              </g>
+            </svg>
+            <div class="thankyou-main" style="position:relative;z-index:1;">
+              <h2 class="thankyou-title anim-item">Thank you for your attention</h2>
+              <svg class="thankyou-rule" viewBox="0 0 220 6" width="220" height="6" aria-hidden="true">
+                <line x1="0" y1="3" x2="220" y2="3" stroke="#E05A00" stroke-width="4" stroke-linecap="butt" />
+              </svg>
+              <p class="thankyou-sub anim-item">Questions &amp; Discussion</p>
+              <p class="thankyou-contact anim-item">Davide Rapallo &nbsp;|&nbsp; s324486@studenti.polito.it &nbsp;|&nbsp; Politecnico di Torino</p>
+            </div>
+
+            <div class="ai-disclosure anim-item">
+              <strong>AI Tools Disclosure:</strong> AI assistance was used for literature structuring, slide layout drafting, and language refinement. All technical data, phase transitions, irradiation limits, and micrographs were independently verified against primary USNRC, INL, ANL, PNNL, IAEA, and peer-reviewed sources.
+            </div>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="slide-footer__left-group">
+            <span class="slide-footer__logo">
+              <img src="../../assets/branding/polito_logo_white.svg" alt="Politecnico di Torino" data-fallback />
+              <span class="slide-footer__logo-fallback">PoliTo</span>
+            </span>
+            <span class="slide-footer__left">Davide Rapallo &ndash; s324486@studenti.polito.it</span>
+          </div>
+          <div class="slide-footer__right-group">
+            <span class="slide-footer__company">Oklo Inc. (Simulated Case Study)</span>
+            <span class="slide-footer__right">Slide 14 / 14</span>
+          </div>
+        </footer>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Interactive Overlays (Hidden in Print / PDF Export) -->
+  <div id="deck-overview" class="deck-overview" aria-hidden="true">
+    <div class="deck-overview__head">
+      <div class="deck-overview__title">Slide Command Grid &mdash; U-10Zr Metallic Fuel</div>
+      <div class="deck-overview__hint">Click any slide to jump &bull; Press G or Esc to close</div>
+    </div>
+    <div id="deck-overview-grid" class="deck-overview__grid"></div>
+  </div>
+
+  <div id="deck-lightbox" class="deck-lightbox" aria-hidden="true">
+    <div class="deck-lightbox__card">
+      <button id="lightbox-close" class="deck-lightbox__close" type="button">ESC &times;</button>
+      <div id="lightbox-stage" class="deck-lightbox__stage"></div>
+      <div id="lightbox-caption" class="deck-lightbox__caption"></div>
+    </div>
+  </div>
+
+  <div id="deck-shortcuts" class="deck-shortcuts" aria-hidden="true">
+    <div class="deck-shortcuts__panel">
+      <h3>Presentation Controls</h3>
+      <div class="shortcut-list">
+        <span class="shortcut-key">&rarr; / &uarr;</span><span>Next Slide</span>
+        <span class="shortcut-key">&larr; / &darr;</span><span>Previous Slide</span>
+        <span class="shortcut-key">G</span><span>Toggle 14-Slide Overview Grid</span>
+        <span class="shortcut-key">L</span><span>Toggle Sodium Laser Pointer</span>
+        <span class="shortcut-key">Click Figure</span><span>Zoom / Inspect Figure in Q&amp;A</span>
+        <span class="shortcut-key">F</span><span>Toggle Fullscreen</span>
+        <span class="shortcut-key">1&ndash;9</span><span>Jump to Slide 1&ndash;9</span>
+        <span class="shortcut-key">Esc</span><span>Close Active Overlay</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="deck-laser" class="deck-laser" aria-hidden="true"></div>
+</body>
+</html>
