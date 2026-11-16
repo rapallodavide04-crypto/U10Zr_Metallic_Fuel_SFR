@@ -1234,19 +1234,44 @@ body {
 .aurora-col > .figure-card {
   flex: 0 0 auto;
   min-height: 0;
+  background: #0B2545;
+  border-color: rgba(148, 163, 184, 0.32);
 }
 
 .aurora-col .figure-card__stage--cover16x9 {
-  padding: 8px 10px 0;
-  gap: 6px;
+  padding: 0;
+  gap: 0;
+  display: block;
+  background: #0B2545;
+}
+
+.aurora-col .figure-card__stage--cover16x9 .figure-card__badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(11, 37, 69, 0.86);
+  color: #F8FAFC;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-left: 3px solid var(--sodium-amber);
+  backdrop-filter: blur(4px);
 }
 
 .aurora-media-16x9 {
-  width: calc(100% + 20px);
-  margin: 0 -10px;
+  width: 100%;
+  margin: 0;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   background: #0B2545;
+}
+
+.aurora-col .figure-card__caption {
+  background: #0E2A4D;
+  color: rgba(241, 245, 249, 0.9);
+  border-top: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.aurora-col .figure-card__caption a {
+  color: #93C5FD;
 }
 
 .aurora-media-16x9 img {
