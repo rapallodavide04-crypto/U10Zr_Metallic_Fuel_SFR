@@ -31,7 +31,7 @@
 - **Adjacent Card Differentiation:** Never give adjacent/stacked cards the same border color AND identical background surface; each semantic variant (`green`, `amber`/`alert`, `slate`, `blue`) must pair its border color with a matching subtle background tint (e.g., `#FFFFFF → #F0FDF4` for green, `#FFFFFF → #FFF7ED` for amber, `#FFFFFF → #F1F5F9` for slate) and never reuse the exact same border+background combo on consecutive cards.
 - **Typography (`1280×720`):**
   - Display / Titles / KPIs: `Plus Jakarta Sans` (`600–700`)
-  - Body / Tables / Takeaways: `Inter` (`400–600`, `14.5–15px` bullets); slide takeaway/action titles in `Plus Jakarta Sans` (`20px`, weight `700`, `letter-spacing: 0.005em`, `word-spacing: 0.08em`, `font-kerning: none`, and `font-feature-settings: "kern" 0, "liga" 0` to prevent PDF word-spacing collisions, kept concise ≤ 98 chars so titles fit on 1 line)
+  - Body / Tables / Takeaways: `Inter` (`400–600`, `14.5–15px` bullets); slide takeaway/action titles in `Plus Jakarta Sans` (`22px`, weight `700`, no trailing period, `letter-spacing: 0.005em`, `word-spacing: 0.08em`, `font-kerning: none`, and `font-feature-settings: "kern" 0, "liga" 0` to prevent PDF word-spacing collisions, kept ≤ 88 chars so titles fit on 1 line)
   - Micro-labels / Alloy Codes / Badges: `IBM Plex Mono` (`500–700`, `.code-chip` always `display: inline; white-space: nowrap;`)
 
 ## 5. Animation Grammar (GSAP 3) & Export Rules
