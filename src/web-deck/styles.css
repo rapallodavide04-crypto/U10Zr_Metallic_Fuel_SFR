@@ -1293,9 +1293,9 @@ body {
   flex-direction: column;
   justify-content: center;
   gap: 8px;
-  background: var(--bg-plate);
+  background: linear-gradient(135deg, #FFFFFF 0%, #EFF6FF 100%);
   border: 1px solid var(--border-light);
-  border-left: 4px solid var(--cover-accent);
+  border-left: 4px solid var(--accent-blue);
   padding: 12px 14px;
   font-size: 13px;
   line-height: 1.42;
