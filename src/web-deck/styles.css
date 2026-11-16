@@ -1700,11 +1700,11 @@ body {
 /* Slide 11: Trade-Off Table */
 .tradeoff-table {
   width: 100%;
-  flex: 0 1 auto;
+  flex: 1 1 auto;
   min-height: 0;
   border-collapse: collapse;
-  font-size: 13.2px;
-  line-height: 1.35;
+  font-size: 14.5px;
+  line-height: 1.42;
   background: var(--bg-plate);
   border: 1px solid var(--border-light);
   box-shadow: var(--plate-shadow);
@@ -1716,11 +1716,11 @@ body {
   color: #FFFFFF;
   font-weight: 700;
   text-align: left;
-  padding: 10px 12px;
-  font-size: 13.8px;
+  padding: 13px 16px;
+  font-size: 14.8px;
 }
 
-.tradeoff-table tbody td { padding: 12px 14px; border-bottom: 1px solid var(--border-hair); vertical-align: middle; }
+.tradeoff-table tbody td { padding: 18px 16px; border-bottom: 1px solid var(--border-hair); vertical-align: middle; }
 .tradeoff-table tbody td:first-child { border-left: 4px solid transparent; }
 .tradeoff-table tbody tr:nth-child(even) { background: var(--bg-surface); }
 .tradeoff-table tbody tr.row-baseline { background: #EFF6FF; }

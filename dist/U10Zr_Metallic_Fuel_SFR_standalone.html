@@ -1710,11 +1710,11 @@ body {
 /* Slide 11: Trade-Off Table */
 .tradeoff-table {
   width: 100%;
-  flex: 0 1 auto;
+  flex: 1 1 auto;
   min-height: 0;
   border-collapse: collapse;
-  font-size: 13.2px;
-  line-height: 1.35;
+  font-size: 14.5px;
+  line-height: 1.42;
   background: var(--bg-plate);
   border: 1px solid var(--border-light);
   box-shadow: var(--plate-shadow);
@@ -1726,11 +1726,11 @@ body {
   color: #FFFFFF;
   font-weight: 700;
   text-align: left;
-  padding: 10px 12px;
-  font-size: 13.8px;
+  padding: 13px 16px;
+  font-size: 14.8px;
 }
 
-.tradeoff-table tbody td { padding: 12px 14px; border-bottom: 1px solid var(--border-hair); vertical-align: middle; }
+.tradeoff-table tbody td { padding: 18px 16px; border-bottom: 1px solid var(--border-hair); vertical-align: middle; }
 .tradeoff-table tbody td:first-child { border-left: 4px solid transparent; }
 .tradeoff-table tbody tr:nth-child(even) { background: var(--bg-surface); }
 .tradeoff-table tbody tr.row-baseline { background: #EFF6FF; }
@@ -3291,7 +3291,7 @@ html.export-pdf .deck-laser { display: none !important; }
                   <span class="badge badge--blue">Interface Barrier</span>
                 </div>
                 <h3 class="lever-title">Internal Anti-FCCI Barriers</h3>
-                <p class="lever-text">Co-extruded <strong>Zr liner</strong> or thin V/Cr/TiN inner coating physically blocks Ln&ndash;Fe and U&ndash;Fe interdiffusion.</p>
+                <p class="lever-text">Co-extruded <strong>Zr liner</strong> or V/Cr/TiN coating blocks Ln&ndash;Fe and U&ndash;Fe interdiffusion.</p>
               </div>
               <div class="lever-svg-box">
                 <svg class="lever-svg lever-svg--barrier" viewBox="0 0 420 92" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -3338,7 +3338,7 @@ html.export-pdf .deck-laser { display: none !important; }
                   <span class="badge badge--blue">Matrix Chemistry</span>
                 </div>
                 <h3 class="lever-title">Fuel Dopants (Pd, Sn, Sb)</h3>
-                <p class="lever-text">Small additions bind lanthanides inside the U&ndash;Zr slug as stable intermetallics (Pd&ndash;Ln, Sn&ndash;Ln).</p>
+                <p class="lever-text">Small Pd, Sn, or Sb additions immobilize lanthanides inside the U&ndash;Zr slug.</p>
               </div>
               <div class="lever-svg-box">
                 <svg class="lever-svg lever-svg--dopants" viewBox="0 0 420 92" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -3397,7 +3397,7 @@ html.export-pdf .deck-laser { display: none !important; }
                   <span class="badge badge--green">Pin Geometry</span>
                 </div>
                 <h3 class="lever-title">Annular He-Bonded (55% Smear)</h3>
-                <p class="lever-text">Eliminates liquid Na bond (removes fast Ln paths &amp; pyrophoric Na disposal issues; tighter gap tolerance).</p>
+                <p class="lever-text">Central void absorbs swelling; ultra-thin outer He gap (~35&ndash;50 &mu;m) &amp; hollow geometry limit &Delta;T without liquid Na.</p>
               </div>
               <div class="lever-svg-box">
                 <svg class="lever-svg lever-svg--annular" viewBox="0 0 420 92" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -3437,7 +3437,7 @@ html.export-pdf .deck-laser { display: none !important; }
                   <span class="badge badge--amber">Advanced Cladding</span>
                 </div>
                 <h3 class="lever-title">9Cr-ODS Cladding <span class="code-chip" style="font-size:12px;vertical-align:middle;">Fe-9Cr-2W-0.2Ti-0.35Y<sub>2</sub>O<sub>3</sub></span></h3>
-                <p class="lever-text"><strong>1&ndash;3 nm Y&ndash;Ti&ndash;O nano-oxides</strong> suppress &alpha;&prime; brittleness, trap He, and raise creep limit to <strong>~700 &deg;C</strong> (requires solid-state <strong>PRW</strong> weld).</p>
+                <p class="lever-text">1&ndash;3 nm Y&ndash;Ti&ndash;O nano-oxides raise creep limit to <strong>~700 &deg;C</strong> (requires PRW weld).</p>
               </div>
               <div class="lever-svg-box">
                 <svg class="lever-svg lever-svg--ods" viewBox="0 0 420 92" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -3506,7 +3506,7 @@ html.export-pdf .deck-laser { display: none !important; }
         </header>
 
         <div class="slide-body">
-          <div class="top-bottom-stack" style="gap:12px; justify-content:center;">
+          <div class="top-bottom-stack" style="height:100%; gap:10px; justify-content:space-between;">
             <table class="tradeoff-table">
             <thead>
               <tr>
@@ -3561,24 +3561,6 @@ html.export-pdf .deck-laser { display: none !important; }
               </tr>
             </tbody>
           </table>
-
-          <div class="tradeoff-summary-grid">
-            <div class="tradeoff-summary-card tradeoff-summary-card--baseline">
-              <span class="tradeoff-summary-card__tag">Commercial Baseline</span>
-              <h4>U-10Zr (Na) / HT9</h4>
-              <p><strong>1,262-pin</strong> NUREG/CR-7305 licensing database; capped by HT9 thermal creep &gt;650 &deg;C &amp; U&ndash;Fe eutectic (725 &deg;C).</p>
-            </div>
-            <div class="tradeoff-summary-card tradeoff-summary-card--stage1">
-              <span class="tradeoff-summary-card__tag">Stage 1 Target</span>
-              <h4>Na + Liner / Pd in HT9</h4>
-              <p>Cuts Ln&ndash;Fe FCCI wastage inside qualified HT9 tubes (<strong>~10&ndash;14 at% BU</strong>, PICT &le;620 &deg;C) for near-term launch.</p>
-            </div>
-            <div class="tradeoff-summary-card tradeoff-summary-card--stage2">
-              <span class="tradeoff-summary-card__tag">Stage 2 Target</span>
-              <h4>Annular He / 9Cr-ODS</h4>
-              <p>Eliminates pyrophoric Na-bond waste and extends creep ceiling to <strong>~700 &deg;C</strong> (&gt;15 at% BU; requires PRW).</p>
-            </div>
-          </div>
 
           <p class="table-footnote">Trade-off grounded in NUREG/CR-7305, PNNL-35642 (2024), IAEA-TECDOC-1689, and Xie et al. (2018).</p>
           </div>
