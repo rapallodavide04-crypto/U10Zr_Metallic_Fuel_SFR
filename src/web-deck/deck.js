@@ -458,14 +458,6 @@
       }
       if (cards.length) tl.fromTo(cards, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.62, stagger: 0.15, ease: "power2.out" }, 0.22);
       if (fig) revealFigure(tl, fig, "inset(0% 0% 0% 100%)", 0.26);
-      if (critical) {
-        tl.fromTo(
-          critical,
-          { boxShadow: "inset 0 0 0 0 rgba(194,65,12,0)" },
-          { boxShadow: "inset 6px 0 0 0 #C2410C, 0 0 0 2px rgba(194,65,12,0.28)", duration: 0.7, ease: "power2.out" },
-          0.78
-        );
-      }
       if (metric && AMBIENT_FX.slide7Thermal) tl.call(() => metric.classList.add("is-pulsing"), null, 0.9);
       return;
     }
