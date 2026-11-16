@@ -1435,14 +1435,13 @@ body {
   min-height: 0;
 }
 
-.stacked-figs-2 > .figure-card {
-  padding: 7px 10px 6px;
+.stacked-figs-2 .figure-card__stage {
+  padding: 6px 10px 8px;
 }
 
 .stacked-figs-2 .figure-card__caption {
   font-size: 11px;
-  margin-top: 4px;
-  padding-top: 3px;
+  padding: 5px 10px;
 }
 
 /* Slide 10: Micro-Diagram SVG Box inside Levers */
