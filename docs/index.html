@@ -1784,6 +1784,18 @@ body {
   border-bottom: none;
 }
 
+.ref-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(37, 99, 235, 0.45);
+  transition: color 0.16s ease, border-color 0.16s ease;
+}
+
+.ref-link:hover {
+  color: #1D4ED8;
+  border-bottom-color: #1D4ED8;
+}
+
 .ref-num {
   font-family: var(--font-mono);
   font-size: 11.5px;
@@ -3597,31 +3609,31 @@ html.export-pdf .deck-laser { display: none !important; }
               <ol class="ref-list">
                 <li class="ref-item">
                   <span class="ref-num">[1]</span>
-                  <div class="ref-text"><strong>USNRC (2023)</strong> &mdash; <em>Metal Fuel Qualification</em>, <strong>NUREG/CR-7305</strong> (ML23214A065). <span class="ref-slide-tag">S02&ndash;03, S08&ndash;09, S11&ndash;12</span></div>
+                  <div class="ref-text"><strong>USNRC (2023)</strong> &mdash; <a class="ref-link" href="https://www.nrc.gov/docs/ML2321/ML23214A065.pdf" target="_blank" rel="noopener"><em>Metal Fuel Qualification</em>, <strong>NUREG/CR-7305</strong> (ML23214A065) &nearr;</a>. <span class="ref-slide-tag">S02&ndash;03, S08&ndash;09, S11&ndash;12</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[2]</span>
-                  <div class="ref-text"><strong>Wray &amp; Geelhood (2024/2026)</strong> &mdash; <em>SFR Metallic Fuel Degradation</em>, <strong>PNNL-35642</strong>. <span class="ref-slide-tag">S05, S11</span></div>
+                  <div class="ref-text"><strong>Wray &amp; Geelhood (2024/2026)</strong> &mdash; <a class="ref-link" href="https://www.osti.gov/biblio/3030076" target="_blank" rel="noopener"><em>SFR Metallic Fuel Degradation</em>, <strong>PNNL-35642</strong> &nearr;</a>. <span class="ref-slide-tag">S05, S11</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[3]</span>
-                  <div class="ref-text"><strong>Janney (2018)</strong> &mdash; <em>Metallic Fuels Handbook, Parts 1 &amp; 2</em>, <strong>INL/EXT-15-36520-Rev003</strong>. <span class="ref-slide-tag">S04, S11</span></div>
+                  <div class="ref-text"><strong>Janney (2018)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.2172/1469797" target="_blank" rel="noopener"><em>Metallic Fuels Handbook, Parts 1 &amp; 2</em>, <strong>INL/EXT-15-36520-Rev003</strong> &nearr;</a>. <span class="ref-slide-tag">S04, S11</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[4]</span>
-                  <div class="ref-text"><strong>Miao et al. (2021)</strong> &mdash; <em>BISON Metallic Fuel V&amp;V Using EBR-II Data</em>, <strong>ANL/CFCT-21/19</strong>. <span class="ref-slide-tag">S07, S09</span></div>
+                  <div class="ref-text"><strong>Miao et al. (2021)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.2172/1828881" target="_blank" rel="noopener"><em>BISON Metallic Fuel V&amp;V Using EBR-II Data</em>, <strong>ANL/CFCT-21/19</strong> &nearr;</a>. <span class="ref-slide-tag">S07, S09</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[5]</span>
-                  <div class="ref-text"><strong>Klueh (2004; 2018)</strong> &mdash; <em>Irradiated HT9 vs T91 Charpy &Delta;DBTT</em>, <strong>ORNL/TM-2004/176</strong> &amp; <em>Phil. Mag.</em> 98. <span class="ref-slide-tag">S08</span></div>
+                  <div class="ref-text"><strong>Klueh (2004; 2018)</strong> &mdash; <a class="ref-link" href="https://www.osti.gov/biblio/885938" target="_blank" rel="noopener"><em>Irradiated HT9 vs T91 Charpy &Delta;DBTT</em>, <strong>ORNL/TM-2004/176</strong> &nearr;</a> &amp; <em>Phil. Mag.</em> 98. <span class="ref-slide-tag">S08</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[6]</span>
-                  <div class="ref-text"><strong>IAEA (2013)</strong> &mdash; <em>Design, Manufacturing &amp; Irradiation of Fast Reactor Fuel</em>, <strong>IAEA-TECDOC-1689</strong>. <span class="ref-slide-tag">S05, S10&ndash;11</span></div>
+                  <div class="ref-text"><strong>IAEA (2013)</strong> &mdash; <a class="ref-link" href="https://www.iaea.org/publications" target="_blank" rel="noopener"><em>Design, Manufacturing &amp; Irradiation of Fast Reactor Fuel</em>, <strong>IAEA-TECDOC-1689</strong> &nearr;</a>. <span class="ref-slide-tag">S05, S10&ndash;11</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[7]</span>
-                  <div class="ref-text"><strong>Oklo Inc. / DOE-INL (2025)</strong> &mdash; <em>Aurora Fuel Qualification Summary &amp; A3F PDSA Approval</em>. <span class="ref-slide-tag">S02</span></div>
+                  <div class="ref-text"><strong>Oklo Inc. / DOE-INL (2025)</strong> &mdash; <a class="ref-link" href="https://oklo.com/newsroom/" target="_blank" rel="noopener"><em>Aurora Fuel Qualification Summary &amp; A3F PDSA Approval</em> &nearr;</a>. <span class="ref-slide-tag">S02</span></div>
                 </li>
               </ol>
             </div>
@@ -3634,31 +3646,31 @@ html.export-pdf .deck-laser { display: none !important; }
               <ol class="ref-list">
                 <li class="ref-item">
                   <span class="ref-num">[8]</span>
-                  <div class="ref-text"><strong>Was, Petti, Ukai &amp; Zinkle (2019)</strong> &mdash; <em>Materials for future nuclear energy systems</em>, <em>J. Nucl. Mater.</em> 527, 151837. <span class="ref-slide-tag">S02</span></div>
+                  <div class="ref-text"><strong>Was, Petti, Ukai &amp; Zinkle (2019)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.1016/j.jnucmat.2019.151837" target="_blank" rel="noopener"><em>Materials for future nuclear energy systems</em>, <em>J. Nucl. Mater.</em> 527, 151837 &nearr;</a>. <span class="ref-slide-tag">S02</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[9]</span>
-                  <div class="ref-text"><strong>Yao et al. (2023)</strong> &mdash; <em>PIE &amp; materials informatics for annular U-10Zr</em>, <em>Front. Nucl. Eng.</em> 1, 1050262. <span class="ref-slide-tag">S04, S06, S10</span></div>
+                  <div class="ref-text"><strong>Yao et al. (2023)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.3389/fnuen.2022.1050262" target="_blank" rel="noopener"><em>PIE &amp; materials informatics for annular U-10Zr</em>, <em>Front. Nucl. Eng.</em> 1, 1050262 &nearr;</a>. <span class="ref-slide-tag">S04, S06, S10</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[10]</span>
-                  <div class="ref-text"><strong>Crawford, Porter &amp; Hayes (2007)</strong> &mdash; <em>Fuels for SFRs: US perspective</em>, <em>J. Nucl. Mater.</em> 371, 202&ndash;231. <span class="ref-slide-tag">S03&ndash;04, S09</span></div>
+                  <div class="ref-text"><strong>Crawford, Porter &amp; Hayes (2007)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.1016/j.jnucmat.2007.05.010" target="_blank" rel="noopener"><em>Fuels for SFRs: US perspective</em>, <em>J. Nucl. Mater.</em> 371, 202&ndash;231 &nearr;</a>. <span class="ref-slide-tag">S03&ndash;04, S09</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[11]</span>
-                  <div class="ref-text"><strong>Carmack et al. (2016)</strong> &mdash; <em>FCCI in FFTF MFF-3 / MFF-5 U-10Zr/HT9</em>, <em>J. Nucl. Mater.</em> 473, 167&ndash;177. <span class="ref-slide-tag">S07</span></div>
+                  <div class="ref-text"><strong>Carmack et al. (2016)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.1016/j.jnucmat.2016.02.019" target="_blank" rel="noopener"><em>FCCI in FFTF MFF-3 / MFF-5 U-10Zr/HT9</em>, <em>J. Nucl. Mater.</em> 473, 167&ndash;177 &nearr;</a>. <span class="ref-slide-tag">S07</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[12]</span>
-                  <div class="ref-text"><strong>Wang et al. (2022)</strong> &mdash; <em>Small-scale mechanical testing &amp; EDS of HT9 FCCI</em>, <em>J. Nucl. Mater.</em> 566, 153754. <span class="ref-slide-tag">S07</span></div>
+                  <div class="ref-text"><strong>Wang et al. (2022)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.1016/j.jnucmat.2022.153754" target="_blank" rel="noopener"><em>Small-scale mechanical testing &amp; EDS of HT9 FCCI</em>, <em>J. Nucl. Mater.</em> 566, 153754 &nearr;</a>. <span class="ref-slide-tag">S07</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[13]</span>
-                  <div class="ref-text"><strong>Xie, Zhang, Benson et al. (2018)</strong> &mdash; <em>Lanthanide migration &amp; immobilization</em>, <em>Prog. Nucl. Energy</em> 109. <span class="ref-slide-tag">S10&ndash;11</span></div>
+                  <div class="ref-text"><strong>Xie, Zhang, Benson et al. (2018)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.1016/j.pnucene.2018.08.019" target="_blank" rel="noopener"><em>Lanthanide migration &amp; immobilization</em>, <em>Prog. Nucl. Energy</em> 109 &nearr;</a>. <span class="ref-slide-tag">S10&ndash;11</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[14]</span>
-                  <div class="ref-text"><strong>Seki et al. (2004)</strong> &mdash; <em>Pressurized Resistance Welding in 9Cr-ODS steels</em>, <em>J. Nucl. Mater.</em> 329&ndash;333, 1534&ndash;1538. <span class="ref-slide-tag">S10</span></div>
+                  <div class="ref-text"><strong>Seki et al. (2004)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.1016/j.jnucmat.2004.04.172" target="_blank" rel="noopener"><em>Pressurized Resistance Welding in 9Cr-ODS steels</em>, <em>J. Nucl. Mater.</em> 329&ndash;333, 1534&ndash;1538 &nearr;</a>. <span class="ref-slide-tag">S10</span></div>
                 </li>
               </ol>
             </div>
