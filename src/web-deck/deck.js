@@ -649,42 +649,42 @@
         const coreDots = closingHex.querySelectorAll("g > circle");
         tl.fromTo(closingHex, { opacity: 0 }, { opacity: 0.44, duration: 0.7, ease: "power2.out" }, 0.04);
         if (rings.length) {
-          tl.fromTo(rings, { opacity: 0, scale: 0.84, transformOrigin: "180px 180px" }, { opacity: 1, scale: 1, duration: 1.25, stagger: 0.14, ease: "power3.out" }, 0.08);
+          tl.fromTo(rings, { opacity: 0, scale: 0.84, svgOrigin: "180 180" }, { opacity: 1, scale: 1, duration: 1.25, stagger: 0.14, ease: "power3.out" }, 0.08);
         }
         if (hexes.length) {
           tl.fromTo(
             hexes,
-            { opacity: 0, scale: 0.72, transformOrigin: "center center" },
+            { opacity: 0, scale: 0.72, transformOrigin: "50% 50%" },
             { opacity: 1, scale: 1, duration: 0.72, stagger: { each: 0.055, from: "end" }, ease: "power3.out" },
             0.14
           );
         }
         if (coreDots.length) {
-          tl.fromTo(coreDots, { opacity: 0, scale: 0.3, transformOrigin: "center center" }, { opacity: 1, scale: 1, duration: 0.7, stagger: 0.1, ease: "back.out(1.6)" }, 0.16);
+          tl.fromTo(coreDots, { opacity: 0, scale: 0.3, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.7, stagger: 0.1, ease: "back.out(1.6)" }, 0.16);
         }
       }
-      if (title) tl.fromTo(title, { opacity: 0, scale: 0.96, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.95, ease: "power3.out" }, 0.18);
+      if (title) tl.fromTo(title, { opacity: 0, scale: 0.88, y: 32 }, { opacity: 1, scale: 1, y: 0, duration: 1.05, ease: "power3.out" }, 0.28);
       if (ruleLine) {
         const len = ruleLine.getTotalLength ? ruleLine.getTotalLength() : 220;
         gsap.set(ruleLine, { strokeDasharray: len, strokeDashoffset: len });
-        tl.to(ruleLine, { strokeDashoffset: 0, duration: 1.05, ease: "expo.out" }, 0.48);
+        tl.to(ruleLine, { strokeDashoffset: 0, duration: 1.05, ease: "expo.out" }, 0.54);
       }
-      if (sub) tl.fromTo(sub, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.72, ease: "power3.out" }, 0.68);
-      if (contact) tl.fromTo(contact, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.65, ease: "power2.out" }, 0.88);
-      if (disclosure) tl.fromTo(disclosure, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.75, ease: "power2.out" }, 1.08);
+      if (sub) tl.fromTo(sub, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.72, ease: "power3.out" }, 0.74);
+      if (contact) tl.fromTo(contact, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.65, ease: "power2.out" }, 0.94);
+      if (disclosure) tl.fromTo(disclosure, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.75, ease: "power2.out" }, 1.12);
       if (AMBIENT_FX.slide14ClosingHalo && closingHex) {
         ambientTween = gsap.timeline();
         if (closingGlow) {
           ambientTween.fromTo(
             closingGlow,
-            { opacity: 0.45, scale: 0.92, transformOrigin: "180px 180px" },
+            { opacity: 0.45, scale: 0.92, svgOrigin: "180 180" },
             { opacity: 1, scale: 1.12, duration: 3.4, repeat: -1, yoyo: true, ease: "sine.inOut" },
             1.6
           );
         }
         const outerDashedRing = closingHex.querySelector('circle[stroke-dasharray]');
         if (outerDashedRing) {
-          ambientTween.to(outerDashedRing, { rotation: 360, duration: 68, repeat: -1, ease: "none", transformOrigin: "180px 180px" }, 1.4);
+          ambientTween.to(outerDashedRing, { rotation: 360, duration: 68, repeat: -1, ease: "none", svgOrigin: "180 180" }, 1.4);
         }
       }
       return;
