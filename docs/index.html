@@ -3904,30 +3904,36 @@ html.export-pdf .deck-laser { display: none !important; }
   function animateCounters(slide) {
     if (!window.gsap) return null;
     const tl = window.gsap.timeline();
-    slide.querySelectorAll("[data-count-to]").forEach((el) => {
-      const target = parseFloat(el.dataset.countTo);
-      const prefix = el.dataset.countPrefix || "";
-      const suffix = el.dataset.countSuffix || "";
-      const decimals = parseInt(el.dataset.countDecimals || "0", 10);
-      const useComma = el.dataset.countComma === "true";
-      const proxy = { val: 0 };
+    const els = Array.from(slide.querySelectorAll("[data-count-to]"));
+    if (!els.length) return tl;
 
-      tl.to(
-        proxy,
-        {
-          val: target,
-          duration: 1.6,
-          ease: "expo.out",
-          onUpdate: () => {
-            const raw = decimals > 0 ? proxy.val.toFixed(decimals) : Math.round(proxy.val).toString();
+    const proxy = { p: 0 };
+    tl.to(
+      proxy,
+      {
+        p: 1,
+        duration: 1.25,
+        ease: "power1.out",
+        onUpdate: () => {
+          els.forEach((el) => {
+            const target = parseFloat(el.dataset.countTo);
+            const prefix = el.dataset.countPrefix || "";
+            const suffix = el.dataset.countSuffix || "";
+            const decimals = parseInt(el.dataset.countDecimals || "0", 10);
+            const useComma = el.dataset.countComma === "true";
+            let val = proxy.p * target;
+            if (decimals === 0 && target >= 2 && proxy.p < 1) {
+              val = Math.min(target - 1, Math.floor(val));
+            }
+            const raw = decimals > 0 ? val.toFixed(decimals) : Math.round(val).toString();
             const formatted = useComma ? Number(raw).toLocaleString("en-US") : raw;
             el.textContent = `${prefix}${formatted}${suffix}`;
-          },
-          onComplete: () => formatCounterTarget(el),
+          });
         },
-        0
-      );
-    });
+        onComplete: () => els.forEach(formatCounterTarget),
+      },
+      0
+    );
     return tl;
   }
 
