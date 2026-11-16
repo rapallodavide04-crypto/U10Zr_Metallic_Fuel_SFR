@@ -3936,7 +3936,7 @@ html.export-pdf .deck-laser { display: none !important; }
       {
         p: 1,
         duration: 1.25,
-        ease: "power1.out",
+        ease: "power1.inOut",
         onUpdate: () => {
           els.forEach((el) => {
             const target = parseFloat(el.dataset.countTo);
@@ -4327,9 +4327,9 @@ html.export-pdf .deck-laser { display: none !important; }
       const fig = slide.querySelector(".figure-card");
       const bullets = slide.querySelectorAll(".bullet-list li");
       if (kpis.length) {
-        tl.fromTo(kpis, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.64, stagger: 0.11, ease: "power3.out" }, 0.1);
+        tl.fromTo(kpis, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.56, stagger: 0.07, ease: "power3.out" }, 0.08);
         const c = animateCounters(slide);
-        if (c) tl.add(c, 0.18);
+        if (c) tl.add(c, 0.22);
       }
       if (fig) revealFigure(tl, fig, "inset(0% 100% 0% 0%)", 0.32);
       if (bullets.length) tl.fromTo(bullets, { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.6, stagger: 0.13, ease: "power2.out" }, 0.38);
