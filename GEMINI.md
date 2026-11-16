@@ -25,7 +25,7 @@
 
 ## 4. Visual Style, Color Palette & Typography
 - **Unified Background (Slides 1–14):** Deep nuclear-navy `#0B2545 → #164478` radial gradient with `40px` architectural coordinate grid, subtle sodium-orange (`#E05A00`) and steel-blue (`#2563EB`) atmospheric glows, and subtle hexagonal lattice watermark.
-- **Pure-White Elevated Plates (`#FFFFFF`):** All `.figure-card` frames, KPI cards, content panels, and tables sit on `#FFFFFF` elevated plates (`1px solid #CBD5E1`, soft shadow) so white-background SEM micrographs and scientific plots integrate seamlessly.
+- **Elevated Soft Off-White & Pure-White Plates:** `.figure-card` frames remain pure `#FFFFFF` so white-background SEM micrographs and scientific plots integrate seamlessly; text cards, KPIs, and tables use a soft off-white surface (`linear-gradient(180deg, #FFFFFF 0%, #F3F6FA 100%)` in browser, `#F6F8FC` in PDF) to reduce projector glare while preserving high-contrast readability.
 - **Sharp Technical Geometry:** Use `border-radius: 0–2px` (`--radius-sharp: 2px`) everywhere; rounded pill badges (`border-radius: 999px`) are forbidden.
 - **Accents:** `#E05A00` / `#C2410C` (sodium-orange for critical callouts: FCCI, `725 °C` eutectic, `650 °C` creep limit), `#15803D` (engineering green for advantages & Stage 1/2 selections), `#0B2545` / `#1E293B` (high-contrast slate ink on `#FFFFFF` plates).
 - **Typography (`1280×720`):**

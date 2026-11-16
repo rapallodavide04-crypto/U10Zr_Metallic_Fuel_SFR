@@ -16,9 +16,9 @@
   --cover-bg: #0B2545;
   --cover-accent: #E05A00;
 
-  /* Content Slides 2-14: Slide-1 Dark Navy Canvas + Pure White Elevated Plates */
+  /* Content Slides 2-14: Slide-1 Dark Navy Canvas + Soft Off-White Text Plates (#FFFFFF on Figures) */
   --bg-canvas: #0B2545;
-  --bg-plate: #FFFFFF;
+  --bg-plate: linear-gradient(180deg, #FFFFFF 0%, #F3F6FA 100%);
   --bg-surface: #F8FAFC;
   --border-light: #CBD5E1;
   --border-hair: #E2E8F0;
@@ -711,7 +711,7 @@ body {
   grid-template-rows: minmax(0, 1fr) auto;
   min-height: 0;
   min-width: 0;
-  background: var(--bg-plate);
+  background: #FFFFFF;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-sharp);
   overflow: hidden;
@@ -723,7 +723,7 @@ body {
   min-height: 0;
   min-width: 0;
   padding: 8px 12px 10px;
-  background: var(--bg-plate);
+  background: #FFFFFF;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   justify-items: center;
@@ -2162,7 +2162,7 @@ html.export-pdf *::after {
   -webkit-print-color-adjust: exact !important;
   print-color-adjust: exact !important;
 }
-html.export-pdf { --plate-shadow: none; }
+html.export-pdf { --plate-shadow: none; --bg-plate: #F6F8FC; }
 html.export-pdf, html.export-pdf body { background: var(--bg-canvas); width: 1280px; height: auto; overflow: visible; }
 html.export-pdf .deck-viewport { display: block; width: 1280px; height: auto; overflow: visible; }
 html.export-pdf .deck-stage { width: 1280px; height: auto; transform: none !important; box-shadow: none; }
@@ -2212,7 +2212,7 @@ html.export-pdf .deck-shortcuts,
 html.export-pdf .deck-laser { display: none !important; }
 
 @media print {
-  :root { --plate-shadow: none; }
+  :root { --plate-shadow: none; --bg-plate: #F6F8FC; }
   html,
   body,
   *,

@@ -2,7 +2,7 @@
 
 - **Canvas:** Fixed `1280×720 px` (`16:9`), scaled responsively in browser (`deck.js`), stacked 1:1 in `?export=pdf`.
 - **Unified Background (Slides 1–14):** Deep nuclear-navy `#0B2545 → #164478` radial gradient with `40px` architectural coordinate grid, subtle `#E05A00` / `#2563EB` glows, and hexagonal lattice watermark.
-- **Elevated White Plates (`#FFFFFF`):** All `.figure-card` frames, KPI cards, content panels, and tables sit on `#FFFFFF` elevated plates (`1px solid #CBD5E1`) so white-background SEM micrographs and scientific plots integrate seamlessly.
+- **Elevated Plates:** `.figure-card` frames stay pure `#FFFFFF` so white-background SEM micrographs and scientific plots integrate seamlessly; text cards, KPIs, and tables use soft off-white (`linear-gradient(180deg, #FFFFFF 0%, #F3F6FA 100%)`, `#F6F8FC` in PDF) to reduce projector glare.
 - **Strict 3-Row CSS Grid (Slides 2–14):** `grid-template-rows: auto minmax(0, 1fr) auto;` with `overflow: hidden` on `.slide-body` and `grid-template-rows: minmax(0, 1fr)` on `.split-grid`, `.dual-visual`, `.cols-3` (zero clipped captions, zero header/footer overlaps).
 - **Sharp Technical Geometry:** `border-radius: 0–2px` everywhere (rounded pill badges forbidden).
 - **Slide 1 (Cover):** Course title, `assets/branding/polito_logo_white.svg` (top-right, transparent white vector on dark navy), title, sodium-orange rule, subtitle, 4 sharp tags, `Davide Rapallo • Matricola s324486 (s324486@studenti.polito.it)`, `Oklo Inc. (Simulated Case Study)`.
