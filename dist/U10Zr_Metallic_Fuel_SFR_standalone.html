@@ -683,6 +683,7 @@ body {
 }
 .grid--56-44 { grid-template-columns: 56fr 44fr; }
 .grid--55-45 { grid-template-columns: 55fr 45fr; }
+.grid--52-48 { grid-template-columns: 52fr 48fr; }
 .grid--46-54 { grid-template-columns: 46fr 54fr; }
 .grid--45-55 { grid-template-columns: 45fr 55fr; }
 .grid--42-58 { grid-template-columns: 42fr 58fr; }
@@ -1147,17 +1148,17 @@ body {
   height: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  font-size: 12.8px;
-  line-height: 1.42;
+  font-size: 12.6px;
+  line-height: 1.36;
 }
 
 .compare-matrix thead th {
   background: #F8FAFC;
   border-bottom: 2px solid var(--border-light);
-  padding: 11px 12px;
+  padding: 9px 10px;
   text-align: left;
   font-family: var(--font-display);
-  font-size: 13.5px;
+  font-size: 13.2px;
   font-weight: 700;
   color: var(--polito-blue);
 }
@@ -1166,7 +1167,7 @@ body {
 .compare-matrix thead th.col-ht9 { border-top: 3px solid var(--eng-green); color: var(--eng-green); background: #F0FDF4; }
 
 .compare-matrix tbody td {
-  padding: 10px 12px;
+  padding: 8px 10px;
   border-bottom: 1px solid var(--border-hair);
   vertical-align: middle;
   color: var(--text-slate);
@@ -1344,7 +1345,7 @@ body {
   clip-path: inset(6px 0 0 6px);
   width: 100%;
   height: auto;
-  max-height: 270px;
+  max-height: 225px;
   object-fit: contain;
   display: block;
 }
@@ -1411,10 +1412,9 @@ body {
 /* Slide 9: Top-half zoom crop for DP04/DP11 profilometry + explanatory note */
 .s09-strain-crop-wrap {
   width: 100%;
-  flex: 1 1 auto;
-  min-height: 0;
+  flex: 0 0 auto;
   aspect-ratio: 778 / 282;
-  max-height: 255px;
+  max-height: 215px;
   overflow: hidden;
   background: #FFFFFF;
   display: flex;
@@ -1434,9 +1434,32 @@ body {
 
 .s09-strain-note {
   flex: 0 0 auto;
-  font-size: 12.2px;
+  font-size: 12px;
+  line-height: 1.36;
+  padding: 7px 11px;
+}
+
+.slide[data-slide="9"] .split-grid.bottom-fill {
+  align-items: start;
+}
+
+.slide[data-slide="9"] .figure-card {
+  height: auto;
+}
+
+.slide[data-slide="9"] .fig-stack-body {
+  gap: 8px;
+}
+
+.slide[data-slide="9"] .bullet-list {
+  flex: 0 0 auto;
+  gap: 10px;
+}
+
+.slide[data-slide="9"] .bullet-list li {
+  padding: 10px 14px;
+  font-size: 14px;
   line-height: 1.38;
-  padding: 8px 12px;
 }
 
 .fig-legend-list {
@@ -1485,7 +1508,9 @@ body {
   grid-template-rows: minmax(0, 1fr);
   gap: 14px;
   flex: 1 1 auto;
-  height: 100%;
+  height: auto;
+  max-height: 505px;
+  margin: auto 0;
   min-height: 0;
 }
 
@@ -1499,13 +1524,14 @@ body {
 }
 
 .stacked-figs-2 .figure-card__stage {
-  padding: 3px 6px 4px;
-  gap: 3px;
+  padding: 4px 8px 6px;
+  gap: 4px;
 }
 
 .stacked-figs-2 .figure-card__stage img {
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: auto;
+  max-width: 100%;
   max-height: 100%;
   object-fit: contain;
 }
@@ -3090,7 +3116,7 @@ html.export-pdf .deck-laser { display: none !important; }
         </header>
 
         <div class="slide-body">
-          <div class="split-grid grid--46-54">
+          <div class="split-grid grid--52-48">
             <div class="compare-matrix-col">
               <div class="compare-matrix-wrap">
                 <table class="compare-matrix">
