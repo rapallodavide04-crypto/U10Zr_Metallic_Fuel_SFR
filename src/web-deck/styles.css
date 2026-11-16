@@ -1321,8 +1321,10 @@ body {
 .weld-crop-wrap {
   width: 100%;
   overflow: hidden;
-  flex: 0 0 auto;
+  flex: 1 1 auto;
+  min-height: 0;
   display: flex;
+  align-items: center;
   justify-content: center;
   background: #FFFFFF;
 }
@@ -1331,9 +1333,27 @@ body {
   clip-path: inset(6px 0 0 6px);
   width: 100%;
   height: auto;
-  max-height: 165px;
+  max-height: 270px;
   object-fit: contain;
   display: block;
+}
+
+.fig-mini-stack-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.fig-mini-stack-2 .fig-mini-box {
+  padding: 11px 14px;
+  font-size: 13px;
+  line-height: 1.42;
+}
+
+.fig-mini-stack-2 .fig-mini-box strong {
+  font-size: 12.5px;
+  margin-bottom: 3px;
 }
 
 .fig-mini-grid-2x2 {
@@ -1423,6 +1443,7 @@ body {
   grid-template-rows: minmax(0, 1fr);
   gap: 14px;
   flex: 1 1 auto;
+  height: 100%;
   min-height: 0;
 }
 

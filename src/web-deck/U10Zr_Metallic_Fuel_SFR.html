@@ -254,8 +254,8 @@
                   <g class="s03-callout">
                     <line class="s03-leader" x1="274.6" y1="65" x2="274.6" y2="83" stroke="#475569" stroke-width="1.2" marker-end="url(#s03-arrowDark)"/>
                     <text x="274.6" y="60" font-size="10.5" font-weight="600" fill="#475569" text-anchor="middle">Helical Wire-Wrap</text>
-                    <text x="36" y="172" font-size="10.5" font-weight="600" fill="#475569" text-anchor="start">Bottom End-Plug</text>
-                    <text x="604" y="172" font-size="10.5" font-weight="600" fill="#475569" text-anchor="end">Top End-Plug (Plenum Side)</text>
+                    <text x="36" y="172" font-size="10.5" font-weight="600" fill="#475569" text-anchor="start">Bottom HT9 End-Plug</text>
+                    <text x="604" y="172" font-size="10.5" font-weight="600" fill="#475569" text-anchor="end">Top HT9 End-Plug (Plenum)</text>
                     <line class="s03-leader" x1="166" y1="181" x2="166" y2="154" stroke="#334155" stroke-width="1.2" marker-end="url(#s03-arrowDark)"/>
                     <text x="166" y="196" font-size="10.5" font-weight="600" fill="#1E293B" text-anchor="middle">HT9 Cladding Tube</text>
                     <path class="s03-leader" d="M390,181 L390,169 L275,169 L275,132" fill="none" stroke="#D97706" stroke-width="1.4" marker-end="url(#s03-arrowDark)"/>
@@ -312,7 +312,7 @@
                 </thead>
                 <tbody>
                   <tr data-pin-target="slug,na,clad"><td>Fuel / Bond / Cladding</td><td>U-10wt%Zr / Liquid Na / HT9</td></tr>
-                  <tr data-pin-target="slug,clad"><td>Fuel OD / Cladding OD</td><td>5.0 mm / 6.9 mm (0.6 mm wall)</td></tr>
+                  <tr data-pin-target="slug,clad"><td>Fuel OD / Cladding OD</td><td>~5.0 mm (4.94 mm for 75% SD) / 6.9 mm (0.6 mm wall)</td></tr>
                   <tr data-pin-target="na"><td>Smeared Density</td><td>75% max</td></tr>
                   <tr data-pin-target="plenum"><td>Plenum-to-Fuel Ratio</td><td>1.4&times; fuel volume</td></tr>
                   <tr data-pin-target="slug"><td>BOL Peak LHGR / Burnup</td><td>40&ndash;55 kW/m / 10 at% envelope</td></tr>
@@ -492,66 +492,41 @@
         </header>
 
         <div class="slide-body">
-          <div class="top-bottom-stack">
-            <div class="chevron-pipeline">
-              <div class="pipe-step">
-                <div class="pipe-step__num">STEP 01 &bull; SLUG CASTING</div>
-                <div class="pipe-step__body">Vacuum <em>injection casting</em> in quartz molds (EBR-II heritage) vs hot extrusion to avoid mold waste.</div>
-              </div>
-              <div class="pipe-step pipe-step--slate">
-                <div class="pipe-step__num">STEP 02 &bull; HT9 &amp; Na-BONDING</div>
-                <div class="pipe-step__body">VIM &rarr; extrusion &rarr; cold drawing (norm. ~1050 &deg;C + temp. ~750 &deg;C); molten Na centrifuged &amp; UT-inspected against voids.</div>
-              </div>
-              <div class="pipe-step pipe-step--amber">
-                <div class="pipe-step__num">STEP 03 &bull; END-CAP JOINING</div>
-                <div class="pipe-step__body">GTAW/TIG or RPW welding; <span class="hl-amber">PWHT required</span> in HT9 to temper hard, brittle martensite in HAZ.</div>
-              </div>
-            </div>
-
-            <div class="dual-panel-row bottom-fill">
-              <figure class="figure-card">
-                <div class="figure-card__stage">
-                  <span class="figure-card__badge">Pin Fabrication Flow</span>
-                  <img src="../../assets/schematics/s05-fabrication-flow.svg" alt="U-10Zr pin fabrication flow" data-fallback />
-                  <div class="figure-placeholder">
-                    <span class="figure-placeholder__tag">Figure Placeholder</span>
-                    <span class="figure-placeholder__path">assets/schematics/s05-fabrication-flow.svg</span>
-                    <span class="figure-placeholder__hint">Pin fabrication flow: injection casting, Na-bonding &amp; UT inspection (PNNL-35642 / Carmack 2009).</span>
-                  </div>
+          <div class="dual-panel-row">
+            <figure class="figure-card">
+              <div class="figure-card__stage">
+                <span class="figure-card__badge">Pin Fabrication Flow</span>
+                <img src="../../assets/schematics/s05-fabrication-flow.svg" alt="U-10Zr pin fabrication flow" data-fallback />
+                <div class="figure-placeholder">
+                  <span class="figure-placeholder__tag">Figure Placeholder</span>
+                  <span class="figure-placeholder__path">assets/schematics/s05-fabrication-flow.svg</span>
+                  <span class="figure-placeholder__hint">Pin fabrication flow: injection casting, Na-bonding &amp; UT inspection (PNNL-35642 / Carmack 2009).</span>
                 </div>
-                <figcaption class="figure-card__caption">Metallic fuel pin fabrication flow, adapted from PNNL-35642 (2024).</figcaption>
-              </figure>
+              </div>
+              <figcaption class="figure-card__caption">Metallic fuel pin fabrication flow, adapted from PNNL-35642 (2024).</figcaption>
+            </figure>
 
-              <figure class="figure-card">
-                <div class="figure-card__stage">
-                  <span class="figure-card__badge figure-card__badge--amber">TIG / PRW End-Plug Weld</span>
-                  <div class="fig-stack-body">
-                    <div class="weld-crop-wrap">
-                      <img src="../../assets/figures/s05-fabrication-tig-weld.png" alt="TIG and PRW end-plug weld schematic" data-fallback />
+            <figure class="figure-card">
+              <div class="figure-card__stage">
+                <span class="figure-card__badge figure-card__badge--amber">TIG / PRW End-Plug Weld</span>
+                <div class="fig-stack-body">
+                  <div class="weld-crop-wrap">
+                    <img src="../../assets/figures/s05-fabrication-tig-weld.png" alt="TIG and PRW end-plug weld schematic" data-fallback />
+                  </div>
+                  <div class="fig-mini-stack-2">
+                    <div class="fig-mini-box fig-mini-box--amber">
+                      <strong>HT9 Baseline Joining (Fig. 3.4 &mdash; 6.60 mm OD class)</strong>
+                      2&deg; tapered interference fit sealed via GTAW/TIG in He chamber before 500 &deg;C Na-bonding; mandatory ~750 &deg;C PWHT tempers brittle HAZ martensite.
                     </div>
-                    <div class="fig-mini-grid-2x2">
-                      <div class="fig-mini-box">
-                        <strong>Joint Geometry</strong>
-                        Typical 6.60 mm OD (0.45 mm wall) &bull; 2&deg; tapered plug fit.
-                      </div>
-                      <div class="fig-mini-box fig-mini-box--slate">
-                        <strong>HT9 Fusion Weld</strong>
-                        GTAW / TIG closure in He chamber before 500 &deg;C thermal bonding.
-                      </div>
-                      <div class="fig-mini-box fig-mini-box--amber">
-                        <strong>Mandatory PWHT</strong>
-                        ~750 &deg;C tempering eliminates brittle untempered HAZ martensite.
-                      </div>
-                      <div class="fig-mini-box fig-mini-box--green">
-                        <strong>ODS Upgrade Path</strong>
-                        Solid-state PRW/RPW prevents <span style="white-space:nowrap;">Y<sub>2</sub>O<sub>3</sub></span> nano-oxide coarsening.
-                      </div>
+                    <div class="fig-mini-box fig-mini-box--green">
+                      <strong>9Cr-ODS Upgrade Path</strong>
+                      Solid-state Pressurized Resistance Welding (PRW/RPW) avoids fusion-zone melting and preserves 1&ndash;3 nm <span style="white-space:nowrap;">Y<sub>2</sub>O<sub>3</sub></span> nano-oxides.
                     </div>
                   </div>
                 </div>
-                <figcaption class="figure-card__caption">End-plug weld joint schematic, IAEA-TECDOC-1689 (2013) Fig. 3.4.</figcaption>
-              </figure>
-            </div>
+              </div>
+              <figcaption class="figure-card__caption">End-plug weld joint schematic, IAEA-TECDOC-1689 (2013) Fig. 3.4.</figcaption>
+            </figure>
           </div>
         </div>
 
