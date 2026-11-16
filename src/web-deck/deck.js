@@ -93,8 +93,8 @@
       proxy,
       {
         p: 1,
-        duration: 1.25,
-        ease: "power1.inOut",
+        duration: 2.15,
+        ease: "power2.out",
         onUpdate: () => {
           els.forEach((el) => {
             const target = parseFloat(el.dataset.countTo);
@@ -334,7 +334,7 @@
       const mini = slide.querySelector(".aurora-mini-card");
       tl.fromTo(tiles, { opacity: 0, y: -22 }, { opacity: 1, y: 0, duration: 0.68, stagger: 0.12, ease: "power3.out" }, 0.1);
       const c = animateCounters(slide);
-      if (c) tl.add(c, 0.2);
+      if (c) tl.add(c, 0.35);
       if (figs[0]) revealFigure(tl, figs[0], "inset(0% 100% 0% 0%)", 0.34);
       if (figs[1]) revealFigure(tl, figs[1], "inset(0% 0% 0% 100%)", 0.34);
       if (mini) tl.fromTo(mini, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.58, ease: "power2.out" }, 0.58);
@@ -487,7 +487,7 @@
       if (kpis.length) {
         tl.fromTo(kpis, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.56, stagger: 0.07, ease: "power3.out" }, 0.08);
         const c = animateCounters(slide);
-        if (c) tl.add(c, 0.22);
+        if (c) tl.add(c, 0.32);
       }
       if (fig) revealFigure(tl, fig, "inset(0% 100% 0% 0%)", 0.32);
       if (bullets.length) tl.fromTo(bullets, { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.6, stagger: 0.13, ease: "power2.out" }, 0.38);
