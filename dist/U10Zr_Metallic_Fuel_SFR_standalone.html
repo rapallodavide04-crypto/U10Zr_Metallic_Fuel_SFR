@@ -4495,12 +4495,16 @@ html.export-pdf .deck-laser { display: none !important; }
       return;
     }
 
-    // Slide 13: Categorized Two-Card Verified References Cascade
+    // Slide 13: Categorized Two-Card Verified References Cascade (parallel column items)
     if (slideNum === 13) {
       const cards = slide.querySelectorAll(".ref-card");
-      const refs = slide.querySelectorAll(".ref-item");
-      if (cards.length) tl.fromTo(cards, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.56, stagger: 0.14, ease: "power3.out" }, 0.08);
-      if (refs.length) tl.fromTo(refs, { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.42, stagger: 0.045, ease: "power2.out" }, 0.22);
+      if (cards.length) tl.fromTo(cards, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 0.06);
+      cards.forEach((card) => {
+        const items = card.querySelectorAll(".ref-item");
+        if (items.length) {
+          tl.fromTo(items, { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.45, stagger: 0.075, ease: "power2.out" }, 0.28);
+        }
+      });
       return;
     }
 
