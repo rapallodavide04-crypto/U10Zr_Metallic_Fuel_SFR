@@ -673,6 +673,7 @@ body {
 }
 .grid--56-44 { grid-template-columns: 56fr 44fr; }
 .grid--55-45 { grid-template-columns: 55fr 45fr; }
+.grid--46-54 { grid-template-columns: 46fr 54fr; }
 .grid--45-55 { grid-template-columns: 45fr 55fr; }
 .grid--42-58 { grid-template-columns: 42fr 58fr; }
 .grid--48-52 { grid-template-columns: 48fr 52fr; }
@@ -1395,7 +1396,38 @@ body {
 }
 
 .fig-top-img--s06 img { max-height: 315px; width: auto; max-width: 100%; object-fit: contain; }
-.fig-top-img--s07 img { max-height: 260px; width: auto; max-width: 100%; object-fit: contain; }
+.fig-top-img--s07 img { max-height: 315px; width: auto; max-width: 100%; object-fit: contain; }
+
+/* Slide 9: Top-half zoom crop for DP04/DP11 profilometry + explanatory note */
+.s09-strain-crop-wrap {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  aspect-ratio: 778 / 282;
+  max-height: 255px;
+  overflow: hidden;
+  background: #FFFFFF;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.s09-strain-crop-wrap img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.s09-strain-note {
+  flex: 0 0 auto;
+  font-size: 12.2px;
+  line-height: 1.38;
+  padding: 8px 12px;
+}
 
 .fig-legend-list {
   display: flex;
@@ -1457,7 +1489,15 @@ body {
 }
 
 .stacked-figs-2 .figure-card__stage {
-  padding: 6px 10px 8px;
+  padding: 3px 6px 4px;
+  gap: 3px;
+}
+
+.stacked-figs-2 .figure-card__stage img {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .stacked-figs-2 .figure-card__caption {
