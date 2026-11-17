@@ -44,10 +44,10 @@ def build_standalone(web_url: str | None = None) -> tuple[Path, Path]:
     js_path = deck_dir / "deck.js"
     gsap_path = deck_dir / "vendor" / "gsap.min.js"
 
-    html = html_path.read_text(encoding="utf-8")
-    css = css_path.read_text(encoding="utf-8")
-    js = js_path.read_text(encoding="utf-8")
-    gsap_js = gsap_path.read_text(encoding="utf-8")
+    html = html_path.read_text(encoding="utf-8-sig")
+    css = css_path.read_text(encoding="utf-8-sig")
+    js = js_path.read_text(encoding="utf-8-sig")
+    gsap_js = gsap_path.read_text(encoding="utf-8-sig")
 
     # 1. Inline styles.css
     css_link_pattern = re.compile(r'<link\s+rel="stylesheet"\s+href="styles\.css"\s*/?>')
