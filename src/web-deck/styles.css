@@ -1402,9 +1402,10 @@ body {
 /* Slide 9: Top-half zoom crop for DP04/DP11 profilometry + explanatory note */
 .s09-strain-crop-wrap {
   width: 100%;
-  flex: 0 0 auto;
-  aspect-ratio: 778 / 282;
-  max-height: 215px;
+  flex: 1 1 auto;
+  min-height: 0;
+  aspect-ratio: 778 / 296;
+  max-height: 260px;
   overflow: hidden;
   background: #FFFFFF;
   display: flex;
@@ -1424,17 +1425,18 @@ body {
 
 .s09-strain-note {
   flex: 0 0 auto;
-  font-size: 12px;
-  line-height: 1.36;
-  padding: 7px 11px;
+  font-size: 12.2px;
+  line-height: 1.38;
+  padding: 8px 12px;
 }
 
 .slide[data-slide="9"] .split-grid.bottom-fill {
-  align-items: start;
+  align-items: stretch;
 }
 
-.slide[data-slide="9"] .figure-card {
-  height: auto;
+.slide[data-slide="9"] .figure-card,
+.slide[data-slide="9"] .text-col {
+  height: 100%;
 }
 
 .slide[data-slide="9"] .fig-stack-body {
@@ -1442,14 +1444,16 @@ body {
 }
 
 .slide[data-slide="9"] .bullet-list {
-  flex: 0 0 auto;
+  flex: 1 1 auto;
+  height: 100%;
   gap: 10px;
 }
 
 .slide[data-slide="9"] .bullet-list li {
+  flex: 1 1 0;
   padding: 10px 14px;
   font-size: 14px;
-  line-height: 1.38;
+  line-height: 1.4;
 }
 
 .fig-legend-list {
