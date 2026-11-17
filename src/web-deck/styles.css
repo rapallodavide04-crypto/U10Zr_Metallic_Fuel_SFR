@@ -1110,7 +1110,77 @@ body {
 .chain-card__tag { font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; text-transform: uppercase; color: var(--sodium-alert); margin-bottom: 4px; }
 .chain-card__body { font-size: 15px; line-height: 1.44; }
 
-/* Slide 8: Symmetric 4-Row Comparison Matrix + Dual Stacked Plots */
+/* Slide 8: Symmetric 2-Column Head-to-Head Grid + Dual Stacked Plots */
+.h2h-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto repeat(4, minmax(0, 1fr)) auto;
+  gap: 8px 12px;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+}
+
+.h2h-head {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #FFFFFF;
+  padding: 8px 12px;
+  border-radius: var(--radius-sharp);
+  box-shadow: var(--plate-shadow);
+}
+
+.h2h-head--fcc {
+  background: #1E293B;
+  border-left: 4px solid #D97706;
+}
+
+.h2h-head--ht9 {
+  background: #0B2545;
+  border-left: 4px solid var(--eng-green);
+}
+
+.h2h-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  background: var(--bg-plate);
+  border: 1px solid var(--border-light);
+  border-left: 4px solid var(--accent-blue);
+  border-radius: var(--radius-sharp);
+  padding: 8px 12px;
+  box-shadow: var(--plate-shadow);
+  min-height: 0;
+}
+
+.h2h-card__tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #475569;
+}
+
+.h2h-card p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.36;
+  color: var(--text-slate);
+}
+
+.h2h-card--slate { border-left-color: #475569; background: linear-gradient(135deg, #FFFFFF 0%, #F1F5F9 100%); }
+.h2h-card--blue { border-left-color: var(--accent-blue); background: linear-gradient(135deg, #FFFFFF 0%, #EFF6FF 100%); }
+.h2h-card--blue .h2h-card__tag { color: #1D4ED8; }
+.h2h-card--amber-soft { border-left-color: #D97706; background: #FFFBEB; }
+.h2h-card--amber-soft .h2h-card__tag { color: #B45309; }
+.h2h-card--green { border-left-color: var(--eng-green); background: #F0FDF4; }
+.h2h-card--green .h2h-card__tag { color: var(--eng-green); }
+.h2h-card--alert { border-left-color: var(--sodium-alert); background: #FFF7ED; }
+.h2h-card--alert .h2h-card__tag { color: var(--sodium-alert); }
+
 .grid--57-43 { grid-template-columns: 57fr 43fr; }
 
 .compare-matrix-col {

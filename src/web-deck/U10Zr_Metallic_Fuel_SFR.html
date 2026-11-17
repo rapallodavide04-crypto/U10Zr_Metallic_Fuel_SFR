@@ -704,44 +704,53 @@
 
         <div class="slide-body">
           <div class="split-grid grid--56-44">
-            <div class="compare-matrix-col">
-              <div class="compare-matrix-wrap">
-                <table class="compare-matrix">
-                  <thead>
-                    <tr>
-                      <th style="width:22%;">Criterion</th>
-                      <th class="col-fcc" style="width:38%;">FCC Austenitics (316SS / D9)</th>
-                      <th class="col-ht9" style="width:40%;">BCC F/M HT9 (Baseline)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Microstructure &amp; Chemistry</td>
-                      <td>Face-centered cubic (<span class="code-chip">316SS / D9</span>) austenitic matrix.</td>
-                      <td class="cell-ht9"><span class="code-chip code-chip--compact">Fe-12Cr-1Mo-0.5W-0.5Ni-0.3V-0.2C</span> tempered martensite.</td>
-                    </tr>
-                    <tr>
-                      <td>Void Swelling (@ 200 dpa)</td>
-                      <td>High dislocation bias drives steep swelling (<strong>~1%/dpa</strong>) after incubation.</td>
-                      <td class="cell-ht9"><span class="hl-green">&lt;2% at 200 dpa (400&ndash;420 &deg;C)</span> via high lath sink density.</td>
-                    </tr>
-                    <tr>
-                      <td>Low-T Embrittlement</td>
-                      <td>No low-temperature DBTT shift.</td>
-                      <td class="cell-ht9">Below ~400 &deg;C (T &lt; 0.4 T<sub>m</sub>), hardening + &alpha;&prime; (&gt;9 wt% Cr) drive <strong>&Delta;DBTT &approx; +155 &deg;C</strong>, saturating by 5&ndash;10 dpa.</td>
-                    </tr>
-                    <tr>
-                      <td>High-T Creep &amp; FCCI</td>
-                      <td>High early thermal creep strength, but <strong>Ni leaching worsens FCCI</strong>.</td>
-                      <td class="cell-ht9">Creep ceiling above <span class="hl-amber">600&ndash;650 &deg;C</span> (~60 MPa at 10<sup>5</sup> h / 600 &deg;C).</td>
-                    </tr>
-                  </tbody>
-                </table>
+            <div class="h2h-grid">
+              <div class="h2h-head h2h-head--fcc">FCC Austenitics (316SS / D9)</div>
+              <div class="h2h-head h2h-head--ht9">BCC Tempered Martensite (HT9 Baseline)</div>
+
+              <!-- Row 1 -->
+              <div class="h2h-card h2h-card--slate">
+                <span class="h2h-card__tag">01 &bull; Microstructure &amp; Chemistry</span>
+                <p>Face-centered cubic (<span class="code-chip">316SS / Ti-modified D9</span>) austenitic matrix; high Ni (~10&ndash;15 wt%).</p>
               </div>
-              <div class="compare-summary-2">
-                <div class="compare-cap-card">FCC CAP: ~10 at% BU (Void Swelling)</div>
-                <div class="compare-cap-card compare-cap-card--ht9">HT9 WINDOW: 400&ndash;650 &deg;C (&lt;2% Swelling)</div>
+              <div class="h2h-card h2h-card--blue">
+                <span class="h2h-card__tag">01 &bull; Microstructure &amp; Chemistry</span>
+                <p>Body-centered cubic tempered martensite (<span class="code-chip code-chip--compact">Fe&ndash;12Cr&ndash;1Mo&ndash;0.5W&ndash;0.5Ni&ndash;0.3V&ndash;0.2C</span>).</p>
               </div>
+
+              <!-- Row 2 -->
+              <div class="h2h-card h2h-card--amber-soft">
+                <span class="h2h-card__tag">02 &bull; Void Swelling (@ 200 dpa)</span>
+                <p>High FCC dislocation bias &rarr; steep breakaway swelling (<strong>~1%/dpa</strong>) after 45&ndash;90 dpa incubation.</p>
+              </div>
+              <div class="h2h-card h2h-card--green">
+                <span class="h2h-card__tag">02 &bull; Void Swelling (@ 200 dpa)</span>
+                <p><span class="hl-green">Low BCC bias + dense lath/carbide sinks</span> &rarr; <strong>&lt; 2% swelling</strong> up to 200 dpa (400&ndash;450 &deg;C).</p>
+              </div>
+
+              <!-- Row 3 -->
+              <div class="h2h-card h2h-card--slate">
+                <span class="h2h-card__tag">03 &bull; Low-T Embrittlement (&lt; 400 &deg;C)</span>
+                <p>No ductile-to-brittle transition (no DBTT shift at low temperature).</p>
+              </div>
+              <div class="h2h-card h2h-card--alert">
+                <span class="h2h-card__tag">03 &bull; Low-T Embrittlement (&lt; 400 &deg;C)</span>
+                <p>Loop hardening + Cr-rich &alpha;&prime; (&gt;9 wt% Cr) drive <strong>&Delta;DBTT &approx; +155 &deg;C</strong>, saturating by 10&ndash;17 dpa.</p>
+              </div>
+
+              <!-- Row 4 -->
+              <div class="h2h-card h2h-card--blue">
+                <span class="h2h-card__tag">04 &bull; High-T Creep &amp; FCCI (&gt; 600 &deg;C)</span>
+                <p>Higher initial thermal creep strength, but <strong>high Ni leaching accelerates FCCI</strong>.</p>
+              </div>
+              <div class="h2h-card h2h-card--slate">
+                <span class="h2h-card__tag">04 &bull; High-T Creep &amp; FCCI (&gt; 600 &deg;C)</span>
+                <p>Lath recovery &amp; M<sub>23</sub>C<sub>6</sub> coarsening cap thermal creep above <span class="hl-amber">600&ndash;650 &deg;C</span> (~60 MPa / 10<sup>5</sup> h).</p>
+              </div>
+
+              <!-- Bottom Aligned Banners -->
+              <div class="compare-cap-card">FCC CAP: ~10 at% BU (Runaway Void Swelling)</div>
+              <div class="compare-cap-card compare-cap-card--ht9">HT9 WINDOW: 400&ndash;650 &deg;C (&lt; 2% Swelling to 200 dpa)</div>
             </div>
 
             <div class="stacked-figs-2">

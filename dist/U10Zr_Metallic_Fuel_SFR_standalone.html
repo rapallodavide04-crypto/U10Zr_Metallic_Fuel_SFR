@@ -1120,7 +1120,77 @@ body {
 .chain-card__tag { font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; text-transform: uppercase; color: var(--sodium-alert); margin-bottom: 4px; }
 .chain-card__body { font-size: 15px; line-height: 1.44; }
 
-/* Slide 8: Symmetric 4-Row Comparison Matrix + Dual Stacked Plots */
+/* Slide 8: Symmetric 2-Column Head-to-Head Grid + Dual Stacked Plots */
+.h2h-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto repeat(4, minmax(0, 1fr)) auto;
+  gap: 8px 12px;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+}
+
+.h2h-head {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #FFFFFF;
+  padding: 8px 12px;
+  border-radius: var(--radius-sharp);
+  box-shadow: var(--plate-shadow);
+}
+
+.h2h-head--fcc {
+  background: #1E293B;
+  border-left: 4px solid #D97706;
+}
+
+.h2h-head--ht9 {
+  background: #0B2545;
+  border-left: 4px solid var(--eng-green);
+}
+
+.h2h-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  background: var(--bg-plate);
+  border: 1px solid var(--border-light);
+  border-left: 4px solid var(--accent-blue);
+  border-radius: var(--radius-sharp);
+  padding: 8px 12px;
+  box-shadow: var(--plate-shadow);
+  min-height: 0;
+}
+
+.h2h-card__tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #475569;
+}
+
+.h2h-card p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.36;
+  color: var(--text-slate);
+}
+
+.h2h-card--slate { border-left-color: #475569; background: linear-gradient(135deg, #FFFFFF 0%, #F1F5F9 100%); }
+.h2h-card--blue { border-left-color: var(--accent-blue); background: linear-gradient(135deg, #FFFFFF 0%, #EFF6FF 100%); }
+.h2h-card--blue .h2h-card__tag { color: #1D4ED8; }
+.h2h-card--amber-soft { border-left-color: #D97706; background: #FFFBEB; }
+.h2h-card--amber-soft .h2h-card__tag { color: #B45309; }
+.h2h-card--green { border-left-color: var(--eng-green); background: #F0FDF4; }
+.h2h-card--green .h2h-card__tag { color: var(--eng-green); }
+.h2h-card--alert { border-left-color: var(--sodium-alert); background: #FFF7ED; }
+.h2h-card--alert .h2h-card__tag { color: var(--sodium-alert); }
+
 .grid--57-43 { grid-template-columns: 57fr 43fr; }
 
 .compare-matrix-col {
@@ -3124,44 +3194,53 @@ html.export-pdf .deck-laser { display: none !important; }
 
         <div class="slide-body">
           <div class="split-grid grid--56-44">
-            <div class="compare-matrix-col">
-              <div class="compare-matrix-wrap">
-                <table class="compare-matrix">
-                  <thead>
-                    <tr>
-                      <th style="width:22%;">Criterion</th>
-                      <th class="col-fcc" style="width:38%;">FCC Austenitics (316SS / D9)</th>
-                      <th class="col-ht9" style="width:40%;">BCC F/M HT9 (Baseline)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Microstructure &amp; Chemistry</td>
-                      <td>Face-centered cubic (<span class="code-chip">316SS / D9</span>) austenitic matrix.</td>
-                      <td class="cell-ht9"><span class="code-chip code-chip--compact">Fe-12Cr-1Mo-0.5W-0.5Ni-0.3V-0.2C</span> tempered martensite.</td>
-                    </tr>
-                    <tr>
-                      <td>Void Swelling (@ 200 dpa)</td>
-                      <td>High dislocation bias drives steep swelling (<strong>~1%/dpa</strong>) after incubation.</td>
-                      <td class="cell-ht9"><span class="hl-green">&lt;2% at 200 dpa (400&ndash;420 &deg;C)</span> via high lath sink density.</td>
-                    </tr>
-                    <tr>
-                      <td>Low-T Embrittlement</td>
-                      <td>No low-temperature DBTT shift.</td>
-                      <td class="cell-ht9">Below ~400 &deg;C (T &lt; 0.4 T<sub>m</sub>), hardening + &alpha;&prime; (&gt;9 wt% Cr) drive <strong>&Delta;DBTT &approx; +155 &deg;C</strong>, saturating by 5&ndash;10 dpa.</td>
-                    </tr>
-                    <tr>
-                      <td>High-T Creep &amp; FCCI</td>
-                      <td>High early thermal creep strength, but <strong>Ni leaching worsens FCCI</strong>.</td>
-                      <td class="cell-ht9">Creep ceiling above <span class="hl-amber">600&ndash;650 &deg;C</span> (~60 MPa at 10<sup>5</sup> h / 600 &deg;C).</td>
-                    </tr>
-                  </tbody>
-                </table>
+            <div class="h2h-grid">
+              <div class="h2h-head h2h-head--fcc">FCC Austenitics (316SS / D9)</div>
+              <div class="h2h-head h2h-head--ht9">BCC Tempered Martensite (HT9 Baseline)</div>
+
+              <!-- Row 1 -->
+              <div class="h2h-card h2h-card--slate">
+                <span class="h2h-card__tag">01 &bull; Microstructure &amp; Chemistry</span>
+                <p>Face-centered cubic (<span class="code-chip">316SS / Ti-modified D9</span>) austenitic matrix; high Ni (~10&ndash;15 wt%).</p>
               </div>
-              <div class="compare-summary-2">
-                <div class="compare-cap-card">FCC CAP: ~10 at% BU (Void Swelling)</div>
-                <div class="compare-cap-card compare-cap-card--ht9">HT9 WINDOW: 400&ndash;650 &deg;C (&lt;2% Swelling)</div>
+              <div class="h2h-card h2h-card--blue">
+                <span class="h2h-card__tag">01 &bull; Microstructure &amp; Chemistry</span>
+                <p>Body-centered cubic tempered martensite (<span class="code-chip code-chip--compact">Fe&ndash;12Cr&ndash;1Mo&ndash;0.5W&ndash;0.5Ni&ndash;0.3V&ndash;0.2C</span>).</p>
               </div>
+
+              <!-- Row 2 -->
+              <div class="h2h-card h2h-card--amber-soft">
+                <span class="h2h-card__tag">02 &bull; Void Swelling (@ 200 dpa)</span>
+                <p>High FCC dislocation bias &rarr; steep breakaway swelling (<strong>~1%/dpa</strong>) after 45&ndash;90 dpa incubation.</p>
+              </div>
+              <div class="h2h-card h2h-card--green">
+                <span class="h2h-card__tag">02 &bull; Void Swelling (@ 200 dpa)</span>
+                <p><span class="hl-green">Low BCC bias + dense lath/carbide sinks</span> &rarr; <strong>&lt; 2% swelling</strong> up to 200 dpa (400&ndash;450 &deg;C).</p>
+              </div>
+
+              <!-- Row 3 -->
+              <div class="h2h-card h2h-card--slate">
+                <span class="h2h-card__tag">03 &bull; Low-T Embrittlement (&lt; 400 &deg;C)</span>
+                <p>No ductile-to-brittle transition (no DBTT shift at low temperature).</p>
+              </div>
+              <div class="h2h-card h2h-card--alert">
+                <span class="h2h-card__tag">03 &bull; Low-T Embrittlement (&lt; 400 &deg;C)</span>
+                <p>Loop hardening + Cr-rich &alpha;&prime; (&gt;9 wt% Cr) drive <strong>&Delta;DBTT &approx; +155 &deg;C</strong>, saturating by 10&ndash;17 dpa.</p>
+              </div>
+
+              <!-- Row 4 -->
+              <div class="h2h-card h2h-card--blue">
+                <span class="h2h-card__tag">04 &bull; High-T Creep &amp; FCCI (&gt; 600 &deg;C)</span>
+                <p>Higher initial thermal creep strength, but <strong>high Ni leaching accelerates FCCI</strong>.</p>
+              </div>
+              <div class="h2h-card h2h-card--slate">
+                <span class="h2h-card__tag">04 &bull; High-T Creep &amp; FCCI (&gt; 600 &deg;C)</span>
+                <p>Lath recovery &amp; M<sub>23</sub>C<sub>6</sub> coarsening cap thermal creep above <span class="hl-amber">600&ndash;650 &deg;C</span> (~60 MPa / 10<sup>5</sup> h).</p>
+              </div>
+
+              <!-- Bottom Aligned Banners -->
+              <div class="compare-cap-card">FCC CAP: ~10 at% BU (Runaway Void Swelling)</div>
+              <div class="compare-cap-card compare-cap-card--ht9">HT9 WINDOW: 400&ndash;650 &deg;C (&lt; 2% Swelling to 200 dpa)</div>
             </div>
 
             <div class="stacked-figs-2">
@@ -4405,17 +4484,17 @@ html.export-pdf .deck-laser { display: none !important; }
       return;
     }
 
-    // Slide 8: Symmetric 4-Row Comparison Matrix + HT9 Summary Emerald Pulse + Dual Stacked Plots
+    // Slide 8: Symmetric 2-Column Head-to-Head Grid + HT9 Summary Emerald Pulse + Dual Stacked Plots
     if (slideNum === 8) {
-      const matrix = slide.querySelector(".compare-matrix-wrap");
-      const rows = slide.querySelectorAll(".compare-matrix tbody tr");
-      const caps = slide.querySelectorAll(".compare-summary-2 > div");
+      const heads = slide.querySelectorAll(".h2h-head");
+      const cards = slide.querySelectorAll(".h2h-card");
+      const caps = slide.querySelectorAll(".h2h-grid .compare-cap-card");
       const ht9 = slide.querySelector(".compare-cap-card--ht9");
       const plots = slide.querySelectorAll(".stacked-figs-2 .figure-card");
       if (ht9) ht9.classList.remove("is-pulsing");
-      if (matrix) tl.fromTo(matrix, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.1);
-      if (rows.length) tl.fromTo(rows, { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.48, stagger: 0.09, ease: "power2.out" }, 0.22);
-      if (caps.length) tl.fromTo(caps, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.12, ease: "power2.out" }, 0.52);
+      if (heads.length) tl.fromTo(heads, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: "power3.out" }, 0.08);
+      if (cards.length) tl.fromTo(cards, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.48, stagger: 0.055, ease: "power2.out" }, 0.18);
+      if (caps.length) tl.fromTo(caps, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power2.out" }, 0.54);
       if (plots[0]) revealFigure(tl, plots[0], "inset(0% 0% 0% 100%)", 0.28);
       if (plots[1]) revealFigure(tl, plots[1], "inset(0% 0% 0% 100%)", 0.42);
       if (ht9) {

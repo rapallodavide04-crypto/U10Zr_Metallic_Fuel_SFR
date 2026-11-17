@@ -464,17 +464,17 @@
       return;
     }
 
-    // Slide 8: Symmetric 4-Row Comparison Matrix + HT9 Summary Emerald Pulse + Dual Stacked Plots
+    // Slide 8: Symmetric 2-Column Head-to-Head Grid + HT9 Summary Emerald Pulse + Dual Stacked Plots
     if (slideNum === 8) {
-      const matrix = slide.querySelector(".compare-matrix-wrap");
-      const rows = slide.querySelectorAll(".compare-matrix tbody tr");
-      const caps = slide.querySelectorAll(".compare-summary-2 > div");
+      const heads = slide.querySelectorAll(".h2h-head");
+      const cards = slide.querySelectorAll(".h2h-card");
+      const caps = slide.querySelectorAll(".h2h-grid .compare-cap-card");
       const ht9 = slide.querySelector(".compare-cap-card--ht9");
       const plots = slide.querySelectorAll(".stacked-figs-2 .figure-card");
       if (ht9) ht9.classList.remove("is-pulsing");
-      if (matrix) tl.fromTo(matrix, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.1);
-      if (rows.length) tl.fromTo(rows, { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.48, stagger: 0.09, ease: "power2.out" }, 0.22);
-      if (caps.length) tl.fromTo(caps, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.12, ease: "power2.out" }, 0.52);
+      if (heads.length) tl.fromTo(heads, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: "power3.out" }, 0.08);
+      if (cards.length) tl.fromTo(cards, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.48, stagger: 0.055, ease: "power2.out" }, 0.18);
+      if (caps.length) tl.fromTo(caps, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power2.out" }, 0.54);
       if (plots[0]) revealFigure(tl, plots[0], "inset(0% 0% 0% 100%)", 0.28);
       if (plots[1]) revealFigure(tl, plots[1], "inset(0% 0% 0% 100%)", 0.42);
       if (ht9) {
