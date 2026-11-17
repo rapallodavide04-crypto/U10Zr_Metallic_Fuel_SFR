@@ -2403,7 +2403,6 @@ html.export-pdf .slide { pointer-events: auto !important; }
 html.export-pdf .pdf-web-link { display: inline-block !important; pointer-events: auto !important; }
 html.export-pdf .prop-compare-svg .bar-fill {
   transform: scaleX(1) !important;
-  width: revert !important;
   opacity: 1 !important;
   -webkit-print-color-adjust: exact !important;
   print-color-adjust: exact !important;
@@ -2469,7 +2468,6 @@ html.export-pdf .deck-laser { display: none !important; }
   .pdf-web-link { display: inline-block !important; pointer-events: auto !important; }
   .prop-compare-svg .bar-fill {
     transform: scaleX(1) !important;
-    width: revert !important;
     opacity: 1 !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
