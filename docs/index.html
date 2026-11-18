@@ -2367,6 +2367,150 @@ body.laser-active {
 }
 
 /* ============================
+   CARD HOVER: MICRO-LIFT + SEMANTIC GLOW (NO DIMMING)
+   ============================ */
+.mandate-tile,
+.aurora-mini-card,
+.bullet-list li,
+.prop-mini-card,
+.fig-mini-box,
+.fig-legend-row,
+.step-item,
+.chain-card,
+.h2h-card,
+.compare-cap-card,
+.kpi-card,
+.bento-card,
+.decision-box,
+.ref-card {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.22s ease,
+              background-color 0.22s ease;
+}
+
+/* Default / Blue Semantic Glow */
+.mandate-tile:hover,
+.aurora-mini-card:hover,
+.bullet-list li:hover,
+.fig-mini-box:hover,
+.fig-legend-row:hover,
+.fig-legend-row--blue:hover,
+.step-item:hover,
+.chain-card:hover,
+.h2h-card--blue:hover,
+.kpi-card:hover,
+.bento-card:hover,
+.decision-box:hover,
+.ref-card--reg:hover {
+  position: relative;
+  z-index: 3;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 24px -6px rgba(3, 10, 24, 0.34),
+              0 0 0 1.5px rgba(59, 130, 246, 0.55),
+              0 0 20px rgba(37, 99, 235, 0.32);
+}
+
+/* Green Semantic Glow */
+.mandate-tile--green:hover,
+.bullet-list li.callout-green:hover,
+.fig-mini-box--green:hover,
+.fig-legend-row--green:hover,
+.step-item--green:hover,
+.h2h-card--green:hover,
+.compare-cap-card--ht9:hover,
+.kpi-card--green:hover,
+.bento-card--green:hover,
+.decision-box--green:hover {
+  position: relative;
+  z-index: 3;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 24px -6px rgba(3, 10, 24, 0.34),
+              0 0 0 1.5px rgba(34, 197, 94, 0.58),
+              0 0 20px rgba(21, 128, 61, 0.34);
+}
+
+/* Amber / Orange Semantic Glow */
+.mandate-tile--amber:hover,
+.bullet-list li.callout-amber:hover,
+.bullet-list li.callout-alert:hover,
+.prop-mini-card:hover,
+.fig-mini-box--amber:hover,
+.fig-legend-row--amber:hover,
+.step-item--amber:hover,
+.chain-card--amber:hover,
+.chain-card--critical:hover,
+.h2h-card--amber-soft:hover,
+.h2h-card--alert:hover,
+.compare-cap-card:not(.compare-cap-card--ht9):hover,
+.kpi-card--amber:hover,
+.kpi-card--alert:hover,
+.bento-card--amber:hover,
+.decision-box--amber:hover,
+.ref-card--lit:hover {
+  position: relative;
+  z-index: 3;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 24px -6px rgba(3, 10, 24, 0.34),
+              0 0 0 1.5px rgba(245, 158, 11, 0.62),
+              0 0 20px rgba(224, 90, 0, 0.34);
+}
+
+/* Crimson / Red Semantic Glow */
+.fig-mini-box--crimson:hover {
+  position: relative;
+  z-index: 3;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 24px -6px rgba(3, 10, 24, 0.34),
+              0 0 0 1.5px rgba(239, 68, 68, 0.62),
+              0 0 20px rgba(220, 38, 38, 0.32);
+}
+
+/* Slate Semantic Glow */
+.fig-mini-box--slate:hover,
+.step-item--slate:hover,
+.chain-card--slate:hover,
+.h2h-card--slate:hover,
+.bento-card--slate:hover,
+.slide[data-slide="9"] .kpi-row-4 > .kpi-card:first-child:hover {
+  position: relative;
+  z-index: 3;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 24px -6px rgba(3, 10, 24, 0.34),
+              0 0 0 1.5px rgba(148, 163, 184, 0.58),
+              0 0 18px rgba(100, 116, 139, 0.28);
+}
+
+/* Subtle Badge / Tag Emphasis on Card Hover */
+.step-item__dot,
+.chain-card__tag,
+.h2h-card__tag,
+.bento-card .lever-num,
+.bento-card .badge,
+.ref-card__eyebrow,
+.figure-card__badge {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), filter 0.22s ease;
+}
+
+.chain-card__tag,
+.h2h-card__tag,
+.ref-card__eyebrow {
+  transform-origin: left center;
+  display: inline-block;
+}
+
+.step-item:hover .step-item__dot,
+.chain-card:hover .chain-card__tag,
+.h2h-card:hover .h2h-card__tag,
+.bento-card:hover .lever-num,
+.bento-card:hover .badge,
+.ref-card:hover .ref-card__eyebrow,
+.figure-card:hover .figure-card__badge {
+  transform: scale(1.03);
+  filter: saturate(1.12);
+}
+
+/* ============================
    PDF / PRINT EXPORT MODE
    ============================ */
 @page { size: 1280px 720px; margin: 0; }
@@ -3998,6 +4142,7 @@ html.export-pdf .deck-laser { display: none !important; }
         <span class="shortcut-key">Click Figure</span><span>Zoom / Inspect Figure in Q&amp;A</span>
         <span class="shortcut-key">F</span><span>Toggle Fullscreen</span>
         <span class="shortcut-key">1&ndash;9</span><span>Jump to Slide 1&ndash;9</span>
+        <span class="shortcut-key">Alt + 1..14</span><span>Hold Alt + Digits &rarr; Jump to Any Slide</span>
         <span class="shortcut-key">Esc</span><span>Close Active Overlay</span>
       </div>
     </div>
@@ -4139,6 +4284,9 @@ html.export-pdf .deck-laser { display: none !important; }
   function finalizePrintState() {
     finalizeAllCounters();
     document.querySelectorAll(".prop-compare-svg .bar-fill").forEach((bar) => {
+      if (bar.dataset.targetWidth) {
+        bar.setAttribute("width", bar.dataset.targetWidth);
+      }
       if (window.gsap) window.gsap.set(bar, { clearProps: "transform" });
     });
   }
@@ -4411,7 +4559,16 @@ html.export-pdf .deck-laser { display: none !important; }
       tl.fromTo(nodes, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.58, stagger: 0.1, ease: "power3.out" }, 0.12)
         .fromTo(arrows, { opacity: 0, x: -6 }, { opacity: 1, x: 0, duration: 0.35, stagger: 0.1, ease: "power2.out" }, 0.18);
       bars.forEach((b, i) => {
-        tl.fromTo(b, { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 1.4, ease: "expo.out" }, 0.38 + i * 0.18);
+        if (!b.dataset.targetWidth) {
+          b.dataset.targetWidth = b.getAttribute("width") || "0";
+        }
+        const targetW = parseFloat(b.dataset.targetWidth);
+        tl.fromTo(
+          b,
+          { attr: { width: 0 } },
+          { attr: { width: targetW }, duration: 1.4, ease: "expo.out" },
+          0.38 + i * 0.18
+        );
       });
       if (isoNode) tl.call(() => isoNode.classList.add("is-lit"), null, 0.78);
       if (mini) tl.fromTo(mini, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.52);
@@ -5023,8 +5180,37 @@ html.export-pdf .deck-laser { display: none !important; }
   });
 
   window.addEventListener("resize", scaleStage);
+
+  let altDigitBuffer = "";
+
+  function commitAltDigitJump() {
+    if (!altDigitBuffer) return;
+    const targetNum = parseInt(altDigitBuffer, 10);
+    altDigitBuffer = "";
+    if (targetNum >= 1 && targetNum <= slides.length) {
+      closeOverlays();
+      showSlide(targetNum - 1);
+    }
+  }
+
+  window.addEventListener("blur", () => {
+    altDigitBuffer = "";
+  });
+
+  window.addEventListener("keyup", (e) => {
+    if (e.key === "Alt") {
+      commitAltDigitJump();
+    }
+  });
+
   window.addEventListener("keydown", (e) => {
+    if (e.altKey && /^[0-9]$/.test(e.key)) {
+      e.preventDefault();
+      altDigitBuffer += e.key;
+      return;
+    }
     if (e.key === "Escape") {
+      altDigitBuffer = "";
       if (isLaserActive) toggleLaser(false);
       clearTradeTableFocus();
       closeOverlays();

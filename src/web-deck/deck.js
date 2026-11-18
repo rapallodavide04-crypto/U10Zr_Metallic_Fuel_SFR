@@ -118,6 +118,9 @@
   function finalizePrintState() {
     finalizeAllCounters();
     document.querySelectorAll(".prop-compare-svg .bar-fill").forEach((bar) => {
+      if (bar.dataset.targetWidth) {
+        bar.setAttribute("width", bar.dataset.targetWidth);
+      }
       if (window.gsap) window.gsap.set(bar, { clearProps: "transform" });
     });
   }
@@ -390,7 +393,16 @@
       tl.fromTo(nodes, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.58, stagger: 0.1, ease: "power3.out" }, 0.12)
         .fromTo(arrows, { opacity: 0, x: -6 }, { opacity: 1, x: 0, duration: 0.35, stagger: 0.1, ease: "power2.out" }, 0.18);
       bars.forEach((b, i) => {
-        tl.fromTo(b, { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 1.4, ease: "expo.out" }, 0.38 + i * 0.18);
+        if (!b.dataset.targetWidth) {
+          b.dataset.targetWidth = b.getAttribute("width") || "0";
+        }
+        const targetW = parseFloat(b.dataset.targetWidth);
+        tl.fromTo(
+          b,
+          { attr: { width: 0 } },
+          { attr: { width: targetW }, duration: 1.4, ease: "expo.out" },
+          0.38 + i * 0.18
+        );
       });
       if (isoNode) tl.call(() => isoNode.classList.add("is-lit"), null, 0.78);
       if (mini) tl.fromTo(mini, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.52);
@@ -1002,8 +1014,37 @@
   });
 
   window.addEventListener("resize", scaleStage);
+
+  let altDigitBuffer = "";
+
+  function commitAltDigitJump() {
+    if (!altDigitBuffer) return;
+    const targetNum = parseInt(altDigitBuffer, 10);
+    altDigitBuffer = "";
+    if (targetNum >= 1 && targetNum <= slides.length) {
+      closeOverlays();
+      showSlide(targetNum - 1);
+    }
+  }
+
+  window.addEventListener("blur", () => {
+    altDigitBuffer = "";
+  });
+
+  window.addEventListener("keyup", (e) => {
+    if (e.key === "Alt") {
+      commitAltDigitJump();
+    }
+  });
+
   window.addEventListener("keydown", (e) => {
+    if (e.altKey && /^[0-9]$/.test(e.key)) {
+      e.preventDefault();
+      altDigitBuffer += e.key;
+      return;
+    }
     if (e.key === "Escape") {
+      altDigitBuffer = "";
       if (isLaserActive) toggleLaser(false);
       clearTradeTableFocus();
       closeOverlays();
