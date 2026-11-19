@@ -158,17 +158,43 @@ body {
   50% { box-shadow: 0 0 18px 4px rgba(37, 99, 235, 0.42); }
 }
 
-.alert-banner__metric.is-pulsing {
-  animation: thermalPulse 2.2s ease-in-out infinite;
+.alert-banner__metric.is-pulsing,
+.chain-card--critical.is-pulsing {
+  animation: thermalPulse 2.4s ease-in-out infinite;
 }
 
 .col-panel--ht9.is-pulsing {
   animation: emeraldPulse 2.6s ease-in-out infinite;
 }
 
-.phase-node--iso.is-lit rect {
-  filter: drop-shadow(0 0 5px rgba(21, 128, 61, 0.28));
-  transition: filter 0.5s ease;
+.phase-node--iso.is-lit rect,
+.phase-node--iso.is-cross-lit rect {
+  filter: drop-shadow(0 0 6px rgba(21, 128, 61, 0.42));
+  stroke-width: 2.2;
+  transition: filter 0.35s ease, stroke-width 0.25s ease;
+}
+
+.phase-node {
+  cursor: pointer;
+}
+
+.phase-node rect {
+  transition: stroke 0.2s ease, fill 0.2s ease, filter 0.2s ease;
+}
+
+.phase-node:not(.phase-node--iso):hover rect {
+  stroke: #2563EB;
+  fill: #EFF6FF;
+}
+
+.phase-node--iso:hover rect {
+  filter: drop-shadow(0 0 6px rgba(21, 128, 61, 0.38));
+}
+
+.bullet-list li.callout-green.is-cross-lit {
+  box-shadow: 0 12px 24px -6px rgba(3, 10, 24, 0.34),
+              0 0 0 2px rgba(21, 128, 61, 0.65),
+              0 0 20px rgba(21, 128, 61, 0.36);
 }
 
 /* Pointer-Reactive Interactive Card Sheen & Lift */
@@ -184,7 +210,7 @@ body {
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.25s ease;
-  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(37, 99, 235, 0.08), transparent 65%);
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(var(--sheen-rgb, 37, 99, 235), 0.10), transparent 65%);
   z-index: 2;
 }
 
@@ -197,19 +223,68 @@ body {
   opacity: 1;
 }
 
+/* Semantic Sheen Tokens */
+.mandate-tile--green,
+.bullet-list li.callout-green,
+.fig-mini-box--green,
+.fig-legend-row--green,
+.step-item--green,
+.h2h-card--green,
+.compare-cap-card--ht9,
+.kpi-card--green,
+.bento-card--green,
+.decision-box--green {
+  --sheen-rgb: 21, 128, 61;
+}
+
+.mandate-tile--amber,
+.bullet-list li.callout-amber,
+.bullet-list li.callout-alert,
+.prop-mini-card,
+.fig-mini-box--amber,
+.fig-legend-row--amber,
+.step-item--amber,
+.chain-card--amber,
+.chain-card--critical,
+.h2h-card--amber-soft,
+.h2h-card--alert,
+.compare-cap-card:not(.compare-cap-card--ht9),
+.kpi-card--amber,
+.kpi-card--alert,
+.bento-card--amber,
+.decision-box--amber,
+.ref-card--lit {
+  --sheen-rgb: 224, 90, 0;
+}
+
+.fig-mini-box--crimson {
+  --sheen-rgb: 220, 38, 38;
+}
+
+.fig-mini-box--slate,
+.step-item--slate,
+.chain-card--slate,
+.h2h-card--slate,
+.bento-card--slate,
+.kpi-card--slate {
+  --sheen-rgb: 71, 85, 105;
+}
+
 .figure-card {
   cursor: zoom-in;
 }
 
-/* Inline Schematic Cross-Highlighting (Slides 3 & 12) */
+/* Inline Schematic Cross-Highlighting (Slides 3, 5, 8 & 12) */
 .s03-layer,
+.s08-curve-group,
 .s12-block {
   transition: opacity 0.25s ease, filter 0.25s ease;
 }
 
 .s03-layer.is-dimmed,
+.s08-curve-group.is-dimmed,
 .s12-block.is-dimmed {
-  opacity: 0.26 !important;
+  opacity: 0.24 !important;
 }
 
 .s03-layer.is-highlighted,
@@ -217,13 +292,39 @@ body {
   filter: drop-shadow(0 0 5px rgba(224, 90, 0, 0.55));
 }
 
+.s08-curve-group.is-highlighted {
+  filter: drop-shadow(0 0 4px rgba(21, 128, 61, 0.35));
+}
+
 .spec-sheet tbody tr[data-pin-target] {
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
-.spec-sheet tbody tr[data-pin-target]:hover {
+.spec-sheet tbody tr[data-pin-target]:hover,
+.spec-sheet tbody tr[data-pin-target].is-cross-lit {
   background: #EFF6FF !important;
+}
+
+.spec-sheet tbody tr[data-pin-target].is-cross-lit td:first-child {
+  box-shadow: inset 3px 0 0 #E05A00;
+}
+
+.s05-step rect {
+  transition: stroke 0.2s ease, stroke-width 0.2s ease, fill 0.2s ease;
+}
+
+.s05-step:hover rect {
+  stroke-width: 1.8;
+  fill: #F8FAFC;
+}
+
+.prop-bar-group {
+  transition: opacity 0.2s ease;
+}
+
+.prop-compare-svg:hover .prop-bar-group:not(:hover) {
+  opacity: 0.72;
 }
 
 .decision-box[data-stage] {
@@ -330,7 +431,19 @@ body {
 .deck-progress__fill {
   height: 100%;
   width: 0%;
+  background: linear-gradient(90deg, #2563EB, #38BDF8);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.65);
+  transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+
+.deck-stage.is-theme-amber .deck-progress__fill {
   background: linear-gradient(90deg, var(--cover-accent), #FBBF24);
+  box-shadow: 0 0 10px rgba(251, 191, 36, 0.72);
+}
+
+.deck-stage.is-theme-green .deck-progress__fill {
+  background: linear-gradient(90deg, var(--eng-green), #4ADE80);
+  box-shadow: 0 0 10px rgba(74, 222, 128, 0.65);
 }
 
 .shimmer-host {
@@ -625,6 +738,30 @@ body {
   color: #FFFFFF;
   padding: 5px 14px;
   border-radius: var(--radius-sharp);
+  overflow: hidden;
+}
+
+.slide-header__trace {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  transform-origin: left center;
+  pointer-events: none;
+  background: linear-gradient(90deg, #38BDF8 0%, #2563EB 70%, transparent 100%);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.55);
+  opacity: 0.25;
+}
+
+.slide--content.theme--amber .slide-header__trace {
+  background: linear-gradient(90deg, #FBBF24 0%, #E05A00 70%, transparent 100%);
+  box-shadow: 0 0 8px rgba(251, 191, 36, 0.58);
+}
+
+.slide--content.theme--green .slide-header__trace {
+  background: linear-gradient(90deg, #4ADE80 0%, #15803D 70%, transparent 100%);
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.55);
 }
 
 .slide-header__fixed {
@@ -640,10 +777,21 @@ body {
   font-size: 11.5px;
   font-weight: 700;
   color: #FFFFFF;
-  background: rgba(224, 90, 0, 0.22);
-  border-left: 3px solid var(--cover-accent);
+  background: rgba(37, 99, 235, 0.24);
+  border-left: 3px solid #38BDF8;
   padding: 2px 9px;
   border-radius: var(--radius-sharp);
+  transition: background 0.35s ease, border-color 0.35s ease;
+}
+
+.slide--content.theme--amber .slide-header__section {
+  background: rgba(224, 90, 0, 0.28);
+  border-left-color: #F59E0B;
+}
+
+.slide--content.theme--green .slide-header__section {
+  background: rgba(21, 128, 61, 0.30);
+  border-left-color: #22C55E;
 }
 
 .slide-header__takeaway {
@@ -659,10 +807,12 @@ body {
   font-kerning: none;
 }
 
-/* Main Body (strictly bounded inside 1fr row) */
+/* Main Body (strictly bounded inside 1fr row, 5px inner cushion prevents top/edge hover-glow clipping) */
 .slide-body {
   min-height: 0;
   min-width: 0;
+  padding: 5px;
+  margin: -5px;
   overflow: hidden;
   display: grid;
   grid-template-rows: minmax(0, 1fr);
@@ -731,6 +881,36 @@ body {
   align-items: center;
   gap: 6px;
   overflow: hidden;
+}
+
+.figure-card__stage::after {
+  content: "ZOOM \2922";
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--polito-blue);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #CBD5E1;
+  border-radius: var(--radius-sharp);
+  padding: 2px 6px;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.figure-card:hover .figure-card__stage::after {
+  opacity: 0.9;
+  transform: translateY(0);
+}
+
+.figure-card__stage.is-missing::after {
+  display: none;
 }
 
 .figure-card__stage img,
@@ -1290,26 +1470,92 @@ body {
 .kpi-row-4 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: 14px;
+  align-items: stretch;
   flex-shrink: 0;
 }
 
 .kpi-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background: var(--bg-plate);
   border: 1px solid var(--border-light);
   border-top: 3px solid var(--accent-blue);
   border-radius: var(--radius-sharp);
-  padding: 9px 12px;
+  padding: 12px 14px;
   box-shadow: var(--plate-shadow);
 }
 
+.kpi-card--slate {
+  border-top-color: #475569;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%);
+}
+.kpi-card--blue { border-top-color: #1D4ED8; }
 .kpi-card--amber { border-top-color: var(--sodium-amber); background: linear-gradient(180deg, #FFFFFF 0%, #FFF7ED 100%); }
 .kpi-card--green { border-top-color: var(--eng-green); background: linear-gradient(180deg, #FFFFFF 0%, #F0FDF4 100%); }
-.kpi-card--alert { border-top-color: var(--sodium-alert); background: linear-gradient(180deg, #FFFFFF 0%, #FFF7ED 100%); }
-.kpi-card__val { font-family: var(--font-display); font-size: 21px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--polito-blue); line-height: 1.15; }
+.kpi-card--alert { border-top-color: #D97706; background: linear-gradient(180deg, #FFFFFF 0%, #FFF7ED 100%); }
+
+.kpi-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  gap: 8px;
+}
+
+.kpi-card__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1D4ED8;
+}
+
+.kpi-card--slate .kpi-card__eyebrow { color: #475569; }
+.kpi-card--green .kpi-card__eyebrow { color: var(--eng-green); }
+.kpi-card--amber .kpi-card__eyebrow,
+.kpi-card--alert .kpi-card__eyebrow { color: var(--sodium-alert); }
+
+.kpi-card__chip {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: var(--radius-sharp);
+  background: #DBEAFE;
+  color: #1E40AF;
+  white-space: nowrap;
+}
+
+.kpi-card--slate .kpi-card__chip { background: #EFF6FF; color: #003B73; }
+.kpi-card--green .kpi-card__chip { background: #DCFCE7; color: #166534; }
+.kpi-card--amber .kpi-card__chip,
+.kpi-card--alert .kpi-card__chip { background: #FFEDD5; color: #9A3412; }
+
+.kpi-card__val {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #003B73;
+  line-height: 1.15;
+  margin: 2px 0;
+}
+.kpi-card--slate .kpi-card__val { color: #0B2545; }
 .kpi-card--amber .kpi-card__val, .kpi-card--alert .kpi-card__val { color: var(--sodium-alert); }
 .kpi-card--green .kpi-card__val { color: var(--eng-green); }
-.kpi-card__lbl { margin-top: 3px; font-size: 11.8px; font-weight: 600; color: var(--text-muted); }
+
+.kpi-card__lbl {
+  margin-top: 3px;
+  font-size: 11.8px;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 /* Slide 2: Right-column 16:9 Aurora image + summary mini-card */
 .aurora-col {
@@ -2025,6 +2271,26 @@ body {
   white-space: nowrap;
 }
 
+.ref-slide-tag[data-jump-slide] {
+  cursor: pointer;
+  transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
+}
+
+.ref-slide-tag[data-jump-slide]:hover,
+.ref-slide-tag[data-jump-slide]:focus-visible {
+  background: var(--polito-blue);
+  color: #FFFFFF;
+  border-color: var(--polito-blue);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.ref-card--lit .ref-slide-tag[data-jump-slide]:hover,
+.ref-card--lit .ref-slide-tag[data-jump-slide]:focus-visible {
+  background: var(--cover-accent);
+  border-color: var(--cover-accent);
+}
+
 /* Slide 14: Thank You (High-contrast on Dark Navy Canvas) */
 .thankyou-wrap { display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 100%; text-align: center; padding: 24px 24px 8px; }
 .thankyou-main { margin: auto 0; }
@@ -2382,7 +2648,8 @@ body.laser-active {
 .kpi-card,
 .bento-card,
 .decision-box,
-.ref-card {
+.ref-card,
+.ai-disclosure {
   transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.22s ease,
@@ -2400,6 +2667,7 @@ body.laser-active {
 .chain-card:hover,
 .h2h-card--blue:hover,
 .kpi-card:hover,
+.kpi-card--blue:hover,
 .bento-card:hover,
 .decision-box:hover,
 .ref-card--reg:hover {
@@ -2447,7 +2715,8 @@ body.laser-active {
 .kpi-card--alert:hover,
 .bento-card--amber:hover,
 .decision-box--amber:hover,
-.ref-card--lit:hover {
+.ref-card--lit:hover,
+.ai-disclosure:hover {
   position: relative;
   z-index: 3;
   transform: translateY(-3px) !important;
@@ -2472,7 +2741,7 @@ body.laser-active {
 .chain-card--slate:hover,
 .h2h-card--slate:hover,
 .bento-card--slate:hover,
-.slide[data-slide="9"] .kpi-row-4 > .kpi-card:first-child:hover {
+.kpi-card--slate:hover {
   position: relative;
   z-index: 3;
   transform: translateY(-3px) !important;
@@ -2487,6 +2756,7 @@ body.laser-active {
 .h2h-card__tag,
 .bento-card .lever-num,
 .bento-card .badge,
+.kpi-card__chip,
 .ref-card__eyebrow,
 .figure-card__badge {
   transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), filter 0.22s ease;
@@ -2504,10 +2774,163 @@ body.laser-active {
 .h2h-card:hover .h2h-card__tag,
 .bento-card:hover .lever-num,
 .bento-card:hover .badge,
+.kpi-card:hover .kpi-card__chip,
 .ref-card:hover .ref-card__eyebrow,
 .figure-card:hover .figure-card__badge {
   transform: scale(1.03);
   filter: saturate(1.12);
+}
+
+/* ============================
+   SELECTIVE STEP-BUILD, FOOTER DOTS, TOAST & SPEAKER NOTES (N)
+   ============================ */
+[data-step].is-step-hidden {
+  opacity: 0 !important;
+  visibility: hidden;
+  pointer-events: none !important;
+}
+
+.footer-step-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: var(--radius-sharp);
+}
+
+.footer-step-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  background: rgba(203, 213, 225, 0.32);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-step-dot.is-revealed {
+  background: #FBBF24;
+  transform: scale(1.08);
+}
+
+.deck-toast {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  background: rgba(15, 45, 84, 0.96);
+  color: #FFFFFF;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-left: 3px solid var(--cover-accent);
+  border-radius: var(--radius-sharp);
+  padding: 6px 12px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  box-shadow: 0 12px 28px rgba(3, 10, 24, 0.48);
+  z-index: 2500;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.deck-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.deck-notes {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 400px;
+  max-width: calc(100vw - 40px);
+  background: rgba(11, 37, 69, 0.97);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-top: 3px solid var(--cover-accent);
+  border-radius: var(--radius-sharp);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+  color: #FFFFFF;
+  z-index: 2300;
+  display: none;
+  flex-direction: column;
+  padding: 12px 14px;
+  gap: 8px;
+}
+
+.deck-notes.is-open {
+  display: flex;
+}
+
+.deck-notes__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.deck-notes__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.deck-notes__badge {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #FBBF24;
+  background: rgba(255, 255, 255, 0.10);
+  padding: 2px 6px;
+  border-radius: var(--radius-sharp);
+}
+
+.deck-notes__close {
+  background: transparent;
+  color: #CBD5E1;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: var(--radius-sharp);
+  width: 24px;
+  height: 24px;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.deck-notes__close:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+.deck-notes__input {
+  width: 100%;
+  min-height: 140px;
+  resize: vertical;
+  background: rgba(6, 21, 43, 0.85);
+  color: #F8FAFC;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: var(--radius-sharp);
+  padding: 8px 10px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.45;
+  outline: none;
+}
+
+.deck-notes__input:focus {
+  border-color: #38BDF8;
+}
+
+.deck-notes__foot {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #94A3B8;
 }
 
 /* ============================
@@ -2526,6 +2949,7 @@ html.export-pdf { --plate-shadow: none; --bg-plate: #F6F8FC; }
 html.export-pdf, html.export-pdf body { background: var(--bg-canvas); width: 1280px; height: auto; overflow: visible; }
 html.export-pdf .deck-viewport { display: block; width: 1280px; height: auto; overflow: visible; }
 html.export-pdf .deck-stage { width: 1280px; height: auto; transform: none !important; box-shadow: none; }
+html.export-pdf .slide-body { padding: 0 !important; margin: 0 !important; }
 html.export-pdf .slide--cover {
   position: relative; display: flex !important; flex-direction: column; justify-content: space-between; page-break-after: always; break-after: page;
   background: linear-gradient(135deg, #164478 0%, #0B2545 56%, #06152B 100%) !important;
@@ -2555,6 +2979,12 @@ html.export-pdf * {
   filter: none !important;
   stroke-dashoffset: 0 !important;
 }
+html.export-pdf [data-step],
+html.export-pdf [data-step].is-step-hidden {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
 html.export-pdf .cover-backdrop img { opacity: 0.14 !important; }
 html.export-pdf .slide { pointer-events: auto !important; }
 html.export-pdf .pdf-web-link { display: inline-block !important; pointer-events: auto !important; }
@@ -2567,6 +2997,11 @@ html.export-pdf .prop-compare-svg .bar-fill {
 html.export-pdf .weld-crop-wrap img { clip-path: inset(6px 0 0 6px) !important; }
 html.export-pdf .cover-hex-grid { opacity: 0.36 !important; }
 html.export-pdf .cover-hex-grid .hex-cell { fill-opacity: 0 !important; }
+html.export-pdf .figure-card__stage::after,
+html.export-pdf .slide-header__trace,
+html.export-pdf .footer-step-dots,
+html.export-pdf .deck-toast,
+html.export-pdf .deck-notes,
 html.export-pdf .deck-progress,
 html.export-pdf .shimmer-beam,
 html.export-pdf .stage-ambient-glow,
@@ -2591,6 +3026,7 @@ html.export-pdf .deck-laser { display: none !important; }
   html, body { background: var(--bg-canvas); width: 1280px; height: auto; overflow: visible; }
   .deck-viewport { display: block; width: 1280px; height: auto; overflow: visible; }
   .deck-stage { width: 1280px; height: auto; transform: none !important; box-shadow: none; }
+  .slide-body { padding: 0 !important; margin: 0 !important; }
   .slide--cover {
     position: relative; display: flex !important; flex-direction: column; justify-content: space-between; page-break-after: always; break-after: page;
     background: linear-gradient(135deg, #164478 0%, #0B2545 56%, #06152B 100%) !important;
@@ -2620,6 +3056,12 @@ html.export-pdf .deck-laser { display: none !important; }
     filter: none !important;
     stroke-dashoffset: 0 !important;
   }
+  [data-step],
+  [data-step].is-step-hidden {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
   .cover-backdrop img { opacity: 0.14 !important; }
   .slide { pointer-events: auto !important; }
   .pdf-web-link { display: inline-block !important; pointer-events: auto !important; }
@@ -2632,6 +3074,11 @@ html.export-pdf .deck-laser { display: none !important; }
   .weld-crop-wrap img { clip-path: inset(6px 0 0 6px) !important; }
   .cover-hex-grid { opacity: 0.36 !important; }
   .cover-hex-grid .hex-cell { fill-opacity: 0 !important; }
+  .figure-card__stage::after,
+  .slide-header__trace,
+  .footer-step-dots,
+  .deck-toast,
+  .deck-notes,
   .deck-progress,
   .shimmer-beam,
   .stage-ambient-glow,
@@ -2864,24 +3311,24 @@ html.export-pdf .deck-laser { display: none !important; }
                   </defs>
                   <rect width="640" height="480" fill="#FFFFFF"/>
                   <text x="28" y="28" font-size="13" font-weight="700" fill="#003B73" letter-spacing="0.3">LONGITUDINAL SECTION (SCHEMATIC — NOT TO SCALE)</text>
-                  <g class="s03-layer s03-wire" data-pin-layer="wire">
+                  <g class="s03-layer s03-wire" data-pin-layer="wire" style="cursor:pointer;">
                     <path d="M48,92 Q93.3,78 138.6,92 T229.3,92 T320,92 T410.6,92 T501.3,92 T592,92" fill="none" stroke="#64748B" stroke-width="2.5" stroke-dasharray="4 3"/>
                   </g>
-                  <g class="s03-layer s03-clad" data-pin-layer="clad">
-                    <rect x="36" y="92" width="568" height="60" rx="4" fill="#CBD5E1" stroke="#334155" stroke-width="2"/>
-                    <rect x="36" y="92" width="24" height="60" rx="3" fill="#475569" stroke="#1E293B" stroke-width="1.5"/>
-                    <rect x="580" y="92" width="24" height="60" rx="3" fill="#475569" stroke="#1E293B" stroke-width="1.5"/>
+                  <g class="s03-layer s03-clad" data-pin-layer="clad" style="cursor:pointer;">
+                    <rect x="36" y="92" width="568" height="60" rx="2" fill="#CBD5E1" stroke="#334155" stroke-width="2"/>
+                    <rect x="36" y="92" width="24" height="60" rx="2" fill="#475569" stroke="#1E293B" stroke-width="1.5"/>
+                    <rect x="580" y="92" width="24" height="60" rx="2" fill="#475569" stroke="#1E293B" stroke-width="1.5"/>
                     <rect x="60" y="99" width="520" height="46" fill="#F1F5F9"/>
                   </g>
-                  <g class="s03-layer s03-na" data-pin-layer="na">
+                  <g class="s03-layer s03-na" data-pin-layer="na" style="cursor:pointer;">
                     <rect x="60" y="99" width="222" height="46" fill="#FDE68A" stroke="#D97706" stroke-width="1"/>
                   </g>
-                  <g class="s03-layer s03-slug" data-pin-layer="slug">
+                  <g class="s03-layer s03-slug" data-pin-layer="slug" style="cursor:pointer;">
                     <rect x="64" y="105" width="204" height="34" rx="2" fill="#1E3A8A" fill-opacity="0.82" stroke="#0B2545" stroke-width="1.2"/>
                     <rect x="64" y="105" width="204" height="34" rx="2" fill="url(#s03-slugHatch)"/>
                     <text x="166" y="126" font-size="11.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">U-10 wt% Zr Fuel Slug</text>
                   </g>
-                  <g class="s03-layer s03-plenum" data-pin-layer="plenum">
+                  <g class="s03-layer s03-plenum" data-pin-layer="plenum" style="cursor:pointer;">
                     <rect x="282" y="99" width="298" height="46" fill="#E2E8F0" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3 2"/>
                     <text x="431" y="119" font-size="11.5" font-weight="700" fill="#1E293B" text-anchor="middle">Fission Gas Plenum</text>
                     <text x="431" y="134" font-size="10.5" font-weight="600" fill="#003B73" text-anchor="middle">1.4× fuel volume</text>
@@ -2898,19 +3345,19 @@ html.export-pdf .deck-laser { display: none !important; }
                   </g>
                   <line x1="28" y1="226" x2="612" y2="226" stroke="#E2E8F0" stroke-width="1.5"/>
                   <text x="28" y="256" font-size="13" font-weight="700" fill="#003B73" letter-spacing="0.3">RADIAL CROSS-SECTION (NUREG/CR-7305 REFERENCE)</text>
-                  <g class="s03-layer s03-ring s03-clad" data-pin-layer="clad">
+                  <g class="s03-layer s03-ring s03-clad" data-pin-layer="clad" style="cursor:pointer;">
                     <circle cx="216" cy="366" r="82" fill="#CBD5E1" stroke="#334155" stroke-width="2.2"/>
                   </g>
-                  <g class="s03-layer s03-ring s03-na" data-pin-layer="na">
+                  <g class="s03-layer s03-ring s03-na" data-pin-layer="na" style="cursor:pointer;">
                     <circle cx="216" cy="366" r="67" fill="#FDE68A" stroke="#D97706" stroke-width="1.5"/>
                   </g>
-                  <g class="s03-layer s03-ring s03-slug" data-pin-layer="slug">
+                  <g class="s03-layer s03-ring s03-slug" data-pin-layer="slug" style="cursor:pointer;">
                     <circle cx="216" cy="366" r="52" fill="#1E3A8A" fill-opacity="0.85" stroke="#0B2545" stroke-width="1.5"/>
                     <circle cx="216" cy="366" r="52" fill="url(#s03-slugHatch)"/>
                     <text x="216" y="363" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">U-10Zr</text>
                     <text x="216" y="378" font-size="10.5" font-weight="600" fill="#E2E8F0" text-anchor="middle">Slug</text>
                   </g>
-                  <g class="s03-layer s03-ring s03-wire" data-pin-layer="wire">
+                  <g class="s03-layer s03-ring s03-wire" data-pin-layer="wire" style="cursor:pointer;">
                     <circle cx="285" cy="305" r="10.5" fill="#94A3B8" stroke="#334155" stroke-width="1.6"/>
                   </g>
                   <g class="s03-callout">
@@ -2918,21 +3365,21 @@ html.export-pdf .deck-laser { display: none !important; }
                     <text x="340" y="282" font-size="10.5" font-weight="600" fill="#475569">Helical Wire-Wrap Spacer</text>
                     <line class="s03-leader" x1="248" y1="340" x2="340" y2="318" stroke="#003B73" stroke-width="1.4"/>
                     <circle cx="248" cy="340" r="2.5" fill="#FFFFFF" stroke="#003B73" stroke-width="1.4"/>
-                    <rect x="340" y="300" width="272" height="36" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1"/>
+                    <rect x="340" y="300" width="272" height="36" rx="2" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1"/>
                     <text x="352" y="322" font-size="11.5" font-weight="700" fill="#003B73">U-10Zr Fuel Slug: OD = 5.0 mm</text>
                     <line class="s03-leader" x1="275" y1="366" x2="340" y2="368" stroke="#D97706" stroke-width="1.4"/>
                     <circle cx="275" cy="366" r="2.5" fill="#D97706"/>
-                    <rect x="340" y="350" width="272" height="36" rx="4" fill="#FFFBEB" stroke="#F59E0B" stroke-width="1"/>
+                    <rect x="340" y="350" width="272" height="36" rx="2" fill="#FFFBEB" stroke="#F59E0B" stroke-width="1"/>
                     <text x="352" y="372" font-size="11.5" font-weight="700" fill="#C2410C">Liquid Na Bond: 75% smear density</text>
                     <line class="s03-leader" x1="284" y1="396" x2="340" y2="424" stroke="#334155" stroke-width="1.4"/>
                     <circle cx="284" cy="396" r="2.5" fill="#334155"/>
-                    <rect x="340" y="402" width="272" height="46" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1"/>
+                    <rect x="340" y="402" width="272" height="46" rx="2" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1"/>
                     <text x="352" y="422" font-size="11.5" font-weight="700" fill="#1E293B">HT9 Cladding: OD = 6.9 mm</text>
                     <text x="352" y="438" font-size="11" font-weight="600" fill="#475569">Wall thickness = 0.6 mm (PICT &lt; 650 °C)</text>
                     <line x1="112" y1="284" x2="112" y2="448" stroke="#334155" stroke-width="1.2"/>
                     <line x1="106" y1="284" x2="132" y2="284" stroke="#334155" stroke-width="1" stroke-dasharray="2 2"/>
                     <line x1="106" y1="448" x2="132" y2="448" stroke="#334155" stroke-width="1" stroke-dasharray="2 2"/>
-                    <rect x="28" y="353" width="74" height="26" rx="3" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1"/>
+                    <rect x="28" y="353" width="74" height="26" rx="2" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1"/>
                     <text x="65" y="370" font-size="11" font-weight="700" fill="#1E293B" text-anchor="middle">Ø 6.9 mm</text>
                   </g>
                 </svg>
@@ -3031,7 +3478,7 @@ html.export-pdf .deck-laser { display: none !important; }
               <line class="phase-arrow" x1="944" y1="31" x2="962" y2="31" stroke="#64748B" stroke-width="1.6" marker-end="url(#s04-phaseArr)"/>
 
               <!-- Node 5 (Isotropic — Green to match Isotropy Advantage card) -->
-              <g class="phase-node phase-node--iso">
+              <g class="phase-node phase-node--iso" data-phase-link="iso" style="cursor:pointer;">
                 <rect x="968" y="7" width="224" height="48" rx="2" fill="#F0FDF4" stroke="#15803D" stroke-width="1.6"/>
                 <text x="1080" y="25" font-size="11" font-weight="700" fill="#15803D" text-anchor="middle" font-family="IBM Plex Mono, monospace">&gt;700 &#176;C (Single Phase)</text>
                 <text x="1080" y="44" font-size="13.5" font-weight="700" fill="#14532D" text-anchor="middle">&#947;-BCC (Isotropic)</text>
@@ -3041,38 +3488,48 @@ html.export-pdf .deck-laser { display: none !important; }
             <div class="split-grid grid--45-55 bottom-fill">
               <div class="text-col">
                 <svg class="prop-compare-svg" viewBox="0 0 480 156" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Segoe UI, Arial, sans-serif" role="img" aria-label="U-10Zr vs MOX Thermal Conductivity and Bulk &amp; Heavy-Metal Density">
+                  <defs>
+                    <linearGradient id="s04-barGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#0B2545"/>
+                      <stop offset="100%" stop-color="#1D4ED8"/>
+                    </linearGradient>
+                  </defs>
                   <rect width="480" height="156" rx="2" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
 
                   <!-- Group 1: Thermal Conductivity at 650 °C -->
-                  <text x="14" y="21" font-size="11.5" font-weight="700" fill="#0B2545">Thermal Conductivity (W/(m&#183;K)) at 650 &#176;C</text>
-                  <text x="466" y="21" font-size="11" font-weight="700" fill="#1D4ED8" text-anchor="end">U-10Zr ~32 vs MOX ~2&#8211;4</text>
+                  <g class="prop-bar-group">
+                    <text x="14" y="21" font-size="11.5" font-weight="700" fill="#0B2545">Thermal Conductivity (W/(m&#183;K)) at 650 &#176;C</text>
+                    <text x="466" y="21" font-size="11" font-weight="700" fill="#1D4ED8" text-anchor="end">U-10Zr ~32 vs MOX ~2&#8211;4</text>
 
-                  <!-- Bar 1: U-10Zr (~32 -> 100%) -->
-                  <rect x="14" y="28" width="452" height="20" rx="2" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
-                  <rect class="bar-fill" x="14" y="28" width="452" height="20" rx="2" fill="#003B73"/>
-                  <text x="24" y="42" font-size="10.5" font-weight="700" fill="#FFFFFF">U-10Zr: ~32 W/(m&#183;K)</text>
+                    <!-- Bar 1: U-10Zr (~32 -> 100%) -->
+                    <rect x="14" y="28" width="452" height="20" rx="2" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
+                    <rect class="bar-fill" x="14" y="28" width="452" height="20" rx="2" fill="url(#s04-barGrad)"/>
+                    <text x="24" y="42" font-size="10.5" font-weight="700" fill="#FFFFFF">U-10Zr: ~32 W/(m&#183;K)</text>
 
-                  <!-- Bar 2: MOX (~2-4 -> 10%) -->
-                  <rect x="14" y="52" width="452" height="20" rx="2" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
-                  <rect class="bar-fill" x="14" y="52" width="45" height="20" rx="2" fill="#94A3B8"/>
-                  <text x="67" y="66" font-size="10.5" font-weight="700" fill="#1E293B">MOX: ~2&#8211;4</text>
+                    <!-- Bar 2: MOX (~2-4 -> 10%) -->
+                    <rect x="14" y="52" width="452" height="20" rx="2" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
+                    <rect class="bar-fill" x="14" y="52" width="45" height="20" rx="2" fill="#94A3B8"/>
+                    <text x="67" y="66" font-size="10.5" font-weight="700" fill="#1E293B">MOX: ~2&#8211;4</text>
+                  </g>
 
                   <!-- Divider -->
                   <line x1="14" y1="82" x2="466" y2="82" stroke="#E2E8F0" stroke-width="1"/>
 
                   <!-- Group 2: Theoretical & Heavy-Metal Density (g/cm³) -->
-                  <text x="14" y="98" font-size="11.5" font-weight="700" fill="#0B2545">Bulk &amp; Heavy-Metal Density (g/cm&#179;)</text>
-                  <text x="466" y="98" font-size="11" font-weight="700" fill="#1D4ED8" text-anchor="end">16.0 vs 10.9 (+48% HM)</text>
+                  <g class="prop-bar-group">
+                    <text x="14" y="98" font-size="11.5" font-weight="700" fill="#0B2545">Bulk &amp; Heavy-Metal Density (g/cm&#179;)</text>
+                    <text x="466" y="98" font-size="11" font-weight="700" fill="#1D4ED8" text-anchor="end">16.0 vs 10.9 (+48% HM)</text>
 
-                  <!-- Bar 3: U-10Zr (15.5-16.2 -> 100%) -->
-                  <rect x="14" y="105" width="452" height="20" rx="2" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
-                  <rect class="bar-fill" x="14" y="105" width="452" height="20" rx="2" fill="#003B73"/>
-                  <text x="24" y="119" font-size="10.2" font-weight="700" fill="#FFFFFF">U-10Zr (as-cast): 15.5&#8211;16.2 (~14.4 g-U/cm&#179;)</text>
+                    <!-- Bar 3: U-10Zr (15.5-16.2 -> 100%) -->
+                    <rect x="14" y="105" width="452" height="20" rx="2" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
+                    <rect class="bar-fill" x="14" y="105" width="452" height="20" rx="2" fill="url(#s04-barGrad)"/>
+                    <text x="24" y="119" font-size="10.2" font-weight="700" fill="#FFFFFF">U-10Zr (as-cast): 15.5&#8211;16.2 (~14.4 g-U/cm&#179;)</text>
 
-                  <!-- Bar 4: MOX (~10.9 -> 68%) -->
-                  <rect x="14" y="128" width="452" height="20" rx="2" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
-                  <rect class="bar-fill" x="14" y="128" width="307" height="20" rx="2" fill="#475569"/>
-                  <text x="24" y="142" font-size="10.2" font-weight="700" fill="#FFFFFF">MOX (sintered): ~10.9 (~9.7 g-HM/cm&#179;)</text>
+                    <!-- Bar 4: MOX (~10.9 -> 68%) -->
+                    <rect x="14" y="128" width="452" height="20" rx="2" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
+                    <rect class="bar-fill" x="14" y="128" width="307" height="20" rx="2" fill="#475569"/>
+                    <text x="24" y="142" font-size="10.2" font-weight="700" fill="#FFFFFF">MOX (sintered): ~10.9 (~9.7 g-HM/cm&#179;)</text>
+                  </g>
                 </svg>
 
                 <div class="prop-mini-card">
@@ -3081,7 +3538,7 @@ html.export-pdf .deck-laser { display: none !important; }
 
                 <ul class="bullet-list">
                   <li><strong>Role of 10 wt% Zr:</strong> Raises solidus to ~1248 &deg;C (lowest U&ndash;Zr solidus &gt;1100 &deg;C in Zr-depleted zone) and slows U&ndash;Fe interdiffusion.</li>
-                  <li class="callout-green"><strong>Isotropy Advantage:</strong> High-temperature <strong>&gamma;-BCC</strong> phase resists anisotropic irradiation growth seen in orthorhombic &alpha;-U.</li>
+                  <li class="callout-green" data-phase-link="iso"><strong>Isotropy Advantage:</strong> High-temperature <strong>&gamma;-BCC</strong> phase resists anisotropic irradiation growth seen in orthorhombic &alpha;-U.</li>
                 </ul>
               </div>
 
@@ -3131,12 +3588,105 @@ html.export-pdf .deck-laser { display: none !important; }
             <figure class="figure-card">
               <div class="figure-card__stage">
                 <span class="figure-card__badge">Pin Fabrication Flow</span>
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMTggNjAwIDQwMCIgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZvbnQtZmFtaWx5PSJJbnRlciwgU2Vnb2UgVUksIEFyaWFsLCBzYW5zLXNlcmlmIj4KICA8ZGVmcz4KICAgIDxtYXJrZXIgaWQ9ImFyckIiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIHJlZlg9IjUiIHJlZlk9IjMuNSIgb3JpZW50PSJhdXRvIj4KICAgICAgPHBhdGggZD0iTTAsMSBMNiwzLjUgTDAsNiBaIiBmaWxsPSIjMDAzQjczIi8+CiAgICA8L21hcmtlcj4KICAgIDxtYXJrZXIgaWQ9ImFyckciIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIHJlZlg9IjUiIHJlZlk9IjMuNSIgb3JpZW50PSJhdXRvIj4KICAgICAgPHBhdGggZD0iTTAsMSBMNiwzLjUgTDAsNiBaIiBmaWxsPSIjNjQ3NDhCIi8+CiAgICA8L21hcmtlcj4KICA8L2RlZnM+CgogIDxyZWN0IHg9IjAiIHk9IjE4IiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgcng9IjgiIGZpbGw9IiNGRkZGRkYiLz4KCiAgPCEtLSA9PT09PT09PT09PT09PT09PSBTVEFHRSAxID09PT09PT09PT09PT09PT09IC0tPgogIDxyZWN0IHg9IjIwIiB5PSIyOCIgd2lkdGg9IjU2MCIgaGVpZ2h0PSIxMDgiIHJ4PSI2IiBmaWxsPSIjRjhGQUZDIiBzdHJva2U9IiNDQkQ1RTEiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHJlY3QgeD0iMjAiIHk9IjI4IiB3aWR0aD0iNTYwIiBoZWlnaHQ9IjI2IiByeD0iNiIgZmlsbD0iIzAwM0I3MyIvPgogIDx0ZXh0IHg9IjMyIiB5PSI0NSIgZm9udC1zaXplPSIxMSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI0ZGRkZGRiI+U1RBR0UgMDEg4oCiIFZBQ1VVTSBJTkpFQ1RJT04gQ0FTVElORyBPRiBVLTEwd3QlWnIgU0xVR1M8L3RleHQ+CiAgPHRleHQgeD0iNTY4IiB5PSI0NSIgZm9udC1zaXplPSIxMCIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0iIzkzQzVGRCIgdGV4dC1hbmNob3I9ImVuZCI+TlVSRUcvQ1ItNzMwNSBTcGVjPC90ZXh0PgoKICA8IS0tIFN0ZXAgMUEgLS0+CiAgPHJlY3QgeD0iMzAiIHk9IjYyIiB3aWR0aD0iMTY2IiBoZWlnaHQ9IjY0IiByeD0iNCIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjOTRBM0I4IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSIzOCIgeT0iODAiIGZvbnQtc2l6ZT0iMTAuOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzAwM0I3MyI+MUEuIFZJTSBBbGxveSBNZWx0aW5nPC90ZXh0PgogIDx0ZXh0IHg9IjM4IiB5PSI5NyIgZm9udC1zaXplPSIxMCIgZmlsbD0iIzMzNDE1NSI+VSArIDEwIHd0JSBaciAo4omlOTkuOSUgcHVyZSk8L3RleHQ+CiAgPHRleHQgeD0iMzgiIHk9IjExMyIgZm9udC1zaXplPSIxMCIgZmlsbD0iIzQ3NTU2OSI+VmFjdXVtICZsdDsgMjAwIM68bSBIZyAvIEFyPC90ZXh0PgoKICA8bGluZSB4MT0iMTk4IiB5MT0iOTQiIHgyPSIyMTMiIHkyPSI5NCIgc3Ryb2tlPSIjNjQ3NDhCIiBzdHJva2Utd2lkdGg9IjEuNSIgbWFya2VyLWVuZD0idXJsKCNhcnJHKSIvPgoKICA8IS0tIFN0ZXAgMUIgLS0+CiAgPHJlY3QgeD0iMjE3IiB5PSI2MiIgd2lkdGg9IjE2NiIgaGVpZ2h0PSI2NCIgcng9IjQiIGZpbGw9IiNGRkZGRkYiIHN0cm9rZT0iIzk0QTNCOCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iMjI1IiB5PSI4MCIgZm9udC1zaXplPSIxMC44IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMDAzQjczIj4xQi4gUXVhcnR6LU1vbGQgQ2FzdDwvdGV4dD4KICA8dGV4dCB4PSIyMjUiIHk9Ijk3IiBmb250LXNpemU9IjEwIiBmaWxsPSIjMzM0MTU1Ij5QcmVzc3VyaXplZCBtZWx0IGluamVjdGlvbjwvdGV4dD4KICA8dGV4dCB4PSIyMjUiIHk9IjExMyIgZm9udC1zaXplPSIxMCIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0iIzAwM0I3MyI+WnJP4oKCLWNvYXRlZCBzaWxpY2EgbW9sZHM8L3RleHQ+CgogIDxsaW5lIHgxPSIzODUiIHkxPSI5NCIgeDI9IjQwMCIgeTI9Ijk0IiBzdHJva2U9IiM2NDc0OEIiIHN0cm9rZS13aWR0aD0iMS41IiBtYXJrZXItZW5kPSJ1cmwoI2FyckcpIi8+CgogIDwhLS0gU3RlcCAxQyAtLT4KICA8cmVjdCB4PSI0MDQiIHk9IjYyIiB3aWR0aD0iMTY2IiBoZWlnaHQ9IjY0IiByeD0iNCIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjOTRBM0I4IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI0MTIiIHk9IjgwIiBmb250LXNpemU9IjEwLjgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMwMDNCNzMiPjFDLiBEZW1vbGQgJmFtcDsgU2x1ZyBRQTwvdGV4dD4KICA8dGV4dCB4PSI0MTIiIHk9Ijk3IiBmb250LXNpemU9IjEwIiBmaWxsPSIjMzM0MTU1Ij5TaGVhciB0byBsZW5ndGggJmFtcDsgd2VpZ2h0PC90ZXh0PgogIDx0ZXh0IHg9IjQxMiIgeT0iMTEzIiBmb250LXNpemU9IjEwIiBmb250LXdlaWdodD0iNjAwIiBmaWxsPSIjMzM0MTU1Ij4rMC4zIC8g4oiSMC41IGcvY23CsyBkZW5zaXR5PC90ZXh0PgoKICA8IS0tIENvbm5lY3RvciAxIC0+IDIgLS0+CiAgPGxpbmUgeDE9IjMwMCIgeTE9IjEzNiIgeDI9IjMwMCIgeTI9IjE1OCIgc3Ryb2tlPSIjMDAzQjczIiBzdHJva2Utd2lkdGg9IjEuOCIgbWFya2VyLWVuZD0idXJsKCNhcnJCKSIvPgoKICA8IS0tID09PT09PT09PT09PT09PT09IFNUQUdFIDIgPT09PT09PT09PT09PT09PT0gLS0+CiAgPHJlY3QgeD0iMjAiIHk9IjE2MiIgd2lkdGg9IjU2MCIgaGVpZ2h0PSIxMDgiIHJ4PSI2IiBmaWxsPSIjRkZGQkVCIiBzdHJva2U9IiNGNTlFMEIiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHJlY3QgeD0iMjAiIHk9IjE2MiIgd2lkdGg9IjU2MCIgaGVpZ2h0PSIyNiIgcng9IjYiIGZpbGw9IiNEOTc3MDYiLz4KICA8dGV4dCB4PSIzMiIgeT0iMTc5IiBmb250LXNpemU9IjExIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjRkZGRkZGIj5TVEFHRSAwMiDigKIgUElOIExPQURJTkcsIEVORC1DQVAgSk9JTklORyAmYW1wOyBUSEVSTUFMIE5hLUJPTkRJTkc8L3RleHQ+CiAgPHRleHQgeD0iNTY4IiB5PSIxNzkiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtd2VpZ2h0PSI2MDAiIGZpbGw9IiNGRUYzQzciIHRleHQtYW5jaG9yPSJlbmQiPjc1JSBTbWVhciBEZW5zaXR5PC90ZXh0PgoKICA8IS0tIFN0ZXAgMkEgLS0+CiAgPHJlY3QgeD0iMzAiIHk9IjE5NiIgd2lkdGg9IjE2NiIgaGVpZ2h0PSI2NCIgcng9IjQiIGZpbGw9IiNGRkZGRkYiIHN0cm9rZT0iI0Y1OUUwQiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iMzgiIHk9IjIxNCIgZm9udC1zaXplPSIxMC44IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjQjQ1MzA5Ij4yQS4gSFQ5ICZhbXA7IE5hIExvYWRpbmc8L3RleHQ+CiAgPHRleHQgeD0iMzgiIHk9IjIzMSIgZm9udC1zaXplPSIxMCIgZmlsbD0iIzMzNDE1NSI+Tm9ybS4gMTA1MCDCsEMgLyBUZW1wLiA3NTAgwrBDPC90ZXh0PgogIDx0ZXh0IHg9IjM4IiB5PSIyNDciIGZvbnQtc2l6ZT0iMTAiIGZvbnQtd2VpZ2h0PSI2MDAiIGZpbGw9IiNCNDUzMDkiPlB1cmlmaWVkIE5hIChPIOKJpCAxMDAgcHBtKTwvdGV4dD4KCiAgPGxpbmUgeDE9IjE5OCIgeTE9IjIyOCIgeDI9IjIxMyIgeTI9IjIyOCIgc3Ryb2tlPSIjRDk3NzA2IiBzdHJva2Utd2lkdGg9IjEuNSIgbWFya2VyLWVuZD0idXJsKCNhcnJHKSIvPgoKICA8IS0tIFN0ZXAgMkIgLS0+CiAgPHJlY3QgeD0iMjE3IiB5PSIxOTYiIHdpZHRoPSIxNjYiIGhlaWdodD0iNjQiIHJ4PSI0IiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiNGNTlFMEIiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjIyNSIgeT0iMjE0IiBmb250LXNpemU9IjEwLjgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNCNDUzMDkiPjJCLiBIZSBGaWxsICZhbXA7IEVuZC1XZWxkPC90ZXh0PgogIDx0ZXh0IHg9IjIyNSIgeT0iMjMxIiBmb250LXNpemU9IjEwIiBmaWxsPSIjMzM0MTU1Ij4xLjTDlyBIZSBwbGVudW0gYmFja2ZpbGw8L3RleHQ+CiAgPHRleHQgeD0iMjI1IiB5PSIyNDciIGZvbnQtc2l6ZT0iMTAiIGZvbnQtd2VpZ2h0PSI2MDAiIGZpbGw9IiNCNDUzMDkiPkdUQVcvVElHIChQUlcgZm9yIE9EUyk8L3RleHQ+CgogIDxsaW5lIHgxPSIzODUiIHkxPSIyMjgiIHgyPSI0MDAiIHkyPSIyMjgiIHN0cm9rZT0iI0Q5NzcwNiIgc3Ryb2tlLXdpZHRoPSIxLjUiIG1hcmtlci1lbmQ9InVybCgjYXJyRykiLz4KCiAgPCEtLSBTdGVwIDJDIC0tPgogIDxyZWN0IHg9IjQwNCIgeT0iMTk2IiB3aWR0aD0iMTY2IiBoZWlnaHQ9IjY0IiByeD0iNCIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjRjU5RTBCIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI0MTIiIHk9IjIxNCIgZm9udC1zaXplPSIxMC44IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjQjQ1MzA5Ij4yQy4gNTAwIMKwQyBCb25kICZhbXA7IFBXSFQ8L3RleHQ+CiAgPHRleHQgeD0iNDEyIiB5PSIyMzEiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9IiMzMzQxNTUiPlRoZXJtYWwvaW1wYWN0IE5hIHdldHRpbmc8L3RleHQ+CiAgPHRleHQgeD0iNDEyIiB5PSIyNDciIGZvbnQtc2l6ZT0iMTAiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNDMjQxMEMiPn43NTAgwrBDIFBXSFQgdGVtcGVycyBIQVo8L3RleHQ+CgogIDwhLS0gQ29ubmVjdG9yIDIgLT4gMyAtLT4KICA8bGluZSB4MT0iMzAwIiB5MT0iMjcwIiB4Mj0iMzAwIiB5Mj0iMjkyIiBzdHJva2U9IiMwMDNCNzMiIHN0cm9rZS13aWR0aD0iMS44IiBtYXJrZXItZW5kPSJ1cmwoI2FyckIpIi8+CgogIDwhLS0gPT09PT09PT09PT09PT09PT0gU1RBR0UgMyA9PT09PT09PT09PT09PT09PSAtLT4KICA8cmVjdCB4PSIyMCIgeT0iMjk2IiB3aWR0aD0iNTYwIiBoZWlnaHQ9IjEwOCIgcng9IjYiIGZpbGw9IiNGMEZERjQiIHN0cm9rZT0iIzg2RUZBQyIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8cmVjdCB4PSIyMCIgeT0iMjk2IiB3aWR0aD0iNTYwIiBoZWlnaHQ9IjI2IiByeD0iNiIgZmlsbD0iIzE1ODAzRCIvPgogIDx0ZXh0IHg9IjMyIiB5PSIzMTMiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNGRkZGRkYiPlNUQUdFIDAzIOKAoiBOT04tREVTVFJVQ1RJVkUgQk9ORCAmYW1wOyBDTE9TVVJFIFFVQUxJRklDQVRJT048L3RleHQ+CiAgPHRleHQgeD0iNTY4IiB5PSIzMTMiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtd2VpZ2h0PSI2MDAiIGZpbGw9IiNEQ0ZDRTciIHRleHQtYW5jaG9yPSJlbmQiPjEwMCUgUGluIEluc3BlY3Rpb248L3RleHQ+CgogIDwhLS0gU3RlcCAzQSAtLT4KICA8cmVjdCB4PSIzMCIgeT0iMzMwIiB3aWR0aD0iMTY2IiBoZWlnaHQ9IjY0IiByeD0iNCIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjODZFRkFDIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSIzOCIgeT0iMzQ4IiBmb250LXNpemU9IjEwLjgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMxNjY1MzQiPjNBLiBFZGR5LUN1cnJlbnQgLyBVVDwvdGV4dD4KICA8dGV4dCB4PSIzOCIgeT0iMzY1IiBmb250LXNpemU9IjEwIiBmaWxsPSIjMzM0MTU1Ij5TY2FucyBhbm51bGFyIE5hIGJvbmQgZ2FwPC90ZXh0PgogIDx0ZXh0IHg9IjM4IiB5PSIzODEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtd2VpZ2h0PSI2MDAiIGZpbGw9IiMxNjY1MzQiPlJlamVjdHMgdW5ib25kZWQgdm9pZHM8L3RleHQ+CgogIDxsaW5lIHgxPSIxOTgiIHkxPSIzNjIiIHgyPSIyMTMiIHkyPSIzNjIiIHN0cm9rZT0iIzE1ODAzRCIgc3Ryb2tlLXdpZHRoPSIxLjUiIG1hcmtlci1lbmQ9InVybCgjYXJyRykiLz4KCiAgPCEtLSBTdGVwIDNCIC0tPgogIDxyZWN0IHg9IjIxNyIgeT0iMzMwIiB3aWR0aD0iMTY2IiBoZWlnaHQ9IjY0IiByeD0iNCIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjODZFRkFDIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSIyMjUiIHk9IjM0OCIgZm9udC1zaXplPSIxMC44IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMTY2NTM0Ij4zQi4gWC1SYXkgUmFkaW9ncmFwaHk8L3RleHQ+CiAgPHRleHQgeD0iMjI1IiB5PSIzNjUiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9IiMzMzQxNTUiPlZlcmlmaWVzIE5hIGxldmVsIG1lbmlzY3VzPC90ZXh0PgogIDx0ZXh0IHg9IjIyNSIgeT0iMzgxIiBmb250LXNpemU9IjEwIiBmb250LXdlaWdodD0iNjAwIiBmaWxsPSIjMzM0MTU1Ij4mYW1wOyBlbmQtcGx1ZyB3ZWxkIHNvdW5kbmVzczwvdGV4dD4KCiAgPGxpbmUgeDE9IjM4NSIgeTE9IjM2MiIgeDI9IjQwMCIgeTI9IjM2MiIgc3Ryb2tlPSIjMTU4MDNEIiBzdHJva2Utd2lkdGg9IjEuNSIgbWFya2VyLWVuZD0idXJsKCNhcnJHKSIvPgoKICA8IS0tIFN0ZXAgM0MgLS0+CiAgPHJlY3QgeD0iNDA0IiB5PSIzMzAiIHdpZHRoPSIxNjYiIGhlaWdodD0iNjQiIHJ4PSI0IiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiM4NkVGQUMiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjQxMiIgeT0iMzQ4IiBmb250LXNpemU9IjEwLjgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMxNjY1MzQiPjNDLiBIZSBMZWFrICZhbXA7IFdpcmUtV3JhcDwvdGV4dD4KICA8dGV4dCB4PSI0MTIiIHk9IjM2NSIgZm9udC1zaXplPSIxMCIgZmlsbD0iIzMzNDE1NSI+TWFzcy1zcGVjIEhlIGxlYWsgY2hlY2s8L3RleHQ+CiAgPHRleHQgeD0iNDEyIiB5PSIzODEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtd2VpZ2h0PSI2MDAiIGZpbGw9IiMxNjY1MzQiPlNwaXJhbCBIVDkgc3BhY2VyIGF0dGFjaG1lbnQ8L3RleHQ+Cjwvc3ZnPgo=" alt="U-10Zr pin fabrication flow" data-fallback />
-                <div class="figure-placeholder">
-                  <span class="figure-placeholder__tag">Figure Placeholder</span>
-                  <span class="figure-placeholder__path">assets/schematics/s05-fabrication-flow.svg</span>
-                  <span class="figure-placeholder__hint">Pin fabrication flow: injection casting, Na-bonding &amp; UT inspection (PNNL-35642 / Carmack 2009).</span>
-                </div>
+                <svg class="s05-inline-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 18 600 400" font-family="Inter, Segoe UI, Arial, sans-serif" role="img" aria-label="U-10Zr pin fabrication flow">
+                  <defs>
+                    <marker id="s05-arrB" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+                      <path d="M0,1 L6,3.5 L0,6 Z" fill="#003B73"/>
+                    </marker>
+                    <marker id="s05-arrG" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+                      <path d="M0,1 L6,3.5 L0,6 Z" fill="#64748B"/>
+                    </marker>
+                  </defs>
+                  <rect x="0" y="18" width="600" height="400" rx="2" fill="#FFFFFF"/>
+
+                  <!-- STAGE 1 -->
+                  <g class="s05-stage" data-stage-idx="1">
+                    <rect x="20" y="28" width="560" height="108" rx="2" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+                    <rect x="20" y="28" width="560" height="26" rx="2" fill="#003B73"/>
+                    <text x="32" y="45" font-size="11" font-weight="700" fill="#FFFFFF">STAGE 01 • VACUUM INJECTION CASTING OF U-10wt%Zr SLUGS</text>
+                    <text x="568" y="45" font-size="10" font-weight="600" fill="#93C5FD" text-anchor="end">NUREG/CR-7305 Spec</text>
+                    <g class="s05-step">
+                      <rect x="30" y="62" width="166" height="64" rx="2" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1"/>
+                      <text x="38" y="80" font-size="10.8" font-weight="700" fill="#003B73">1A. VIM Alloy Melting</text>
+                      <text x="38" y="97" font-size="10" fill="#334155">U + 10 wt% Zr (≥99.9% pure)</text>
+                      <text x="38" y="113" font-size="10" fill="#475569">Vacuum &lt; 200 μm Hg / Ar</text>
+                    </g>
+                    <line class="s05-arrow" x1="198" y1="94" x2="213" y2="94" stroke="#64748B" stroke-width="1.5" marker-end="url(#s05-arrG)"/>
+                    <g class="s05-step">
+                      <rect x="217" y="62" width="166" height="64" rx="2" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1"/>
+                      <text x="225" y="80" font-size="10.8" font-weight="700" fill="#003B73">1B. Quartz-Mold Cast</text>
+                      <text x="225" y="97" font-size="10" fill="#334155">Pressurized melt injection</text>
+                      <text x="225" y="113" font-size="10" font-weight="600" fill="#003B73">ZrO₂-coated silica molds</text>
+                    </g>
+                    <line class="s05-arrow" x1="385" y1="94" x2="400" y2="94" stroke="#64748B" stroke-width="1.5" marker-end="url(#s05-arrG)"/>
+                    <g class="s05-step">
+                      <rect x="404" y="62" width="166" height="64" rx="2" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1"/>
+                      <text x="412" y="80" font-size="10.8" font-weight="700" fill="#003B73">1C. Demold &amp; Slug QA</text>
+                      <text x="412" y="97" font-size="10" fill="#334155">Shear to length &amp; weight</text>
+                      <text x="412" y="113" font-size="10" font-weight="600" fill="#334155">+0.3 / −0.5 g/cm³ density</text>
+                    </g>
+                  </g>
+
+                  <line class="s05-conn" x1="300" y1="136" x2="300" y2="158" stroke="#003B73" stroke-width="1.8" marker-end="url(#s05-arrB)"/>
+
+                  <!-- STAGE 2 -->
+                  <g class="s05-stage" data-stage-idx="2">
+                    <rect x="20" y="162" width="560" height="108" rx="2" fill="#FFFBEB" stroke="#F59E0B" stroke-width="1.5"/>
+                    <rect x="20" y="162" width="560" height="26" rx="2" fill="#D97706"/>
+                    <text x="32" y="179" font-size="11" font-weight="700" fill="#FFFFFF">STAGE 02 • PIN LOADING, END-CAP JOINING &amp; THERMAL Na-BONDING</text>
+                    <text x="568" y="179" font-size="10" font-weight="600" fill="#FEF3C7" text-anchor="end">75% Smear Density</text>
+                    <g class="s05-step">
+                      <rect x="30" y="196" width="166" height="64" rx="2" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1"/>
+                      <text x="38" y="214" font-size="10.8" font-weight="700" fill="#B45309">2A. HT9 &amp; Na Loading</text>
+                      <text x="38" y="231" font-size="10" fill="#334155">Norm. 1050 °C / Temp. 750 °C</text>
+                      <text x="38" y="247" font-size="10" font-weight="600" fill="#B45309">Purified Na (O ≤ 100 ppm)</text>
+                    </g>
+                    <line class="s05-arrow" x1="198" y1="228" x2="213" y2="228" stroke="#D97706" stroke-width="1.5" marker-end="url(#s05-arrG)"/>
+                    <g class="s05-step">
+                      <rect x="217" y="196" width="166" height="64" rx="2" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1"/>
+                      <text x="225" y="214" font-size="10.8" font-weight="700" fill="#B45309">2B. He Fill &amp; End-Weld</text>
+                      <text x="225" y="231" font-size="10" fill="#334155">1.4× He plenum backfill</text>
+                      <text x="225" y="247" font-size="10" font-weight="600" fill="#B45309">GTAW/TIG (PRW for ODS)</text>
+                    </g>
+                    <line class="s05-arrow" x1="385" y1="228" x2="400" y2="228" stroke="#D97706" stroke-width="1.5" marker-end="url(#s05-arrG)"/>
+                    <g class="s05-step">
+                      <rect x="404" y="196" width="166" height="64" rx="2" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1"/>
+                      <text x="412" y="214" font-size="10.8" font-weight="700" fill="#B45309">2C. 500 °C Bond &amp; PWHT</text>
+                      <text x="412" y="231" font-size="10" fill="#334155">Thermal/impact Na wetting</text>
+                      <text x="412" y="247" font-size="10" font-weight="700" fill="#C2410C">~750 °C PWHT tempers HAZ</text>
+                    </g>
+                  </g>
+
+                  <line class="s05-conn" x1="300" y1="270" x2="300" y2="292" stroke="#003B73" stroke-width="1.8" marker-end="url(#s05-arrB)"/>
+
+                  <!-- STAGE 3 -->
+                  <g class="s05-stage" data-stage-idx="3">
+                    <rect x="20" y="296" width="560" height="108" rx="2" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+                    <rect x="20" y="296" width="560" height="26" rx="2" fill="#15803D"/>
+                    <text x="32" y="313" font-size="11" font-weight="700" fill="#FFFFFF">STAGE 03 • NON-DESTRUCTIVE BOND &amp; CLOSURE QUALIFICATION</text>
+                    <text x="568" y="313" font-size="10" font-weight="600" fill="#DCFCE7" text-anchor="end">100% Pin Inspection</text>
+                    <g class="s05-step">
+                      <rect x="30" y="330" width="166" height="64" rx="2" fill="#FFFFFF" stroke="#86EFAC" stroke-width="1"/>
+                      <text x="38" y="348" font-size="10.8" font-weight="700" fill="#166534">3A. Eddy-Current / UT</text>
+                      <text x="38" y="365" font-size="10" fill="#334155">Scans annular Na bond gap</text>
+                      <text x="38" y="381" font-size="10" font-weight="600" fill="#166534">Rejects unbonded voids</text>
+                    </g>
+                    <line class="s05-arrow" x1="198" y1="362" x2="213" y2="362" stroke="#15803D" stroke-width="1.5" marker-end="url(#s05-arrG)"/>
+                    <g class="s05-step">
+                      <rect x="217" y="330" width="166" height="64" rx="2" fill="#FFFFFF" stroke="#86EFAC" stroke-width="1"/>
+                      <text x="225" y="348" font-size="10.8" font-weight="700" fill="#166534">3B. X-Ray Radiography</text>
+                      <text x="225" y="365" font-size="10" fill="#334155">Verifies Na level meniscus</text>
+                      <text x="225" y="381" font-size="10" font-weight="600" fill="#334155">&amp; end-plug weld soundness</text>
+                    </g>
+                    <line class="s05-arrow" x1="385" y1="362" x2="400" y2="362" stroke="#15803D" stroke-width="1.5" marker-end="url(#s05-arrG)"/>
+                    <g class="s05-step">
+                      <rect x="404" y="330" width="166" height="64" rx="2" fill="#FFFFFF" stroke="#86EFAC" stroke-width="1"/>
+                      <text x="412" y="348" font-size="10.8" font-weight="700" fill="#166534">3C. He Leak &amp; Wire-Wrap</text>
+                      <text x="412" y="365" font-size="10" fill="#334155">Mass-spec He leak check</text>
+                      <text x="412" y="381" font-size="10" font-weight="600" fill="#166534">Spiral HT9 spacer attachment</text>
+                    </g>
+                  </g>
+                </svg>
               </div>
               <figcaption class="figure-card__caption">Metallic fuel pin fabrication flow, adapted from PNNL-35642 (2024).</figcaption>
             </figure>
@@ -3217,19 +3767,19 @@ html.export-pdf .deck-laser { display: none !important; }
 
             <div class="text-col">
               <div class="step-flow">
-                <div class="step-item">
+                <div class="step-item" data-step="1">
                   <span class="step-item__dot">A</span>
                   <strong>Early Gas Swelling:</strong> Rapid expansion (~30&ndash;33% vol.) closes the initial gap without excessive FCMI.
                 </div>
-                <div class="step-item step-item--green">
+                <div class="step-item step-item--green" data-step="2">
                   <span class="step-item__dot">B</span>
                   <strong>Fission Gas Release (FGR):</strong> Interconnected porosity forms and vents <span class="hl-green">~70&ndash;80% of fission gas</span> into the plenum.
                 </div>
-                <div class="step-item step-item--amber">
+                <div class="step-item step-item--amber" data-step="3">
                   <span class="step-item__dot">C</span>
                   <strong>Na Infiltration:</strong> Liquid Na enters open pores&mdash;preserving thermal conductivity, but creating fast transport paths for lanthanides.
                 </div>
-                <div class="step-item step-item--slate">
+                <div class="step-item step-item--slate" data-step="4">
                   <span class="step-item__dot">D</span>
                   <strong>Radial Zr Redistribution:</strong> Thermal gradient pushes Zr to hot center (&gamma;-phase) and outer rim, leaving a Zr-depleted mid-radius zone.
                 </div>
@@ -3270,11 +3820,11 @@ html.export-pdf .deck-laser { display: none !important; }
                 <div class="chain-card__tag">01 &bull; Transport Driver</div>
                 <div class="chain-card__body"><strong>Lanthanide Attack:</strong> Fission-product lanthanides (Nd, Ce, La, Pr) migrate to the cladding ID and form brittle Ln&ndash;Fe intermetallics.</div>
               </div>
-              <div class="chain-card chain-card--amber">
+              <div class="chain-card chain-card--amber" data-step="1">
                 <div class="chain-card__tag">02 &bull; Structural Degradation</div>
                 <div class="chain-card__body"><strong>Cladding Wastage:</strong> Cr/Fe outward interdiffusion leaves a weak, thinned load-bearing wall (limiting lifetime at T &gt; 600 &deg;C).</div>
               </div>
-              <div class="chain-card chain-card--critical">
+              <div class="chain-card chain-card--critical" data-step="2">
                 <div class="chain-card__tag">03 &bull; Transient Breach</div>
                 <div class="chain-card__body"><strong>Eutectic Liquefaction:</strong> U<sub>6</sub>Fe and UFe<sub>2</sub> form a low-melting <span class="hl-amber">U&ndash;Fe eutectic at ~725 &deg;C</span>, causing rapid cladding breach during transients.</div>
               </div>
@@ -3354,11 +3904,11 @@ html.export-pdf .deck-laser { display: none !important; }
               </div>
 
               <!-- Row 2 -->
-              <div class="h2h-card h2h-card--amber-soft">
+              <div class="h2h-card h2h-card--amber-soft" data-curve-target="fcc">
                 <span class="h2h-card__tag">02 &bull; Void Swelling (@ 200 dpa)</span>
                 <p>High FCC dislocation bias &rarr; steep breakaway swelling (<strong>~1%/dpa</strong>) after 45&ndash;90 dpa incubation.</p>
               </div>
-              <div class="h2h-card h2h-card--green">
+              <div class="h2h-card h2h-card--green" data-curve-target="ht9">
                 <span class="h2h-card__tag">02 &bull; Void Swelling (@ 200 dpa)</span>
                 <p><span class="hl-green">Low BCC bias + dense lath/carbide sinks</span> &rarr;<br /><strong>&lt; 2% swelling</strong> up to 200 dpa (400&ndash;450 &deg;C).</p>
               </div>
@@ -3384,8 +3934,8 @@ html.export-pdf .deck-laser { display: none !important; }
               </div>
 
               <!-- Bottom Aligned Banners -->
-              <div class="compare-cap-card">FCC CAP: ~10 at% BU (Runaway Void Swelling)</div>
-              <div class="compare-cap-card compare-cap-card--ht9">HT9 WINDOW: 400&ndash;650 &deg;C (&lt; 2% Swelling to 200 dpa)</div>
+              <div class="compare-cap-card" data-step="1">FCC CAP: ~10 at% BU (Runaway Void Swelling)</div>
+              <div class="compare-cap-card compare-cap-card--ht9" data-step="1">HT9 WINDOW: 400&ndash;650 &deg;C (&lt; 2% Swelling to 200 dpa)</div>
             </div>
 
             <div class="stacked-figs-2">
@@ -3405,12 +3955,89 @@ html.export-pdf .deck-laser { display: none !important; }
               <figure class="figure-card">
                 <div class="figure-card__stage">
                   <span class="figure-card__badge figure-card__badge--green">Void Swelling vs Dose</span>
-                  <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjggNTIgNTY0IDMyNiIgd2lkdGg9IjU2NCIgaGVpZ2h0PSIzMjYiIGZvbnQtZmFtaWx5PSJJbnRlciwgU2Vnb2UgVUksIEFyaWFsLCBzYW5zLXNlcmlmIj4KICA8cmVjdCB4PSI4IiB5PSI1MiIgd2lkdGg9IjU2NCIgaGVpZ2h0PSIzMjYiIGZpbGw9IiNGRkZGRkYiLz4KCiAgPCEtLSBQbG90IEFyZWEgQmFja2dyb3VuZCAoeDogNzUuLjU1NSwgeTogNjAuLjMzMCkgLS0+CiAgPHJlY3QgeD0iNzUiIHk9IjYwIiB3aWR0aD0iNDgwIiBoZWlnaHQ9IjI3MCIgZmlsbD0iI0Y4RkFGQyIgc3Ryb2tlPSIjQ0JENUUxIiBzdHJva2Utd2lkdGg9IjEiLz4KCiAgPCEtLSBIb3Jpem9udGFsIEdyaWQgTGluZXMgKDAlIHRvIDMwJSwgMSUgPSA5cHgpIC0tPgogIDxsaW5lIHgxPSI3NSIgeTE9IjI4NSIgeDI9IjU1NSIgeTI9IjI4NSIgc3Ryb2tlPSIjRTJFOEYwIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8bGluZSB4MT0iNzUiIHkxPSIyNDAiIHgyPSI1NTUiIHkyPSIyNDAiIHN0cm9rZT0iI0UyRThGMCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPGxpbmUgeDE9Ijc1IiB5MT0iMTk1IiB4Mj0iNTU1IiB5Mj0iMTk1IiBzdHJva2U9IiNFMkU4RjAiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxsaW5lIHgxPSI3NSIgeTE9IjE1MCIgeDI9IjU1NSIgeTI9IjE1MCIgc3Ryb2tlPSIjRTJFOEYwIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8bGluZSB4MT0iNzUiIHkxPSIxMDUiIHgyPSI1NTUiIHkyPSIxMDUiIHN0cm9rZT0iI0UyRThGMCIgc3Ryb2tlLXdpZHRoPSIxIi8+CgogIDwhLS0gVmVydGljYWwgR3JpZCBMaW5lcyAoMCB0byAyMDAgZHBhLCAxIGRwYSA9IDIuM3B4LCByaWdodCBwYWQgMjBweCkgLS0+CiAgPGxpbmUgeDE9IjE5MCIgeTE9IjYwIiB4Mj0iMTkwIiB5Mj0iMzMwIiBzdHJva2U9IiNFMkU4RjAiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxsaW5lIHgxPSIzMDUiIHkxPSI2MCIgeDI9IjMwNSIgeTI9IjMzMCIgc3Ryb2tlPSIjRTJFOEYwIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8bGluZSB4MT0iNDIwIiB5MT0iNjAiIHgyPSI0MjAiIHkyPSIzMzAiIHN0cm9rZT0iI0UyRThGMCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPGxpbmUgeDE9IjUzNSIgeTE9IjYwIiB4Mj0iNTM1IiB5Mj0iMzMwIiBzdHJva2U9IiNFMkU4RjAiIHN0cm9rZS13aWR0aD0iMSIvPgoKICA8IS0tIDIlIFN3ZWxsaW5nIERlc2lnbiBSZWZlcmVuY2UgTGluZSAoeSA9IDMxMikgLS0+CiAgPGxpbmUgeDE9Ijc1IiB5MT0iMzEyIiB4Mj0iNTU1IiB5Mj0iMzEyIiBzdHJva2U9IiMxNTgwM0QiIHN0cm9rZS13aWR0aD0iMS4yIiBzdHJva2UtZGFzaGFycmF5PSI1IDMiLz4KICA8dGV4dCB4PSI1NDgiIHk9IjMwNiIgZm9udC1zaXplPSI5LjUiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMxNTgwM0QiIHRleHQtYW5jaG9yPSJlbmQiPjIlIFN3ZWxsaW5nIFJlZmVyZW5jZTwvdGV4dD4KCiAgPCEtLSBBeGVzIC0tPgogIDxsaW5lIHgxPSI3NSIgeTE9IjMzMCIgeDI9IjU1NSIgeTI9IjMzMCIgc3Ryb2tlPSIjMzM0MTU1IiBzdHJva2Utd2lkdGg9IjEuOCIvPgogIDxsaW5lIHgxPSI3NSIgeTE9IjYwIiB4Mj0iNzUiIHkyPSIzMzAiIHN0cm9rZT0iIzMzNDE1NSIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KCiAgPCEtLSBZLUF4aXMgVGlja3MgJiBMYWJlbHMgLS0+CiAgPHRleHQgeD0iNjciIHk9IjMzNCIgZm9udC1zaXplPSIxMC41IiBmb250LXdlaWdodD0iNjAwIiBmaWxsPSIjMzM0MTU1IiB0ZXh0LWFuY2hvcj0iZW5kIj4wJTwvdGV4dD4KICA8dGV4dCB4PSI2NyIgeT0iMjg5IiBmb250LXNpemU9IjEwLjUiIGZvbnQtd2VpZ2h0PSI2MDAiIGZpbGw9IiMzMzQxNTUiIHRleHQtYW5jaG9yPSJlbmQiPjUlPC90ZXh0PgogIDx0ZXh0IHg9IjY3IiB5PSIyNDQiIGZvbnQtc2l6ZT0iMTAuNSIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0iIzMzNDE1NSIgdGV4dC1hbmNob3I9ImVuZCI+MTAlPC90ZXh0PgogIDx0ZXh0IHg9IjY3IiB5PSIxOTkiIGZvbnQtc2l6ZT0iMTAuNSIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0iIzMzNDE1NSIgdGV4dC1hbmNob3I9ImVuZCI+MTUlPC90ZXh0PgogIDx0ZXh0IHg9IjY3IiB5PSIxNTQiIGZvbnQtc2l6ZT0iMTAuNSIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0iIzMzNDE1NSIgdGV4dC1hbmNob3I9ImVuZCI+MjAlPC90ZXh0PgogIDx0ZXh0IHg9IjY3IiB5PSIxMDkiIGZvbnQtc2l6ZT0iMTAuNSIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0iIzMzNDE1NSIgdGV4dC1hbmNob3I9ImVuZCI+MjUlPC90ZXh0PgogIDx0ZXh0IHg9IjY3IiB5PSI2NCIgZm9udC1zaXplPSIxMC41IiBmb250LXdlaWdodD0iNjAwIiBmaWxsPSIjMzM0MTU1IiB0ZXh0LWFuY2hvcj0iZW5kIj4zMCU8L3RleHQ+CgogIDx0ZXh0IHg9IjIyIiB5PSIxOTUiIGZvbnQtc2l6ZT0iMTEuNSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzFFMjkzQiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDIyIDE5NSkiPlZvbHVtZXRyaWMgVm9pZCBTd2VsbGluZyDOlFYvVuKCgCAoJSk8L3RleHQ+CgogIDwhLS0gWC1BeGlzIFRpY2tzICYgTGFiZWxzIC0tPgogIDx0ZXh0IHg9Ijc1IiB5PSIzNDgiIGZvbnQtc2l6ZT0iMTAuNSIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0iIzMzNDE1NSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MDwvdGV4dD4KICA8dGV4dCB4PSIxOTAiIHk9IjM0OCIgZm9udC1zaXplPSIxMC41IiBmb250LXdlaWdodD0iNjAwIiBmaWxsPSIjMzM0MTU1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj41MDwvdGV4dD4KICA8dGV4dCB4PSIzMDUiIHk9IjM0OCIgZm9udC1zaXplPSIxMC41IiBmb250LXdlaWdodD0iNjAwIiBmaWxsPSIjMzM0MTU1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4xMDA8L3RleHQ+CiAgPHRleHQgeD0iNDIwIiB5PSIzNDgiIGZvbnQtc2l6ZT0iMTAuNSIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0iIzMzNDE1NSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTUwPC90ZXh0PgogIDx0ZXh0IHg9IjUzNSIgeT0iMzQ4IiBmb250LXNpemU9IjEwLjUiIGZvbnQtd2VpZ2h0PSI2MDAiIGZpbGw9IiMzMzQxNTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjIwMDwvdGV4dD4KCiAgPHRleHQgeD0iMzE1IiB5PSIzNzAiIGZvbnQtc2l6ZT0iMTEuNSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzFFMjkzQiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RmFzdCBOZXV0cm9uIERpc3BsYWNlbWVudCBEb3NlIChkcGEpPC90ZXh0PgoKICA8IS0tID09PT09PT09PT09PT09PT09IENVUlZFIDE6IDIwJSBDVyAzMTZTUyAoRkNDKSA9PT09PT09PT09PT09PT09PSAtLT4KICA8IS0tIEluY3ViYXRpb24gfjQ1IGRwYSAoeD0xNzguNSwgeT0zMjEpLCB0aGVuIGV4YWN0IDEuMCUvZHBhIHRvIDczIGRwYSAoeD0yNDMsIHk9NjkpIC0tPgogIDxwYXRoIGQ9Ik03NSwzMzAgTDE1NSwzMjggUTE3MiwzMjYgMTc4LjUsMzIxIEwyNDMsNjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0RDMjYyNiIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPGNpcmNsZSBjeD0iMTc4LjUiIGN5PSIzMjEiIHI9IjMuNSIgZmlsbD0iI0RDMjYyNiIvPgogIDxjaXJjbGUgY3g9IjIwMS41IiBjeT0iMjMxIiByPSIzLjUiIGZpbGw9IiNEQzI2MjYiLz4KICA8Y2lyY2xlIGN4PSIyMjQuNSIgY3k9IjE0MSIgcj0iMy41IiBmaWxsPSIjREMyNjI2Ii8+CiAgPGNpcmNsZSBjeD0iMjQzIiBjeT0iNjkiIHI9IjMuNSIgZmlsbD0iI0RDMjYyNiIvPgoKICA8cmVjdCB4PSI4NCIgeT0iNzIiIHdpZHRoPSIxMzQiIGhlaWdodD0iNDIiIHJ4PSI0IiBmaWxsPSIjRkVGMkYyIiBzdHJva2U9IiNGQ0E1QTUiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjkyIiB5PSI4OSIgZm9udC1zaXplPSIxMC4yIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjQjkxQzFDIj4yMCUgQ1cgMzE2U1MgKEZDQyk8L3RleHQ+CiAgPHRleHQgeD0iOTIiIHk9IjEwNCIgZm9udC1zaXplPSI5LjIiIGZpbGw9IiM3RjFEMUQiPn4xJS9kcGEgYWJvdmUgfjQ1IGRwYTwvdGV4dD4KICA8bGluZSB4MT0iMjE4IiB5MT0iOTMiIHgyPSIyMzUiIHkyPSI5MyIgc3Ryb2tlPSIjREMyNjI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPgoKICA8IS0tID09PT09PT09PT09PT09PT09IENVUlZFIDI6IENXIEQ5IC8gMTUtMTVUaSAoRkNDKSA9PT09PT09PT09PT09PT09PSAtLT4KICA8IS0tIEluY3ViYXRpb24gfjkwIGRwYSAoeD0yODIsIHk9MzE2LjUpLCB0aGVuIGV4YWN0IDEuMCUvZHBhIHRvIDExNyBkcGEgKHg9MzQ0LCB5PTczLjUpIC0tPgogIDxwYXRoIGQ9Ik03NSwzMzAgTDI0NywzMjggUTI3MiwzMjUgMjgyLDMxNi41IEwzNDQsNzMuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRDk3NzA2IiBzdHJva2Utd2lkdGg9IjIuOCIgc3Ryb2tlLWRhc2hhcnJheT0iNiA0Ii8+CiAgPGNpcmNsZSBjeD0iMjgyIiBjeT0iMzE2LjUiIHI9IjMuNSIgZmlsbD0iI0Q5NzcwNiIvPgogIDxjaXJjbGUgY3g9IjMwNSIgY3k9IjIyNi41IiByPSIzLjUiIGZpbGw9IiNEOTc3MDYiLz4KICA8Y2lyY2xlIGN4PSIzMjgiIGN5PSIxMzYuNSIgcj0iMy41IiBmaWxsPSIjRDk3NzA2Ii8+CiAgPGNpcmNsZSBjeD0iMzQ0IiBjeT0iNzMuNSIgcj0iMy41IiBmaWxsPSIjRDk3NzA2Ii8+CgogIDxyZWN0IHg9IjM1OCIgeT0iNzIiIHdpZHRoPSIxNTQiIGhlaWdodD0iNDIiIHJ4PSI0IiBmaWxsPSIjRkZGQkVCIiBzdHJva2U9IiNGQ0QzNEQiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjM2NiIgeT0iODkiIGZvbnQtc2l6ZT0iMTAuMiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI0I0NTMwOSI+Q1cgRDkgLyAxNS0xNVRpIChGQ0MpPC90ZXh0PgogIDx0ZXh0IHg9IjM2NiIgeT0iMTA0IiBmb250LXNpemU9IjkuMiIgZmlsbD0iIzc4MzUwRiI+RXh0ZW5kZWQgaW5jdWJhdGlvbiAofjkwIGRwYSk8L3RleHQ+CiAgPGxpbmUgeDE9IjM0MCIgeTE9IjkzIiB4Mj0iMzU4IiB5Mj0iOTMiIHN0cm9rZT0iI0Q5NzcwNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz4KCiAgPCEtLSA9PT09PT09PT09PT09PT09PSBDVVJWRSAzOiBIVDkgMTJDciAoQkNDKSA9PT09PT09PT09PT09PT09PSAtLT4KICA8IS0tIFBow6luaXggMTE14oCTMTQyIGRwYSAo4omkMC41JSk7IEZGVEYgMTU1IGRwYSAoMC4zJSBhdmcsIDEuMiUgbWF4KTsgRkZURiAyMDAgZHBhICh+MC4z4oCTMC45JSwgbWF4IDEuOCUpIC0tPgogIDxwYXRoIGQ9Ik03NSwzMzAgTDIxMywzMjkuNSBMMzM5LjUsMzI4LjIgTDQwMS42LDMyNy4zIEw0MzEuNSwzMjcuMyBMNTM1LDMyNC42IiBmaWxsPSJub25lIiBzdHJva2U9IiMwRjc2NkUiIHN0cm9rZS13aWR0aD0iMy4yIi8+CgogIDwhLS0gRXJyb3IvcmFuZ2UgYmFyIGF0IDE1NSBkcGEgKHggPSA0MzEuNSkgLS0+CiAgPGxpbmUgeDE9IjQzMS41IiB5MT0iMzI3LjMiIHgyPSI0MzEuNSIgeTI9IjMxOS4yIiBzdHJva2U9IiMwRjc2NkUiIHN0cm9rZS13aWR0aD0iMS44Ii8+CiAgPGxpbmUgeDE9IjQyNi41IiB5MT0iMzE5LjIiIHgyPSI0MzYuNSIgeTI9IjMxOS4yIiBzdHJva2U9IiMwRjc2NkUiIHN0cm9rZS13aWR0aD0iMS44Ii8+CgogIDwhLS0gRXJyb3IvcmFuZ2UgYmFyIGF0IDIwMCBkcGEgKHggPSA1MzUsIGZ1bGx5IGluc2lkZSBwbG90IGFyZWEpIC0tPgogIDxsaW5lIHgxPSI1MzUiIHkxPSIzMjcuNSIgeDI9IjUzNSIgeTI9IjMxMy44IiBzdHJva2U9IiMwRjc2NkUiIHN0cm9rZS13aWR0aD0iMS44Ii8+CiAgPGxpbmUgeDE9IjUzMCIgeTE9IjMxMy44IiB4Mj0iNTQwIiB5Mj0iMzEzLjgiIHN0cm9rZT0iIzBGNzY2RSIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KCiAgPCEtLSBEYXRhIFBvaW50cyBvbiBIVDkgLyA5LTEyQ3IgLS0+CiAgPGNpcmNsZSBjeD0iMzM5LjUiIGN5PSIzMjguMiIgcj0iNCIgZmlsbD0iIzBGNzY2RSIvPgogIDxjaXJjbGUgY3g9IjQwMS42IiBjeT0iMzI3LjMiIHI9IjQiIGZpbGw9IiMwRjc2NkUiLz4KICA8Y2lyY2xlIGN4PSI0MzEuNSIgY3k9IjMyNy4zIiByPSI0LjUiIGZpbGw9IiMwRjc2NkUiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPGNpcmNsZSBjeD0iNTM1IiBjeT0iMzI0LjYiIHI9IjQuNSIgZmlsbD0iIzBGNzY2RSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiLz4KCiAgPCEtLSBDYWxsb3V0IEJveCBmb3IgSFQ5IC0tPgogIDxyZWN0IHg9IjM1OCIgeT0iMjE2IiB3aWR0aD0iMTgyIiBoZWlnaHQ9Ijc4IiByeD0iNCIgZmlsbD0iI0YwRkRGQSIgc3Ryb2tlPSIjNUVFQUQ0IiBzdHJva2Utd2lkdGg9IjEuMiIvPgogIDx0ZXh0IHg9IjM2NyIgeT0iMjMzIiBmb250LXNpemU9IjEwLjIiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMwRjc2NkUiPkhUOSAoMTJDciBCQ0MpICZhbXA7IDnigJMxMkNyIEYvTTwvdGV4dD4KICA8dGV4dCB4PSIzNjciIHk9IjI0OCIgZm9udC1zaXplPSI5LjMiIGZpbGw9IiMxMzRFNEEiPuKAoiBQaMOpbml4ICgxMTXigJMxNDIgZHBhKTog4omkIDAuNSU8L3RleHQ+CiAgPHRleHQgeD0iMzY3IiB5PSIyNjIiIGZvbnQtc2l6ZT0iOS4zIiBmaWxsPSIjMTM0RTRBIj7igKIgRkZURiBkdWN0ICgxNTUgZHBhKTogMC4zJSAoMS4yJSBtYXgpPC90ZXh0PgogIDx0ZXh0IHg9IjM2NyIgeT0iMjc2IiBmb250LXNpemU9IjkuMyIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0iIzBGNzY2RSI+4oCiIEZGVEYgKDIwMCBkcGEpOiB+MC4z4oCTMC45JSAoJmx0OyAyJSk8L3RleHQ+CiAgPGxpbmUgeDE9IjQzMS41IiB5MT0iMjk0IiB4Mj0iNDMxLjUiIHkyPSIzMTYiIHN0cm9rZT0iIzBGNzY2RSIgc3Ryb2tlLXdpZHRoPSIxLjIiLz4KPC9zdmc+Cg==" alt="Void swelling 316SS vs HT9" data-fallback />
-                  <div class="figure-placeholder">
-                    <span class="figure-placeholder__tag">Figure Placeholder</span>
-                    <span class="figure-placeholder__path">assets/schematics/s08-void-swelling-dose.svg</span>
-                    <span class="figure-placeholder__hint">316SS (~1%/dpa) vs HT9 (&lt;2% at 200 dpa) swelling vs dpa comparison.</span>
-                  </div>
+                  <svg class="s08-inline-svg" xmlns="http://www.w3.org/2000/svg" viewBox="8 52 564 326" font-family="Inter, Segoe UI, Arial, sans-serif" role="img" aria-label="Void swelling 316SS vs HT9">
+                    <defs>
+                      <clipPath id="s08-plotRevealClip">
+                        <rect x="75" y="55" width="485" height="280"/>
+                      </clipPath>
+                    </defs>
+                    <rect x="8" y="52" width="564" height="326" fill="#FFFFFF"/>
+                    <rect x="75" y="60" width="480" height="270" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1"/>
+                    <line x1="75" y1="285" x2="555" y2="285" stroke="#E2E8F0" stroke-width="1"/>
+                    <line x1="75" y1="240" x2="555" y2="240" stroke="#E2E8F0" stroke-width="1"/>
+                    <line x1="75" y1="195" x2="555" y2="195" stroke="#E2E8F0" stroke-width="1"/>
+                    <line x1="75" y1="150" x2="555" y2="150" stroke="#E2E8F0" stroke-width="1"/>
+                    <line x1="75" y1="105" x2="555" y2="105" stroke="#E2E8F0" stroke-width="1"/>
+                    <line x1="190" y1="60" x2="190" y2="330" stroke="#E2E8F0" stroke-width="1"/>
+                    <line x1="305" y1="60" x2="305" y2="330" stroke="#E2E8F0" stroke-width="1"/>
+                    <line x1="420" y1="60" x2="420" y2="330" stroke="#E2E8F0" stroke-width="1"/>
+                    <line x1="535" y1="60" x2="535" y2="330" stroke="#E2E8F0" stroke-width="1"/>
+                    <line x1="75" y1="312" x2="555" y2="312" stroke="#15803D" stroke-width="1.2" stroke-dasharray="5 3"/>
+                    <text x="548" y="306" font-size="9.5" font-weight="700" fill="#15803D" text-anchor="end">2% Swelling Reference</text>
+                    <line x1="75" y1="330" x2="555" y2="330" stroke="#334155" stroke-width="1.8"/>
+                    <line x1="75" y1="60" x2="75" y2="330" stroke="#334155" stroke-width="1.8"/>
+                    <text x="67" y="334" font-size="10.5" font-weight="600" fill="#334155" text-anchor="end">0%</text>
+                    <text x="67" y="289" font-size="10.5" font-weight="600" fill="#334155" text-anchor="end">5%</text>
+                    <text x="67" y="244" font-size="10.5" font-weight="600" fill="#334155" text-anchor="end">10%</text>
+                    <text x="67" y="199" font-size="10.5" font-weight="600" fill="#334155" text-anchor="end">15%</text>
+                    <text x="67" y="154" font-size="10.5" font-weight="600" fill="#334155" text-anchor="end">20%</text>
+                    <text x="67" y="109" font-size="10.5" font-weight="600" fill="#334155" text-anchor="end">25%</text>
+                    <text x="67" y="64" font-size="10.5" font-weight="600" fill="#334155" text-anchor="end">30%</text>
+                    <text x="22" y="195" font-size="11.5" font-weight="700" fill="#1E293B" text-anchor="middle" transform="rotate(-90 22 195)">Volumetric Void Swelling ΔV/V₀ (%)</text>
+                    <text x="75" y="348" font-size="10.5" font-weight="600" fill="#334155" text-anchor="middle">0</text>
+                    <text x="190" y="348" font-size="10.5" font-weight="600" fill="#334155" text-anchor="middle">50</text>
+                    <text x="305" y="348" font-size="10.5" font-weight="600" fill="#334155" text-anchor="middle">100</text>
+                    <text x="420" y="348" font-size="10.5" font-weight="600" fill="#334155" text-anchor="middle">150</text>
+                    <text x="535" y="348" font-size="10.5" font-weight="600" fill="#334155" text-anchor="middle">200</text>
+                    <text x="315" y="370" font-size="11.5" font-weight="700" fill="#1E293B" text-anchor="middle">Fast Neutron Displacement Dose (dpa)</text>
+
+                    <g class="s08-curve-group" data-curve="fcc">
+                      <g clip-path="url(#s08-plotRevealClip)">
+                        <path class="s08-curve-path" d="M75,330 L155,328 Q172,326 178.5,321 L243,69" fill="none" stroke="#DC2626" stroke-width="3"/>
+                        <circle class="s08-pt" cx="178.5" cy="321" r="3.5" fill="#DC2626"/>
+                        <circle class="s08-pt" cx="201.5" cy="231" r="3.5" fill="#DC2626"/>
+                        <circle class="s08-pt" cx="224.5" cy="141" r="3.5" fill="#DC2626"/>
+                        <circle class="s08-pt" cx="243" cy="69" r="3.5" fill="#DC2626"/>
+                        <path class="s08-curve-path" d="M75,330 L247,328 Q272,325 282,316.5 L344,73.5" fill="none" stroke="#D97706" stroke-width="2.8" stroke-dasharray="6 4"/>
+                        <circle class="s08-pt" cx="282" cy="316.5" r="3.5" fill="#D97706"/>
+                        <circle class="s08-pt" cx="305" cy="226.5" r="3.5" fill="#D97706"/>
+                        <circle class="s08-pt" cx="328" cy="136.5" r="3.5" fill="#D97706"/>
+                        <circle class="s08-pt" cx="344" cy="73.5" r="3.5" fill="#D97706"/>
+                      </g>
+                      <g class="s08-callout">
+                        <rect x="84" y="72" width="134" height="42" rx="2" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="1"/>
+                        <text x="92" y="89" font-size="10.2" font-weight="700" fill="#B91C1C">20% CW 316SS (FCC)</text>
+                        <text x="92" y="104" font-size="9.2" fill="#7F1D1D">~1%/dpa above ~45 dpa</text>
+                        <line x1="218" y1="93" x2="235" y2="93" stroke="#DC2626" stroke-width="1.2"/>
+                        <rect x="358" y="72" width="154" height="42" rx="2" fill="#FFFBEB" stroke="#FCD34D" stroke-width="1"/>
+                        <text x="366" y="89" font-size="10.2" font-weight="700" fill="#B45309">CW D9 / 15-15Ti (FCC)</text>
+                        <text x="366" y="104" font-size="9.2" fill="#78350F">Extended incubation (~90 dpa)</text>
+                        <line x1="340" y1="93" x2="358" y2="93" stroke="#D97706" stroke-width="1.2"/>
+                      </g>
+                    </g>
+
+                    <g class="s08-curve-group" data-curve="ht9">
+                      <g clip-path="url(#s08-plotRevealClip)">
+                        <path class="s08-curve-path" d="M75,330 L213,329.5 L339.5,328.2 L401.6,327.3 L431.5,327.3 L535,324.6" fill="none" stroke="#15803D" stroke-width="3.2"/>
+                        <line class="s08-pt" x1="431.5" y1="327.3" x2="431.5" y2="319.2" stroke="#15803D" stroke-width="1.8"/>
+                        <line class="s08-pt" x1="426.5" y1="319.2" x2="436.5" y2="319.2" stroke="#15803D" stroke-width="1.8"/>
+                        <line class="s08-pt" x1="535" y1="327.5" x2="535" y2="313.8" stroke="#15803D" stroke-width="1.8"/>
+                        <line class="s08-pt" x1="530" y1="313.8" x2="540" y2="313.8" stroke="#15803D" stroke-width="1.8"/>
+                        <circle class="s08-pt" cx="339.5" cy="328.2" r="4" fill="#15803D"/>
+                        <circle class="s08-pt" cx="401.6" cy="327.3" r="4" fill="#15803D"/>
+                        <circle class="s08-pt" cx="431.5" cy="327.3" r="4.5" fill="#15803D" stroke="#FFFFFF" stroke-width="1"/>
+                        <circle class="s08-pt" cx="535" cy="324.6" r="4.5" fill="#15803D" stroke="#FFFFFF" stroke-width="1"/>
+                      </g>
+                      <g class="s08-callout">
+                        <rect x="358" y="216" width="182" height="78" rx="2" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.2"/>
+                        <text x="367" y="233" font-size="10.2" font-weight="700" fill="#15803D">HT9 (12Cr BCC) &amp; 9–12Cr F/M</text>
+                        <text x="367" y="248" font-size="9.3" fill="#14532D">• Phénix (115–142 dpa): ≤ 0.5%</text>
+                        <text x="367" y="262" font-size="9.3" fill="#14532D">• FFTF duct (155 dpa): 0.3% (1.2% max)</text>
+                        <text x="367" y="276" font-size="9.3" font-weight="600" fill="#15803D">• FFTF (200 dpa): ~0.3–0.9% (&lt; 2%)</text>
+                        <line x1="431.5" y1="294" x2="431.5" y2="316" stroke="#15803D" stroke-width="1.2"/>
+                      </g>
+                    </g>
+                  </svg>
                 </div>
                 <figcaption class="figure-card__caption">Volumetric void swelling vs. dose (400&ndash;450 &deg;C), compiled from Klueh (2018), Garner (2009) &amp; NUREG/CR-7305 (2023).</figcaption>
               </figure>
@@ -3445,45 +4072,45 @@ html.export-pdf .deck-laser { display: none !important; }
 
         <div class="slide-body">
           <div class="top-bottom-stack">
-            <div class="kpi-row-4" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; align-items: stretch;">
+            <div class="kpi-row-4">
               <!-- Card 1 -->
-              <div class="kpi-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 12px 14px; border-top: 3px solid #475569; background: linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%);">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                  <span style="font-size: 9.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #475569; font-family: 'IBM Plex Mono', monospace;">01 &bull; US Heritage</span>
-                  <span style="font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 2px; background: #EFF6FF; color: #003B73; font-family: 'IBM Plex Mono', monospace;">EBR-II + FFTF</span>
+              <div class="kpi-card kpi-card--slate">
+                <div class="kpi-card__head">
+                  <span class="kpi-card__eyebrow">01 &bull; US Heritage</span>
+                  <span class="kpi-card__chip">EBR-II + FFTF</span>
                 </div>
-                <div class="kpi-card__val" style="color: #0B2545; line-height: 1.15; margin: 2px 0;"><span data-count-to="130000" data-count-prefix="&gt;" data-count-comma="true" data-count-suffix=" Pins">&gt;130,000 Pins</span></div>
-                <div class="kpi-card__lbl" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Includes &gt;13,600 U–Zr / U–Pu–Zr pins</div>
+                <div class="kpi-card__val"><span data-count-to="130000" data-count-prefix="&gt;" data-count-comma="true" data-count-suffix=" Pins">&gt;130,000 Pins</span></div>
+                <div class="kpi-card__lbl">Includes &gt;13,600 U–Zr / U–Pu–Zr pins</div>
               </div>
 
               <!-- Card 2 -->
-              <div class="kpi-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 12px 14px; border-top: 3px solid #1D4ED8;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                  <span style="font-size: 9.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #1D4ED8; font-family: 'IBM Plex Mono', monospace;">02 &bull; Qualified</span>
-                  <span style="font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 2px; background: #DBEAFE; color: #1E40AF; font-family: 'IBM Plex Mono', monospace;">NUREG/CR-7305</span>
+              <div class="kpi-card kpi-card--blue">
+                <div class="kpi-card__head">
+                  <span class="kpi-card__eyebrow">02 &bull; Qualified</span>
+                  <span class="kpi-card__chip">NUREG/CR-7305</span>
                 </div>
-                <div class="kpi-card__val" style="color: #003B73; line-height: 1.15; margin: 2px 0;"><span data-count-to="1262" data-count-comma="true" data-count-suffix=" Pins">1,262 Pins</span></div>
-                <div class="kpi-card__lbl" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">404 EBR-II + 858 FFTF in HT9 cladding</div>
+                <div class="kpi-card__val"><span data-count-to="1262" data-count-comma="true" data-count-suffix=" Pins">1,262 Pins</span></div>
+                <div class="kpi-card__lbl">404 EBR-II + 858 FFTF in HT9 cladding</div>
               </div>
 
               <!-- Card 3 -->
-              <div class="kpi-card kpi-card--green" style="display: flex; flex-direction: column; justify-content: space-between; padding: 12px 14px; border-top: 3px solid #15803D;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                  <span style="font-size: 9.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #15803D; font-family: 'IBM Plex Mono', monospace;">03 &bull; Peak Burnup</span>
-                  <span style="font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 2px; background: #DCFCE7; color: #166534; font-family: 'IBM Plex Mono', monospace;">~200 GWd/MTHM</span>
+              <div class="kpi-card kpi-card--green">
+                <div class="kpi-card__head">
+                  <span class="kpi-card__eyebrow">03 &bull; Peak Burnup</span>
+                  <span class="kpi-card__chip">~200 GWd/MTHM</span>
                 </div>
-                <div class="kpi-card__val" style="line-height: 1.15; margin: 2px 0;"><span data-count-to="20" data-count-prefix="Up to ~" data-count-suffix=" at%">Up to ~20 at%</span></div>
-                <div class="kpi-card__lbl" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">~20 at% in EBR-II &bull; 14.3 at% in FFTF</div>
+                <div class="kpi-card__val"><span data-count-to="20" data-count-prefix="Up to ~" data-count-suffix=" at%">Up to ~20 at%</span></div>
+                <div class="kpi-card__lbl">~20 at% in EBR-II &bull; 14.3 at% in FFTF</div>
               </div>
 
               <!-- Card 4 -->
-              <div class="kpi-card kpi-card--alert" style="display: flex; flex-direction: column; justify-content: space-between; padding: 12px 14px; border-top: 3px solid #D97706;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                  <span style="font-size: 9.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #C2410C; font-family: 'IBM Plex Mono', monospace;">04 &bull; Breach Limit</span>
-                  <span style="font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 2px; background: #FFEDD5; color: #9A3412; font-family: 'IBM Plex Mono', monospace;">EBR-II X447</span>
+              <div class="kpi-card kpi-card--alert">
+                <div class="kpi-card__head">
+                  <span class="kpi-card__eyebrow">04 &bull; Breach Limit</span>
+                  <span class="kpi-card__chip">EBR-II X447</span>
                 </div>
-                <div class="kpi-card__val" style="line-height: 1.15; margin: 2px 0;"><span data-count-to="660" data-count-suffix=" &deg;C PICT">660 &deg;C PICT</span></div>
-                <div class="kpi-card__lbl" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">FCCI + creep limit &rarr; 650 &deg;C PICT cap</div>
+                <div class="kpi-card__val"><span data-count-to="660" data-count-suffix=" &deg;C PICT">660 &deg;C PICT</span></div>
+                <div class="kpi-card__lbl">FCCI + creep limit &rarr; 650 &deg;C PICT cap</div>
               </div>
             </div>
 
@@ -3541,7 +4168,7 @@ html.export-pdf .deck-laser { display: none !important; }
 
         <div class="slide-body">
           <div class="bento-grid-2x2">
-            <article class="bento-card">
+            <article class="bento-card" data-step="1">
               <div>
                 <div class="lever-meta">
                   <span class="lever-num">LEVER 01</span>
@@ -3588,7 +4215,7 @@ html.export-pdf .deck-laser { display: none !important; }
               </div>
             </article>
 
-            <article class="bento-card">
+            <article class="bento-card" data-step="2">
               <div>
                 <div class="lever-meta">
                   <span class="lever-num">LEVER 02</span>
@@ -3647,7 +4274,7 @@ html.export-pdf .deck-laser { display: none !important; }
               </div>
             </article>
 
-            <article class="bento-card bento-card--green">
+            <article class="bento-card bento-card--green" data-step="3">
               <div>
                 <div class="lever-meta">
                   <span class="lever-num lever-num--green">LEVER 03</span>
@@ -3666,28 +4293,28 @@ html.export-pdf .deck-laser { display: none !important; }
 
                   <!-- 1. Cladding (y = 18) -->
                   <line class="svg-ann-line" x1="102" y1="18" x2="156" y2="18" stroke="#334155" stroke-width="1.3"/>
-                  <circle cx="102" cy="18" r="2.3" fill="#334155"/>
+                  <circle class="svg-ann-dot" cx="102" cy="18" r="2.3" fill="#334155"/>
                   <text class="svg-ann-lbl" x="164" y="21.5" font-size="10.2" font-weight="700" fill="#1E293B">HT9 / ODS Cladding (No Liquid Na)</text>
 
                   <!-- 2. He Gas Gap (y = 37) -->
                   <line class="svg-ann-line" x1="111" y1="37" x2="156" y2="37" stroke="#15803D" stroke-width="1.3"/>
-                  <circle cx="111" cy="37" r="2.3" fill="#15803D"/>
+                  <circle class="svg-ann-dot" cx="111" cy="37" r="2.3" fill="#15803D"/>
                   <text class="svg-ann-lbl" x="164" y="40.5" font-size="10.2" font-weight="700" fill="#15803D">Thin He Gap (Inert Thermal Bond)</text>
 
                   <!-- 3. Annular U-10Zr (y = 56) -->
                   <line class="svg-ann-line" x1="103" y1="56" x2="156" y2="56" stroke="#0B2545" stroke-width="1.3"/>
-                  <circle cx="103" cy="56" r="2.4" fill="#FFFFFF" stroke="#0B2545" stroke-width="1.3"/>
+                  <circle class="svg-ann-dot" cx="103" cy="56" r="2.4" fill="#FFFFFF" stroke="#0B2545" stroke-width="1.3"/>
                   <text class="svg-ann-lbl" x="164" y="59.5" font-size="10.2" font-weight="700" fill="#0B2545">Annular U-10Zr Ring (55% Smear)</text>
 
                   <!-- 4. Central Void (y = 75) -->
                   <polyline class="svg-ann-line" points="84,46 116,75 156,75" fill="none" stroke="#64748B" stroke-width="1.3"/>
-                  <circle cx="84" cy="46" r="2.3" fill="#64748B"/>
+                  <circle class="svg-ann-dot" cx="84" cy="46" r="2.3" fill="#64748B"/>
                   <text class="svg-ann-lbl" x="164" y="78.5" font-size="10.2" font-weight="600" fill="#475569">Central Void (Inward Swelling Relief)</text>
                 </svg>
               </div>
             </article>
 
-            <article class="bento-card bento-card--green">
+            <article class="bento-card bento-card--green" data-step="4">
               <div>
                 <div class="lever-meta">
                   <span class="lever-num lever-num--green">LEVER 04</span>
@@ -3698,7 +4325,12 @@ html.export-pdf .deck-laser { display: none !important; }
               </div>
               <div class="lever-svg-box">
                 <svg class="lever-svg lever-svg--ods" viewBox="0 0 420 92" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <rect x="8" y="8" width="404" height="76" rx="3" fill="#FFFBEB" stroke="#D97706" stroke-width="1.4"/>
+                  <defs>
+                    <clipPath id="s10-odsClip">
+                      <rect x="18" y="26" width="380" height="40"/>
+                    </clipPath>
+                  </defs>
+                  <rect x="8" y="8" width="404" height="76" rx="2" fill="#FFFBEB" stroke="#D97706" stroke-width="1.4"/>
 
                   <!-- Prior Austenite / Martensite Lath Boundaries (protected from He) -->
                   <polyline class="svg-grain" points="104,8 122,46 98,84" fill="none" stroke="#CBD5E1" stroke-width="1.4"/>
@@ -3707,7 +4339,7 @@ html.export-pdf .deck-laser { display: none !important; }
                   <text x="18" y="23" font-size="10" font-weight="700" fill="#0B2545">BCC Matrix: Orowan Dislocation Bowing + Interfacial He Trapping</text>
 
                   <!-- Gliding Dislocation Pinned at Y-Ti-O Nano-Oxides (Orowan Loops/Arcs) -->
-                  <path class="svg-dislocation" d="M22,55 Q48,34 74,52 Q114,31 154,52 Q194,31 234,52 Q274,31 314,52 Q352,34 388,55" fill="none" stroke="#0B2545" stroke-width="2" stroke-dasharray="4 2.5"/>
+                  <path class="svg-dislocation" clip-path="url(#s10-odsClip)" d="M22,55 Q48,34 74,52 Q114,31 154,52 Q194,31 234,52 Q274,31 314,52 Q352,34 388,55" fill="none" stroke="#0B2545" stroke-width="2" stroke-dasharray="4 2.5"/>
 
                   <!-- Coherent/Semi-coherent Y2O3 / Y2Ti2O7 Nano-Oxides (1-3 nm pinning sites) -->
                   <circle class="svg-oxide" cx="74" cy="52" r="5.5" fill="#C2410C" stroke="#7C2D12" stroke-width="1"/>
@@ -3859,7 +4491,7 @@ html.export-pdf .deck-laser { display: none !important; }
                       <path d="M0,1 L9,5 L0,9 Z" fill="#003B73"/>
                     </marker>
                   </defs>
-                  <rect width="560" height="410" rx="8" fill="#FFFFFF"/>
+                  <rect width="560" height="410" rx="2" fill="#FFFFFF"/>
                   <g class="s12-block s12-stage1" data-stage="1" style="cursor:pointer;">
                     <rect x="20" y="16" width="520" height="145" rx="2" fill="#F8FAFC" stroke="#003B73" stroke-width="2"/>
                     <rect x="20" y="16" width="520" height="36" rx="2" fill="#003B73"/>
@@ -3876,13 +4508,15 @@ html.export-pdf .deck-laser { display: none !important; }
                     <text x="431" y="109" font-size="11.5" font-weight="700" fill="#15803D" text-anchor="middle">NUREG/CR-7305 Bankable</text>
                     <text x="36" y="142" font-size="10.8" font-weight="600" fill="#475569">1,262-pin EBR-II/FFTF basis &bull; 75% smear vents ~75% FGR &bull; &lt;2% HT9 swelling (200 dpa)</text>
                   </g>
-                  <g class="s12-block s12-bridge">
+                  <g class="s12-block s12-bridge" data-step="1">
                     <line class="s12-bridge-line" x1="180" y1="161" x2="180" y2="235" stroke="#003B73" stroke-width="2.4" marker-end="url(#s12-stageArrow)"/>
                     <line class="s12-bridge-line" x1="380" y1="161" x2="380" y2="235" stroke="#003B73" stroke-width="2.4" marker-end="url(#s12-stageArrow)"/>
-                    <rect class="s12-bridge-pill" x="70" y="184" width="420" height="32" rx="4" fill="#FFF7ED" stroke="#D97706" stroke-width="1.6"/>
+                    <circle class="s12-bridge-pulse" cx="180" cy="164" r="3.6" fill="#F59E0B" stroke="#FFFFFF" stroke-width="1" opacity="0"/>
+                    <circle class="s12-bridge-pulse" cx="380" cy="164" r="3.6" fill="#F59E0B" stroke="#FFFFFF" stroke-width="1" opacity="0"/>
+                    <rect class="s12-bridge-pill" x="70" y="184" width="420" height="32" rx="2" fill="#FFF7ED" stroke="#D97706" stroke-width="1.6"/>
                     <text x="280" y="204" font-size="11" font-weight="700" fill="#C2410C" text-anchor="middle">R&amp;D Bridge: Solid-State PRW Welds &bull; He-Gap QA &bull; TREAT Transients</text>
                   </g>
-                  <g class="s12-block s12-stage2" data-stage="2" style="cursor:pointer;">
+                  <g class="s12-block s12-stage2" data-stage="2" data-step="1" style="cursor:pointer;">
                     <rect x="20" y="242" width="520" height="150" rx="2" fill="#F0FDF4" stroke="#15803D" stroke-width="2"/>
                     <rect x="20" y="242" width="520" height="36" rx="2" fill="#15803D"/>
                     <rect x="20" y="266" width="520" height="12" fill="#15803D"/>
@@ -3905,14 +4539,14 @@ html.export-pdf .deck-laser { display: none !important; }
 
             <div class="decision-stack-3">
               <div class="decision-box" data-stage="1">
-                <h4>MY PROPOSAL 01 &bull; Non-Line-of-Sight ALD/CVD Duplex Inner Barrier</h4>
+                <h4>MY PROPOSAL 01 &bull; ALD/CVD Duplex Inner Barrier</h4>
                 <p>Because PVD is line-of-sight limited inside narrow cladding tubes (ID 5.7 mm, L/D &gt; 150), deposit a gas-phase CVD/electroplated ductile Cr/V compliant interlayer (accommodating FCMI creep strain) paired with a nanometric ALD ceramic barrier (Y<sub>2</sub>O<sub>3</sub>, TiN, or ductile amorphous Al<sub>2</sub>O<sub>3</sub>) to block both Ln wastage and 725 &deg;C U&ndash;Fe liquefaction.</p>
               </div>
-              <div class="decision-box decision-box--green" data-stage="2">
+              <div class="decision-box decision-box--green" data-stage="2" data-step="1">
                 <h4>MY PROPOSAL 02 &bull; Recycled-Pd Doping in Annular Fuel</h4>
                 <p>Valorize noble fission-product Pd recovered during EBR-II electrorefining (~1&ndash;2 wt% Pd addition) inside an annular He-bonded slug: traps lanthanides as stable PdLn / Pd<sub>2</sub>Ln intermetallics while eliminating pyrophoric Na-bond disposal.</p>
               </div>
-              <div class="decision-box decision-box--amber">
+              <div class="decision-box decision-box--amber" data-step="2">
                 <h4>HONEST BOTTLENECKS &bull; Joining &amp; Industrial Scale-Up</h4>
                 <p>Fusion welding destroys 9Cr-ODS nano-oxides (Y<sub>2</sub>O<sub>3</sub> coarsening): Stage 2 requires industrial qualification of solid-state <strong>PRW</strong> end-cap joining, lower PM/MA tubing cost, tight He-gap tolerances, and prototypic TREAT transient tests.</p>
               </div>
@@ -3955,31 +4589,31 @@ html.export-pdf .deck-laser { display: none !important; }
               <ol class="ref-list">
                 <li class="ref-item">
                   <span class="ref-num">[1]</span>
-                  <div class="ref-text"><strong>USNRC (2023)</strong> &mdash; <a class="ref-link" href="https://www.nrc.gov/docs/ML2321/ML23214A065.pdf" target="_blank" rel="noopener"><em>Metal Fuel Qualification</em>, <strong>NUREG/CR-7305</strong> (ML23214A065) &nearr;</a>. <span class="ref-slide-tag">S02&ndash;03, S08&ndash;09, S11&ndash;12</span></div>
+                  <div class="ref-text"><strong>USNRC (2023)</strong> &mdash; <a class="ref-link" href="https://www.nrc.gov/docs/ML2321/ML23214A065.pdf" target="_blank" rel="noopener"><em>Metal Fuel Qualification</em>, <strong>NUREG/CR-7305</strong> (ML23214A065) &nearr;</a> <span class="ref-slide-tag" data-jump-slide="2" role="button" tabindex="0" title="Jump to Slide 2">S02&ndash;03</span><span class="ref-slide-tag" data-jump-slide="8" role="button" tabindex="0" title="Jump to Slide 8">S08&ndash;09</span><span class="ref-slide-tag" data-jump-slide="11" role="button" tabindex="0" title="Jump to Slide 11">S11&ndash;12</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[2]</span>
-                  <div class="ref-text"><strong>Wray &amp; Geelhood (2024)</strong> &mdash; <a class="ref-link" href="https://www.osti.gov/biblio/3030076" target="_blank" rel="noopener"><em>SFR Metallic Fuel Degradation</em>, <strong>PNNL-35642</strong> &nearr;</a>. <span class="ref-slide-tag">S05, S11</span></div>
+                  <div class="ref-text"><strong>Wray &amp; Geelhood (2024)</strong> &mdash; <a class="ref-link" href="https://www.osti.gov/biblio/3030076" target="_blank" rel="noopener"><em>SFR Metallic Fuel Degradation</em>, <strong>PNNL-35642</strong> &nearr;</a> <span class="ref-slide-tag" data-jump-slide="5" role="button" tabindex="0" title="Jump to Slide 5">S05</span><span class="ref-slide-tag" data-jump-slide="11" role="button" tabindex="0" title="Jump to Slide 11">S11</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[3]</span>
-                  <div class="ref-text"><strong>Janney (2018)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.2172/1469797" target="_blank" rel="noopener"><em>Metallic Fuels Handbook, Parts 1 &amp; 2</em>, <strong>INL/EXT-15-36520-Rev003</strong> &nearr;</a>. <span class="ref-slide-tag">S04, S11</span></div>
+                  <div class="ref-text"><strong>Janney (2018)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.2172/1469797" target="_blank" rel="noopener"><em>Metallic Fuels Handbook, Parts 1 &amp; 2</em>, <strong>INL/EXT-15-36520-Rev003</strong> &nearr;</a> <span class="ref-slide-tag" data-jump-slide="4" role="button" tabindex="0" title="Jump to Slide 4">S04</span><span class="ref-slide-tag" data-jump-slide="11" role="button" tabindex="0" title="Jump to Slide 11">S11</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[4]</span>
-                  <div class="ref-text"><strong>Miao et al. (2021)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.2172/1828881" target="_blank" rel="noopener"><em>BISON Metallic Fuel V&amp;V Using EBR-II Data</em>, <strong>ANL/CFCT-21/19</strong> &nearr;</a>. <span class="ref-slide-tag">S07, S09</span></div>
+                  <div class="ref-text"><strong>Miao et al. (2021)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.2172/1828881" target="_blank" rel="noopener"><em>BISON Metallic Fuel V&amp;V Using EBR-II Data</em>, <strong>ANL/CFCT-21/19</strong> &nearr;</a> <span class="ref-slide-tag" data-jump-slide="7" role="button" tabindex="0" title="Jump to Slide 7">S07</span><span class="ref-slide-tag" data-jump-slide="9" role="button" tabindex="0" title="Jump to Slide 9">S09</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[5]</span>
-                  <div class="ref-text"><strong>Klueh (2004; 2018)</strong> &mdash; <a class="ref-link" href="https://www.osti.gov/biblio/885938" target="_blank" rel="noopener"><em>Irradiated HT9 vs T91 Charpy &Delta;DBTT</em>, <strong>ORNL/TM-2004/176</strong> &nearr;</a> &amp; <em>Phil. Mag.</em> 98. <span class="ref-slide-tag">S08</span></div>
+                  <div class="ref-text"><strong>Klueh (2004; 2018)</strong> &mdash; <a class="ref-link" href="https://www.osti.gov/biblio/885938" target="_blank" rel="noopener"><em>Irradiated HT9 vs T91 Charpy &Delta;DBTT</em>, <strong>ORNL/TM-2004/176</strong> &nearr;</a> &amp; <em>Phil. Mag.</em> 98 <span class="ref-slide-tag" data-jump-slide="8" role="button" tabindex="0" title="Jump to Slide 8">S08</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[6]</span>
-                  <div class="ref-text"><strong>IAEA (2013)</strong> &mdash; <a class="ref-link" href="https://www.iaea.org/publications" target="_blank" rel="noopener"><em>Design, Manufacturing &amp; Irradiation of Fast Reactor Fuel</em>, <strong>IAEA-TECDOC-1689</strong> &nearr;</a>. <span class="ref-slide-tag">S05, S10&ndash;11</span></div>
+                  <div class="ref-text"><strong>IAEA (2013)</strong> &mdash; <a class="ref-link" href="https://www.iaea.org/publications" target="_blank" rel="noopener"><em>Design, Manufacturing &amp; Irradiation of Fast Reactor Fuel</em>, <strong>IAEA-TECDOC-1689</strong> &nearr;</a> <span class="ref-slide-tag" data-jump-slide="5" role="button" tabindex="0" title="Jump to Slide 5">S05</span><span class="ref-slide-tag" data-jump-slide="10" role="button" tabindex="0" title="Jump to Slide 10">S10&ndash;11</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[7]</span>
-                  <div class="ref-text"><strong>Oklo Inc. / DOE-INL (2025)</strong> &mdash; <a class="ref-link" href="https://oklo.com/newsroom/" target="_blank" rel="noopener"><em>Aurora Fuel Qualification Summary &amp; A3F PDSA Approval</em> &nearr;</a>. <span class="ref-slide-tag">S02</span></div>
+                  <div class="ref-text"><strong>Oklo Inc. / DOE-INL (2025)</strong> &mdash; <a class="ref-link" href="https://oklo.com/newsroom/" target="_blank" rel="noopener"><em>Aurora Fuel Qualification Summary &amp; A3F PDSA Approval</em> &nearr;</a> <span class="ref-slide-tag" data-jump-slide="2" role="button" tabindex="0" title="Jump to Slide 2">S02</span></div>
                 </li>
               </ol>
             </div>
@@ -3992,31 +4626,31 @@ html.export-pdf .deck-laser { display: none !important; }
               <ol class="ref-list">
                 <li class="ref-item">
                   <span class="ref-num">[8]</span>
-                  <div class="ref-text"><strong>Was, Petti, Ukai &amp; Zinkle (2019)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.1016/j.jnucmat.2019.151837" target="_blank" rel="noopener"><em>Materials for future nuclear energy systems</em>, <em>J. Nucl. Mater.</em> 527, 151837 &nearr;</a>. <span class="ref-slide-tag">S02</span></div>
+                  <div class="ref-text"><strong>Was, Petti, Ukai &amp; Zinkle (2019)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.1016/j.jnucmat.2019.151837" target="_blank" rel="noopener"><em>Materials for future nuclear energy systems</em>, <em>J. Nucl. Mater.</em> 527, 151837 &nearr;</a> <span class="ref-slide-tag" data-jump-slide="2" role="button" tabindex="0" title="Jump to Slide 2">S02</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[9]</span>
-                  <div class="ref-text"><strong>Yao et al. (2023)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.3389/fnuen.2022.1050262" target="_blank" rel="noopener"><em>PIE &amp; materials informatics for annular U-10Zr</em>, <em>Front. Nucl. Eng.</em> 1, 1050262 &nearr;</a>. <span class="ref-slide-tag">S04, S06, S10</span></div>
+                  <div class="ref-text"><strong>Yao et al. (2023)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.3389/fnuen.2022.1050262" target="_blank" rel="noopener"><em>PIE &amp; materials informatics for annular U-10Zr</em>, <em>Front. Nucl. Eng.</em> 1, 1050262 &nearr;</a> <span class="ref-slide-tag" data-jump-slide="4" role="button" tabindex="0" title="Jump to Slide 4">S04</span><span class="ref-slide-tag" data-jump-slide="6" role="button" tabindex="0" title="Jump to Slide 6">S06</span><span class="ref-slide-tag" data-jump-slide="10" role="button" tabindex="0" title="Jump to Slide 10">S10</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[10]</span>
-                  <div class="ref-text"><strong>Crawford, Porter &amp; Hayes (2007)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.1016/j.jnucmat.2007.05.010" target="_blank" rel="noopener"><em>Fuels for SFRs: US perspective</em>, <em>J. Nucl. Mater.</em> 371, 202&ndash;231 &nearr;</a>. <span class="ref-slide-tag">S03&ndash;04, S09</span></div>
+                  <div class="ref-text"><strong>Crawford, Porter &amp; Hayes (2007)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.1016/j.jnucmat.2007.05.010" target="_blank" rel="noopener"><em>Fuels for SFRs: US perspective</em>, <em>J. Nucl. Mater.</em> 371, 202&ndash;231 &nearr;</a> <span class="ref-slide-tag" data-jump-slide="3" role="button" tabindex="0" title="Jump to Slide 3">S03&ndash;04</span><span class="ref-slide-tag" data-jump-slide="9" role="button" tabindex="0" title="Jump to Slide 9">S09</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[11]</span>
-                  <div class="ref-text"><strong>Carmack et al. (2016)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.1016/j.jnucmat.2016.02.019" target="_blank" rel="noopener"><em>FCCI in FFTF MFF-3 / MFF-5 U-10Zr/HT9</em>, <em>J. Nucl. Mater.</em> 473, 167&ndash;177 &nearr;</a>. <span class="ref-slide-tag">S07</span></div>
+                  <div class="ref-text"><strong>Carmack et al. (2016)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.1016/j.jnucmat.2016.02.019" target="_blank" rel="noopener"><em>FCCI in FFTF MFF-3 / MFF-5 U-10Zr/HT9</em>, <em>J. Nucl. Mater.</em> 473, 167&ndash;177 &nearr;</a> <span class="ref-slide-tag" data-jump-slide="7" role="button" tabindex="0" title="Jump to Slide 7">S07</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[12]</span>
-                  <div class="ref-text"><strong>Wang et al. (2022)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.1016/j.jnucmat.2022.153754" target="_blank" rel="noopener"><em>Small-scale mechanical testing &amp; EDS of HT9 FCCI</em>, <em>J. Nucl. Mater.</em> 566, 153754 &nearr;</a>. <span class="ref-slide-tag">S07</span></div>
+                  <div class="ref-text"><strong>Wang et al. (2022)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.1016/j.jnucmat.2022.153754" target="_blank" rel="noopener"><em>Small-scale mechanical testing &amp; EDS of HT9 FCCI</em>, <em>J. Nucl. Mater.</em> 566, 153754 &nearr;</a> <span class="ref-slide-tag" data-jump-slide="7" role="button" tabindex="0" title="Jump to Slide 7">S07</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[13]</span>
-                  <div class="ref-text"><strong>Xie, Zhang, Benson et al. (2018)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.1016/j.pnucene.2018.08.019" target="_blank" rel="noopener"><em>Lanthanide migration &amp; immobilization</em>, <em>Prog. Nucl. Energy</em> 109 &nearr;</a>. <span class="ref-slide-tag">S10&ndash;11</span></div>
+                  <div class="ref-text"><strong>Xie, Zhang, Benson et al. (2018)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.1016/j.pnucene.2018.08.019" target="_blank" rel="noopener"><em>Lanthanide migration &amp; immobilization</em>, <em>Prog. Nucl. Energy</em> 109 &nearr;</a> <span class="ref-slide-tag" data-jump-slide="10" role="button" tabindex="0" title="Jump to Slide 10">S10&ndash;11</span></div>
                 </li>
                 <li class="ref-item">
                   <span class="ref-num">[14]</span>
-                  <div class="ref-text"><strong>Seki et al. (2004)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.1016/j.jnucmat.2004.04.172" target="_blank" rel="noopener"><em>Pressurized Resistance Welding in 9Cr-ODS steels</em>, <em>J. Nucl. Mater.</em> 329&ndash;333, 1534&ndash;1538 &nearr;</a>. <span class="ref-slide-tag">S10</span></div>
+                  <div class="ref-text"><strong>Seki et al. (2004)</strong> &mdash; <a class="ref-link" href="https://doi.org/10.1016/j.jnucmat.2004.04.172" target="_blank" rel="noopener"><em>Pressurized Resistance Welding in 9Cr-ODS steels</em>, <em>J. Nucl. Mater.</em> 329&ndash;333, 1534&ndash;1538 &nearr;</a> <span class="ref-slide-tag" data-jump-slide="10" role="button" tabindex="0" title="Jump to Slide 10">S10</span></div>
                 </li>
               </ol>
             </div>
@@ -4135,8 +4769,10 @@ html.export-pdf .deck-laser { display: none !important; }
     <div class="deck-shortcuts__panel">
       <h3>Presentation Controls</h3>
       <div class="shortcut-list">
-        <span class="shortcut-key">&rarr; / &uarr;</span><span>Next Slide</span>
-        <span class="shortcut-key">&larr; / &darr;</span><span>Previous Slide</span>
+        <span class="shortcut-key">&rarr; / &uarr; / Space</span><span>Next Step or Slide</span>
+        <span class="shortcut-key">&larr; / &darr;</span><span>Previous Step or Slide (Shift+&larr; skips slide)</span>
+        <span class="shortcut-key">S / A</span><span>Toggle Step-Build (S) &bull; Reveal All Steps (A)</span>
+        <span class="shortcut-key">N</span><span>Toggle Speaker Notes Drawer</span>
         <span class="shortcut-key">G</span><span>Toggle 14-Slide Overview Grid</span>
         <span class="shortcut-key">L</span><span>Toggle Sodium Laser Pointer</span>
         <span class="shortcut-key">Click Figure</span><span>Zoom / Inspect Figure in Q&amp;A</span>
@@ -4147,6 +4783,20 @@ html.export-pdf .deck-laser { display: none !important; }
       </div>
     </div>
   </div>
+
+  <aside id="deck-notes" class="deck-notes" aria-hidden="true">
+    <div class="deck-notes__head">
+      <div class="deck-notes__title">
+        <span>Speaker Notes</span>
+        <span id="deck-notes-slide-lbl" class="deck-notes__badge">Slide 1 / 14</span>
+      </div>
+      <button id="deck-notes-close" class="deck-notes__close" type="button" title="Close (N / Esc)">&times;</button>
+    </div>
+    <textarea id="deck-notes-input" class="deck-notes__input" placeholder="No notes yet for this slide. Type to draft locally (saved in browser) or edit content/speaker-notes.md."></textarea>
+    <div class="deck-notes__foot">Hidden in PDF export &bull; Saved locally &bull; Press N or Esc to close</div>
+  </aside>
+
+  <div id="deck-toast" class="deck-toast" aria-live="polite" aria-hidden="true"></div>
 
   <div id="deck-laser" class="deck-laser" aria-hidden="true"></div>
   <script>
@@ -4171,17 +4821,24 @@ html.export-pdf .deck-laser { display: none !important; }
 
   // Quick-toggle flags for ambient glow & repeating micro-animations (flip any to false to disable)
   const AMBIENT_FX = {
-    stageHalos: true,          // Theme-reactive background glow halos across slides
-    slide1CorePulse: true,     // Slide 1 core glow breath + ripple ring
-    slide1HexChargeCycle: true,// Slide 1 hex lattice gradual charge -> peak -> fast discharge cycle
-    slide4PhaseWave: false,    // Slide 4 temperature wave across phase nodes
-    slide6StepWave: true,    // Slide 6 A -> B -> C -> D badge pulse wave
-    slide7Thermal: true,     // Slide 7 ~725 C eutectic thermal pulse
-    slide8Emerald: true,     // Slide 8 HT9 window emerald pulse
-    slide10MicroLoops: true, // Slide 10 slow physics loops inside 4 micro-SVGs
-    slide12BridgePulse: true,// Slide 12 R&D Bridge traveling pulse
-    slide14ClosingHalo: true // Slide 14 subtle symmetric core halo
+    stageHalos: true,           // Theme-reactive background glow halos across slides
+    slide1CorePulse: true,      // Slide 1 core glow breath + ripple ring
+    slide1HexChargeCycle: true, // Slide 1 hex lattice gradual charge -> peak -> fast discharge cycle
+    slide4PhaseWave: false,     // Slide 4 temperature wave across phase nodes
+    slide6StepWave: true,       // Slide 6 A -> B -> C -> D badge pulse wave
+    slide7Thermal: true,        // Slide 7 ~725 C eutectic thermal pulse
+    slide8Emerald: true,        // Slide 8 HT9 window emerald pulse
+    slide10MicroLoops: true,    // Slide 10 slow physics loops inside 4 micro-SVGs
+    slide12BridgePulse: true,   // Slide 12 R&D Bridge traveling pulse
+    slide14ClosingHalo: true    // Slide 14 subtle symmetric core halo
   };
+
+  // Empty Speaker Notes scaffold (editable locally in drawer via 'N' or via content/speaker-notes.md)
+  const DEFAULT_SLIDE_NOTES = {
+    1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "",
+    8: "", 9: "", 10: "", 11: "", 12: "", 13: "", 14: ""
+  };
+  const NOTES_STORAGE_KEY = "u10zr_sfr_slide_notes_v1";
 
   if (isExportPdf) {
     document.documentElement.classList.add("export-pdf");
@@ -4201,11 +4858,31 @@ html.export-pdf .deck-laser { display: none !important; }
   const lightboxCaption = document.getElementById("lightbox-caption");
   const lightboxClose = document.getElementById("lightbox-close");
   const shortcutsModal = document.getElementById("deck-shortcuts");
+  const notesPanel = document.getElementById("deck-notes");
+  const notesSlideLbl = document.getElementById("deck-notes-slide-lbl");
+  const notesInput = document.getElementById("deck-notes-input");
+  const notesClose = document.getElementById("deck-notes-close");
+  const toastEl = document.getElementById("deck-toast");
   const laserDot = document.getElementById("deck-laser");
 
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let stepBuildEnabled = !isExportPdf && !isStatic && !prefersReducedMotion;
   let currentSlideIndex = 0;
+  let currentSlideSteps = [];
+  let currentStepIdx = 0;
   let activeTimeline = null;
+  let activeStepTimelines = [];
   let ambientTween = null;
+
+  function clearStepTimelines(snapToComplete) {
+    activeStepTimelines.forEach((t) => {
+      if (snapToComplete) t.progress(1);
+      t.kill();
+    });
+    activeStepTimelines = [];
+  }
+  let leavingTween = null;
+  let toastTimer = null;
   let isLaserActive = false;
 
   // Graceful fallback for missing images
@@ -4220,16 +4897,63 @@ html.export-pdf .deck-laser { display: none !important; }
     }
   });
 
+  function finalizeStaticVisuals() {
+    document.querySelectorAll("[data-step].is-step-hidden").forEach((el) => el.classList.remove("is-step-hidden"));
+    document.querySelectorAll(".prop-compare-svg .bar-fill").forEach((bar) => {
+      if (bar.dataset.targetWidth) {
+        bar.setAttribute("width", bar.dataset.targetWidth);
+      }
+      if (window.gsap) window.gsap.set(bar, { clearProps: "transform" });
+    });
+    const s08Clip = document.querySelector("#s08-plotRevealClip rect");
+    if (s08Clip) s08Clip.setAttribute("width", "485");
+    const s10Clip = document.querySelector("#s10-odsClip rect");
+    if (s10Clip) s10Clip.setAttribute("width", "380");
+    document.querySelectorAll(".s08-callout").forEach((c) => {
+      c.style.opacity = "1";
+      if (window.gsap) window.gsap.set(c, { clearProps: "opacity,transform" });
+    });
+    document.querySelectorAll(".slide-header__trace").forEach((tr) => {
+      if (window.gsap) window.gsap.set(tr, { scaleX: 1, opacity: 0.25 });
+      else {
+        tr.style.transform = "scaleX(1)";
+        tr.style.opacity = "0.25";
+      }
+    });
+  }
+
   if (isExportPdf) {
     slides.forEach((s) => s.classList.add("is-active"));
+    finalizeStaticVisuals();
     return;
   }
+
+  document.querySelectorAll(".slide-header").forEach((hdr) => {
+    if (!hdr.querySelector(".slide-header__trace")) {
+      const trace = document.createElement("span");
+      trace.className = "slide-header__trace";
+      trace.setAttribute("aria-hidden", "true");
+      hdr.appendChild(trace);
+    }
+  });
 
   function scaleStage() {
     if (!stage) return;
     const scaleX = window.innerWidth / 1280;
     const scaleY = window.innerHeight / 720;
     stage.style.transform = `scale(${Math.min(scaleX, scaleY)})`;
+  }
+
+  function showToast(msg) {
+    if (!toastEl) return;
+    toastEl.textContent = msg;
+    toastEl.classList.add("is-visible");
+    toastEl.setAttribute("aria-hidden", "false");
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toastEl.classList.remove("is-visible");
+      toastEl.setAttribute("aria-hidden", "true");
+    }, 1500);
   }
 
   // Element-Role 1: Progressive Numeric Counters
@@ -4283,12 +5007,9 @@ html.export-pdf .deck-laser { display: none !important; }
 
   function finalizePrintState() {
     finalizeAllCounters();
-    document.querySelectorAll(".prop-compare-svg .bar-fill").forEach((bar) => {
-      if (bar.dataset.targetWidth) {
-        bar.setAttribute("width", bar.dataset.targetWidth);
-      }
-      if (window.gsap) window.gsap.set(bar, { clearProps: "transform" });
-    });
+    finalizeStaticVisuals();
+    closeOverlays();
+    toggleNotes(false);
   }
 
   window.addEventListener("beforeprint", finalizePrintState);
@@ -4305,7 +5026,7 @@ html.export-pdf .deck-laser { display: none !important; }
         scale: 1,
         duration: 0.85,
         ease: "power3.inOut",
-        onComplete: () => window.gsap.set(el, { clearProps: "clipPath" }),
+        onComplete: () => window.gsap.set(el, { clearProps: "clipPath,transform" }),
       },
       at
     );
@@ -4325,10 +5046,204 @@ html.export-pdf .deck-laser { display: none !important; }
     tl.fromTo(beam, { xPercent: -130, opacity: 0.9 }, { xPercent: 320, opacity: 0, duration: 1.05, ease: "power2.inOut" }, at);
   }
 
+  // Helper: Slide 8 Live Void Swelling Curve Sweep (0 -> 200 dpa)
+  function animateSlide8Swelling(slide, tl, at, instant) {
+    const clipRect = slide.querySelector("#s08-plotRevealClip rect");
+    const callouts = slide.querySelectorAll(".s08-callout");
+    if (!window.gsap) {
+      if (clipRect) clipRect.setAttribute("width", "485");
+      callouts.forEach((c) => (c.style.opacity = "1"));
+      return;
+    }
+    if (instant) {
+      if (clipRect) clipRect.setAttribute("width", "485");
+      window.gsap.set(callouts, { opacity: 1, clearProps: "transform" });
+      return;
+    }
+    if (clipRect) {
+      tl.fromTo(
+        clipRect,
+        { attr: { width: 0 } },
+        { attr: { width: 485 }, duration: 2.15, ease: "power2.inOut" },
+        at
+      );
+    }
+    if (callouts.length) {
+      tl.fromTo(
+        callouts,
+        { opacity: 0, y: 6 },
+        { opacity: 1, y: 0, duration: 0.52, stagger: 0.22, ease: "power2.out", clearProps: "transform" },
+        at + 0.85
+      );
+    }
+  }
+
+  // Helper: Slide 10 Physical Mechanism Micro-SVG Animation (used on entrance, Step-Build & hover)
+  function playLeverMicroSvg(card, targetTl, baseAt) {
+    if (!card || !window.gsap) return;
+    const gsap = window.gsap;
+    if (!targetTl && card._svgTl) {
+      card._svgTl.progress(1).kill();
+    }
+    const tl = targetTl || (card._svgTl = gsap.timeline());
+    const at = typeof baseAt === "number" ? baseAt : 0;
+
+    const barrierSvg = card.querySelector(".lever-svg--barrier");
+    if (barrierSvg) {
+      const fluxL = barrierSvg.querySelector(".svg-flux-left");
+      const fluxR = barrierSvg.querySelector(".svg-flux-right");
+      const shield = barrierSvg.querySelector(".svg-barrier-shield");
+      const blockedLbl = barrierSvg.querySelector(".svg-blocked-lbl");
+      if (shield) tl.fromTo(shield, { scaleY: 0, transformOrigin: "center center" }, { scaleY: 1, duration: 0.46, ease: "power2.out" }, at);
+      if (fluxL) tl.fromTo(fluxL, { x: -20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.52, ease: "power2.out" }, at + 0.06);
+      if (fluxR) tl.fromTo(fluxR, { x: 20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.52, ease: "power2.out" }, at + 0.06);
+      if (blockedLbl) tl.fromTo(blockedLbl, { opacity: 0, y: 4 }, { opacity: 1, y: 0, duration: 0.4 }, at + 0.32);
+    }
+
+    const dopantsSvg = card.querySelector(".lever-svg--dopants");
+    if (dopantsSvg) {
+      const traps = dopantsSvg.querySelectorAll(".svg-trap");
+      const lnBonds = dopantsSvg.querySelectorAll(".svg-ln-bond");
+      if (traps.length) tl.fromTo(traps, { scale: 0.45, transformOrigin: "center center", opacity: 0 }, { scale: 1, opacity: 1, duration: 0.46, stagger: 0.09, ease: "back.out(1.7)" }, at);
+      if (lnBonds.length) tl.fromTo(lnBonds, { x: -14, opacity: 0 }, { x: 0, opacity: 1, duration: 0.44, stagger: 0.09, ease: "power2.out" }, at + 0.16);
+    }
+
+    const annularSvg = card.querySelector(".lever-svg--annular");
+    if (annularSvg) {
+      const annRings = annularSvg.querySelectorAll(".svg-ann-ring");
+      const annDots = annularSvg.querySelectorAll(".svg-ann-dot");
+      const annLines = annularSvg.querySelectorAll(".svg-ann-line");
+      const annLbls = annularSvg.querySelectorAll(".svg-ann-lbl");
+      if (annRings.length) tl.fromTo(annRings, { scale: 0.45, svgOrigin: "84 46", opacity: 0 }, { scale: 1, opacity: 1, duration: 0.46, stagger: 0.06, ease: "power3.out" }, at);
+      if (annDots.length) tl.fromTo(annDots, { scale: 0, opacity: 0, transformOrigin: "center center" }, { scale: 1, opacity: 1, duration: 0.28, stagger: 0.06, ease: "back.out(1.8)" }, at + 0.22);
+      annLines.forEach((ln, idx) => {
+        const len = Math.ceil(ln.getTotalLength ? ln.getTotalLength() : 70) + 2;
+        gsap.set(ln, { strokeDasharray: len, strokeDashoffset: len });
+        tl.to(ln, { strokeDashoffset: 0, duration: 0.36, ease: "power2.out", onComplete: () => gsap.set(ln, { clearProps: "strokeDasharray,strokeDashoffset" }) }, at + 0.26 + idx * 0.06);
+      });
+      if (annLbls.length) tl.fromTo(annLbls, { opacity: 0, x: 6 }, { opacity: 1, x: 0, duration: 0.34, stagger: 0.06, ease: "power2.out", clearProps: "transform" }, at + 0.34);
+    }
+
+    const odsSvg = card.querySelector(".lever-svg--ods");
+    if (odsSvg) {
+      const odsClip = odsSvg.querySelector("#s10-odsClip rect");
+      const oxides = odsSvg.querySelectorAll(".svg-oxide");
+      const heDots = odsSvg.querySelectorAll(".svg-he");
+      if (oxides.length) tl.fromTo(oxides, { scale: 0, transformOrigin: "center center" }, { scale: 1, duration: 0.42, stagger: 0.06, ease: "back.out(2)" }, at);
+      if (odsClip) {
+        tl.fromTo(odsClip, { attr: { width: 0 } }, { attr: { width: 380 }, duration: 0.72, ease: "power2.out" }, at + 0.1);
+      }
+      if (heDots.length) tl.fromTo(heDots, { scale: 0, opacity: 0, transformOrigin: "center center" }, { scale: 1, opacity: 1, duration: 0.36, stagger: 0.07, ease: "back.out(2)" }, at + 0.28);
+    }
+  }
+
+  function startSlide10Ambient(slide) {
+    if (!AMBIENT_FX.slide10MicroLoops || !window.gsap) return;
+    if (ambientTween) {
+      ambientTween.kill();
+      ambientTween = null;
+    }
+    const gsap = window.gsap;
+    const fluxL = slide.querySelector(".lever-svg--barrier .svg-flux-left");
+    const traps = slide.querySelectorAll(".lever-svg--dopants .svg-trap");
+    const oxides = slide.querySelectorAll(".lever-svg--ods .svg-oxide");
+    ambientTween = gsap.timeline({ repeat: -1, repeatDelay: 5.5, delay: 1.6 });
+    if (fluxL) ambientTween.to(fluxL, { x: 4, duration: 0.5, yoyo: true, repeat: 1, ease: "power1.inOut" }, 0);
+    if (traps.length) ambientTween.to(traps, { scale: 1.08, transformOrigin: "center center", duration: 0.55, stagger: 0.12, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0.2);
+    if (oxides.length) ambientTween.to(oxides, { scale: 1.25, transformOrigin: "center center", duration: 0.5, stagger: 0.1, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0.4);
+  }
+
+  function startSlide12Ambient(slide) {
+    if (!AMBIENT_FX.slide12BridgePulse || !window.gsap) return;
+    const pulses = slide.querySelectorAll(".s12-bridge-pulse");
+    if (!pulses.length) return;
+    if (ambientTween) {
+      ambientTween.kill();
+      ambientTween = null;
+    }
+    ambientTween = window.gsap.timeline({ repeat: -1, repeatDelay: 4.5, delay: 1.0 });
+    ambientTween
+      .fromTo(pulses, { y: 0, opacity: 0 }, { opacity: 1, duration: 0.22 }, 0)
+      .to(pulses, { y: 66, duration: 1.35, ease: "power1.inOut" }, 0.08)
+      .to(pulses, { opacity: 0, duration: 0.25 }, 1.25);
+  }
+
+  function startSlide6Ambient(slide) {
+    if (!AMBIENT_FX.slide6StepWave || !window.gsap) return;
+    const dots = slide.querySelectorAll(".step-item__dot");
+    if (!dots.length) return;
+    if (ambientTween) {
+      ambientTween.kill();
+      ambientTween = null;
+    }
+    ambientTween = window.gsap.timeline({ repeat: -1, repeatDelay: 5.5, delay: 1.5 });
+    dots.forEach((d, i) => {
+      ambientTween.to(d, { scale: 1.24, boxShadow: "0 0 12px rgba(224,90,0,0.65)", duration: 0.4, yoyo: true, repeat: 1, ease: "sine.inOut" }, i * 0.32);
+    });
+  }
+
+  // Footer Step-Dots UI (only shown on Step-Build slides when Step-Build is ON)
+  function getSlideStepNumbers(slide) {
+    const nums = new Set();
+    slide.querySelectorAll("[data-step]").forEach((el) => {
+      const n = parseInt(el.dataset.step, 10);
+      if (!Number.isNaN(n)) nums.add(n);
+    });
+    return Array.from(nums).sort((a, b) => a - b);
+  }
+
+  function syncFooterStepDots(slide) {
+    const rightGroup = slide?.querySelector(".slide-footer__right-group");
+    if (!rightGroup) return;
+    let dotsWrap = rightGroup.querySelector(".footer-step-dots");
+    const total = currentSlideSteps.length;
+    if (!stepBuildEnabled || total === 0) {
+      if (dotsWrap) dotsWrap.remove();
+      return;
+    }
+    if (!dotsWrap) {
+      dotsWrap = document.createElement("span");
+      dotsWrap.className = "footer-step-dots";
+      dotsWrap.setAttribute("aria-hidden", "true");
+      const slideCounter = rightGroup.querySelector(".slide-footer__right");
+      rightGroup.insertBefore(dotsWrap, slideCounter || null);
+    }
+    dotsWrap.innerHTML = "";
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement("span");
+      dot.className = `footer-step-dot${i < currentStepIdx ? " is-revealed" : ""}`;
+      dotsWrap.appendChild(dot);
+    }
+  }
+
+  function initStepStateForSlide(slide, revealAll) {
+    currentSlideSteps = getSlideStepNumbers(slide);
+    const hasSteps = currentSlideSteps.length > 0;
+    clearStepTimelines(false);
+    if (!hasSteps) {
+      currentStepIdx = 0;
+      syncFooterStepDots(slide);
+      return false;
+    }
+    if (stepBuildEnabled && !revealAll) {
+      currentStepIdx = 0;
+      slide.querySelectorAll("[data-step]").forEach((el) => el.classList.add("is-step-hidden"));
+      syncFooterStepDots(slide);
+      return true; // waiting on steps
+    } else {
+      currentStepIdx = currentSlideSteps.length;
+      slide.querySelectorAll("[data-step]").forEach((el) => el.classList.remove("is-step-hidden"));
+      syncFooterStepDots(slide);
+      return false; // fully revealed
+    }
+  }
+
   // Structure-Targeted Motion Grammar + High-Impact Scientific Highlights
-  function playSlideEntrance(slide) {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!window.gsap || prefersReduced || isStatic) return;
+  function playSlideEntrance(slide, isWaitingSteps) {
+    if (!window.gsap || prefersReducedMotion || isStatic) {
+      finalizeStaticVisuals();
+      return;
+    }
 
     if (activeTimeline) {
       activeTimeline.kill();
@@ -4345,10 +5260,10 @@ html.export-pdf .deck-laser { display: none !important; }
     activeTimeline = tl;
     const slideNum = parseInt(slide.dataset.slide || "1", 10);
 
-    // Slide 1 (Cover): Outer-to-Inner Hex Lattice Draw + Core Glow Charge/Discharge Cycle + Masked Title
+    // Slide 1 (Cover): Outer-to-Inner Hex Lattice Draw (Ring 2 -> Ring 1 -> Ring 0) + Charge Cycle
     if (slideNum === 1) {
-      const outerShapes = slide.querySelectorAll('.cover-hex-grid polygon:not([stroke="#E05A00"])');
-      const centerHex = slide.querySelector('.cover-hex-grid polygon[stroke="#E05A00"]');
+      const outerShapes = slide.querySelectorAll(".cover-hex-grid .hex-ring-2, .cover-hex-grid .hex-ring-1");
+      const centerHex = slide.querySelector(".cover-hex-grid .hex-ring-0");
       const centerCircle = slide.querySelector('.cover-hex-grid g circle[stroke="#FBBF24"]');
       const allHexCells = slide.querySelectorAll(".cover-hex-grid .hex-cell");
       const ring0 = slide.querySelector(".cover-hex-grid .hex-ring-0");
@@ -4379,7 +5294,7 @@ html.export-pdf .deck-laser { display: none !important; }
           duration: 0.9,
           ease: "expo.out",
           onComplete: () => gsap.set(centerHex, { clearProps: "strokeDasharray,strokeDashoffset" }),
-        }, 0.75);
+        }, 0.72);
       }
       if (centerCircle) {
         tl.to(centerCircle, {
@@ -4387,9 +5302,9 @@ html.export-pdf .deck-laser { display: none !important; }
           duration: 0.8,
           ease: "power2.inOut",
           onComplete: () => gsap.set(centerCircle, { clearProps: "strokeDasharray,strokeDashoffset" }),
-        }, 0.95);
+        }, 0.92);
       }
-      tl.fromTo(slide.querySelector(".cover-badge"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.65, ease: "power2.out" }, 0.1)
+      tl.fromTo(slide.querySelector(".cover-badge"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.65, ease: "power2.out", clearProps: "transform" }, 0.1)
         .fromTo(
           coverTitle,
           { opacity: 0, y: 24, clipPath: "inset(0% 0% 100% 0%)" },
@@ -4399,21 +5314,19 @@ html.export-pdf .deck-laser { display: none !important; }
             clipPath: "inset(0% 0% 0% 0%)",
             duration: 0.95,
             ease: "power4.out",
-            onComplete: () => gsap.set(coverTitle, { clearProps: "clipPath" }),
+            onComplete: () => gsap.set(coverTitle, { clearProps: "clipPath,transform" }),
           },
           0.18
         )
         .fromTo(slide.querySelector(".cover-accent-rule"), { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 0.85, ease: "expo.out" }, 0.42)
-        .fromTo(slide.querySelector(".cover-subtitle"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.72, ease: "power2.out" }, 0.52)
-        .fromTo(slide.querySelectorAll(".cover-tag"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, stagger: 0.09, ease: "back.out(1.4)" }, 0.64)
-        .fromTo(slide.querySelector(".cover-footer"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.65 }, 0.78);
+        .fromTo(slide.querySelector(".cover-subtitle"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.72, ease: "power2.out", clearProps: "transform" }, 0.52)
+        .fromTo(slide.querySelectorAll(".cover-tag"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, stagger: 0.09, ease: "back.out(1.4)", clearProps: "transform" }, 0.64)
+        .fromTo(slide.querySelector(".cover-footer"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.65, clearProps: "transform" }, 0.78);
       if (coreNode) {
         tl.fromTo(coreNode, { scale: 0.3, transformOrigin: "center center", opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: "back.out(2.2)" }, 1.05);
       }
       if (AMBIENT_FX.slide1HexChargeCycle && allHexCells.length) {
-        // Ciclo morbido di respirazione termica (yoyo: true evita lo scatto brusco a fine ciclo)
         ambientTween = gsap.timeline({ repeat: -1, yoyo: true, repeatDelay: 0.25, delay: 1.2 });
-
         if (coreGlow) {
           ambientTween.fromTo(
             coreGlow,
@@ -4442,8 +5355,6 @@ html.export-pdf .deck-laser { display: none !important; }
         if (ring2.length) {
           ambientTween.to(ring2, { fillOpacity: 0.16, stroke: "#F59E0B", strokeOpacity: 0.72, strokeWidth: 1.6, duration: 1.6, stagger: 0.12, ease: "sine.inOut" }, 0.95);
         }
-
-        // Onda neutronica radiale continua (dal centro verso il vessel esterno)
         if (corePulse) {
           gsap.killTweensOf(corePulse);
           gsap.fromTo(
@@ -4455,48 +5366,62 @@ html.export-pdf .deck-laser { display: none !important; }
       } else if (AMBIENT_FX.slide1CorePulse) {
         ambientTween = gsap.timeline({ repeat: -1, repeatDelay: 4.5, delay: 2.2 });
         if (coreGlow) {
-          ambientTween.fromTo(
-            coreGlow,
-            { opacity: 0.55, scale: 0.9, transformOrigin: "center center" },
-            { opacity: 1, scale: 1.14, duration: 1.8, yoyo: true, repeat: 1, ease: "sine.inOut" },
-            0
-          );
+          ambientTween.fromTo(coreGlow, { opacity: 0.55, scale: 0.9, transformOrigin: "center center" }, { opacity: 1, scale: 1.14, duration: 1.8, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0);
         }
         if (corePulse) {
-          ambientTween.fromTo(
-            corePulse,
-            { scale: 1, opacity: 0.82, transformOrigin: "center center" },
-            { scale: 3.1, opacity: 0, duration: 3.4, ease: "power2.out" },
-            0
-          );
+          ambientTween.fromTo(corePulse, { scale: 1, opacity: 0.82, transformOrigin: "center center" }, { scale: 3.1, opacity: 0, duration: 3.4, ease: "power2.out" }, 0);
         }
         if (coreNode) {
-          ambientTween.fromTo(
-            coreNode,
-            { scale: 1, transformOrigin: "center center" },
-            { scale: 1.18, duration: 1.6, yoyo: true, repeat: 1, ease: "sine.inOut" },
-            0
-          );
+          ambientTween.fromTo(coreNode, { scale: 1, transformOrigin: "center center" }, { scale: 1.18, duration: 1.6, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0);
         }
       }
       return;
     }
 
-    // Shared Masked Typographic Reveal for Header Takeaway
+    // Shared Instrument/CAD Precision Reveal for Header Section Tag, Hairline Trace & Takeaway
+    const sectionTag = slide.querySelector(".slide-header__section");
+    const headerTrace = slide.querySelector(".slide-header__trace");
     const takeaway = slide.querySelector(".slide-header__takeaway");
-    if (takeaway) {
+    if (sectionTag) {
       tl.fromTo(
-        takeaway,
-        { opacity: 0, y: 12, clipPath: "inset(0% 0% 100% 0%)" },
+        sectionTag,
+        { opacity: 0, y: 14, clipPath: "inset(0% 0% 100% 0%)" },
         {
           opacity: 1,
           y: 0,
           clipPath: "inset(0% 0% 0% 0%)",
-          duration: 0.68,
-          ease: "power4.out",
-          onComplete: () => gsap.set(takeaway, { clearProps: "clipPath" }),
+          duration: 0.42,
+          ease: "power3.out",
+          onComplete: () => gsap.set(sectionTag, { clearProps: "clipPath,transform" }),
         },
-        0
+        0.02
+      );
+    }
+    if (headerTrace) {
+      tl.fromTo(
+        headerTrace,
+        { scaleX: 0, opacity: 0.95 },
+        { scaleX: 1, opacity: 0.95, duration: 0.58, ease: "expo.out" },
+        0.04
+      ).to(
+        headerTrace,
+        { opacity: 0.25, duration: 0.48, ease: "power2.out" },
+        0.58
+      );
+    }
+    if (takeaway) {
+      tl.fromTo(
+        takeaway,
+        { opacity: 0, y: 20, clipPath: "inset(0% 0% 100% 0%)" },
+        {
+          opacity: 1,
+          y: 0,
+          clipPath: "inset(0% 0% 0% 0%)",
+          duration: 0.56,
+          ease: "power4.out",
+          onComplete: () => gsap.set(takeaway, { clearProps: "clipPath,transform" }),
+        },
+        0.06
       );
     }
 
@@ -4505,12 +5430,12 @@ html.export-pdf .deck-laser { display: none !important; }
       const tiles = slide.querySelectorAll(".mandate-tile");
       const figs = slide.querySelectorAll(".dual-visual .figure-card");
       const mini = slide.querySelector(".aurora-mini-card");
-      tl.fromTo(tiles, { opacity: 0, y: -22 }, { opacity: 1, y: 0, duration: 0.68, stagger: 0.12, ease: "power3.out" }, 0.1);
+      tl.fromTo(tiles, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.65, stagger: 0.11, ease: "power3.out", clearProps: "transform" }, 0.1);
       const c = animateCounters(slide);
       if (c) tl.add(c, 0.35);
-      if (figs[0]) revealFigure(tl, figs[0], "inset(0% 100% 0% 0%)", 0.34);
-      if (figs[1]) revealFigure(tl, figs[1], "inset(0% 0% 0% 100%)", 0.34);
-      if (mini) tl.fromTo(mini, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.58, ease: "power2.out" }, 0.58);
+      if (figs[0]) revealFigure(tl, figs[0], "inset(0% 100% 0% 0%)", 0.32);
+      if (figs[1]) revealFigure(tl, figs[1], "inset(0% 0% 0% 100%)", 0.32);
+      if (mini) tl.fromTo(mini, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.58, ease: "power2.out", clearProps: "transform" }, 0.56);
       return;
     }
 
@@ -4528,10 +5453,10 @@ html.export-pdf .deck-laser { display: none !important; }
       const bullets = slide.querySelectorAll(".bullet-list li");
 
       if (fig) revealFigure(tl, fig, "inset(0% 100% 0% 0%)", 0.08);
-      if (clad.length) tl.fromTo(clad, { opacity: 0, scale: 0.94, transformOrigin: "center center" }, { opacity: 1, scale: 1, duration: 0.55, ease: "power2.out" }, 0.24);
-      if (na.length) tl.fromTo(na, { opacity: 0, scale: 0.9, transformOrigin: "center center" }, { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" }, 0.36);
-      if (slug.length) tl.fromTo(slug, { opacity: 0, scale: 0.84, transformOrigin: "center center" }, { opacity: 1, scale: 1, duration: 0.55, ease: "back.out(1.4)" }, 0.46);
-      if (plenum.length) tl.fromTo(plenum, { opacity: 0, scaleX: 0.6, transformOrigin: "left center" }, { opacity: 1, scaleX: 1, duration: 0.55, ease: "power2.out" }, 0.56);
+      if (clad.length) tl.fromTo(clad, { opacity: 0, scale: 0.94, transformOrigin: "center center" }, { opacity: 1, scale: 1, duration: 0.55, ease: "power2.out", clearProps: "transform" }, 0.24);
+      if (na.length) tl.fromTo(na, { opacity: 0, scale: 0.9, transformOrigin: "center center" }, { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out", clearProps: "transform" }, 0.36);
+      if (slug.length) tl.fromTo(slug, { opacity: 0, scale: 0.84, transformOrigin: "center center" }, { opacity: 1, scale: 1, duration: 0.55, ease: "back.out(1.4)", clearProps: "transform" }, 0.46);
+      if (plenum.length) tl.fromTo(plenum, { opacity: 0, scaleX: 0.6, transformOrigin: "left center" }, { opacity: 1, scaleX: 1, duration: 0.55, ease: "power2.out", clearProps: "transform" }, 0.56);
       if (wire.length) tl.fromTo(wire, { opacity: 0 }, { opacity: 1, duration: 0.45 }, 0.64);
       if (leaders.length) {
         leaders.forEach((ln) => {
@@ -4541,12 +5466,12 @@ html.export-pdf .deck-laser { display: none !important; }
         tl.to(leaders, { strokeDashoffset: 0, duration: 0.55, stagger: 0.06, ease: "power2.out" }, 0.66);
       }
       if (callouts.length) tl.fromTo(callouts, { opacity: 0 }, { opacity: 1, duration: 0.4, stagger: 0.025 }, 0.72);
-      if (rows.length) tl.fromTo(rows, { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.55, stagger: 0.1, ease: "power2.out" }, 0.22);
-      if (bullets.length) tl.fromTo(bullets, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: "power2.out" }, 0.6);
+      if (rows.length) tl.fromTo(rows, { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.55, stagger: 0.1, ease: "power2.out", clearProps: "transform" }, 0.22);
+      if (bullets.length) tl.fromTo(bullets, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: "power2.out", clearProps: "transform" }, 0.6);
       return;
     }
 
-    // Slide 4: 3D Phase Domino + Isotropic Glow + Parabolic Expo Bars + Mini-Card + Diagram
+    // Slide 4: 3D Phase Domino + Isotropic Glow + Left-to-Right Bars + Mini-Card + Diagram
     if (slideNum === 4) {
       const nodes = slide.querySelectorAll(".phase-node");
       const isoNode = slide.querySelector(".phase-node--iso");
@@ -4556,8 +5481,8 @@ html.export-pdf .deck-laser { display: none !important; }
       const bullets = slide.querySelectorAll(".bullet-list li");
       const fig = slide.querySelector(".figure-card");
       if (isoNode) isoNode.classList.remove("is-lit");
-      tl.fromTo(nodes, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.58, stagger: 0.1, ease: "power3.out" }, 0.12)
-        .fromTo(arrows, { opacity: 0, x: -6 }, { opacity: 1, x: 0, duration: 0.35, stagger: 0.1, ease: "power2.out" }, 0.18);
+      tl.fromTo(nodes, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.58, stagger: 0.1, ease: "power3.out", clearProps: "transform" }, 0.12)
+        .fromTo(arrows, { opacity: 0, x: -6 }, { opacity: 1, x: 0, duration: 0.35, stagger: 0.1, ease: "power2.out", clearProps: "transform" }, 0.18);
       bars.forEach((b, i) => {
         if (!b.dataset.targetWidth) {
           b.dataset.targetWidth = b.getAttribute("width") || "0";
@@ -4571,8 +5496,8 @@ html.export-pdf .deck-laser { display: none !important; }
         );
       });
       if (isoNode) tl.call(() => isoNode.classList.add("is-lit"), null, 0.78);
-      if (mini) tl.fromTo(mini, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.52);
-      if (bullets.length) tl.fromTo(bullets, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.58, stagger: 0.12, ease: "power2.out" }, 0.6);
+      if (mini) tl.fromTo(mini, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", clearProps: "transform" }, 0.52);
+      if (bullets.length) tl.fromTo(bullets, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.58, stagger: 0.12, ease: "power2.out", clearProps: "transform" }, 0.6);
       if (fig) revealFigure(tl, fig, "inset(0% 0% 0% 100%)", 0.28);
       if (AMBIENT_FX.slide4PhaseWave && nodes.length) {
         ambientTween = gsap.timeline({ repeat: -1, repeatDelay: 5.5, delay: 2.0 });
@@ -4580,84 +5505,115 @@ html.export-pdf .deck-laser { display: none !important; }
           const rect = n.querySelector("rect");
           if (!rect) return;
           const isIso = n.classList.contains("phase-node--iso");
-          ambientTween.to(
-            rect,
-            {
-              stroke: isIso ? "#15803D" : "#E05A00",
-              strokeWidth: 2,
-              duration: 0.35,
-              yoyo: true,
-              repeat: 1,
-              ease: "sine.inOut",
-            },
-            i * 0.24
-          );
+          ambientTween.to(rect, { stroke: isIso ? "#15803D" : "#E05A00", strokeWidth: 2, duration: 0.35, yoyo: true, repeat: 1, ease: "sine.inOut" }, i * 0.24);
         });
       }
       return;
     }
 
-    // Slide 5: Left-to-Right 3-Stage Manufacturing Flow + Dual Bottom Panels
+    // Slide 5: Inline Sequential Fabrication Flow (Stage 01 -> 02 -> 03) + Right Weld Panel
     if (slideNum === 5) {
-      const steps = slide.querySelectorAll(".pipe-step");
       const figs = slide.querySelectorAll(".dual-panel-row .figure-card");
-      if (steps.length) tl.fromTo(steps, { opacity: 0, x: -36 }, { opacity: 1, x: 0, duration: 0.68, stagger: 0.18, ease: "power3.out" }, 0.14);
-      if (figs[0]) revealFigure(tl, figs[0], "inset(100% 0% 0% 0%)", 0.36);
-      if (figs[1]) revealFigure(tl, figs[1], "inset(100% 0% 0% 0%)", 0.48);
+      const stages = slide.querySelectorAll(".s05-stage");
+      const conns = slide.querySelectorAll(".s05-conn");
+      const miniBoxes = slide.querySelectorAll(".fig-mini-box");
+
+      if (figs[0]) revealFigure(tl, figs[0], "inset(0% 100% 0% 0%)", 0.08);
+      stages.forEach((st, idx) => {
+        const baseAt = 0.24 + idx * 0.38;
+        const steps = st.querySelectorAll(".s05-step");
+        const arrows = st.querySelectorAll(".s05-arrow");
+        tl.fromTo(st, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.38, ease: "power2.out", clearProps: "transform" }, baseAt);
+        if (steps.length) {
+          tl.fromTo(steps, { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.36, stagger: 0.08, ease: "power2.out", clearProps: "transform" }, baseAt + 0.06);
+        }
+        if (arrows.length) {
+          tl.fromTo(arrows, { opacity: 0 }, { opacity: 1, duration: 0.25, stagger: 0.08 }, baseAt + 0.12);
+        }
+        if (conns[idx]) {
+          const len = conns[idx].getTotalLength ? conns[idx].getTotalLength() : 28;
+          gsap.set(conns[idx], { strokeDasharray: len, strokeDashoffset: len });
+          tl.to(conns[idx], { strokeDashoffset: 0, duration: 0.28, ease: "power2.out", onComplete: () => gsap.set(conns[idx], { clearProps: "strokeDasharray,strokeDashoffset" }) }, baseAt + 0.28);
+        }
+      });
+
+      if (figs[1]) revealFigure(tl, figs[1], "inset(100% 0% 0% 0%)", 0.28);
+      if (miniBoxes.length) {
+        tl.fromTo(miniBoxes, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.14, ease: "power2.out", clearProps: "transform" }, 0.58);
+      }
       return;
     }
 
-    // Slide 6: SEM/EDS Wipe Left + Sequential A -> B -> C -> D with Elastic Dot Pop
+    // Slide 6: SEM/EDS Wipe Left + Legend Rows + Optional Step-Build A -> B -> C -> D
     if (slideNum === 6) {
       const fig = slide.querySelector(".figure-card");
+      const legendRows = slide.querySelectorAll(".fig-legend-row");
       const items = slide.querySelectorAll(".step-item");
       const dots = slide.querySelectorAll(".step-item__dot");
-      if (fig) revealFigure(tl, fig, "inset(0% 100% 0% 0%)", 0.14);
-      if (items.length) tl.fromTo(items, { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.64, stagger: 0.15, ease: "power2.out" }, 0.2);
-      if (dots.length) tl.fromTo(dots, { scale: 0 }, { scale: 1, duration: 0.55, stagger: 0.15, ease: "back.out(2)" }, 0.26);
-      if (AMBIENT_FX.slide6StepWave && dots.length) {
-        ambientTween = gsap.timeline({ repeat: -1, repeatDelay: 5.5, delay: 2.0 });
-        dots.forEach((d, i) => {
-          ambientTween.to(d, { scale: 1.24, boxShadow: "0 0 12px rgba(224,90,0,0.65)", duration: 0.4, yoyo: true, repeat: 1, ease: "sine.inOut" }, i * 0.32);
-        });
+
+      if (fig) revealFigure(tl, fig, "inset(0% 100% 0% 0%)", 0.12);
+      if (legendRows.length) {
+        tl.fromTo(legendRows, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.44, stagger: 0.1, ease: "power2.out", clearProps: "transform" }, 0.35);
+      }
+      if (!isWaitingSteps) {
+        if (items.length) tl.fromTo(items, { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.6, stagger: 0.14, ease: "power2.out", clearProps: "transform" }, 0.2);
+        if (dots.length) tl.fromTo(dots, { scale: 0 }, { scale: 1, duration: 0.5, stagger: 0.14, ease: "back.out(2)", clearProps: "transform" }, 0.26);
+        startSlide6Ambient(slide);
       }
       return;
     }
 
-    // Slide 7: Alert Banner + Shimmer + Thermal Pulse + Causal Chain 01->02->03
+    // Slide 7: Causal Chain 01->02->03 (with Step-Build support) + Thermal Shimmer/Pulse + Metallography 2x2
     if (slideNum === 7) {
-      const banner = slide.querySelector(".alert-banner");
-      const metric = slide.querySelector(".alert-banner__metric");
-      const cards = slide.querySelectorAll(".chain-card");
+      const firstCard = slide.querySelector(".chain-card:not([data-step])");
+      const allCards = slide.querySelectorAll(".chain-card");
       const critical = slide.querySelector(".chain-card--critical");
       const fig = slide.querySelector(".figure-card");
-      if (metric) metric.classList.remove("is-pulsing");
-      if (banner) {
-        tl.fromTo(banner, { scaleX: 0.85, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.68, ease: "power3.out" }, 0.08);
-        triggerShimmer(tl, banner, 0.72);
+      const miniBoxes = slide.querySelectorAll(".fig-mini-box");
+      if (critical) critical.classList.remove("is-pulsing");
+
+      if (fig) revealFigure(tl, fig, "inset(0% 0% 0% 100%)", 0.18);
+      if (miniBoxes.length) {
+        tl.fromTo(miniBoxes, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: "power2.out", clearProps: "transform" }, 0.42);
       }
-      if (cards.length) tl.fromTo(cards, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.62, stagger: 0.15, ease: "power2.out" }, 0.22);
-      if (fig) revealFigure(tl, fig, "inset(0% 0% 0% 100%)", 0.26);
-      if (metric && AMBIENT_FX.slide7Thermal) tl.call(() => metric.classList.add("is-pulsing"), null, 0.9);
+      if (isWaitingSteps) {
+        if (firstCard) tl.fromTo(firstCard, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.56, ease: "power2.out", clearProps: "transform" }, 0.16);
+      } else {
+        if (allCards.length) tl.fromTo(allCards, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.58, stagger: 0.14, ease: "power2.out", clearProps: "transform" }, 0.16);
+        if (critical) {
+          triggerShimmer(tl, critical, 0.72);
+          if (AMBIENT_FX.slide7Thermal) tl.call(() => critical.classList.add("is-pulsing"), null, 0.88);
+        }
+      }
       return;
     }
 
-    // Slide 8: Symmetric 2-Column Head-to-Head Grid + HT9 Summary Emerald Pulse + Dual Stacked Plots
+    // Slide 8: Symmetric H2H Grid + Live Void Swelling Curve Sweep + Verdict Banners
     if (slideNum === 8) {
       const heads = slide.querySelectorAll(".h2h-head");
       const cards = slide.querySelectorAll(".h2h-card");
       const caps = slide.querySelectorAll(".h2h-grid .compare-cap-card");
       const ht9 = slide.querySelector(".compare-cap-card--ht9");
       const plots = slide.querySelectorAll(".stacked-figs-2 .figure-card");
+      const clipRect = slide.querySelector("#s08-plotRevealClip rect");
+      const callouts = slide.querySelectorAll(".s08-callout");
       if (ht9) ht9.classList.remove("is-pulsing");
-      if (heads.length) tl.fromTo(heads, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: "power3.out" }, 0.08);
-      if (cards.length) tl.fromTo(cards, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.48, stagger: 0.055, ease: "power2.out" }, 0.18);
-      if (caps.length) tl.fromTo(caps, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power2.out" }, 0.54);
-      if (plots[0]) revealFigure(tl, plots[0], "inset(0% 0% 0% 100%)", 0.28);
-      if (plots[1]) revealFigure(tl, plots[1], "inset(0% 0% 0% 100%)", 0.42);
-      if (ht9) {
-        triggerShimmer(tl, ht9, 0.78);
-        if (AMBIENT_FX.slide8Emerald) tl.call(() => ht9.classList.add("is-pulsing"), null, 0.85);
+
+      if (heads.length) tl.fromTo(heads, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: "power3.out", clearProps: "transform" }, 0.08);
+      if (cards.length) tl.fromTo(cards, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.46, stagger: 0.055, ease: "power2.out", clearProps: "transform" }, 0.16);
+      if (plots[0]) revealFigure(tl, plots[0], "inset(0% 0% 0% 100%)", 0.24);
+      if (plots[1]) revealFigure(tl, plots[1], "inset(0% 0% 0% 100%)", 0.36);
+
+      if (isWaitingSteps) {
+        if (clipRect) gsap.set(clipRect, { attr: { width: 0 } });
+        if (callouts.length) gsap.set(callouts, { opacity: 0 });
+      } else {
+        if (caps.length) tl.fromTo(caps, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.48, stagger: 0.1, ease: "power2.out", clearProps: "transform" }, 0.54);
+        animateSlide8Swelling(slide, tl, 0.52, false);
+        if (ht9) {
+          triggerShimmer(tl, ht9, 0.78);
+          if (AMBIENT_FX.slide8Emerald) tl.call(() => ht9.classList.add("is-pulsing"), null, 0.9);
+        }
       }
       return;
     }
@@ -4667,148 +5623,95 @@ html.export-pdf .deck-laser { display: none !important; }
       const kpis = slide.querySelectorAll(".kpi-card");
       const fig = slide.querySelector(".figure-card");
       const bullets = slide.querySelectorAll(".bullet-list li");
+      const note = slide.querySelector(".s09-strain-note");
       if (kpis.length) {
-        tl.fromTo(kpis, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.56, stagger: 0.07, ease: "power3.out" }, 0.08);
+        tl.fromTo(kpis, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.56, stagger: 0.07, ease: "power3.out", clearProps: "transform" }, 0.08);
         const c = animateCounters(slide);
         if (c) tl.add(c, 0.32);
       }
       if (fig) revealFigure(tl, fig, "inset(0% 100% 0% 0%)", 0.32);
-      if (bullets.length) tl.fromTo(bullets, { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.6, stagger: 0.13, ease: "power2.out" }, 0.38);
+      if (note) tl.fromTo(note, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", clearProps: "transform" }, 0.56);
+      if (bullets.length) tl.fromTo(bullets, { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.6, stagger: 0.13, ease: "power2.out", clearProps: "transform" }, 0.38);
       return;
     }
 
-    // Slide 10: 4-Corner Diagonal Convergence + Animated Physical Mechanism SVGs
+    // Slide 10: 4-Corner Diagonal Convergence + Physical Mechanism SVGs (with Step-Build)
     if (slideNum === 10) {
-      const cards = slide.querySelectorAll(".bento-card");
-      const offsets = [
-        { x: -26, y: -18 },
-        { x: 26, y: -18 },
-        { x: -26, y: 18 },
-        { x: 26, y: 18 },
-      ];
-      cards.forEach((card, i) => {
-        const off = offsets[i] || { x: 0, y: 18 };
-        tl.fromTo(card, { opacity: 0, x: off.x, y: off.y }, { opacity: 1, x: 0, y: 0, duration: 0.7, ease: "power3.out" }, 0.12 + i * 0.1);
-      });
-
-      const fluxL = slide.querySelector(".lever-svg--barrier .svg-flux-left");
-      const fluxR = slide.querySelector(".lever-svg--barrier .svg-flux-right");
-      const shield = slide.querySelector(".lever-svg--barrier .svg-barrier-shield");
-      const blockedLbl = slide.querySelector(".lever-svg--barrier .svg-blocked-lbl");
-      if (fluxL) tl.fromTo(fluxL, { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 0.55);
-      if (fluxR) tl.fromTo(fluxR, { x: 24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 0.55);
-      if (shield) tl.fromTo(shield, { scaleY: 0, transformOrigin: "center center" }, { scaleY: 1, duration: 0.5, ease: "power2.out" }, 0.5);
-      if (blockedLbl) tl.fromTo(blockedLbl, { opacity: 0, y: 4 }, { opacity: 1, y: 0, duration: 0.45 }, 0.85);
-
-      const traps = slide.querySelectorAll(".lever-svg--dopants .svg-trap");
-      const lnBonds = slide.querySelectorAll(".lever-svg--dopants .svg-ln-bond");
-      if (traps.length) tl.fromTo(traps, { scale: 0.4, transformOrigin: "center center", opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, stagger: 0.1, ease: "back.out(1.7)" }, 0.55);
-      if (lnBonds.length) tl.fromTo(lnBonds, { x: -16, opacity: 0 }, { x: 0, opacity: 1, duration: 0.48, stagger: 0.1, ease: "power2.out" }, 0.72);
-
-      const annRings = slide.querySelectorAll(".lever-svg--annular .svg-ann-ring");
-      const annLines = slide.querySelectorAll(".lever-svg--annular .svg-ann-line");
-      const annLbls = slide.querySelectorAll(".lever-svg--annular .svg-ann-lbl");
-      if (annRings.length) tl.fromTo(annRings, { scale: 0.3, transformOrigin: "center center", opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, stagger: 0.08, ease: "back.out(1.4)" }, 0.62);
-      if (annLines.length) tl.fromTo(annLines, { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 0.45, stagger: 0.07 }, 0.8);
-      if (annLbls.length) tl.fromTo(annLbls, { opacity: 0, x: 8 }, { opacity: 1, x: 0, duration: 0.4, stagger: 0.07 }, 0.88);
-
-      const disloc = slide.querySelector(".lever-svg--ods .svg-dislocation");
-      const oxides = slide.querySelectorAll(".lever-svg--ods .svg-oxide");
-      const heDots = slide.querySelectorAll(".lever-svg--ods .svg-he");
-      if (oxides.length) tl.fromTo(oxides, { scale: 0, transformOrigin: "center center" }, { scale: 1, duration: 0.45, stagger: 0.07, ease: "back.out(2)" }, 0.68);
-      if (disloc) {
-        const len = disloc.getTotalLength ? disloc.getTotalLength() : 360;
-        gsap.set(disloc, { strokeDasharray: len, strokeDashoffset: len });
-        tl.to(disloc, { strokeDashoffset: 0, duration: 0.8, ease: "power2.out" }, 0.78);
-      }
-      if (heDots.length) tl.fromTo(heDots, { scale: 0, opacity: 0, transformOrigin: "center center" }, { scale: 1, opacity: 1, duration: 0.4, stagger: 0.08, ease: "back.out(2)" }, 0.98);
-      if (AMBIENT_FX.slide10MicroLoops) {
-        ambientTween = gsap.timeline({ repeat: -1, repeatDelay: 5.5, delay: 2.2 });
-        if (fluxL) ambientTween.to(fluxL, { x: 4, duration: 0.5, yoyo: true, repeat: 1, ease: "power1.inOut" }, 0);
-        if (traps.length) ambientTween.to(traps, { scale: 1.08, transformOrigin: "center center", duration: 0.55, stagger: 0.12, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0.2);
-        if (oxides.length) ambientTween.to(oxides, { scale: 1.25, transformOrigin: "center center", duration: 0.5, stagger: 0.1, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0.4);
+      if (!isWaitingSteps) {
+        const cards = slide.querySelectorAll(".bento-card");
+        const offsets = [
+          { x: -26, y: -18 },
+          { x: 26, y: -18 },
+          { x: -26, y: 18 },
+          { x: 26, y: 18 },
+        ];
+        cards.forEach((card, i) => {
+          const off = offsets[i] || { x: 0, y: 18 };
+          const at = 0.12 + i * 0.1;
+          tl.fromTo(card, { opacity: 0, x: off.x, y: off.y }, { opacity: 1, x: 0, y: 0, duration: 0.68, ease: "power3.out", clearProps: "transform" }, at);
+          playLeverMicroSvg(card, tl, at + 0.36);
+        });
+        startSlide10Ambient(slide);
       }
       return;
     }
 
-    // Slide 11: Trade-Off Table Header + Row Cascade + Color-Coded Bars + Target Shimmer
+    // Slide 11: Trade-Off Table Header + Row Cascade
     if (slideNum === 11) {
       const thead = slide.querySelector(".tradeoff-table thead");
       const rows = slide.querySelectorAll(".tradeoff-table tbody tr");
-      const summaryCards = slide.querySelectorAll(".tradeoff-summary-card");
       const foot = slide.querySelector(".table-footnote");
       if (thead) {
-        tl.fromTo(
-          thead,
-          { opacity: 0, y: -10, clipPath: "inset(0% 100% 0% 0%)" },
-          { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)", duration: 0.48, ease: "power3.out", clearProps: "clipPath,opacity,transform" },
-          0.08
-        );
+        tl.fromTo(thead, { opacity: 0, y: -10, clipPath: "inset(0% 100% 0% 0%)" }, { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)", duration: 0.48, ease: "power3.out", clearProps: "clipPath,opacity,transform" }, 0.08);
       }
       if (rows.length) {
-        tl.fromTo(
-          rows,
-          { opacity: 0, y: 12 },
-          { opacity: 1, y: 0, duration: 0.48, stagger: 0.08, ease: "power3.out", clearProps: "opacity,transform" },
-          0.18
-        );
+        tl.fromTo(rows, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.48, stagger: 0.08, ease: "power3.out", clearProps: "opacity,transform" }, 0.18);
       }
-      if (summaryCards.length) {
-        tl.fromTo(
-          summaryCards,
-          { opacity: 0, y: 14 },
-          { opacity: 1, y: 0, duration: 0.48, stagger: 0.1, ease: "power3.out", clearProps: "opacity,transform" },
-          0.52
-        );
-      }
-      if (foot) tl.fromTo(foot, { opacity: 0 }, { opacity: 1, duration: 0.45, clearProps: "opacity" }, 0.72);
+      if (foot) tl.fromTo(foot, { opacity: 0 }, { opacity: 1, duration: 0.45, clearProps: "opacity" }, 0.65);
       return;
     }
 
-    // Slide 12: Inline Roadmap Stage 1 -> R&D Bridge -> Stage 2 + 3 Decision Cards
+    // Slide 12: Inline Roadmap Stage 1 -> R&D Bridge (Dual Rails) -> Stage 2 + 3 Decision Cards
     if (slideNum === 12) {
       const fig = slide.querySelector(".figure-card");
       const st1 = slide.querySelector(".s12-stage1");
-      const bridgeLine = slide.querySelector(".s12-bridge-line");
+      const bridgeLines = slide.querySelectorAll(".s12-bridge-line");
       const bridgePill = slide.querySelector(".s12-bridge-pill");
       const st2 = slide.querySelector(".s12-stage2");
+      const box1 = slide.querySelector('.decision-box[data-stage="1"]');
       const boxes = slide.querySelectorAll(".decision-box");
-      const stage1Card = slide.querySelector(".decision-box--green");
+      const stage2Card = slide.querySelector(".decision-box--green");
 
       if (fig) revealFigure(tl, fig, "inset(0% 100% 0% 0%)", 0.08);
-      if (st1) tl.fromTo(st1, { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.58, ease: "power3.out" }, 0.28);
-      if (bridgeLine) {
-        const len = bridgeLine.getTotalLength ? bridgeLine.getTotalLength() : 70;
-        gsap.set(bridgeLine, { strokeDasharray: len, strokeDashoffset: len });
-        tl.to(bridgeLine, { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, 0.58);
-      }
-      if (bridgePill) tl.fromTo(bridgePill, { scale: 0.85, opacity: 0, transformOrigin: "center center" }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.6)" }, 0.65);
-      if (st2) tl.fromTo(st2, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.58, ease: "power3.out" }, 0.78);
-      if (boxes.length) tl.fromTo(boxes, { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.64, stagger: 0.16, ease: "power3.out" }, 0.28);
-      if (stage1Card) triggerShimmer(tl, stage1Card, 0.95);
-      const bridgePulse = slide.querySelector(".s12-bridge-pulse");
-      if (AMBIENT_FX.slide12BridgePulse && bridgePulse) {
-        ambientTween = gsap.timeline({ repeat: -1, repeatDelay: 5.0, delay: 2.0 });
-        ambientTween.fromTo(bridgePulse, { y: 0, opacity: 0 }, { opacity: 1, duration: 0.25 }, 0)
-          .to(bridgePulse, { y: 60, duration: 1.35, ease: "power1.inOut" }, 0.1)
-          .to(bridgePulse, { opacity: 0, duration: 0.25 }, 1.3);
+      if (st1) tl.fromTo(st1, { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.54, ease: "power3.out", clearProps: "transform" }, 0.24);
+
+      if (isWaitingSteps) {
+        if (box1) tl.fromTo(box1, { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.56, ease: "power3.out", clearProps: "transform" }, 0.24);
+      } else {
+        if (bridgeLines.length) {
+          bridgeLines.forEach((ln) => {
+            const len = ln.getTotalLength ? ln.getTotalLength() : 75;
+            gsap.set(ln, { strokeDasharray: len, strokeDashoffset: len });
+          });
+          tl.to(bridgeLines, { strokeDashoffset: 0, duration: 0.5, stagger: 0.08, ease: "power2.out", onComplete: () => gsap.set(bridgeLines, { clearProps: "strokeDasharray,strokeDashoffset" }) }, 0.52);
+        }
+        if (bridgePill) tl.fromTo(bridgePill, { scale: 0.85, opacity: 0, transformOrigin: "center center" }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.6)", clearProps: "transform" }, 0.62);
+        if (st2) tl.fromTo(st2, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.56, ease: "power3.out", clearProps: "transform" }, 0.74);
+        if (boxes.length) tl.fromTo(boxes, { opacity: 0, x: 28 }, { opacity: 1, x: 0, duration: 0.6, stagger: 0.15, ease: "power3.out", clearProps: "transform" }, 0.24);
+        if (stage2Card) triggerShimmer(tl, stage2Card, 0.92);
+        startSlide12Ambient(slide);
       }
       return;
     }
 
-    // Slide 13: Categorized Two-Card Verified References Cascade (smooth, unhurried parallel reveal)
+    // Slide 13: Categorized Two-Card Verified References Cascade
     if (slideNum === 13) {
       const cards = slide.querySelectorAll(".ref-card");
-      if (cards.length) tl.fromTo(cards, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.06);
+      if (cards.length) tl.fromTo(cards, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out", clearProps: "transform" }, 0.06);
       cards.forEach((card) => {
         const items = card.querySelectorAll(".ref-item");
         if (items.length) {
-          tl.fromTo(
-            items,
-            { opacity: 0, x: -24, y: 6 },
-            { opacity: 1, x: 0, y: 0, duration: 0.65, stagger: 0.14, ease: "power3.out" },
-            0.40
-          );
+          tl.fromTo(items, { opacity: 0, x: -24, y: 6 }, { opacity: 1, x: 0, y: 0, duration: 0.6, stagger: 0.12, ease: "power3.out", clearProps: "transform" }, 0.36);
         }
       });
       return;
@@ -4832,37 +5735,27 @@ html.export-pdf .deck-laser { display: none !important; }
           tl.fromTo(rings, { opacity: 0, scale: 0.84, svgOrigin: "180 180" }, { opacity: 1, scale: 1, duration: 1.25, stagger: 0.14, ease: "power3.out" }, 0.08);
         }
         if (hexes.length) {
-          tl.fromTo(
-            hexes,
-            { opacity: 0, scale: 0.72, transformOrigin: "50% 50%" },
-            { opacity: 1, scale: 1, duration: 0.72, stagger: { each: 0.055, from: "end" }, ease: "power3.out" },
-            0.14
-          );
+          tl.fromTo(hexes, { opacity: 0, scale: 0.72, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.72, stagger: { each: 0.055, from: "end" }, ease: "power3.out" }, 0.14);
         }
         if (coreDots.length) {
           tl.fromTo(coreDots, { opacity: 0, scale: 0.3, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.7, stagger: 0.1, ease: "back.out(1.6)" }, 0.16);
         }
       }
-      if (title) tl.fromTo(title, { opacity: 0, scale: 0.88, y: 32 }, { opacity: 1, scale: 1, y: 0, duration: 1.05, ease: "power3.out" }, 0.28);
+      if (title) tl.fromTo(title, { opacity: 0, scale: 0.88, y: 32 }, { opacity: 1, scale: 1, y: 0, duration: 1.05, ease: "power3.out", clearProps: "transform" }, 0.28);
       if (ruleLine) {
         const len = ruleLine.getTotalLength ? ruleLine.getTotalLength() : 220;
         gsap.set(ruleLine, { strokeDasharray: len, strokeDashoffset: len });
         tl.to(ruleLine, { strokeDashoffset: 0, duration: 1.05, ease: "expo.out" }, 0.54);
       }
-      if (sub) tl.fromTo(sub, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.72, ease: "power3.out" }, 0.74);
-      if (contact) tl.fromTo(contact, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.65, ease: "power2.out" }, 0.94);
-      if (disclosure) tl.fromTo(disclosure, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.75, ease: "power2.out" }, 1.12);
+      if (sub) tl.fromTo(sub, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.72, ease: "power3.out", clearProps: "transform" }, 0.74);
+      if (contact) tl.fromTo(contact, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.65, ease: "power2.out", clearProps: "transform" }, 0.94);
+      if (disclosure) tl.fromTo(disclosure, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.75, ease: "power2.out", clearProps: "transform" }, 1.12);
       if (AMBIENT_FX.slide14ClosingHalo && closingHex) {
         ambientTween = gsap.timeline();
         if (closingGlow) {
-          ambientTween.fromTo(
-            closingGlow,
-            { opacity: 0.45, scale: 0.92, svgOrigin: "180 180" },
-            { opacity: 1, scale: 1.12, duration: 3.4, repeat: -1, yoyo: true, ease: "sine.inOut" },
-            1.6
-          );
+          ambientTween.fromTo(closingGlow, { opacity: 0.45, scale: 0.92, svgOrigin: "180 180" }, { opacity: 1, scale: 1.12, duration: 3.4, repeat: -1, yoyo: true, ease: "sine.inOut" }, 1.6);
         }
-        const outerDashedRing = closingHex.querySelector('circle[stroke-dasharray]');
+        const outerDashedRing = closingHex.querySelector("circle[stroke-dasharray]");
         if (outerDashedRing) {
           ambientTween.to(outerDashedRing, { rotation: 360, duration: 68, repeat: -1, ease: "none", svgOrigin: "180 180" }, 1.4);
         }
@@ -4871,20 +5764,166 @@ html.export-pdf .deck-laser { display: none !important; }
     }
   }
 
-  let leavingTween = null;
+  // Reveal one Step-Build beat cleanly with GSAP + slide-specific physics/climax hooks
+  function revealStepBeat(slide, stepNum) {
+    const slideNum = parseInt(slide.dataset.slide || "1", 10);
+    const targets = Array.from(slide.querySelectorAll(`[data-step="${stepNum}"]`));
+    if (!targets.length) return;
 
-  function showSlide(index) {
+    targets.forEach((el) => el.classList.remove("is-step-hidden"));
+    if (!window.gsap || prefersReducedMotion || isStatic) return;
+
+    const gsap = window.gsap;
+    const tl = gsap.timeline();
+    activeStepTimelines.push(tl);
+
+    if (slideNum === 6) {
+      targets.forEach((item) => {
+        const dot = item.querySelector(".step-item__dot");
+        tl.fromTo(item, { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.44, ease: "power3.out", clearProps: "transform" }, 0);
+        if (dot) tl.fromTo(dot, { scale: 0 }, { scale: 1, duration: 0.42, ease: "back.out(2)", clearProps: "transform" }, 0.08);
+      });
+      if (currentStepIdx >= currentSlideSteps.length) {
+        startSlide6Ambient(slide);
+      }
+      return;
+    }
+
+    if (slideNum === 7) {
+      tl.fromTo(targets, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out", clearProps: "transform" }, 0);
+      const critical = targets.find((el) => el.classList.contains("chain-card--critical"));
+      if (critical) {
+        triggerShimmer(tl, critical, 0.25);
+        if (AMBIENT_FX.slide7Thermal) tl.call(() => critical.classList.add("is-pulsing"), null, 0.48);
+      }
+      return;
+    }
+
+    if (slideNum === 8) {
+      tl.fromTo(targets, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.48, stagger: 0.1, ease: "power2.out", clearProps: "transform" }, 0);
+      animateSlide8Swelling(slide, tl, 0.05, false);
+      const ht9 = slide.querySelector(".compare-cap-card--ht9");
+      if (ht9) {
+        triggerShimmer(tl, ht9, 0.35);
+        if (AMBIENT_FX.slide8Emerald) tl.call(() => ht9.classList.add("is-pulsing"), null, 0.52);
+      }
+      return;
+    }
+
+    if (slideNum === 10) {
+      targets.forEach((card) => {
+        tl.fromTo(card, { opacity: 0, y: 18, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.48, ease: "power3.out", clearProps: "transform" }, 0);
+        playLeverMicroSvg(card, tl, 0.2);
+      });
+      if (currentStepIdx >= currentSlideSteps.length) {
+        startSlide10Ambient(slide);
+      }
+      return;
+    }
+
+    if (slideNum === 12) {
+      if (stepNum === 1) {
+        const bridge = slide.querySelector(".s12-bridge");
+        const bridgeLines = slide.querySelectorAll(".s12-bridge-line");
+        const bridgePill = slide.querySelector(".s12-bridge-pill");
+        const st2 = slide.querySelector(".s12-stage2");
+        const prop2 = slide.querySelector('.decision-box[data-stage="2"]');
+        if (bridge) {
+          gsap.set(bridge, { opacity: 1 });
+          if (bridgeLines.length) {
+            bridgeLines.forEach((ln) => {
+              const len = ln.getTotalLength ? ln.getTotalLength() : 75;
+              gsap.set(ln, { strokeDasharray: len, strokeDashoffset: len });
+            });
+            tl.to(bridgeLines, { strokeDashoffset: 0, duration: 0.46, stagger: 0.07, ease: "power2.out", onComplete: () => gsap.set(bridgeLines, { clearProps: "strokeDasharray,strokeDashoffset" }) }, 0);
+          }
+          if (bridgePill) tl.fromTo(bridgePill, { scale: 0.85, opacity: 0, transformOrigin: "center center" }, { scale: 1, opacity: 1, duration: 0.42, ease: "back.out(1.6)", clearProps: "transform" }, 0.14);
+        }
+        if (st2) tl.fromTo(st2, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out", clearProps: "transform" }, 0.24);
+        if (prop2) {
+          tl.fromTo(prop2, { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.52, ease: "power3.out", clearProps: "transform" }, 0.2);
+          triggerShimmer(tl, prop2, 0.46);
+        }
+        startSlide12Ambient(slide);
+      } else {
+        tl.fromTo(targets, { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out", clearProps: "transform" }, 0);
+      }
+      return;
+    }
+
+    tl.fromTo(targets, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.42, ease: "power2.out", clearProps: "transform" }, 0);
+  }
+
+  function revealAllStepsOnCurrentSlide() {
+    const slide = slides[currentSlideIndex];
+    if (!slide) return;
+    if (currentStepIdx < currentSlideSteps.length) {
+      for (let i = currentStepIdx; i < currentSlideSteps.length; i++) {
+        currentStepIdx = i + 1;
+        revealStepBeat(slide, currentSlideSteps[i]);
+      }
+      syncFooterStepDots(slide);
+    }
+  }
+
+  function advanceStepOrSlide() {
+    const slide = slides[currentSlideIndex];
+    if (stepBuildEnabled && slide && currentStepIdx < currentSlideSteps.length) {
+      const nextStepNum = currentSlideSteps[currentStepIdx];
+      currentStepIdx += 1;
+      revealStepBeat(slide, nextStepNum);
+      syncFooterStepDots(slide);
+      return;
+    }
+    nextSlide();
+  }
+
+  function retreatStepOrSlide(forceSlide) {
+    const slide = slides[currentSlideIndex];
+    if (!forceSlide && stepBuildEnabled && slide && currentStepIdx > 0) {
+      clearStepTimelines(true);
+      currentStepIdx -= 1;
+      const stepNum = currentSlideSteps[currentStepIdx];
+      slide.querySelectorAll(`[data-step="${stepNum}"]`).forEach((el) => el.classList.add("is-step-hidden"));
+      const slideNum = parseInt(slide.dataset.slide || "1", 10);
+      if (slideNum === 8 && stepNum === 1) {
+        const clipRect = slide.querySelector("#s08-plotRevealClip rect");
+        if (clipRect) clipRect.setAttribute("width", "0");
+        slide.querySelectorAll(".s08-callout").forEach((c) => (c.style.opacity = "0"));
+      }
+      if (slideNum === 7 && stepNum === 2) {
+        slide.querySelector(".chain-card--critical")?.classList.remove("is-pulsing");
+      }
+      syncFooterStepDots(slide);
+      return;
+    }
+    prevSlide({ revealAll: !stepBuildEnabled });
+  }
+
+  function toggleStepBuildMode() {
+    stepBuildEnabled = !stepBuildEnabled;
+    const slide = slides[currentSlideIndex];
+    if (!stepBuildEnabled && slide) {
+      revealAllStepsOnCurrentSlide();
+    } else if (slide) {
+      syncFooterStepDots(slide);
+    }
+    showToast(stepBuildEnabled ? "Step-Build: ON (S)" : "Step-Build: OFF (S)");
+  }
+
+  function showSlide(index, options) {
+    const opts = options || {};
     const clamped = Math.max(0, Math.min(slides.length - 1, index));
     const prevIndex = currentSlideIndex;
     const incoming = slides[clamped];
     const outgoing = prevIndex !== clamped ? slides[prevIndex] : null;
     const direction = clamped >= prevIndex ? 1 : -1;
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (leavingTween) {
       leavingTween.kill();
       leavingTween = null;
     }
+    clearStepTimelines(false);
     if (prevIndex !== clamped) {
       finalizeAllCounters();
     }
@@ -4892,21 +5931,22 @@ html.export-pdf .deck-laser { display: none !important; }
     slides.forEach((s) => {
       if (s !== incoming && s !== outgoing) {
         s.classList.remove("is-active", "is-leaving");
-        if (window.gsap) window.gsap.set(s, { clearProps: "opacity,x,transform" });
+        if (window.gsap) window.gsap.set(s, { clearProps: "opacity,x,scale,transform" });
       }
     });
 
-    if (outgoing && window.gsap && !prefersReduced && !isStatic) {
+    if (outgoing && window.gsap && !prefersReducedMotion && !isStatic) {
       outgoing.classList.remove("is-active");
       outgoing.classList.add("is-leaving");
       leavingTween = window.gsap.to(outgoing, {
         opacity: 0,
-        x: -36 * direction,
-        duration: 0.38,
+        x: -28 * direction,
+        scale: 0.99,
+        duration: 0.34,
         ease: "power2.in",
         onComplete: () => {
           outgoing.classList.remove("is-leaving");
-          window.gsap.set(outgoing, { clearProps: "opacity,x,transform" });
+          window.gsap.set(outgoing, { clearProps: "opacity,x,scale,transform" });
           leavingTween = null;
         },
       });
@@ -4917,16 +5957,17 @@ html.export-pdf .deck-laser { display: none !important; }
     incoming.classList.remove("is-leaving");
     incoming.classList.add("is-active");
 
-    if (outgoing && window.gsap && !prefersReduced && !isStatic) {
+    if (outgoing && window.gsap && !prefersReducedMotion && !isStatic) {
       window.gsap.fromTo(
         incoming,
-        { opacity: 0, x: 36 * direction },
+        { opacity: 0, x: 28 * direction, scale: 0.988 },
         {
           opacity: 1,
           x: 0,
-          duration: 0.48,
+          scale: 1,
+          duration: 0.46,
           ease: "power3.out",
-          onComplete: () => window.gsap.set(incoming, { clearProps: "x,transform" }),
+          onComplete: () => window.gsap.set(incoming, { clearProps: "x,scale,transform" }),
         }
       );
     }
@@ -4940,31 +5981,64 @@ html.export-pdf .deck-laser { display: none !important; }
 
     if (progressFill) {
       const pct = ((clamped + 1) / slides.length) * 100;
-      if (window.gsap && !prefersReduced && !isStatic) {
+      if (window.gsap && !prefersReducedMotion && !isStatic) {
         window.gsap.to(progressFill, { width: `${pct}%`, duration: 0.65, ease: "expo.out" });
       } else {
         progressFill.style.width = `${pct}%`;
       }
     }
+
     window.location.hash = `slide-${clamped + 1}`;
-    playSlideEntrance(incoming);
+    const isWaitingSteps = initStepStateForSlide(incoming, Boolean(opts.revealAll));
+    playSlideEntrance(incoming, isWaitingSteps);
+    syncNotesDrawer();
   }
 
-  function nextSlide() {
-    if (currentSlideIndex < slides.length - 1) showSlide(currentSlideIndex + 1);
+  function nextSlide(opts) {
+    if (currentSlideIndex < slides.length - 1) showSlide(currentSlideIndex + 1, opts);
   }
 
-  function prevSlide() {
-    if (currentSlideIndex > 0) showSlide(currentSlideIndex - 1);
+  function prevSlide(opts) {
+    if (currentSlideIndex > 0) showSlide(currentSlideIndex - 1, opts);
   }
 
-  // ---- Interactive Feature 1: Pointer-Reactive Card Sheen ----
-  document.querySelectorAll(".mandate-tile, .kpi-card, .bento-card, .decision-box, .col-panel, .pipe-step, .figure-card, .aurora-mini-card, .prop-mini-card").forEach((card) => {
+  // ---- Interactive Feature 1: Pointer-Reactive Card Sheen (All Card Classes) ----
+  const reactiveSelector = [
+    ".mandate-tile",
+    ".kpi-card",
+    ".bento-card",
+    ".decision-box",
+    ".col-panel",
+    ".pipe-step",
+    ".figure-card",
+    ".aurora-mini-card",
+    ".prop-mini-card",
+    ".step-item",
+    ".chain-card",
+    ".h2h-card",
+    ".compare-cap-card",
+    ".ref-card",
+    ".bullet-list li"
+  ].join(", ");
+
+  document.querySelectorAll(reactiveSelector).forEach((card) => {
     card.classList.add("reactive-card");
     card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect();
       card.style.setProperty("--mx", `${e.clientX - rect.left}px`);
       card.style.setProperty("--my", `${e.clientY - rect.top}px`);
+    });
+  });
+
+  // Slide 10 On-Demand Micro-SVG Trigger on Lever Card Hover
+  document.querySelectorAll('.slide[data-slide="10"] .bento-card').forEach((card) => {
+    let lastPlayed = 0;
+    card.addEventListener("mouseenter", () => {
+      if (card.classList.contains("is-step-hidden") || prefersReducedMotion) return;
+      const now = Date.now();
+      if (now - lastPlayed < 1400) return;
+      lastPlayed = now;
+      playLeverMicroSvg(card);
     });
   });
 
@@ -4985,7 +6059,7 @@ html.export-pdf .deck-laser { display: none !important; }
       tile.innerHTML = `<div class="overview-tile__top"><span>SLIDE ${idx + 1}</span><span>${idx + 1} / ${slides.length}</span></div><div class="overview-tile__section">${section}</div><div class="overview-tile__takeaway">${takeaway}</div>`;
       tile.addEventListener("click", () => {
         closeOverlays();
-        showSlide(idx);
+        showSlide(idx, { revealAll: true });
       });
       overviewGrid.appendChild(tile);
     });
@@ -5005,7 +6079,7 @@ html.export-pdf .deck-laser { display: none !important; }
     }
   }
 
-  // ---- Interactive Feature 3: Click-to-Zoom Q&A Figure Lightbox ----
+  // ---- Interactive Feature 3: Click-to-Zoom Q&A Figure Lightbox (Guarded) ----
   function openLightbox(figureCard) {
     if (!lightboxModal || !lightboxStage) return;
     const stageEl = figureCard.querySelector(".figure-card__stage");
@@ -5019,6 +6093,9 @@ html.export-pdf .deck-laser { display: none !important; }
       const targetH = Math.round(Math.min(window.innerHeight * 0.74, visual.naturalHeight * 1.25));
       clone.style.height = `${targetH}px`;
     }
+    const cloneClip = clone.querySelector("#s08-plotRevealClip rect");
+    if (cloneClip) cloneClip.setAttribute("width", "485");
+    clone.querySelectorAll(".s08-callout").forEach((c) => (c.style.opacity = "1"));
     lightboxStage.appendChild(clone);
     if (lightboxCaption) {
       lightboxCaption.textContent = figureCard.querySelector(".figure-card__caption")?.textContent || "";
@@ -5031,7 +6108,10 @@ html.export-pdf .deck-laser { display: none !important; }
   }
 
   document.querySelectorAll(".figure-card").forEach((card) => {
-    card.addEventListener("click", () => openLightbox(card));
+    card.addEventListener("click", (e) => {
+      if (e.target.closest(".fig-mini-box, .fig-legend-row, a")) return;
+      openLightbox(card);
+    });
   });
 
   // ---- Interactive Feature 4: Sodium Laser Pointer (L) ----
@@ -5058,7 +6138,7 @@ html.export-pdf .deck-laser { display: none !important; }
     document.body.classList.toggle("laser-active", isLaserActive);
   }
 
-  // ---- Interactive Feature 5: Shortcuts Cheat Sheet (?) ----
+  // ---- Interactive Feature 5: Shortcuts Cheat Sheet (?) & Speaker Notes Drawer (N) ----
   function toggleShortcuts(forceState) {
     if (!shortcutsModal) return;
     const open = typeof forceState === "boolean" ? forceState : !shortcutsModal.classList.contains("is-open");
@@ -5068,6 +6148,47 @@ html.export-pdf .deck-laser { display: none !important; }
       shortcutsModal.setAttribute("aria-hidden", "false");
     }
   }
+
+  function loadStoredNotes() {
+    try {
+      const raw = localStorage.getItem(NOTES_STORAGE_KEY);
+      if (!raw) return { ...DEFAULT_SLIDE_NOTES };
+      return { ...DEFAULT_SLIDE_NOTES, ...JSON.parse(raw) };
+    } catch (_) {
+      return { ...DEFAULT_SLIDE_NOTES };
+    }
+  }
+
+  let slideNotes = loadStoredNotes();
+
+  function syncNotesDrawer() {
+    const slideNum = currentSlideIndex + 1;
+    if (notesSlideLbl) notesSlideLbl.textContent = `Slide ${slideNum} / ${slides.length}`;
+    if (notesInput) notesInput.value = slideNotes[slideNum] || "";
+  }
+
+  function toggleNotes(forceState) {
+    if (!notesPanel) return;
+    const open = typeof forceState === "boolean" ? forceState : !notesPanel.classList.contains("is-open");
+    notesPanel.classList.toggle("is-open", open);
+    notesPanel.setAttribute("aria-hidden", open ? "false" : "true");
+    if (open) {
+      syncNotesDrawer();
+    } else if (notesInput && document.activeElement === notesInput) {
+      notesInput.blur();
+    }
+  }
+
+  notesClose?.addEventListener("click", () => toggleNotes(false));
+  notesInput?.addEventListener("input", () => {
+    const slideNum = currentSlideIndex + 1;
+    slideNotes[slideNum] = notesInput.value;
+    try {
+      localStorage.setItem(NOTES_STORAGE_KEY, JSON.stringify(slideNotes));
+    } catch (_) {
+      // Ignore storage quota errors in restricted file:// contexts
+    }
+  });
 
   function closeOverlays(except) {
     if (except !== "overview" && overviewModal) {
@@ -5084,9 +6205,11 @@ html.export-pdf .deck-laser { display: none !important; }
     }
   }
 
-  // ---- Interactive Feature 6: Slide 3 / 11 / 12 Cross-Highlighting ----
+  // ---- Interactive Feature 6: Bidirectional Cross-Highlighting & Q&A Jump Links ----
+  // Slide 3 Bidirectional (Spec Sheet Rows <-> Pin SVG Layers)
   const s03Layers = document.querySelectorAll(".s03-inline-svg .s03-layer");
-  document.querySelectorAll(".spec-sheet tbody tr[data-pin-target]").forEach((row) => {
+  const s03Rows = document.querySelectorAll(".spec-sheet tbody tr[data-pin-target]");
+  s03Rows.forEach((row) => {
     const targets = (row.dataset.pinTarget || "").split(",").map((s) => s.trim()).filter(Boolean);
     row.addEventListener("mouseenter", () => {
       s03Layers.forEach((layer) => {
@@ -5100,6 +6223,53 @@ html.export-pdf .deck-laser { display: none !important; }
     });
   });
 
+  s03Layers.forEach((layer) => {
+    const layerName = layer.dataset.pinLayer;
+    if (!layerName) return;
+    layer.addEventListener("mouseenter", () => {
+      s03Layers.forEach((other) => {
+        const match = other.dataset.pinLayer === layerName;
+        other.classList.toggle("is-dimmed", !match);
+        other.classList.toggle("is-highlighted", match);
+      });
+      s03Rows.forEach((row) => {
+        const targets = (row.dataset.pinTarget || "").split(",").map((s) => s.trim()).filter(Boolean);
+        row.classList.toggle("is-cross-lit", targets.includes(layerName));
+      });
+    });
+    layer.addEventListener("mouseleave", () => {
+      s03Layers.forEach((other) => other.classList.remove("is-dimmed", "is-highlighted"));
+      s03Rows.forEach((row) => row.classList.remove("is-cross-lit"));
+    });
+  });
+
+  // Slide 4 Cross-Link (Node 5 >700C gamma-BCC <-> Isotropy Advantage card)
+  const s04IsoPairs = document.querySelectorAll('.slide[data-slide="4"] [data-phase-link="iso"]');
+  function setSlide4IsoLit(active) {
+    s04IsoPairs.forEach((el) => el.classList.toggle("is-cross-lit", active));
+  }
+  s04IsoPairs.forEach((el) => {
+    el.addEventListener("mouseenter", () => setSlide4IsoLit(true));
+    el.addEventListener("mouseleave", () => setSlide4IsoLit(false));
+  });
+
+  // Slide 8 Cross-Link (Row 02 Void Swelling H2H Cards <-> Inline Void Swelling Curves)
+  const s08CurveGroups = document.querySelectorAll(".s08-inline-svg .s08-curve-group");
+  document.querySelectorAll('.slide[data-slide="8"] .h2h-card[data-curve-target]').forEach((card) => {
+    const targetCurve = card.dataset.curveTarget;
+    card.addEventListener("mouseenter", () => {
+      s08CurveGroups.forEach((grp) => {
+        const match = grp.dataset.curve === targetCurve;
+        grp.classList.toggle("is-dimmed", !match);
+        grp.classList.toggle("is-highlighted", match);
+      });
+    });
+    card.addEventListener("mouseleave", () => {
+      s08CurveGroups.forEach((grp) => grp.classList.remove("is-dimmed", "is-highlighted"));
+    });
+  });
+
+  // Slide 11 Interactive Row Focus, Multi-Row Compare & Column Spotlight (Unchanged)
   const tradeTable = document.querySelector(".tradeoff-table");
   let pinnedColIndex = null;
   function applyTableColFocus(colIndex) {
@@ -5150,6 +6320,7 @@ html.export-pdf .deck-laser { display: none !important; }
     });
   }
 
+  // Slide 12 Bidirectional Stage Highlighting (Roadmap SVG <-> Decision Cards)
   const s12Blocks = document.querySelectorAll(".s12-inline-svg .s12-block[data-stage]");
   const s12Cards = document.querySelectorAll(".decision-box[data-stage]");
   function linkStage(stageId, active) {
@@ -5171,6 +6342,24 @@ html.export-pdf .deck-laser { display: none !important; }
     c.addEventListener("mouseleave", () => linkStage(c.dataset.stage, false));
   });
 
+  // Slide 13 Clickable Q&A Reference Slide Tags
+  document.querySelectorAll(".ref-slide-tag[data-jump-slide]").forEach((tag) => {
+    const jump = () => {
+      const target = parseInt(tag.dataset.jumpSlide, 10);
+      if (!Number.isNaN(target) && target >= 1 && target <= slides.length) {
+        closeOverlays();
+        showSlide(target - 1, { revealAll: true });
+      }
+    };
+    tag.addEventListener("click", jump);
+    tag.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        jump();
+      }
+    });
+  });
+
   lightboxClose?.addEventListener("click", () => closeOverlays());
   lightboxModal?.addEventListener("click", (e) => {
     if (e.target === lightboxModal) closeOverlays();
@@ -5189,7 +6378,7 @@ html.export-pdf .deck-laser { display: none !important; }
     altDigitBuffer = "";
     if (targetNum >= 1 && targetNum <= slides.length) {
       closeOverlays();
-      showSlide(targetNum - 1);
+      showSlide(targetNum - 1, { revealAll: true });
     }
   }
 
@@ -5204,6 +6393,14 @@ html.export-pdf .deck-laser { display: none !important; }
   });
 
   window.addEventListener("keydown", (e) => {
+    // Guard: never hijack typing inside Speaker Notes textarea / inputs
+    if (e.target && (e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT" || e.target.isContentEditable)) {
+      if (e.key === "Escape") {
+        toggleNotes(false);
+      }
+      return;
+    }
+
     if (e.altKey && /^[0-9]$/.test(e.key)) {
       e.preventDefault();
       altDigitBuffer += e.key;
@@ -5212,6 +6409,7 @@ html.export-pdf .deck-laser { display: none !important; }
     if (e.key === "Escape") {
       altDigitBuffer = "";
       if (isLaserActive) toggleLaser(false);
+      if (notesPanel?.classList.contains("is-open")) toggleNotes(false);
       clearTradeTableFocus();
       closeOverlays();
       return;
@@ -5219,19 +6417,28 @@ html.export-pdf .deck-laser { display: none !important; }
     if (["ArrowRight", "ArrowUp", " ", "PageDown"].includes(e.key)) {
       e.preventDefault();
       closeOverlays();
-      nextSlide();
+      advanceStepOrSlide();
     } else if (["ArrowLeft", "ArrowDown", "PageUp"].includes(e.key)) {
       e.preventDefault();
       closeOverlays();
-      prevSlide();
+      retreatStepOrSlide(e.shiftKey);
     } else if (e.key === "Home") {
       e.preventDefault();
       closeOverlays();
-      showSlide(0);
+      showSlide(0, { revealAll: true });
     } else if (e.key === "End") {
       e.preventDefault();
       closeOverlays();
-      showSlide(slides.length - 1);
+      showSlide(slides.length - 1, { revealAll: true });
+    } else if (e.key.toLowerCase() === "s") {
+      e.preventDefault();
+      toggleStepBuildMode();
+    } else if (e.key.toLowerCase() === "a") {
+      e.preventDefault();
+      revealAllStepsOnCurrentSlide();
+    } else if (e.key.toLowerCase() === "n") {
+      e.preventDefault();
+      toggleNotes();
     } else if (e.key.toLowerCase() === "g") {
       e.preventDefault();
       toggleOverview();
@@ -5249,14 +6456,14 @@ html.export-pdf .deck-laser { display: none !important; }
       }
     } else if (/^[1-9]$/.test(e.key)) {
       closeOverlays();
-      showSlide(parseInt(e.key, 10) - 1);
+      showSlide(parseInt(e.key, 10) - 1, { revealAll: true });
     }
   });
 
   const hashMatch = window.location.hash.match(/^#slide-(\d+)$/);
   const initialIndex = hashMatch ? parseInt(hashMatch[1], 10) - 1 : 0;
   scaleStage();
-  showSlide(initialIndex);
+  showSlide(initialIndex, { revealAll: isStatic });
 })();
 
   </script>

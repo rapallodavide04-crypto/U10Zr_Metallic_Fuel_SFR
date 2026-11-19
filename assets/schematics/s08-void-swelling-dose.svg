@@ -1,4 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="8 52 564 326" width="564" height="326" font-family="Inter, Segoe UI, Arial, sans-serif">
+  <defs>
+    <clipPath id="s08-plotRevealClip">
+      <rect x="75" y="55" width="485" height="280"/>
+    </clipPath>
+  </defs>
+
   <rect x="8" y="52" width="564" height="326" fill="#FFFFFF"/>
 
   <!-- Plot Area Background (x: 75..555, y: 60..330) -->
@@ -45,55 +51,65 @@
 
   <text x="315" y="370" font-size="11.5" font-weight="700" fill="#1E293B" text-anchor="middle">Fast Neutron Displacement Dose (dpa)</text>
 
-  <!-- ================= CURVE 1: 20% CW 316SS (FCC) ================= -->
-  <!-- Incubation ~45 dpa (x=178.5, y=321), then exact 1.0%/dpa to 73 dpa (x=243, y=69) -->
-  <path d="M75,330 L155,328 Q172,326 178.5,321 L243,69" fill="none" stroke="#DC2626" stroke-width="3"/>
-  <circle cx="178.5" cy="321" r="3.5" fill="#DC2626"/>
-  <circle cx="201.5" cy="231" r="3.5" fill="#DC2626"/>
-  <circle cx="224.5" cy="141" r="3.5" fill="#DC2626"/>
-  <circle cx="243" cy="69" r="3.5" fill="#DC2626"/>
+  <!-- ================= CURVE GROUP 1 & 2: FCC AUSTENITICS ================= -->
+  <g class="s08-curve-group" data-curve="fcc">
+    <g clip-path="url(#s08-plotRevealClip)">
+      <!-- 20% CW 316SS (FCC) -->
+      <path class="s08-curve-path" d="M75,330 L155,328 Q172,326 178.5,321 L243,69" fill="none" stroke="#DC2626" stroke-width="3"/>
+      <circle class="s08-pt" cx="178.5" cy="321" r="3.5" fill="#DC2626"/>
+      <circle class="s08-pt" cx="201.5" cy="231" r="3.5" fill="#DC2626"/>
+      <circle class="s08-pt" cx="224.5" cy="141" r="3.5" fill="#DC2626"/>
+      <circle class="s08-pt" cx="243" cy="69" r="3.5" fill="#DC2626"/>
 
-  <rect x="84" y="72" width="134" height="42" rx="4" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="1"/>
-  <text x="92" y="89" font-size="10.2" font-weight="700" fill="#B91C1C">20% CW 316SS (FCC)</text>
-  <text x="92" y="104" font-size="9.2" fill="#7F1D1D">~1%/dpa above ~45 dpa</text>
-  <line x1="218" y1="93" x2="235" y2="93" stroke="#DC2626" stroke-width="1.2"/>
+      <!-- CW D9 / 15-15Ti (FCC) -->
+      <path class="s08-curve-path" d="M75,330 L247,328 Q272,325 282,316.5 L344,73.5" fill="none" stroke="#D97706" stroke-width="2.8" stroke-dasharray="6 4"/>
+      <circle class="s08-pt" cx="282" cy="316.5" r="3.5" fill="#D97706"/>
+      <circle class="s08-pt" cx="305" cy="226.5" r="3.5" fill="#D97706"/>
+      <circle class="s08-pt" cx="328" cy="136.5" r="3.5" fill="#D97706"/>
+      <circle class="s08-pt" cx="344" cy="73.5" r="3.5" fill="#D97706"/>
+    </g>
 
-  <!-- ================= CURVE 2: CW D9 / 15-15Ti (FCC) ================= -->
-  <!-- Incubation ~90 dpa (x=282, y=316.5), then exact 1.0%/dpa to 117 dpa (x=344, y=73.5) -->
-  <path d="M75,330 L247,328 Q272,325 282,316.5 L344,73.5" fill="none" stroke="#D97706" stroke-width="2.8" stroke-dasharray="6 4"/>
-  <circle cx="282" cy="316.5" r="3.5" fill="#D97706"/>
-  <circle cx="305" cy="226.5" r="3.5" fill="#D97706"/>
-  <circle cx="328" cy="136.5" r="3.5" fill="#D97706"/>
-  <circle cx="344" cy="73.5" r="3.5" fill="#D97706"/>
+    <g class="s08-callout">
+      <rect x="84" y="72" width="134" height="42" rx="2" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="1"/>
+      <text x="92" y="89" font-size="10.2" font-weight="700" fill="#B91C1C">20% CW 316SS (FCC)</text>
+      <text x="92" y="104" font-size="9.2" fill="#7F1D1D">~1%/dpa above ~45 dpa</text>
+      <line x1="218" y1="93" x2="235" y2="93" stroke="#DC2626" stroke-width="1.2"/>
 
-  <rect x="358" y="72" width="154" height="42" rx="4" fill="#FFFBEB" stroke="#FCD34D" stroke-width="1"/>
-  <text x="366" y="89" font-size="10.2" font-weight="700" fill="#B45309">CW D9 / 15-15Ti (FCC)</text>
-  <text x="366" y="104" font-size="9.2" fill="#78350F">Extended incubation (~90 dpa)</text>
-  <line x1="340" y1="93" x2="358" y2="93" stroke="#D97706" stroke-width="1.2"/>
+      <rect x="358" y="72" width="154" height="42" rx="2" fill="#FFFBEB" stroke="#FCD34D" stroke-width="1"/>
+      <text x="366" y="89" font-size="10.2" font-weight="700" fill="#B45309">CW D9 / 15-15Ti (FCC)</text>
+      <text x="366" y="104" font-size="9.2" fill="#78350F">Extended incubation (~90 dpa)</text>
+      <line x1="340" y1="93" x2="358" y2="93" stroke="#D97706" stroke-width="1.2"/>
+    </g>
+  </g>
 
-  <!-- ================= CURVE 3: HT9 12Cr (BCC) ================= -->
-  <!-- Phénix 115–142 dpa (≤0.5%); FFTF 155 dpa (0.3% avg, 1.2% max); FFTF 200 dpa (~0.3–0.9%, max 1.8%) -->
-  <path d="M75,330 L213,329.5 L339.5,328.2 L401.6,327.3 L431.5,327.3 L535,324.6" fill="none" stroke="#0F766E" stroke-width="3.2"/>
+  <!-- ================= CURVE GROUP 3: HT9 12Cr (BCC) ================= -->
+  <g class="s08-curve-group" data-curve="ht9">
+    <g clip-path="url(#s08-plotRevealClip)">
+      <path class="s08-curve-path" d="M75,330 L213,329.5 L339.5,328.2 L401.6,327.3 L431.5,327.3 L535,324.6" fill="none" stroke="#15803D" stroke-width="3.2"/>
 
-  <!-- Error/range bar at 155 dpa (x = 431.5) -->
-  <line x1="431.5" y1="327.3" x2="431.5" y2="319.2" stroke="#0F766E" stroke-width="1.8"/>
-  <line x1="426.5" y1="319.2" x2="436.5" y2="319.2" stroke="#0F766E" stroke-width="1.8"/>
+      <!-- Error/range bar at 155 dpa (x = 431.5) -->
+      <line class="s08-pt" x1="431.5" y1="327.3" x2="431.5" y2="319.2" stroke="#15803D" stroke-width="1.8"/>
+      <line class="s08-pt" x1="426.5" y1="319.2" x2="436.5" y2="319.2" stroke="#15803D" stroke-width="1.8"/>
 
-  <!-- Error/range bar at 200 dpa (x = 535, fully inside plot area) -->
-  <line x1="535" y1="327.5" x2="535" y2="313.8" stroke="#0F766E" stroke-width="1.8"/>
-  <line x1="530" y1="313.8" x2="540" y2="313.8" stroke="#0F766E" stroke-width="1.8"/>
+      <!-- Error/range bar at 200 dpa (x = 535, fully inside plot area) -->
+      <line class="s08-pt" x1="535" y1="327.5" x2="535" y2="313.8" stroke="#15803D" stroke-width="1.8"/>
+      <line class="s08-pt" x1="530" y1="313.8" x2="540" y2="313.8" stroke="#15803D" stroke-width="1.8"/>
 
-  <!-- Data Points on HT9 / 9-12Cr -->
-  <circle cx="339.5" cy="328.2" r="4" fill="#0F766E"/>
-  <circle cx="401.6" cy="327.3" r="4" fill="#0F766E"/>
-  <circle cx="431.5" cy="327.3" r="4.5" fill="#0F766E" stroke="#FFFFFF" stroke-width="1"/>
-  <circle cx="535" cy="324.6" r="4.5" fill="#0F766E" stroke="#FFFFFF" stroke-width="1"/>
+      <!-- Data Points on HT9 / 9-12Cr -->
+      <circle class="s08-pt" cx="339.5" cy="328.2" r="4" fill="#15803D"/>
+      <circle class="s08-pt" cx="401.6" cy="327.3" r="4" fill="#15803D"/>
+      <circle class="s08-pt" cx="431.5" cy="327.3" r="4.5" fill="#15803D" stroke="#FFFFFF" stroke-width="1"/>
+      <circle class="s08-pt" cx="535" cy="324.6" r="4.5" fill="#15803D" stroke="#FFFFFF" stroke-width="1"/>
+    </g>
 
-  <!-- Callout Box for HT9 -->
-  <rect x="358" y="216" width="182" height="78" rx="4" fill="#F0FDFA" stroke="#5EEAD4" stroke-width="1.2"/>
-  <text x="367" y="233" font-size="10.2" font-weight="700" fill="#0F766E">HT9 (12Cr BCC) &amp; 9–12Cr F/M</text>
-  <text x="367" y="248" font-size="9.3" fill="#134E4A">• Phénix (115–142 dpa): ≤ 0.5%</text>
-  <text x="367" y="262" font-size="9.3" fill="#134E4A">• FFTF duct (155 dpa): 0.3% (1.2% max)</text>
-  <text x="367" y="276" font-size="9.3" font-weight="600" fill="#0F766E">• FFTF (200 dpa): ~0.3–0.9% (&lt; 2%)</text>
-  <line x1="431.5" y1="294" x2="431.5" y2="316" stroke="#0F766E" stroke-width="1.2"/>
+    <!-- Callout Box for HT9 -->
+    <g class="s08-callout">
+      <rect x="358" y="216" width="182" height="78" rx="2" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.2"/>
+      <text x="367" y="233" font-size="10.2" font-weight="700" fill="#15803D">HT9 (12Cr BCC) &amp; 9–12Cr F/M</text>
+      <text x="367" y="248" font-size="9.3" fill="#14532D">• Phénix (115–142 dpa): ≤ 0.5%</text>
+      <text x="367" y="262" font-size="9.3" fill="#14532D">• FFTF duct (155 dpa): 0.3% (1.2% max)</text>
+      <text x="367" y="276" font-size="9.3" font-weight="600" fill="#15803D">• FFTF (200 dpa): ~0.3–0.9% (&lt; 2%)</text>
+      <line x1="431.5" y1="294" x2="431.5" y2="316" stroke="#15803D" stroke-width="1.2"/>
+    </g>
+  </g>
 </svg>
