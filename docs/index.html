@@ -5390,23 +5390,23 @@ html.export-pdf .deck-laser { display: none !important; }
           opacity: 1,
           y: 0,
           clipPath: "inset(0% 0% 0% 0%)",
-          duration: 0.42,
-          ease: "power3.out",
+          duration: 0.90,
+          ease: "power2.out",
           onComplete: () => gsap.set(sectionTag, { clearProps: "clipPath,transform" }),
         },
-        0.02
+        0.10
       );
     }
     if (headerTrace) {
       tl.fromTo(
         headerTrace,
         { scaleX: 0, opacity: 0.95 },
-        { scaleX: 1, opacity: 0.95, duration: 0.58, ease: "expo.out" },
-        0.04
+        { scaleX: 1, opacity: 0.95, duration: 1.15, ease: "power2.out" },
+        0.12
       ).to(
         headerTrace,
-        { opacity: 0.25, duration: 0.48, ease: "power2.out" },
-        0.58
+        { opacity: 0.25, duration: 0.65, ease: "power2.out" },
+        1.15
       );
     }
     if (takeaway) {
@@ -5417,11 +5417,11 @@ html.export-pdf .deck-laser { display: none !important; }
           opacity: 1,
           y: 0,
           clipPath: "inset(0% 0% 0% 0%)",
-          duration: 0.56,
-          ease: "power4.out",
+          duration: 1.05,
+          ease: "power2.out",
           onComplete: () => gsap.set(takeaway, { clearProps: "clipPath,transform" }),
         },
-        0.06
+        0.16
       );
     }
 
