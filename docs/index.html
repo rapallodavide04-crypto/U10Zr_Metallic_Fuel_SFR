@@ -5024,7 +5024,7 @@ html.export-pdf .deck-laser { display: none !important; }
         opacity: 1,
         clipPath: "inset(0% 0% 0% 0%)",
         scale: 1,
-        duration: 0.85,
+        duration: 0.95,
         ease: "power3.inOut",
         onComplete: () => window.gsap.set(el, { clearProps: "clipPath,transform" }),
       },
@@ -5378,7 +5378,7 @@ html.export-pdf .deck-laser { display: none !important; }
       return;
     }
 
-    // Shared Instrument/CAD Precision Reveal for Header Section Tag, Hairline Trace & Takeaway
+    // Shared Instrument/CAD Precision Reveal for Header Section Tag, Hairline Trace & Takeaway (~0.85-0.95s)
     const sectionTag = slide.querySelector(".slide-header__section");
     const headerTrace = slide.querySelector(".slide-header__trace");
     const takeaway = slide.querySelector(".slide-header__takeaway");
@@ -5390,7 +5390,7 @@ html.export-pdf .deck-laser { display: none !important; }
           opacity: 1,
           y: 0,
           clipPath: "inset(0% 0% 0% 0%)",
-          duration: 0.90,
+          duration: 0.85,
           ease: "power2.out",
           onComplete: () => gsap.set(sectionTag, { clearProps: "clipPath,transform" }),
         },
@@ -5401,12 +5401,12 @@ html.export-pdf .deck-laser { display: none !important; }
       tl.fromTo(
         headerTrace,
         { scaleX: 0, opacity: 0.95 },
-        { scaleX: 1, opacity: 0.95, duration: 1.15, ease: "power2.out" },
+        { scaleX: 1, opacity: 0.95, duration: 1.05, ease: "power2.out" },
         0.12
       ).to(
         headerTrace,
-        { opacity: 0.25, duration: 0.65, ease: "power2.out" },
-        1.15
+        { opacity: 0.25, duration: 0.60, ease: "power2.out" },
+        1.05
       );
     }
     if (takeaway) {
@@ -5417,11 +5417,11 @@ html.export-pdf .deck-laser { display: none !important; }
           opacity: 1,
           y: 0,
           clipPath: "inset(0% 0% 0% 0%)",
-          duration: 1.05,
+          duration: 0.95,
           ease: "power2.out",
           onComplete: () => gsap.set(takeaway, { clearProps: "clipPath,transform" }),
         },
-        0.16
+        0.14
       );
     }
 
@@ -5430,12 +5430,12 @@ html.export-pdf .deck-laser { display: none !important; }
       const tiles = slide.querySelectorAll(".mandate-tile");
       const figs = slide.querySelectorAll(".dual-visual .figure-card");
       const mini = slide.querySelector(".aurora-mini-card");
-      tl.fromTo(tiles, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.65, stagger: 0.11, ease: "power3.out", clearProps: "transform" }, 0.1);
+      tl.fromTo(tiles, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.82, stagger: 0.13, ease: "power2.out", clearProps: "transform" }, 0.22);
       const c = animateCounters(slide);
-      if (c) tl.add(c, 0.35);
-      if (figs[0]) revealFigure(tl, figs[0], "inset(0% 100% 0% 0%)", 0.32);
-      if (figs[1]) revealFigure(tl, figs[1], "inset(0% 0% 0% 100%)", 0.32);
-      if (mini) tl.fromTo(mini, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.58, ease: "power2.out", clearProps: "transform" }, 0.56);
+      if (c) tl.add(c, 0.42);
+      if (figs[0]) revealFigure(tl, figs[0], "inset(0% 100% 0% 0%)", 0.38);
+      if (figs[1]) revealFigure(tl, figs[1], "inset(0% 0% 0% 100%)", 0.38);
+      if (mini) tl.fromTo(mini, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.78, ease: "power2.out", clearProps: "transform" }, 0.60);
       return;
     }
 
@@ -5452,22 +5452,22 @@ html.export-pdf .deck-laser { display: none !important; }
       const rows = slide.querySelectorAll(".spec-sheet tbody tr");
       const bullets = slide.querySelectorAll(".bullet-list li");
 
-      if (fig) revealFigure(tl, fig, "inset(0% 100% 0% 0%)", 0.08);
-      if (clad.length) tl.fromTo(clad, { opacity: 0, scale: 0.94, transformOrigin: "center center" }, { opacity: 1, scale: 1, duration: 0.55, ease: "power2.out", clearProps: "transform" }, 0.24);
-      if (na.length) tl.fromTo(na, { opacity: 0, scale: 0.9, transformOrigin: "center center" }, { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out", clearProps: "transform" }, 0.36);
-      if (slug.length) tl.fromTo(slug, { opacity: 0, scale: 0.84, transformOrigin: "center center" }, { opacity: 1, scale: 1, duration: 0.55, ease: "back.out(1.4)", clearProps: "transform" }, 0.46);
-      if (plenum.length) tl.fromTo(plenum, { opacity: 0, scaleX: 0.6, transformOrigin: "left center" }, { opacity: 1, scaleX: 1, duration: 0.55, ease: "power2.out", clearProps: "transform" }, 0.56);
-      if (wire.length) tl.fromTo(wire, { opacity: 0 }, { opacity: 1, duration: 0.45 }, 0.64);
+      if (fig) revealFigure(tl, fig, "inset(0% 100% 0% 0%)", 0.22);
+      if (clad.length) tl.fromTo(clad, { opacity: 0, scale: 0.94, transformOrigin: "center center" }, { opacity: 1, scale: 1, duration: 0.65, ease: "power2.out", clearProps: "transform" }, 0.34);
+      if (na.length) tl.fromTo(na, { opacity: 0, scale: 0.9, transformOrigin: "center center" }, { opacity: 1, scale: 1, duration: 0.60, ease: "power2.out", clearProps: "transform" }, 0.44);
+      if (slug.length) tl.fromTo(slug, { opacity: 0, scale: 0.84, transformOrigin: "center center" }, { opacity: 1, scale: 1, duration: 0.65, ease: "back.out(1.4)", clearProps: "transform" }, 0.54);
+      if (plenum.length) tl.fromTo(plenum, { opacity: 0, scaleX: 0.6, transformOrigin: "left center" }, { opacity: 1, scaleX: 1, duration: 0.65, ease: "power2.out", clearProps: "transform" }, 0.64);
+      if (wire.length) tl.fromTo(wire, { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0.72);
       if (leaders.length) {
         leaders.forEach((ln) => {
           const len = ln.getTotalLength ? ln.getTotalLength() : 90;
           gsap.set(ln, { strokeDasharray: len, strokeDashoffset: len });
         });
-        tl.to(leaders, { strokeDashoffset: 0, duration: 0.55, stagger: 0.06, ease: "power2.out" }, 0.66);
+        tl.to(leaders, { strokeDashoffset: 0, duration: 0.62, stagger: 0.06, ease: "power2.out" }, 0.74);
       }
-      if (callouts.length) tl.fromTo(callouts, { opacity: 0 }, { opacity: 1, duration: 0.4, stagger: 0.025 }, 0.72);
-      if (rows.length) tl.fromTo(rows, { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.55, stagger: 0.1, ease: "power2.out", clearProps: "transform" }, 0.22);
-      if (bullets.length) tl.fromTo(bullets, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: "power2.out", clearProps: "transform" }, 0.6);
+      if (callouts.length) tl.fromTo(callouts, { opacity: 0 }, { opacity: 1, duration: 0.45, stagger: 0.025 }, 0.80);
+      if (rows.length) tl.fromTo(rows, { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.76, stagger: 0.11, ease: "power2.out", clearProps: "transform" }, 0.28);
+      if (bullets.length) tl.fromTo(bullets, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.78, stagger: 0.13, ease: "power2.out", clearProps: "transform" }, 0.62);
       return;
     }
 
@@ -5481,8 +5481,8 @@ html.export-pdf .deck-laser { display: none !important; }
       const bullets = slide.querySelectorAll(".bullet-list li");
       const fig = slide.querySelector(".figure-card");
       if (isoNode) isoNode.classList.remove("is-lit");
-      tl.fromTo(nodes, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.58, stagger: 0.1, ease: "power3.out", clearProps: "transform" }, 0.12)
-        .fromTo(arrows, { opacity: 0, x: -6 }, { opacity: 1, x: 0, duration: 0.35, stagger: 0.1, ease: "power2.out", clearProps: "transform" }, 0.18);
+      tl.fromTo(nodes, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.76, stagger: 0.11, ease: "power2.out", clearProps: "transform" }, 0.22)
+        .fromTo(arrows, { opacity: 0, x: -6 }, { opacity: 1, x: 0, duration: 0.46, stagger: 0.11, ease: "power2.out", clearProps: "transform" }, 0.26);
       bars.forEach((b, i) => {
         if (!b.dataset.targetWidth) {
           b.dataset.targetWidth = b.getAttribute("width") || "0";
@@ -5492,13 +5492,13 @@ html.export-pdf .deck-laser { display: none !important; }
           b,
           { attr: { width: 0 } },
           { attr: { width: targetW }, duration: 1.4, ease: "expo.out" },
-          0.38 + i * 0.18
+          0.42 + i * 0.18
         );
       });
-      if (isoNode) tl.call(() => isoNode.classList.add("is-lit"), null, 0.78);
-      if (mini) tl.fromTo(mini, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", clearProps: "transform" }, 0.52);
-      if (bullets.length) tl.fromTo(bullets, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.58, stagger: 0.12, ease: "power2.out", clearProps: "transform" }, 0.6);
-      if (fig) revealFigure(tl, fig, "inset(0% 0% 0% 100%)", 0.28);
+      if (isoNode) tl.call(() => isoNode.classList.add("is-lit"), null, 0.88);
+      if (mini) tl.fromTo(mini, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.72, ease: "power2.out", clearProps: "transform" }, 0.56);
+      if (bullets.length) tl.fromTo(bullets, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.76, stagger: 0.13, ease: "power2.out", clearProps: "transform" }, 0.64);
+      if (fig) revealFigure(tl, fig, "inset(0% 0% 0% 100%)", 0.34);
       if (AMBIENT_FX.slide4PhaseWave && nodes.length) {
         ambientTween = gsap.timeline({ repeat: -1, repeatDelay: 5.5, delay: 2.0 });
         nodes.forEach((n, i) => {
@@ -5518,28 +5518,28 @@ html.export-pdf .deck-laser { display: none !important; }
       const conns = slide.querySelectorAll(".s05-conn");
       const miniBoxes = slide.querySelectorAll(".fig-mini-box");
 
-      if (figs[0]) revealFigure(tl, figs[0], "inset(0% 100% 0% 0%)", 0.08);
+      if (figs[0]) revealFigure(tl, figs[0], "inset(0% 100% 0% 0%)", 0.22);
       stages.forEach((st, idx) => {
-        const baseAt = 0.24 + idx * 0.38;
+        const baseAt = 0.30 + idx * 0.38;
         const steps = st.querySelectorAll(".s05-step");
         const arrows = st.querySelectorAll(".s05-arrow");
-        tl.fromTo(st, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.38, ease: "power2.out", clearProps: "transform" }, baseAt);
+        tl.fromTo(st, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.54, ease: "power2.out", clearProps: "transform" }, baseAt);
         if (steps.length) {
-          tl.fromTo(steps, { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.36, stagger: 0.08, ease: "power2.out", clearProps: "transform" }, baseAt + 0.06);
+          tl.fromTo(steps, { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.48, stagger: 0.08, ease: "power2.out", clearProps: "transform" }, baseAt + 0.06);
         }
         if (arrows.length) {
-          tl.fromTo(arrows, { opacity: 0 }, { opacity: 1, duration: 0.25, stagger: 0.08 }, baseAt + 0.12);
+          tl.fromTo(arrows, { opacity: 0 }, { opacity: 1, duration: 0.32, stagger: 0.08 }, baseAt + 0.12);
         }
         if (conns[idx]) {
           const len = conns[idx].getTotalLength ? conns[idx].getTotalLength() : 28;
           gsap.set(conns[idx], { strokeDasharray: len, strokeDashoffset: len });
-          tl.to(conns[idx], { strokeDashoffset: 0, duration: 0.28, ease: "power2.out", onComplete: () => gsap.set(conns[idx], { clearProps: "strokeDasharray,strokeDashoffset" }) }, baseAt + 0.28);
+          tl.to(conns[idx], { strokeDashoffset: 0, duration: 0.34, ease: "power2.out", onComplete: () => gsap.set(conns[idx], { clearProps: "strokeDasharray,strokeDashoffset" }) }, baseAt + 0.30);
         }
       });
 
-      if (figs[1]) revealFigure(tl, figs[1], "inset(100% 0% 0% 0%)", 0.28);
+      if (figs[1]) revealFigure(tl, figs[1], "inset(100% 0% 0% 0%)", 0.34);
       if (miniBoxes.length) {
-        tl.fromTo(miniBoxes, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.14, ease: "power2.out", clearProps: "transform" }, 0.58);
+        tl.fromTo(miniBoxes, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.70, stagger: 0.15, ease: "power2.out", clearProps: "transform" }, 0.62);
       }
       return;
     }
@@ -5551,13 +5551,13 @@ html.export-pdf .deck-laser { display: none !important; }
       const items = slide.querySelectorAll(".step-item");
       const dots = slide.querySelectorAll(".step-item__dot");
 
-      if (fig) revealFigure(tl, fig, "inset(0% 100% 0% 0%)", 0.12);
+      if (fig) revealFigure(tl, fig, "inset(0% 100% 0% 0%)", 0.22);
       if (legendRows.length) {
-        tl.fromTo(legendRows, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.44, stagger: 0.1, ease: "power2.out", clearProps: "transform" }, 0.35);
+        tl.fromTo(legendRows, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.66, stagger: 0.12, ease: "power2.out", clearProps: "transform" }, 0.44);
       }
       if (!isWaitingSteps) {
-        if (items.length) tl.fromTo(items, { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.6, stagger: 0.14, ease: "power2.out", clearProps: "transform" }, 0.2);
-        if (dots.length) tl.fromTo(dots, { scale: 0 }, { scale: 1, duration: 0.5, stagger: 0.14, ease: "back.out(2)", clearProps: "transform" }, 0.26);
+        if (items.length) tl.fromTo(items, { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.78, stagger: 0.15, ease: "power2.out", clearProps: "transform" }, 0.28);
+        if (dots.length) tl.fromTo(dots, { scale: 0 }, { scale: 1, duration: 0.58, stagger: 0.15, ease: "back.out(2)", clearProps: "transform" }, 0.34);
         startSlide6Ambient(slide);
       }
       return;
@@ -5572,17 +5572,17 @@ html.export-pdf .deck-laser { display: none !important; }
       const miniBoxes = slide.querySelectorAll(".fig-mini-box");
       if (critical) critical.classList.remove("is-pulsing");
 
-      if (fig) revealFigure(tl, fig, "inset(0% 0% 0% 100%)", 0.18);
+      if (fig) revealFigure(tl, fig, "inset(0% 0% 0% 100%)", 0.26);
       if (miniBoxes.length) {
-        tl.fromTo(miniBoxes, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: "power2.out", clearProps: "transform" }, 0.42);
+        tl.fromTo(miniBoxes, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.66, stagger: 0.09, ease: "power2.out", clearProps: "transform" }, 0.48);
       }
       if (isWaitingSteps) {
-        if (firstCard) tl.fromTo(firstCard, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.56, ease: "power2.out", clearProps: "transform" }, 0.16);
+        if (firstCard) tl.fromTo(firstCard, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.78, ease: "power2.out", clearProps: "transform" }, 0.22);
       } else {
-        if (allCards.length) tl.fromTo(allCards, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.58, stagger: 0.14, ease: "power2.out", clearProps: "transform" }, 0.16);
+        if (allCards.length) tl.fromTo(allCards, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.78, stagger: 0.15, ease: "power2.out", clearProps: "transform" }, 0.22);
         if (critical) {
-          triggerShimmer(tl, critical, 0.72);
-          if (AMBIENT_FX.slide7Thermal) tl.call(() => critical.classList.add("is-pulsing"), null, 0.88);
+          triggerShimmer(tl, critical, 0.78);
+          if (AMBIENT_FX.slide7Thermal) tl.call(() => critical.classList.add("is-pulsing"), null, 0.94);
         }
       }
       return;
@@ -5599,20 +5599,20 @@ html.export-pdf .deck-laser { display: none !important; }
       const callouts = slide.querySelectorAll(".s08-callout");
       if (ht9) ht9.classList.remove("is-pulsing");
 
-      if (heads.length) tl.fromTo(heads, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: "power3.out", clearProps: "transform" }, 0.08);
-      if (cards.length) tl.fromTo(cards, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.46, stagger: 0.055, ease: "power2.out", clearProps: "transform" }, 0.16);
-      if (plots[0]) revealFigure(tl, plots[0], "inset(0% 0% 0% 100%)", 0.24);
-      if (plots[1]) revealFigure(tl, plots[1], "inset(0% 0% 0% 100%)", 0.36);
+      if (heads.length) tl.fromTo(heads, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.72, stagger: 0.09, ease: "power2.out", clearProps: "transform" }, 0.22);
+      if (cards.length) tl.fromTo(cards, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.70, stagger: 0.06, ease: "power2.out", clearProps: "transform" }, 0.28);
+      if (plots[0]) revealFigure(tl, plots[0], "inset(0% 0% 0% 100%)", 0.32);
+      if (plots[1]) revealFigure(tl, plots[1], "inset(0% 0% 0% 100%)", 0.44);
 
       if (isWaitingSteps) {
         if (clipRect) gsap.set(clipRect, { attr: { width: 0 } });
         if (callouts.length) gsap.set(callouts, { opacity: 0 });
       } else {
-        if (caps.length) tl.fromTo(caps, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.48, stagger: 0.1, ease: "power2.out", clearProps: "transform" }, 0.54);
-        animateSlide8Swelling(slide, tl, 0.52, false);
+        if (caps.length) tl.fromTo(caps, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.70, stagger: 0.11, ease: "power2.out", clearProps: "transform" }, 0.62);
+        animateSlide8Swelling(slide, tl, 0.60, false);
         if (ht9) {
-          triggerShimmer(tl, ht9, 0.78);
-          if (AMBIENT_FX.slide8Emerald) tl.call(() => ht9.classList.add("is-pulsing"), null, 0.9);
+          triggerShimmer(tl, ht9, 0.86);
+          if (AMBIENT_FX.slide8Emerald) tl.call(() => ht9.classList.add("is-pulsing"), null, 0.98);
         }
       }
       return;
@@ -5625,13 +5625,13 @@ html.export-pdf .deck-laser { display: none !important; }
       const bullets = slide.querySelectorAll(".bullet-list li");
       const note = slide.querySelector(".s09-strain-note");
       if (kpis.length) {
-        tl.fromTo(kpis, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.56, stagger: 0.07, ease: "power3.out", clearProps: "transform" }, 0.08);
+        tl.fromTo(kpis, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.78, stagger: 0.09, ease: "power2.out", clearProps: "transform" }, 0.22);
         const c = animateCounters(slide);
-        if (c) tl.add(c, 0.32);
+        if (c) tl.add(c, 0.40);
       }
-      if (fig) revealFigure(tl, fig, "inset(0% 100% 0% 0%)", 0.32);
-      if (note) tl.fromTo(note, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", clearProps: "transform" }, 0.56);
-      if (bullets.length) tl.fromTo(bullets, { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.6, stagger: 0.13, ease: "power2.out", clearProps: "transform" }, 0.38);
+      if (fig) revealFigure(tl, fig, "inset(0% 100% 0% 0%)", 0.38);
+      if (note) tl.fromTo(note, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.65, ease: "power2.out", clearProps: "transform" }, 0.64);
+      if (bullets.length) tl.fromTo(bullets, { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.78, stagger: 0.14, ease: "power2.out", clearProps: "transform" }, 0.46);
       return;
     }
 
@@ -5647,9 +5647,9 @@ html.export-pdf .deck-laser { display: none !important; }
         ];
         cards.forEach((card, i) => {
           const off = offsets[i] || { x: 0, y: 18 };
-          const at = 0.12 + i * 0.1;
-          tl.fromTo(card, { opacity: 0, x: off.x, y: off.y }, { opacity: 1, x: 0, y: 0, duration: 0.68, ease: "power3.out", clearProps: "transform" }, at);
-          playLeverMicroSvg(card, tl, at + 0.36);
+          const at = 0.22 + i * 0.11;
+          tl.fromTo(card, { opacity: 0, x: off.x, y: off.y }, { opacity: 1, x: 0, y: 0, duration: 0.80, ease: "power2.out", clearProps: "transform" }, at);
+          playLeverMicroSvg(card, tl, at + 0.38);
         });
         startSlide10Ambient(slide);
       }
@@ -5662,12 +5662,12 @@ html.export-pdf .deck-laser { display: none !important; }
       const rows = slide.querySelectorAll(".tradeoff-table tbody tr");
       const foot = slide.querySelector(".table-footnote");
       if (thead) {
-        tl.fromTo(thead, { opacity: 0, y: -10, clipPath: "inset(0% 100% 0% 0%)" }, { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)", duration: 0.48, ease: "power3.out", clearProps: "clipPath,opacity,transform" }, 0.08);
+        tl.fromTo(thead, { opacity: 0, y: -10, clipPath: "inset(0% 100% 0% 0%)" }, { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)", duration: 0.72, ease: "power2.out", clearProps: "clipPath,opacity,transform" }, 0.22);
       }
       if (rows.length) {
-        tl.fromTo(rows, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.48, stagger: 0.08, ease: "power3.out", clearProps: "opacity,transform" }, 0.18);
+        tl.fromTo(rows, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.72, stagger: 0.09, ease: "power2.out", clearProps: "opacity,transform" }, 0.32);
       }
-      if (foot) tl.fromTo(foot, { opacity: 0 }, { opacity: 1, duration: 0.45, clearProps: "opacity" }, 0.65);
+      if (foot) tl.fromTo(foot, { opacity: 0 }, { opacity: 1, duration: 0.58, clearProps: "opacity" }, 0.76);
       return;
     }
 
@@ -5682,23 +5682,23 @@ html.export-pdf .deck-laser { display: none !important; }
       const boxes = slide.querySelectorAll(".decision-box");
       const stage2Card = slide.querySelector(".decision-box--green");
 
-      if (fig) revealFigure(tl, fig, "inset(0% 100% 0% 0%)", 0.08);
-      if (st1) tl.fromTo(st1, { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.54, ease: "power3.out", clearProps: "transform" }, 0.24);
+      if (fig) revealFigure(tl, fig, "inset(0% 100% 0% 0%)", 0.22);
+      if (st1) tl.fromTo(st1, { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.78, ease: "power2.out", clearProps: "transform" }, 0.32);
 
       if (isWaitingSteps) {
-        if (box1) tl.fromTo(box1, { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.56, ease: "power3.out", clearProps: "transform" }, 0.24);
+        if (box1) tl.fromTo(box1, { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.78, ease: "power2.out", clearProps: "transform" }, 0.32);
       } else {
         if (bridgeLines.length) {
           bridgeLines.forEach((ln) => {
             const len = ln.getTotalLength ? ln.getTotalLength() : 75;
             gsap.set(ln, { strokeDasharray: len, strokeDashoffset: len });
           });
-          tl.to(bridgeLines, { strokeDashoffset: 0, duration: 0.5, stagger: 0.08, ease: "power2.out", onComplete: () => gsap.set(bridgeLines, { clearProps: "strokeDasharray,strokeDashoffset" }) }, 0.52);
+          tl.to(bridgeLines, { strokeDashoffset: 0, duration: 0.62, stagger: 0.09, ease: "power2.out", onComplete: () => gsap.set(bridgeLines, { clearProps: "strokeDasharray,strokeDashoffset" }) }, 0.60);
         }
-        if (bridgePill) tl.fromTo(bridgePill, { scale: 0.85, opacity: 0, transformOrigin: "center center" }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.6)", clearProps: "transform" }, 0.62);
-        if (st2) tl.fromTo(st2, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.56, ease: "power3.out", clearProps: "transform" }, 0.74);
-        if (boxes.length) tl.fromTo(boxes, { opacity: 0, x: 28 }, { opacity: 1, x: 0, duration: 0.6, stagger: 0.15, ease: "power3.out", clearProps: "transform" }, 0.24);
-        if (stage2Card) triggerShimmer(tl, stage2Card, 0.92);
+        if (bridgePill) tl.fromTo(bridgePill, { scale: 0.85, opacity: 0, transformOrigin: "center center" }, { scale: 1, opacity: 1, duration: 0.56, ease: "back.out(1.6)", clearProps: "transform" }, 0.72);
+        if (st2) tl.fromTo(st2, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.78, ease: "power2.out", clearProps: "transform" }, 0.84);
+        if (boxes.length) tl.fromTo(boxes, { opacity: 0, x: 28 }, { opacity: 1, x: 0, duration: 0.78, stagger: 0.16, ease: "power2.out", clearProps: "transform" }, 0.32);
+        if (stage2Card) triggerShimmer(tl, stage2Card, 1.02);
         startSlide12Ambient(slide);
       }
       return;
@@ -5707,11 +5707,11 @@ html.export-pdf .deck-laser { display: none !important; }
     // Slide 13: Categorized Two-Card Verified References Cascade
     if (slideNum === 13) {
       const cards = slide.querySelectorAll(".ref-card");
-      if (cards.length) tl.fromTo(cards, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out", clearProps: "transform" }, 0.06);
+      if (cards.length) tl.fromTo(cards, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.78, ease: "power2.out", clearProps: "transform" }, 0.22);
       cards.forEach((card) => {
         const items = card.querySelectorAll(".ref-item");
         if (items.length) {
-          tl.fromTo(items, { opacity: 0, x: -24, y: 6 }, { opacity: 1, x: 0, y: 0, duration: 0.6, stagger: 0.12, ease: "power3.out", clearProps: "transform" }, 0.36);
+          tl.fromTo(items, { opacity: 0, x: -24, y: 6 }, { opacity: 1, x: 0, y: 0, duration: 0.72, stagger: 0.10, ease: "power2.out", clearProps: "transform" }, 0.44);
         }
       });
       return;
